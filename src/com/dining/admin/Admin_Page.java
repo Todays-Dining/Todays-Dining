@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Admin_Page extends JFrame{
-	JPanel Admin_Page_jp1 ,Admin_Page_jp2 ;
-	JLabel Admin_Page_jlb ;
-	JButton Admin_Page_jb1, Admin_Page_jb2, Admin_Page_jb3 ;
+	private JPanel Admin_Page_jp1 ,Admin_Page_jp2 ;
+	private JLabel Admin_Page_jlb ;
+	private JButton Admin_Page_jb1, Admin_Page_jb2, Admin_Page_jb3 ;
 	public Admin_Page() {
 		super("Admin");
 		Admin_Page_jp1 = new JPanel();
