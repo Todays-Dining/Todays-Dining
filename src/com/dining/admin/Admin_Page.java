@@ -1,57 +1,114 @@
 package com.dining.admin;
 
-import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.Graphics;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Component;
+import javax.swing.SwingConstants;
 
-public class Admin_Page extends JFrame{
-	private JPanel Admin_Page_jp1 ,Admin_Page_jp2 ;
-	private JLabel Admin_Page_jlb ;
-	private JButton Admin_Page_jb1, Admin_Page_jb2, Admin_Page_jb3 ;
-	public Admin_Page() {
-		super("Admin");
-		Admin_Page_jp1 = new JPanel();
-		Admin_Page_jp2 = new JPanel(new GridLayout(3,1));
-		Admin_Page_jlb = new JLabel("Admin");
-		Admin_Page_jlb.setFont(new Font("Serif", Font.ITALIC, 80));
-		Admin_Page_jlb.setForeground(Color.RED);
-		// 버튼
-		Admin_Page_jb1 = new JButton("회원정보 관리");
-		Admin_Page_jb1.setFont(new Font("Monospaced", Font.BOLD, 40));
-		Admin_Page_jb2 = new JButton("음식점 관리");
-		Admin_Page_jb2.setFont(new Font("Monospaced", Font.BOLD, 40));
-		Admin_Page_jb3 = new JButton("리뷰및평점 관리");
-		Admin_Page_jb3.setFont(new Font("Monospaced", Font.BOLD, 40));
-		
-		
-		// 배경색
-		Admin_Page_jp1.setBackground(Color.BLACK);
-		Admin_Page_jb1.setBackground(Color.WHITE);
-		Admin_Page_jb2.setBackground(Color.WHITE);
-		Admin_Page_jb3.setBackground(Color.WHITE);
-		
-		Admin_Page_jp1.add(Admin_Page_jlb);
-		
-		Admin_Page_jp2.add(Admin_Page_jb1);
-		Admin_Page_jp2.add(Admin_Page_jb2);
-		Admin_Page_jp2.add(Admin_Page_jb3);
-		
-		// 패널 위치 분배
-		add(Admin_Page_jp1, BorderLayout.NORTH);
-		add(Admin_Page_jp2, BorderLayout.CENTER);
-		
-		setSize(500,600);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-	}
+public class Admin_Page {
+
+	private JFrame frame;
+	
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		new Admin_Page();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Admin_Page window = new Admin_Page();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
 	}
+
+	/**
+	 * Create the application.
+	 */
+	public Admin_Page() {
+		initialize();
+		
+	}
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(255, 240, 245));
+		frame.setBounds(100, 100, 450, 700);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 240, 245));
+		panel.setBounds(0, 0, 434, 661);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		
+		JLabel lblNewLabel = new JLabel("Admin");
+		lblNewLabel.setFont(new Font("AmeriGarmnd BT", lblNewLabel.getFont().getStyle() | Font.BOLD, lblNewLabel.getFont().getSize() + 50));
+		lblNewLabel.setForeground(new Color(65, 105, 225));
+		lblNewLabel.setBounds(133, 65, 184, 64);
+		panel.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("음식점");
+		btnNewButton.setFont(btnNewButton.getFont().deriveFont(btnNewButton.getFont().getStyle() | Font.BOLD, btnNewButton.getFont().getSize() + 18f));
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setBackground(new Color(255, 250, 205));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(33, 234, 160, 160);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("<html><body><center>리뷰및<br>평점</center></body></html>");
+		btnNewButton_1.setFont(btnNewButton_1.getFont().deriveFont(btnNewButton_1.getFont().getStyle() | Font.BOLD, btnNewButton_1.getFont().getSize() + 15f));
+		btnNewButton_1.setForeground(new Color(0, 0, 0));
+		btnNewButton_1.setBackground(new Color(224, 255, 255));
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBounds(237, 237, 160, 160);
+		panel.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("회원정보");
+		btnNewButton_2.setFont(btnNewButton_2.getFont().deriveFont(btnNewButton_2.getFont().getStyle() | Font.BOLD, btnNewButton_2.getFont().getSize() + 14f));
+		btnNewButton_2.setForeground(new Color(0, 0, 0));
+		btnNewButton_2.setBackground(new Color(255, 182, 193));
+		btnNewButton_2.setBorderPainted(false);
+		btnNewButton_2.setBounds(133, 420, 160, 160);
+		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.setEnabled(false);
+		btnNewButton_3.setBackground(new Color(65, 105, 225));
+		btnNewButton_3.setBorderPainted(false);
+		btnNewButton_3.setBounds(33, 125, 364, 4);
+		panel.add(btnNewButton_3);
+	}
+	
 }
