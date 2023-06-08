@@ -1,57 +1,110 @@
 package com.dining.admin;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Admin_Page extends JFrame{
-	private JPanel Admin_Page_jp1 ,Admin_Page_jp2 ;
-	private JLabel Admin_Page_jlb ;
-	private JButton Admin_Page_jb1, Admin_Page_jb2, Admin_Page_jb3 ;
-	public Admin_Page() {
-		super("Admin");
-		Admin_Page_jp1 = new JPanel();
-		Admin_Page_jp2 = new JPanel(new GridLayout(3,1));
-		Admin_Page_jlb = new JLabel("Admin");
-		Admin_Page_jlb.setFont(new Font("Serif", Font.ITALIC, 80));
-		Admin_Page_jlb.setForeground(Color.RED);
-		// 버튼
-		Admin_Page_jb1 = new JButton("회원정보 관리");
-		Admin_Page_jb1.setFont(new Font("Monospaced", Font.BOLD, 40));
-		Admin_Page_jb2 = new JButton("음식점 관리");
-		Admin_Page_jb2.setFont(new Font("Monospaced", Font.BOLD, 40));
-		Admin_Page_jb3 = new JButton("리뷰및평점 관리");
-		Admin_Page_jb3.setFont(new Font("Monospaced", Font.BOLD, 40));
-		
-		
-		// 배경색
-		Admin_Page_jp1.setBackground(Color.BLACK);
-		Admin_Page_jb1.setBackground(Color.WHITE);
-		Admin_Page_jb2.setBackground(Color.WHITE);
-		Admin_Page_jb3.setBackground(Color.WHITE);
-		
-		Admin_Page_jp1.add(Admin_Page_jlb);
-		
-		Admin_Page_jp2.add(Admin_Page_jb1);
-		Admin_Page_jp2.add(Admin_Page_jb2);
-		Admin_Page_jp2.add(Admin_Page_jb3);
-		
-		// 패널 위치 분배
-		add(Admin_Page_jp1, BorderLayout.NORTH);
-		add(Admin_Page_jp2, BorderLayout.CENTER);
-		
-		setSize(500,600);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-	}
+public class Admin_Page {
+
+	private JFrame frame;
+	
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		new Admin_Page();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Admin_Page window = new Admin_Page();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Admin_Page() {
+		initialize();
+		
+	}
+	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(255, 240, 245));
+		frame.setBounds(100, 100, 540, 960);
+		// 화면사이즈고정
+		frame.setResizable(false);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(255, 240, 245));
+		panel.setBounds(0, 0, 524, 932);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		
+		JLabel lblNewLabel = new JLabel("Admin");
+		lblNewLabel.setFont(new Font("Comic Sans Ms", lblNewLabel.getFont().getStyle() | Font.BOLD, lblNewLabel.getFont().getSize() + 50));
+		lblNewLabel.setForeground(new Color(65, 105, 225));
+		lblNewLabel.setBounds(171, 65, 244, 64);
+		panel.add(lblNewLabel);
+		
+		RoundedButton btnNewButton = new RoundedButton("음식점");
+		btnNewButton.setFont(new Font("HY엽서M", Font.BOLD, 55));
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(28, 380, 470, 160);
+		panel.add(btnNewButton);
+		
+		RoundedButton btnNewButton_1 = new RoundedButton("리뷰및평점");
+		btnNewButton_1.setFont(new Font("HY엽서M", Font.BOLD, 55));
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_1.setBounds(28, 568, 470, 160);
+		panel.add(btnNewButton_1);
+		
+		RoundedButton btnNewButton_2 = new RoundedButton("회원정보");
+		btnNewButton_2.setFont(new Font("HY엽서M", Font.BOLD, 55));
+		btnNewButton_2.setBorderPainted(false);
+		btnNewButton_2.setBounds(28, 192, 470, 160);
+		panel.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("");
+		btnNewButton_3.setEnabled(false);
+		btnNewButton_3.setBackground(new Color(65, 105, 225));
+		btnNewButton_3.setBorderPainted(false);
+		btnNewButton_3.setBounds(28, 128, 470, 4);
+		panel.add(btnNewButton_3);
+		
+		JButton btnNewButton_3_1 = new JButton("");
+		btnNewButton_3_1.setEnabled(false);
+		btnNewButton_3_1.setBorderPainted(false);
+		btnNewButton_3_1.setBackground(new Color(65, 105, 225));
+		btnNewButton_3_1.setBounds(28, 786, 470, 4);
+		panel.add(btnNewButton_3_1);
 	}
 }
