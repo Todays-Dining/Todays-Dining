@@ -5,9 +5,9 @@ import javax.swing.JFrame;
 public class test01 extends JFrame{
 	public test01() {
 		
-		main_tool jp1 = new main_tool();
+		main_tool_home jp1 = new main_tool_home();
 		
-		add(jp1.jPanel);
+		add(jp1.jPanel_main);
 		
 		setSize(540, 960);
 		setLocationRelativeTo(null);

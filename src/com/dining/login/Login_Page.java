@@ -1,18 +1,19 @@
 package com.dining.login;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.event.ActionListener;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Login_Page {
 
@@ -46,6 +47,7 @@ public class Login_Page {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	ImageIcon img = new ImageIcon("src/image/homebutton_1.png");
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 540, 960);
@@ -57,10 +59,10 @@ public class Login_Page {
 		panel.setLayout(null);
 		
 		
-		JLabel lblNewLabel = new JLabel(" 로 그 인");
+		JLabel lblNewLabel = new JLabel("로 그 인");
 		lblNewLabel.setForeground(new Color(65, 105, 225));
-		lblNewLabel.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 56));
-		lblNewLabel.setBounds(157, 271, 201, 55);
+		lblNewLabel.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 54));
+		lblNewLabel.setBounds(173, 275, 209, 55);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("I  D ");
@@ -120,6 +122,13 @@ public class Login_Page {
 		btnNewButton_1_1_1.setForeground(new Color(255, 240, 245));
 		btnNewButton_1_1_1.setBounds(362, 501, 97, 23);
 		panel.add(btnNewButton_1_1_1);
+		
+//		JButton homebutton = new JButton(img);
+//		homebutton.setBorderPainted(false); // 버튼테두리 삭제
+//		homebutton.setBackground(new Color(255, 240, 245)); // 버튼 배경색
+//		homebutton.setBounds(394, 307, 60, 60);
+//		homebutton.setPreferredSize(new Dimension(60,60));// 버튼 영역 선택
+//		panel.add(homebutton);
 		Dining_Canvas dc_1 = new Dining_Canvas();
 		panel.add(dc_1);
 		dc_1.setBounds(-12, 336, 520, 600);
