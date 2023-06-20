@@ -106,5 +106,16 @@ public class Admin_Page {
 		btnNewButton_3_1.setBackground(new Color(65, 105, 225));
 		btnNewButton_3_1.setBounds(28, 786, 470, 4);
 		panel.add(btnNewButton_3_1);
+	
+		btnNewButton_2.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
+	
+	
 }

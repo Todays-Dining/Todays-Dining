@@ -2,14 +2,16 @@ package com.dining.main;
 
 import javax.swing.JFrame;
 
+import com.dining.login.Find_id_page;
+
 public class test01 extends JFrame{
 	public test01() {
 		
-		main_tool_home jp1 = new main_tool_home();
+		Find_id_page jp1 = new Find_id_page();
 		
-		add(jp1.jPanel_main);
+		add(jp1);
 		
-		setSize(540, 960);
+		setSize(540, 1000);
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);

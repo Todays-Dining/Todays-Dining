@@ -1,86 +1,40 @@
 package com.dining.main;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
 import java.awt.Color;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JMenu;
-import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import javax.swing.JPopupMenu;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JLabel;
-import java.awt.ComponentOrientation;
-import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class main_tool_home {
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
-	public JFrame frame;
-	public JPanel jPanel_main;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					main_tool_home window = new main_tool_home();
-					window.jPanel_main.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		new main_tool_home();
-	}
+public class main_tool_home_panel extends JPanel {
 
 	/**
-	 * Create the application.
+	 * Create the panel.
 	 */
-	public main_tool_home() {
+	public main_tool_home_panel() {
 		
+		setForeground(new Color(0, 0, 0));
+		setBackground(new Color(255, 240, 245));
+		setBounds(100, 100, 540, 960);
+		setLayout(null);
 		
-		
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		
-		jPanel_main = new JPanel();
-		jPanel_main.setForeground(new Color(0, 0, 0));
-		jPanel_main.setBackground(new Color(255, 240, 245));
-		jPanel_main.setBounds(100, 100, 540, 960);
-		jPanel_main.setLayout(null);
-
-		
-
 		JLabel sidetool = new JLabel("");
 		sidetool.setOpaque(true);
 		sidetool.setBackground(new Color(255, 240, 245));
 		sidetool.setBounds(405, 97, 91, 15);
-		jPanel_main.add(sidetool);
+		add(sidetool);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
 		menuBar.setToolTipText("");
 		menuBar.setBackground(new Color(255, 240, 245));
 		menuBar.setBounds(418, 40, 62, 61);
-		jPanel_main.add(menuBar);
+		add(menuBar);
 		
 		JMenu movemenu = new JMenu("");
 		movemenu.setOpaque(true);
@@ -120,28 +74,10 @@ public class main_tool_home {
 		
 		JButton homeButton = new JButton("");
 		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon("D:\\KJH\\teamproject\\Todays-Dining\\src\\image\\homebutton_1.png"));
+		homeButton.setIcon(new ImageIcon(main_tool_home_panel.class.getResource("/image/homebutton_1.png")));
 		homeButton.setBackground(new Color(255, 240, 245));
 		homeButton.setBounds(329, 37, 77, 69);
-		jPanel_main.add(homeButton);
-		
+		add(homeButton);
+	}
 
-	}
-	private static void addPopup(Component component, final JPopupMenu popup) {
-		component.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			public void mouseReleased(MouseEvent e) {
-				if (e.isPopupTrigger()) {
-					showMenu(e);
-				}
-			}
-			private void showMenu(MouseEvent e) {
-				popup.show(e.getComponent(), e.getX(), e.getY());
-			}
-		});
-	}
 }

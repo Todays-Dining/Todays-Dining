@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class addmin_tool {
+public class admin_tool {
 
 //	private JFrame frame;
 	public JPanel jPanel_admin ;
@@ -24,7 +24,7 @@ public class addmin_tool {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					addmin_tool window = new addmin_tool();
+					admin_tool window = new admin_tool();
 					window.jPanel_admin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,7 +36,7 @@ public class addmin_tool {
 	/**
 	 * Create the application.
 	 */
-	public addmin_tool() {
+	public admin_tool() {
 		initialize();
 	}
 
@@ -68,7 +68,7 @@ public class addmin_tool {
 		});
 		backbutton.setBorderPainted(false);
 		backbutton.setBackground(new Color(255, 240, 245));
-		backbutton.setIcon(new ImageIcon("C:\\javastudy\\teamproject\\src\\image\\backbutton.png"));
+		backbutton.setIcon(new ImageIcon("D:\\KJH\\teamproject\\Todays-Dining\\src\\image\\backbutton.png"));
 		backbutton.setBounds(1075, 50, 97, 71);
 		jPanel_admin.add(backbutton);
 	}
