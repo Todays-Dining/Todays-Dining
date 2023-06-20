@@ -65,7 +65,7 @@ public class store_home_panel extends JPanel {
 		JMenu movemenu = new JMenu("");
 		movemenu.setOpaque(true);
 		movemenu.setIconTextGap(0);
-		movemenu.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\menubutton.png"));
+		movemenu.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\menubutton.png"));
 		movemenu.setBorderPainted(true);
 		movemenu.setBackground(new Color(255, 240, 245));
 		menuBar.add(movemenu);
@@ -100,7 +100,7 @@ public class store_home_panel extends JPanel {
 		
 		JButton homeButton = new JButton("");
 		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon("C:\\TeamProject\\\\src\\image\\homebutton_1.png"));
+		homeButton.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\homebutton_1.png"));
 		homeButton.setBackground(new Color(255, 240, 245));
 		homeButton.setBounds(329, 37, 77, 69);
 		add(homeButton);
@@ -109,7 +109,7 @@ public class store_home_panel extends JPanel {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setBackground(new Color(65, 105, 225));
-		btnNewButton.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		btnNewButton.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 26));
 		btnNewButton.setBounds(59, 110, 204, 61);
 		add(btnNewButton);
 		
@@ -180,6 +180,7 @@ public class store_home_panel extends JPanel {
 		add(lblNewLabel_1_5_2_1_1);
 		
 		RoundedButton btnNewButton_2 = new RoundedButton("상세위치 지도보기");
+		btnNewButton_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
 		btnNewButton_2.setBorderPainted(false);
 		btnNewButton_2.setBackground(new Color(65, 105, 225));
 		btnNewButton_2.setForeground(new Color(255, 255, 255));
@@ -191,6 +192,7 @@ public class store_home_panel extends JPanel {
 		add(btnNewButton_2);
 		
 		RoundedButton btnNewButton_2_1 = new RoundedButton("리뷰 작성 및 보기");
+		btnNewButton_2_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
 		btnNewButton_2_1.setBackground(new Color(65, 105, 225));
 		btnNewButton_2_1.setBorderPainted(false);
 		btnNewButton_2_1.setForeground(new Color(255, 255, 255));
@@ -198,14 +200,14 @@ public class store_home_panel extends JPanel {
 		add(btnNewButton_2_1);
 		
 		JButton StarPointButton_1 = new JButton("");
-		StarPointButton_1.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\heart.png"));
+		StarPointButton_1.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\heart.png"));
 		StarPointButton_1.setBorderPainted(false);
 		StarPointButton_1.setBackground(new Color(255, 240, 245));
 		StarPointButton_1.setBounds(391, 111, 77, 61);
 		add(StarPointButton_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\star3.png"));
+		lblNewLabel_2.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\star3.png"));
 		lblNewLabel_2.setBounds(304, 112, 77, 61);
 		add(lblNewLabel_2);
 	}

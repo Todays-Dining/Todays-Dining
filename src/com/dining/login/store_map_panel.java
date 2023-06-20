@@ -43,7 +43,7 @@ public class store_map_panel extends JPanel {
 		JMenu movemenu = new JMenu("");
 		movemenu.setOpaque(true);
 		movemenu.setIconTextGap(0);
-		movemenu.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\menubutton.png"));
+		movemenu.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\menubutton.png"));
 		movemenu.setBorderPainted(true);
 		movemenu.setBackground(new Color(255, 240, 245));
 		menuBar.add(movemenu);
@@ -78,7 +78,7 @@ public class store_map_panel extends JPanel {
 		
 		JButton homeButton = new JButton("");
 		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon("C:\\TeamProject\\\\src\\image\\homebutton_1.png"));
+		homeButton.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\homebutton_1.png"));
 		homeButton.setBackground(new Color(255, 240, 245));
 		homeButton.setBounds(329, 37, 77, 69);
 		add(homeButton);
@@ -102,19 +102,25 @@ public class store_map_panel extends JPanel {
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("음식점 주소 :");
-		lblNewLabel_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lblNewLabel_2.setBounds(94, 494, 91, 23);
+		lblNewLabel_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
+		lblNewLabel_2.setBounds(85, 482, 102, 23);
 		add(lblNewLabel_2);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(195, 495, 268, 24);
+		textArea.setBounds(195, 482, 268, 24);
 		add(textArea);
 		
 		JButton homeButton_1 = new JButton("");
-		homeButton_1.setIcon(new ImageIcon("C:\\Users\\zdbst\\Desktop\\ㄱㄱ.png"));
+		homeButton_1.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\ㄱㄱ.png"));
 		homeButton_1.setBorderPainted(false);
 		homeButton_1.setBackground(new Color(255, 240, 245));
 		homeButton_1.setBounds(242, 40, 77, 69);
 		add(homeButton_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("<가게 위치>");
+		lblNewLabel_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_3.setBounds(49, 515, 96, 29);
+		add(lblNewLabel_3);
 	}
 }

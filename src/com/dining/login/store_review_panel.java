@@ -44,7 +44,7 @@ public class store_review_panel extends JPanel {
 		JMenu movemenu = new JMenu("");
 		movemenu.setOpaque(true);
 		movemenu.setIconTextGap(0);
-		movemenu.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\menubutton.png"));
+		movemenu.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\menubutton.png"));
 		movemenu.setBorderPainted(true);
 		movemenu.setBackground(new Color(255, 240, 245));
 		menuBar.add(movemenu);
@@ -79,19 +79,19 @@ public class store_review_panel extends JPanel {
 		
 		JButton homeButton = new JButton("");
 		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon("C:\\TeamProject\\\\src\\image\\homebutton_1.png"));
+		homeButton.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\homebutton_1.png"));
 		homeButton.setBackground(new Color(255, 240, 245));
 		homeButton.setBounds(329, 37, 77, 69);
 		add(homeButton);
 		
-		JLabel lblNewLabel = new JLabel("리뷰");
+		JLabel lblNewLabel = new JLabel("리뷰 및 별점");
 		lblNewLabel.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(210, 260, 118, 54);
+		lblNewLabel.setBounds(137, 261, 215, 54);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\label.png"));
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\TeamProject\\Todays-Dining\\src\\image\\label.png"));
 		lblNewLabel_1.setBounds(0, 10, 540, 330);
 		add(lblNewLabel_1);
 		
