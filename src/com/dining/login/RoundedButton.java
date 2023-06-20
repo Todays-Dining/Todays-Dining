@@ -1,4 +1,4 @@
-package com.dining.main;
+package com.dining.login;
 
 import java.awt.Color;
 import java.awt.FontMetrics;
