@@ -39,7 +39,7 @@ public class Join_page extends JPanel {
 		JLabel join_label = new JLabel("회원가입");
 		join_label.setForeground(new Color(65, 105, 225));
 		join_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 32));
-		join_label.setBounds(215, 168, 145, 73);
+		join_label.setBounds(215, 159, 145, 73);
 		add(join_label);
 		
 		id_textField = new JTextField();
@@ -213,7 +213,7 @@ public class Join_page extends JPanel {
 		id_chek_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16));
 		id_chek_bt.setBorderPainted(false);
 		id_chek_bt.setBackground(new Color(65, 105, 225));
-		id_chek_bt.setBounds(367, 275, 100, 29);
+		id_chek_bt.setBounds(367, 216, 100, 29);
 		add(id_chek_bt);
 		
 		JLabel main_icon = new JLabel("");
