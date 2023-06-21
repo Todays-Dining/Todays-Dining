@@ -89,7 +89,7 @@ public class store_map_panel extends JPanel {
 		lblNewLabel.setBackground(new Color(255, 128, 64));
 		lblNewLabel.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 50));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(49, 122, 414, 350);
+		lblNewLabel.setBounds(49, 122, 414, 301);
 		add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("가게 위치");
@@ -98,16 +98,16 @@ public class store_map_panel extends JPanel {
 		lblNewLabel_1.setBackground(new Color(255, 128, 64));
 		lblNewLabel_1.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 50));
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setBounds(49, 548, 414, 350);
+		lblNewLabel_1.setBounds(49, 531, 414, 301);
 		add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("음식점 주소 :");
 		lblNewLabel_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(85, 482, 102, 23);
+		lblNewLabel_2.setBounds(49, 443, 102, 23);
 		add(lblNewLabel_2);
 		
 		JTextArea textArea = new JTextArea();
-		textArea.setBounds(195, 482, 268, 24);
+		textArea.setBounds(150, 444, 313, 24);
 		add(textArea);
 		
 		JButton homeButton_1 = new JButton("");
@@ -120,7 +120,7 @@ public class store_map_panel extends JPanel {
 		JLabel lblNewLabel_3 = new JLabel("<가게 위치>");
 		lblNewLabel_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
 		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setBounds(49, 515, 96, 29);
+		lblNewLabel_3.setBounds(55, 503, 96, 29);
 		add(lblNewLabel_3);
 	}
 }

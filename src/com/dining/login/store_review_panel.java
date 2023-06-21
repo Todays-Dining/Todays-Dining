@@ -146,21 +146,21 @@ public class store_review_panel extends JPanel {
 		JLabel lblNewLabel_2_2_1_1 = new JLabel("별점 주기");
 		lblNewLabel_2_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2_2_1_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lblNewLabel_2_2_1_1.setBounds(61, 705, 67, 29);
+		lblNewLabel_2_2_1_1.setBounds(61, 671, 67, 29);
 		add(lblNewLabel_2_2_1_1);
 		
 		textField = new JTextField();
-		textField.setBounds(148, 707, 67, 29);
+		textField.setBounds(137, 673, 67, 29);
 		add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("리뷰 남기기:");
 		lblNewLabel_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(32, 744, 96, 43);
+		lblNewLabel_3.setBounds(31, 710, 96, 43);
 		add(lblNewLabel_3);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(148, 755, 327, 148);
+		textField_1.setBounds(137, 712, 327, 148);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
@@ -169,7 +169,7 @@ public class store_review_panel extends JPanel {
 		btnNewButton.setForeground(new Color(255, 255, 255));
 		btnNewButton.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
 		btnNewButton.setBackground(new Color(65, 105, 225));
-		btnNewButton.setBounds(366, 710, 109, 29);
+		btnNewButton.setBounds(362, 673, 109, 29);
 		add(btnNewButton);
 		
 	}

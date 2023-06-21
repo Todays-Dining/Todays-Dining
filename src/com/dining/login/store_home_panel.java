@@ -188,7 +188,7 @@ public class store_home_panel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(59, 839, 174, 61);
+		btnNewButton_2.setBounds(61, 791, 174, 61);
 		add(btnNewButton_2);
 		
 		RoundedButton btnNewButton_2_1 = new RoundedButton("리뷰 작성 및 보기");
@@ -196,7 +196,7 @@ public class store_home_panel extends JPanel {
 		btnNewButton_2_1.setBackground(new Color(65, 105, 225));
 		btnNewButton_2_1.setBorderPainted(false);
 		btnNewButton_2_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_2_1.setBounds(268, 839, 174, 61);
+		btnNewButton_2_1.setBounds(268, 791, 174, 61);
 		add(btnNewButton_2_1);
 		
 		JButton StarPointButton_1 = new JButton("");
