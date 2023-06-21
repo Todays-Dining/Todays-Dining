@@ -23,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JRadioButton;
 
 public class main_tool {
 
@@ -117,6 +118,13 @@ public class main_tool {
 		mypage.setBorderPainted(true);
 		mypage.setBackground(new Color(65, 105, 225));
 		movemenu.add(mypage);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("");
+		rdbtnNewRadioButton.setIcon(new ImageIcon(main_tool.class.getResource("/image/heart.png")));
+		rdbtnNewRadioButton.setBackground(new Color(255, 240, 245));
+		rdbtnNewRadioButton.setBorderPainted(true);
+		rdbtnNewRadioButton.setBounds(293, 256, 76, 90);
+		jPanel_main.add(rdbtnNewRadioButton);
 		
 
 	}
