@@ -11,12 +11,12 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 
-public class RoundedButton2 extends JButton {
-    public RoundedButton2() { super(); decorate(); } 
-    public RoundedButton2(String text) { super(text); decorate(); } 
-    public RoundedButton2(Action action) { super(action); decorate(); } 
-    public RoundedButton2(Icon icon) { super(icon); decorate(); } 
-    public RoundedButton2(String text, Icon icon) { super(text, icon); decorate(); } 
+public class RoundedButton_kjh_2 extends JButton {
+    public RoundedButton_kjh_2() { super(); decorate(); } 
+    public RoundedButton_kjh_2(String text) { super(text); decorate(); } 
+    public RoundedButton_kjh_2(Action action) { super(action); decorate(); } 
+    public RoundedButton_kjh_2(Icon icon) { super(icon); decorate(); } 
+    public RoundedButton_kjh_2(String text, Icon icon) { super(text, icon); decorate(); } 
     protected void decorate() { setBorderPainted(false); setOpaque(false); }
     @Override 
     protected void paintComponent(Graphics g) {

@@ -1,4 +1,4 @@
-package com.dining.main;
+package com.dining.tool;
 
 import java.awt.EventQueue;
 
@@ -24,7 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-public class main_tool_home {
+public class main_tool {
 
 	public JFrame frame;
 	public JPanel jPanel_main;
@@ -36,20 +36,20 @@ public class main_tool_home {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					main_tool_home window = new main_tool_home();
+					main_tool window = new main_tool();
 					window.jPanel_main.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-		new main_tool_home();
+		new main_tool();
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public main_tool_home() {
+	public main_tool() {
 		
 		
 		
@@ -85,7 +85,7 @@ public class main_tool_home {
 		JMenu movemenu = new JMenu("");
 		movemenu.setOpaque(true);
 		movemenu.setIconTextGap(0);
-		movemenu.setIcon(new ImageIcon("D:\\KJH\\teamproject\\Todays-Dining\\src\\image\\menubutton.png"));
+		movemenu.setIcon(new ImageIcon("C:\\javastudy\\teamproject\\src\\image\\menubutton.png"));
 		movemenu.setBorderPainted(true);
 		movemenu.setBackground(new Color(255, 240, 245));
 		menuBar.add(movemenu);
@@ -117,13 +117,6 @@ public class main_tool_home {
 		mypage.setBorderPainted(true);
 		mypage.setBackground(new Color(65, 105, 225));
 		movemenu.add(mypage);
-		
-		JButton homeButton = new JButton("");
-		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon("D:\\KJH\\teamproject\\Todays-Dining\\src\\image\\homebutton_1.png"));
-		homeButton.setBackground(new Color(255, 240, 245));
-		homeButton.setBounds(329, 37, 77, 69);
-		jPanel_main.add(homeButton);
 		
 
 	}

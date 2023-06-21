@@ -1,4 +1,4 @@
-package com.dining.main;
+package com.dining.tool;
 
 import javax.swing.JPanel;
 import java.awt.Color;

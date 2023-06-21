@@ -46,7 +46,7 @@ public class Find_id_page extends JPanel {
 		add(id_textField);
 		id_textField.setColumns(10);
 		
-		RoundedButton find_id = new RoundedButton("아이디 찾기");
+		RoundedButton_kjh_1 find_id = new RoundedButton_kjh_1("아이디 찾기");
 		find_id.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		find_id.setForeground(new Color(255, 240, 245));
 		find_id.setBackground(new Color(65, 105, 225));
@@ -54,7 +54,7 @@ public class Find_id_page extends JPanel {
 		find_id.setBounds(112, 518, 118, 49);
 		add(find_id);
 		
-		RoundedButton find_pw = new RoundedButton("비밀번호 찾기");
+		RoundedButton_kjh_1 find_pw = new RoundedButton_kjh_1("비밀번호 찾기");
 		find_pw.setText("취 소");
 		find_pw.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		find_pw.setForeground(new Color(255, 240, 245));
@@ -67,7 +67,7 @@ public class Find_id_page extends JPanel {
 		find_pw.setBounds(300, 518, 118, 49);
 		add(find_pw);
 		
-		RoundedButton2 id_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 id_label = new RoundedButton_kjh_2(" I D");
 		id_label.setText("이 름");
 		id_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,7 +81,7 @@ public class Find_id_page extends JPanel {
 		id_label.setBounds(94, 333, 92, 28);
 		add(id_label);
 		
-		RoundedButton2 birth_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 birth_label = new RoundedButton_kjh_2(" I D");
 		birth_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -100,7 +100,7 @@ public class Find_id_page extends JPanel {
 		birth_textField.setBounds(217, 388, 224, 28);
 		add(birth_textField);
 		
-		RoundedButton2 email_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 email_label = new RoundedButton_kjh_2(" I D");
 		email_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

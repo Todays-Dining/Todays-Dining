@@ -47,7 +47,7 @@ public class Join_page extends JPanel {
 		add(id_textField);
 		id_textField.setColumns(10);
 		
-		RoundedButton join_bt = new RoundedButton("아이디 찾기");
+		RoundedButton_kjh_1 join_bt = new RoundedButton_kjh_1("아이디 찾기");
 		join_bt.setText("회원가입");
 		join_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		join_bt.setForeground(new Color(255, 240, 245));
@@ -55,7 +55,7 @@ public class Join_page extends JPanel {
 		join_bt.setBounds(109, 733, 118, 49);
 		add(join_bt);
 		
-		RoundedButton cancle_bt = new RoundedButton("비밀번호 찾기");
+		RoundedButton_kjh_1 cancle_bt = new RoundedButton_kjh_1("비밀번호 찾기");
 		cancle_bt.setText("취 소");
 		cancle_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		cancle_bt.setForeground(new Color(255, 240, 245));
@@ -68,7 +68,7 @@ public class Join_page extends JPanel {
 		cancle_bt.setBounds(297, 733, 118, 49);
 		add(cancle_bt);
 		
-		RoundedButton2 id_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 id_label = new RoundedButton_kjh_2(" I D");
 		id_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -81,7 +81,7 @@ public class Join_page extends JPanel {
 		id_label.setBounds(68, 246, 118, 28);
 		add(id_label);
 		
-		RoundedButton2 findpw_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 findpw_label = new RoundedButton_kjh_2(" I D");
 		findpw_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -95,7 +95,7 @@ public class Join_page extends JPanel {
 		findpw_label.setBounds(68, 606, 118, 28);
 		add(findpw_label);
 		
-		RoundedButton2 email_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 email_label = new RoundedButton_kjh_2(" I D");
 		email_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -121,7 +121,7 @@ public class Join_page extends JPanel {
 		add(comboBox);
 		
 		
-		RoundedButton2 pw_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 pw_label = new RoundedButton_kjh_2(" I D");
 		pw_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -140,7 +140,7 @@ public class Join_page extends JPanel {
 		pw_textField.setBounds(217, 306, 250, 28);
 		add(pw_textField);
 		
-		RoundedButton2 pwchek_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 pwchek_label = new RoundedButton_kjh_2(" I D");
 		pwchek_label.setText("P W 확인");
 		pwchek_label.setForeground(new Color(255, 240, 245));
 		pwchek_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -155,7 +155,7 @@ public class Join_page extends JPanel {
 		pwchek_textField.setBounds(217, 366, 250, 28);
 		add(pwchek_textField);
 		
-		RoundedButton2 birth_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 birth_label = new RoundedButton_kjh_2(" I D");
 		birth_label.setText("생년월일");
 		birth_label.setForeground(new Color(255, 240, 245));
 		birth_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -170,7 +170,7 @@ public class Join_page extends JPanel {
 		birth_textField.setBounds(217, 486, 250, 28);
 		add(birth_textField);
 		
-		RoundedButton2 qa_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 qa_label = new RoundedButton_kjh_2(" I D");
 		qa_label.setText("질문 답변");
 		qa_label.setForeground(new Color(255, 240, 245));
 		qa_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -185,7 +185,7 @@ public class Join_page extends JPanel {
 		qa_textField.setBounds(217, 666, 250, 28);
 		add(qa_textField);
 		
-		RoundedButton2 name_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 name_label = new RoundedButton_kjh_2(" I D");
 		name_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -204,7 +204,7 @@ public class Join_page extends JPanel {
 		textField_4.setBounds(217, 426, 250, 28);
 		add(textField_4);
 		
-		RoundedButton2 id_chek_bt = new RoundedButton2("중복확인");
+		RoundedButton_kjh_2 id_chek_bt = new RoundedButton_kjh_2("중복확인");
 		id_chek_bt.setText("ID중복확인");
 		id_chek_bt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

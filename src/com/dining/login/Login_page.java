@@ -50,7 +50,7 @@ public class Login_page extends JPanel {
 		pw_textField.setBounds(144, 434, 224, 28);
 		add(pw_textField);
 		
-		RoundedButton login_Button = new RoundedButton("Login");
+		RoundedButton_kjh_1 login_Button = new RoundedButton_kjh_1("Login");
 		login_Button.setForeground(new Color(255, 240, 245));
 		login_Button.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 23));
 		login_Button.setBackground(new Color(65, 105, 225));
@@ -58,7 +58,7 @@ public class Login_page extends JPanel {
 		login_Button.setBounds(400, 367, 97, 95);
 		add(login_Button);
 		
-		RoundedButton find_id = new RoundedButton("아이디 찾기");
+		RoundedButton_kjh_1 find_id = new RoundedButton_kjh_1("아이디 찾기");
 		find_id.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		find_id.setForeground(new Color(255, 240, 245));
 		find_id.setBackground(new Color(65, 105, 225));
@@ -66,7 +66,7 @@ public class Login_page extends JPanel {
 		find_id.setBounds(51, 539, 118, 32);
 		add(find_id);
 		
-		RoundedButton join_bt = new RoundedButton("회원가입");
+		RoundedButton_kjh_1 join_bt = new RoundedButton_kjh_1("회원가입");
 		join_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		join_bt.setForeground(new Color(255, 240, 245));
 		join_bt.setBackground(new Color(65, 105, 225));
@@ -74,7 +74,7 @@ public class Login_page extends JPanel {
 		join_bt.setBounds(379, 539, 118, 32);
 		add(join_bt);
 		
-		RoundedButton find_pw = new RoundedButton("비밀번호 찾기");
+		RoundedButton_kjh_1 find_pw = new RoundedButton_kjh_1("비밀번호 찾기");
 		find_pw.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		find_pw.setForeground(new Color(255, 240, 245));
 		find_pw.addActionListener(new ActionListener() {
@@ -86,7 +86,7 @@ public class Login_page extends JPanel {
 		find_pw.setBounds(216, 539, 118, 32);
 		add(find_pw);
 		
-		RoundedButton2 id_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 id_label = new RoundedButton_kjh_2(" I D");
 		id_label.setEnabled(false);
 		id_label.setBorderPainted(false);
 		id_label.setBackground(new Color(65, 105, 225));
@@ -95,7 +95,7 @@ public class Login_page extends JPanel {
 		id_label.setBounds(59, 365, 63, 28);
 		add(id_label);
 		
-		RoundedButton2 pw_label = new RoundedButton2(" I D");
+		RoundedButton_kjh_2 pw_label = new RoundedButton_kjh_2(" I D");
 		pw_label.setText(" P W");
 		pw_label.setForeground(new Color(255, 240, 245));
 		pw_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
