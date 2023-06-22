@@ -17,23 +17,30 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Main01_best5 extends JPanel{
+public class Main01_best2 extends JPanel{
 
 
 	/**
 	 * Create the application.
 	 */
-	public Main01_best5() {
+	public Main01_best2() {
 			
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
 			
+		
 		JButton befer_bt = new JButton("");
-		befer_bt.setIcon(new ImageIcon(Main01_best4.class.getResource("/image/beferbutton.png")));
+		befer_bt.setIcon(new ImageIcon(Main01_best2.class.getResource("/image/beferbutton.png")));
 		befer_bt.setBounds(0, 415, 69, 69);
 		add(befer_bt);
+		
+		JButton after_bt = new JButton("");
+		after_bt.setIcon(new ImageIcon(Main01_best2.class.getResource("/image/afterbutton.png")));
+		after_bt.setBounds(471, 415, 69, 69);
+		add(after_bt);
+		
 		
 		JLabel today = new JLabel("주간 BEST");
 		today.setOpaque(true);
@@ -49,7 +56,7 @@ public class Main01_best5 extends JPanel{
 		store_food_image.setHorizontalAlignment(SwingConstants.CENTER);
 		store_food_image.setForeground(new Color(255, 255, 255));
 		store_food_image.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 50));
-		store_food_image.setBackground(new Color(65, 105, 225));
+		store_food_image.setBackground(new Color(0, 255, 128));
 		store_food_image.setBounds(54, 315, 429, 292);
 		add(store_food_image);
 		
@@ -69,7 +76,7 @@ public class Main01_best5 extends JPanel{
 			JMenu movemenu = new JMenu("");
 			movemenu.setOpaque(true);
 			movemenu.setIconTextGap(0);
-			movemenu.setIcon(new ImageIcon(Main01_best5.class.getResource("/image/menubutton.png")));
+			movemenu.setIcon(new ImageIcon(Main01_best2.class.getResource("/image/menubutton.png")));
 			movemenu.setBorderPainted(true);
 			movemenu.setBackground(new Color(255, 240, 245));
 			menuBar.add(movemenu);
@@ -103,7 +110,7 @@ public class Main01_best5 extends JPanel{
 			movemenu.add(mypage);
 			
 			JButton homeButton = new JButton("");
-			homeButton.setIcon(new ImageIcon(Main01_best5.class.getResource("/image/homebutton_1.png")));
+			homeButton.setIcon(new ImageIcon(Main01_best2.class.getResource("/image/homebutton_1.png")));
 			homeButton.setBorderPainted(false);
 			homeButton.setBackground(new Color(255, 240, 245));
 			homeButton.setBounds(329, 37, 77, 69);
@@ -112,15 +119,15 @@ public class Main01_best5 extends JPanel{
 
 			
 			JLabel label_image = new JLabel("");
-			label_image.setIcon(new ImageIcon(Main01_best5.class.getResource("/image/label.png")));
+			label_image.setIcon(new ImageIcon(Main01_best2.class.getResource("/image/label.png")));
 			label_image.setBounds(0, 10, 540, 330);
 			add(label_image);
 			
-			JLabel rank5_lb = new JLabel("평점 5위 ");
-			rank5_lb.setHorizontalAlignment(SwingConstants.CENTER);
-			rank5_lb.setFont(new Font("휴먼매직체", Font.BOLD, 30));
-			rank5_lb.setBounds(127, 634, 297, 61);
-			add(rank5_lb);
+			JLabel rank2_lb = new JLabel("평점 2위 ");
+			rank2_lb.setHorizontalAlignment(SwingConstants.CENTER);
+			rank2_lb.setFont(new Font("휴먼매직체", Font.BOLD, 30));
+			rank2_lb.setBounds(127, 634, 297, 61);
+			add(rank2_lb);
 			
 			
 			JButton store_bt = new JButton("가게이름");

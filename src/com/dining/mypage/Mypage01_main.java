@@ -5,15 +5,31 @@ import java.awt.Font;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.SwingConstants;
+
+import com.dining.main.Main00_Home;
+import com.dining.main.Main01_best1;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Mypage01_main extends JPanel {
-	private JTextField textField;
+	 JTextField textField;
+	 private JTextField id_tf;
+	 private JTextField pwanser_tf;
+	 private JTextField email_tf;
+	 private JTextField birth_tf;
+	 private JTextField name_tf;
+	 private JTextField pw_tf;
 
 	/**
 	 * Create the panel.
@@ -24,134 +40,203 @@ public class Mypage01_main extends JPanel {
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("MY PAGE");
-		lblNewLabel.setBounds(166, 89, 210, 50);
-		lblNewLabel.setBackground(new Color(255, 240, 245));
-		lblNewLabel.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 50));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setForeground(Color.black);
-		add(lblNewLabel);
+		JLabel sidetool = new JLabel("");
+		sidetool.setOpaque(true);
+		sidetool.setBackground(new Color(255, 240, 245));
+		sidetool.setBounds(405, 97, 91, 15);
+		add(sidetool);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBorderPainted(false);
+		menuBar.setToolTipText("");
+		menuBar.setBackground(new Color(255, 240, 245));
+		menuBar.setBounds(418, 40, 62, 61);
+		add(menuBar);
 		
-		JLabel lblNewLabel_1 = new JLabel("ID");
-		lblNewLabel_1.setOpaque(true);
-		lblNewLabel_1.setForeground(new Color(255, 255, 255));
-		lblNewLabel_1.setBackground(new Color(65, 105, 225));
-		lblNewLabel_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_1.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel_1.setBounds(79, 249, 90, 35);
-		add(lblNewLabel_1);
+		JMenu movemenu = new JMenu("");
+		movemenu.setOpaque(true);
+		movemenu.setIconTextGap(0);
+		movemenu.setIcon(new ImageIcon(Main00_Home.class.getResource("/image/menubutton.png")));
+		movemenu.setBorderPainted(true);
+		movemenu.setBackground(new Color(255, 240, 245));
+		menuBar.add(movemenu);
 		
-		textField = new JTextField();
-		textField.setBounds(183, 324, 250, 35);
-		add(textField);
-		textField.setColumns(10);
+		JMenuItem movemenu_1 = new JMenuItem("주간Best");
+		movemenu_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
+		movemenu_1.setOpaque(true);
+		movemenu_1.setBorderPainted(true);
+		movemenu_1.setBackground(new Color(65, 105, 225));
+		movemenu.add(movemenu_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("PW");
-		lblNewLabel_2.setOpaque(true);
-		lblNewLabel_2.setForeground(new Color(255, 255, 255));
-		lblNewLabel_2.setBackground(new Color(65, 105, 225));
-		lblNewLabel_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_2.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel_2.setBounds(79, 324, 90, 35);
-		add(lblNewLabel_2);
+		JMenuItem movemenu_2 = new JMenuItem("음식카테고리");
+		movemenu_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
+		movemenu_2.setOpaque(true);
+		movemenu_2.setBorderPainted(true);
+		movemenu_2.setBackground(new Color(65, 105, 225));
+		movemenu.add(movemenu_2);
 		
-		textField = new JTextField();
-		textField.setBounds(183, 404, 250, 35);
-		add(textField);
-		textField.setColumns(10);
+		JMenuItem movemenu_3 = new JMenuItem("오늘 뭐먹죠?");
+		movemenu_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
+		movemenu_3.setOpaque(true);
+		movemenu_3.setBorderPainted(true);
+		movemenu_3.setBackground(new Color(65, 105, 225));
+		movemenu.add(movemenu_3);
 		
-		JLabel lblNewLabel_3 = new JLabel("이름");
-		lblNewLabel_3.setOpaque(true);
-		lblNewLabel_3.setForeground(new Color(255, 255, 255));
-		lblNewLabel_3.setBackground(new Color(65, 105, 225));
-		lblNewLabel_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_3.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel_3.setBounds(79, 404, 90, 35);
-		add(lblNewLabel_3);
+		JMenuItem mypage = new JMenuItem("MY Page");
+		mypage.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
+		mypage.setOpaque(true);
+		mypage.setBorderPainted(true);
+		mypage.setBackground(new Color(65, 105, 225));
+		movemenu.add(mypage);
 		
-		textField = new JTextField();
-		textField.setBounds(183, 484, 250, 35);
-		add(textField);
-		textField.setColumns(10);
+		JButton homeButton = new JButton("");
+		homeButton.setIcon(new ImageIcon(Main01_best1.class.getResource("/image/homebutton_1.png")));
+		homeButton.setBorderPainted(false);
+		homeButton.setBackground(new Color(255, 240, 245));
+		homeButton.setBounds(329, 37, 77, 69);
+		add(homeButton);
 		
-		JLabel lblNewLabel_4 = new JLabel("생년월일");
-		lblNewLabel_4.setOpaque(true);
-		lblNewLabel_4.setForeground(new Color(255, 255, 255));
-		lblNewLabel_4.setBackground(new Color(65, 105, 225));
-		lblNewLabel_4.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_4.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel_4.setBounds(79, 484, 90, 35);
-		add(lblNewLabel_4);
+		JLabel mypage_lb = new JLabel("MY PAGE");
+		mypage_lb.setBounds(145, 112, 250, 72);
+		mypage_lb.setBackground(new Color(255, 240, 245));
+		mypage_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 60));
+		mypage_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		mypage_lb.setForeground(Color.black);
+		add(mypage_lb);
 		
-		textField = new JTextField();
-		textField.setBounds(183, 562, 250, 35);
-		add(textField);
-		textField.setColumns(10);
+		JLabel id_lb = new JLabel("ID");
+		id_lb.setOpaque(true);
+		id_lb.setForeground(new Color(255, 255, 255));
+		id_lb.setBackground(new Color(65, 105, 225));
+		id_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		id_lb.setHorizontalAlignment(JLabel.CENTER);
+		id_lb.setBounds(92, 229, 90, 35);
+		add(id_lb);
 		
-		JLabel lblNewLabel_5 = new JLabel("이메일주소");
-		lblNewLabel_5.setOpaque(true);
-		lblNewLabel_5.setForeground(new Color(255, 255, 255));
-		lblNewLabel_5.setBackground(new Color(65, 105, 225));
-		lblNewLabel_5.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
-		lblNewLabel_5.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel_5.setBounds(79, 562, 90, 35);
-		add(lblNewLabel_5);
+		pw_tf = new JTextField();
+		pw_tf.setEditable(false);
+		pw_tf.setBounds(196, 304, 250, 35);
+		add(pw_tf);
+		pw_tf.setColumns(10);
 		
-		JLabel lblNewLabel_6 = new JLabel("비번 찾기 질문");
-		lblNewLabel_6.setOpaque(true);
-		lblNewLabel_6.setForeground(new Color(255, 255, 255));
-		lblNewLabel_6.setBackground(new Color(65, 105, 225));
-		lblNewLabel_6.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
-		lblNewLabel_6.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel_6.setBounds(79, 639, 90, 35);
-		add(lblNewLabel_6);
+		JLabel pw_lb = new JLabel("PW");
+		pw_lb.setOpaque(true);
+		pw_lb.setForeground(new Color(255, 255, 255));
+		pw_lb.setBackground(new Color(65, 105, 225));
+		pw_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		pw_lb.setHorizontalAlignment(JLabel.CENTER);
+		pw_lb.setBounds(92, 304, 90, 35);
+		add(pw_lb);
 		
-		textField = new JTextField();
-		textField.setBounds(183, 713, 250, 35);
-		add(textField);
-		textField.setColumns(10);
+		name_tf = new JTextField();
+		name_tf.setBounds(196, 384, 250, 35);
+		add(name_tf);
+		name_tf.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.addActionListener(new ActionListener() {
+		JLabel name_lb = new JLabel("이름");
+		name_lb.setOpaque(true);
+		name_lb.setForeground(new Color(255, 255, 255));
+		name_lb.setBackground(new Color(65, 105, 225));
+		name_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		name_lb.setHorizontalAlignment(JLabel.CENTER);
+		name_lb.setBounds(92, 384, 90, 35);
+		add(name_lb);
+		
+		birth_tf = new JTextField();
+		birth_tf.setBounds(196, 464, 250, 35);
+		add(birth_tf);
+		birth_tf.setColumns(10);
+		
+		JLabel birth_lb = new JLabel("생년월일");
+		birth_lb.setOpaque(true);
+		birth_lb.setForeground(new Color(255, 255, 255));
+		birth_lb.setBackground(new Color(65, 105, 225));
+		birth_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		birth_lb.setHorizontalAlignment(JLabel.CENTER);
+		birth_lb.setBounds(92, 464, 90, 35);
+		add(birth_lb);
+		
+		email_tf = new JTextField();
+		email_tf.setBounds(196, 542, 250, 35);
+		add(email_tf);
+		email_tf.setColumns(10);
+		
+		JLabel email_lb = new JLabel("이메일주소");
+		email_lb.setOpaque(true);
+		email_lb.setForeground(new Color(255, 255, 255));
+		email_lb.setBackground(new Color(65, 105, 225));
+		email_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
+		email_lb.setHorizontalAlignment(JLabel.CENTER);
+		email_lb.setBounds(92, 542, 90, 35);
+		add(email_lb);
+		
+		JLabel pwqa_lb = new JLabel("비번 찾기 질문");
+		pwqa_lb.setOpaque(true);
+		pwqa_lb.setForeground(new Color(255, 255, 255));
+		pwqa_lb.setBackground(new Color(65, 105, 225));
+		pwqa_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
+		pwqa_lb.setHorizontalAlignment(JLabel.CENTER);
+		pwqa_lb.setBounds(92, 620, 90, 35);
+		add(pwqa_lb);
+		
+		pwanser_tf = new JTextField();
+		pwanser_tf.setBounds(196, 693, 250, 35);
+		add(pwanser_tf);
+		pwanser_tf.setColumns(10);
+		
+		JComboBox pw_comboBox = new JComboBox();
+		pw_comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"비밀번호를 찾을 때 사용할 질문을 선택하세요.", "1번 질문", "2번 질문", "3번 질문", "4번 질문"}));
-		comboBox.setBounds(183, 640, 250, 35);
-		comboBox.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 13));
+		pw_comboBox.setModel(new DefaultComboBoxModel(new String[] {"비밀번호를 찾을 때 사용할 질문을 선택하세요.", "1번 질문", "2번 질문", "3번 질문", "4번 질문"}));
+		pw_comboBox.setBounds(196, 620, 250, 35);
+		pw_comboBox.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 13));
 		
-		add(comboBox);
+		add(pw_comboBox);
 		
 		
-		JLabel lblNewLabel_7 = new JLabel("질문 답변");
-		lblNewLabel_7.setOpaque(true);
-		lblNewLabel_7.setForeground(new Color(255, 255, 255));
-		lblNewLabel_7.setBackground(new Color(65, 105, 225));
-		lblNewLabel_7.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_7.setHorizontalAlignment(JLabel.CENTER);
-		lblNewLabel_7.setBounds(79, 713, 90, 35);
-		add(lblNewLabel_7);
+		JLabel pwanser_lb = new JLabel("질문 답변");
+		pwanser_lb.setOpaque(true);
+		pwanser_lb.setForeground(new Color(255, 255, 255));
+		pwanser_lb.setBackground(new Color(65, 105, 225));
+		pwanser_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		pwanser_lb.setHorizontalAlignment(JLabel.CENTER);
+		pwanser_lb.setBounds(92, 693, 90, 35);
+		add(pwanser_lb);
 		
-		textField = new JTextField();
-		textField.setBounds(183, 249, 250, 35);
-		add(textField);
-		textField.setColumns(10);
+		id_tf = new JTextField();
+		id_tf.setBounds(196, 229, 250, 35);
+		add(id_tf);
+		id_tf.setColumns(10);
 		
-		RoundedButton_ha0_1 btnNewButton_1 = new RoundedButton_ha0_1("수정");
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setBackground(new Color(65, 105, 225));
-		btnNewButton_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		btnNewButton_1.setBounds(120, 808, 90, 50);
-		add(btnNewButton_1);
+		RoundedButton_ha0_1 modify_bt = new RoundedButton_ha0_1("수정");
+		modify_bt.setForeground(new Color(255, 255, 255));
+		modify_bt.setBorderPainted(false);
+		modify_bt.setBackground(new Color(65, 105, 225));
+		modify_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		modify_bt.setBounds(92, 808, 90, 50);
+		add(modify_bt);
 		
-		RoundedButton_ha0_2 btnNewButton_2 = new RoundedButton_ha0_2("회원탈퇴");
-		btnNewButton_2.setBackground(new Color(255, 128, 128));
-		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		RoundedButton_ha0_2 pw_change_bt = new RoundedButton_ha0_2("회원탈퇴");
+		pw_change_bt.setBackground(new Color(255, 128, 128));
+		pw_change_bt.setForeground(new Color(255, 255, 255));
 		
-		btnNewButton_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		btnNewButton_2.setBounds(305, 808, 90, 50);
-		add(btnNewButton_2);
+		pw_change_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		pw_change_bt.setBounds(356, 808, 90, 50);
+		add(pw_change_bt);
+		
+		RoundedButton_ha0_1 drawal_bt = new RoundedButton_ha0_1("수정");
+		drawal_bt.setText("pw변경");
+		drawal_bt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		drawal_bt.setForeground(Color.WHITE);
+		drawal_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		drawal_bt.setBorderPainted(false);
+		drawal_bt.setBackground(new Color(65, 105, 225));
+		drawal_bt.setBounds(225, 808, 90, 50);
+		add(drawal_bt);
 		
 		
 		

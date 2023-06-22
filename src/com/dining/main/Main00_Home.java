@@ -15,8 +15,8 @@ import javax.swing.JTextField;
 import com.dining.mypage.RoundedButton_ha0_1;
 
 public class Main00_Home extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
+	JTextField search_tf;
+	JTextField keyword_tf;
 
 	/**
 	 * Create the panel.
@@ -27,63 +27,62 @@ public class Main00_Home extends JPanel {
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
 		
-		JButton homebutton = new JButton("");
-		homebutton.setBorderPainted(false);
-		homebutton.setIcon(new ImageIcon("D:\\JHY\\javastudy\\javastudy\\src\\images\\homebutton_1.png"));
-		homebutton.setBackground(new Color(255, 240, 245));
-		homebutton.setBounds(346, 40, 60, 60);
-		add(homebutton);
+		RoundedButton_ha0_1 best_bt= new RoundedButton_ha0_1("주간 Best");
+		best_bt.setForeground(new Color(255, 255, 255));
+		best_bt.setBorderPainted(false);
+		best_bt.setBackground(new Color(65, 105, 225));
+		best_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		best_bt.setBounds(169, 391, 204, 61);
+		add(best_bt);
 		
-		RoundedButton_ha0_1 btnNewButton= new RoundedButton_ha0_1("주간 Best");
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setBackground(new Color(65, 105, 225));
-		btnNewButton.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		btnNewButton.setBounds(162, 367, 204, 61);
-		add(btnNewButton);
+		RoundedButton_ha0_1 foodcategory_bt = new RoundedButton_ha0_1("음식 카테고리");
+		foodcategory_bt.setForeground(new Color(255, 255, 255));
+		foodcategory_bt.setBorderPainted(false);
+		foodcategory_bt.setBackground(new Color(65, 105, 225));
+		foodcategory_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		foodcategory_bt.setBounds(169, 462, 204, 61);
+		add(foodcategory_bt);
 		
-		RoundedButton_ha0_1 btnNewButton_1 = new RoundedButton_ha0_1("음식 카테고리");
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_1.setBorderPainted(false);
-		btnNewButton_1.setBackground(new Color(65, 105, 225));
-		btnNewButton_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		btnNewButton_1.setBounds(162, 438, 204, 61);
-		add(btnNewButton_1);
+		RoundedButton_ha0_1 random_bt = new RoundedButton_ha0_1("오늘 뭐먹죠?");
+		random_bt.setForeground(new Color(255, 255, 255));
+		random_bt.setBorderPainted(false);
+		random_bt.setBackground(new Color(65, 105, 225));
+		random_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		random_bt.setBounds(169, 533, 204, 61);
+		add(random_bt);
 		
-		RoundedButton_ha0_1 btnNewButton_2 = new RoundedButton_ha0_1("오늘 뭐먹죠?");
-		btnNewButton_2.setForeground(new Color(255, 255, 255));
-		btnNewButton_2.setBorderPainted(false);
-		btnNewButton_2.setBackground(new Color(65, 105, 225));
-		btnNewButton_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		btnNewButton_2.setBounds(162, 509, 204, 61);
-		add(btnNewButton_2);
+		search_tf = new JTextField();
+		search_tf.setBounds(118, 264, 280, 50);
+		add(search_tf);
+		search_tf.setColumns(10);
 		
-		textField = new JTextField();
-		textField.setBounds(118, 264, 280, 50);
-		add(textField);
-		textField.setColumns(10);
+		RoundedButton_ha0_1 search_bt = new RoundedButton_ha0_1("검색");
+		search_bt.setForeground(new Color(255, 255, 255));
+		search_bt.setBorderPainted(false);
+		search_bt.setBackground(new Color(65, 105, 225));
+		search_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		search_bt.setBounds(399, 264, 70, 50);
+		add(search_bt);
 		
-		RoundedButton_ha0_1 btnNewButton_3 = new RoundedButton_ha0_1("검색");
-		btnNewButton_3.setForeground(new Color(255, 255, 255));
-		btnNewButton_3.setBorderPainted(false);
-		btnNewButton_3.setBackground(new Color(65, 105, 225));
-		btnNewButton_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		btnNewButton_3.setBounds(410, 264, 70, 50);
-		add(btnNewButton_3);
+		JLabel icon_lb = new JLabel("");
+		icon_lb.setIcon(new ImageIcon(Main00_Home.class.getResource("/image/icon_small.png")));
+		icon_lb.setBounds(54, 643, 430, 307);
+		add(icon_lb);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\icon_1.png"));
-		lblNewLabel_1.setBounds(0, 590, 540, 360);
-		add(lblNewLabel_1);
+		keyword_tf = new JTextField("인기많은 검색어 : 한식, 대학가, 커플, 디저트");
+		keyword_tf.setBounds(118, 319, 280, 21);
+		keyword_tf.setBackground(new Color(255, 240, 245));
+		keyword_tf.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
+		keyword_tf.setForeground(Color.GRAY);
+		add(keyword_tf);
+		keyword_tf.setColumns(50);
 		
-		textField_1 = new JTextField("인기많은 검색어 : 한식, 대학가, 커플, 디저트");
-		textField_1.setBounds(118, 319, 280, 21);
-		textField_1.setBackground(new Color(255, 240, 245));
-		textField_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
-		textField_1.setForeground(Color.GRAY);
-		add(textField_1);
-		textField_1.setColumns(50);
-		
+
+		JLabel sidetool = new JLabel("");
+		sidetool.setOpaque(true);
+		sidetool.setBackground(new Color(255, 240, 245));
+		sidetool.setBounds(405, 97, 91, 15);
+		add(sidetool);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
 		menuBar.setToolTipText("");
@@ -94,7 +93,7 @@ public class Main00_Home extends JPanel {
 		JMenu movemenu = new JMenu("");
 		movemenu.setOpaque(true);
 		movemenu.setIconTextGap(0);
-		movemenu.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\menubutton.png"));
+		movemenu.setIcon(new ImageIcon(Main00_Home.class.getResource("/image/menubutton.png")));
 		movemenu.setBorderPainted(true);
 		movemenu.setBackground(new Color(255, 240, 245));
 		menuBar.add(movemenu);
@@ -120,10 +119,24 @@ public class Main00_Home extends JPanel {
 		movemenu_3.setBackground(new Color(65, 105, 225));
 		movemenu.add(movemenu_3);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\label_1.png"));
-		lblNewLabel.setBounds(0, -2, 540, 330);
-		add(lblNewLabel);
+		JMenuItem mypage = new JMenuItem("MY Page");
+		mypage.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
+		mypage.setOpaque(true);
+		mypage.setBorderPainted(true);
+		mypage.setBackground(new Color(65, 105, 225));
+		movemenu.add(mypage);
+		
+		JButton map_bt = new JButton("");
+		map_bt.setIcon(new ImageIcon(Main00_Home.class.getResource("/image/map_icon.png")));
+		map_bt.setBorderPainted(false);
+		map_bt.setBackground(new Color(255, 240, 245));
+		map_bt.setBounds(329, 37, 77, 69);
+		add(map_bt);
+		
+		JLabel image_lb = new JLabel("");
+		image_lb.setIcon(new ImageIcon(Main00_Home.class.getResource("/image/label.png")));
+		image_lb.setBounds(0, -2, 540, 330);
+		add(image_lb);
 		
 	}
 
