@@ -42,21 +42,26 @@ public class Mypage02_mypick extends JPanel {
 		setLayout(null);
 		
 		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\heart.png"));
-		btnNewButton.setBounds(448, 329, 44, 54);
+		btnNewButton.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/heart.png")));
+		btnNewButton.setBounds(448, 329, 48, 54);
 		add(btnNewButton);
 		
-		JLabel lblNewLabel_3 = new JLabel("");
-		lblNewLabel_3.setIcon(new ImageIcon("D:\\JHY\\javastudy\\javastudy\\src\\images\\icon_1.png"));
-		lblNewLabel_3.setBounds(0, 590, 540, 360);
-		add(lblNewLabel_3);
+		JLabel icom_lb = new JLabel("");
+		icom_lb.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/icon_small.png")));
+		icom_lb.setBounds(45, 636, 435, 324);
+		add(icom_lb);
 		
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("D:\\JHY\\javastudy\\javastudy\\src\\images\\homebutton_1.png"));
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/homebutton_1.png")));
 		lblNewLabel_1.setBounds(346, 41, 60, 60);
 		add(lblNewLabel_1);
 		
+		JLabel sidetool = new JLabel("");
+		sidetool.setOpaque(true);
+		sidetool.setBackground(new Color(255, 240, 245));
+		sidetool.setBounds(405, 97, 91, 15);
+		add(sidetool);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
 		menuBar.setToolTipText("");
@@ -67,7 +72,7 @@ public class Mypage02_mypick extends JPanel {
 		JMenu movemenu = new JMenu("");
 		movemenu.setOpaque(true);
 		movemenu.setIconTextGap(0);
-		movemenu.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\menubutton.png"));
+		movemenu.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/menubutton.png")));
 		movemenu.setBorderPainted(true);
 		movemenu.setBackground(new Color(255, 240, 245));
 		menuBar.add(movemenu);
@@ -93,11 +98,20 @@ public class Mypage02_mypick extends JPanel {
 		movemenu_3.setBackground(new Color(65, 105, 225));
 		movemenu.add(movemenu_3);
 		
+		JMenuItem mypage = new JMenuItem("MY Page");
+		mypage.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
+		mypage.setOpaque(true);
+		mypage.setBorderPainted(true);
+		mypage.setBackground(new Color(65, 105, 225));
+		movemenu.add(mypage);
+
+
+		
 		
 		
 		table = new JTable(contents, header);
 		table.setBackground(new Color(255, 187, 187));
-		table.setLocation(63, 256);
+		table.setLocation(35, 27);
 		table.setSize(343, 244);
 		table.setPreferredSize(new Dimension(750, 500));
 		table.setPreferredScrollableViewportSize(new Dimension(1030, 450));
@@ -108,14 +122,20 @@ public class Mypage02_mypick extends JPanel {
 		add(table);
 		
 		
-		JLabel lblNewLabel3 = new JLabel("");
-		lblNewLabel3.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\label_1.png"));
-		lblNewLabel3.setBounds(0, -2, 540, 330);
-		add(lblNewLabel3);
+		JLabel label_img = new JLabel("");
+		label_img.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/label.png")));
+		label_img.setBounds(0, -2, 540, 330);
+		add(label_img);
 		
 		JScrollPane scrollPane_1 = new JScrollPane(table);
-		scrollPane_1.setBounds(93, 314, 343, 244);
+		scrollPane_1.setBounds(93, 314, 343, 312);
 		add(scrollPane_1);
+		
+		JLabel lblNewLabel = new JLabel("나만의 뭐먹죠");
+		lblNewLabel.setForeground(new Color(65, 105, 225));
+		lblNewLabel.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 40));
+		lblNewLabel.setBounds(161, 253, 253, 60);
+		add(lblNewLabel);
 		
 		
 	}

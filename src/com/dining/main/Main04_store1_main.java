@@ -17,14 +17,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
+import javax.swing.JRadioButton;
 
 public class Main04_store1_main extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	 JTextField textField;
+	 JTextField textField_1;
+	 JTextField textField_2;
+	 JTextField textField_3;
+	 JTextField textField_4;
+	 JTextField textField_5;
 
 	/**
 	 * Create the panel.
@@ -37,7 +38,7 @@ public class Main04_store1_main extends JPanel {
 		setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("4.5");
-		lblNewLabel_1.setBounds(329, 131, 22, 22);
+		lblNewLabel_1.setBounds(293, 160, 22, 22);
 		add(lblNewLabel_1);
 		
 		JLabel sidetool = new JLabel("");
@@ -59,7 +60,7 @@ public class Main04_store1_main extends JPanel {
 		lblNewLabel.setBackground(new Color(255, 0, 0));
 		lblNewLabel.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 50));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(49, 181, 414, 270);
+		lblNewLabel.setBounds(53, 210, 414, 270);
 		add(lblNewLabel);
 		
 		JMenu movemenu = new JMenu("");
@@ -110,73 +111,73 @@ public class Main04_store1_main extends JPanel {
 		btnNewButton.setBorderPainted(false);
 		btnNewButton.setBackground(new Color(65, 105, 225));
 		btnNewButton.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		btnNewButton.setBounds(59, 110, 204, 61);
+		btnNewButton.setBounds(53, 139, 204, 61);
 		add(btnNewButton);
 		
 		textField = new JTextField();
-		textField.setBounds(224, 484, 218, 31);
+		textField.setBounds(228, 513, 218, 31);
 		add(textField);
 		textField.setColumns(10);
 		
 		JLabel lblNewLabel_1_5 = new JLabel("주차 여부 : ");
 		lblNewLabel_1_5.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_5.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_1_5.setBounds(82, 734, 132, 33);
+		lblNewLabel_1_5.setBounds(86, 763, 132, 33);
 		add(lblNewLabel_1_5);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(224, 539, 218, 31);
+		textField_1.setBounds(228, 568, 218, 31);
 		add(textField_1);
 		
 		textField_2 = new JTextField();
 		textField_2.setColumns(10);
-		textField_2.setBounds(224, 592, 218, 31);
+		textField_2.setBounds(228, 621, 218, 31);
 		add(textField_2);
 		
 		textField_3 = new JTextField();
 		textField_3.setColumns(10);
-		textField_3.setBounds(224, 642, 218, 31);
+		textField_3.setBounds(228, 671, 218, 31);
 		add(textField_3);
 		
 		textField_4 = new JTextField();
 		textField_4.setColumns(10);
-		textField_4.setBounds(224, 690, 218, 31);
+		textField_4.setBounds(228, 719, 218, 31);
 		add(textField_4);
 		
 		textField_5 = new JTextField();
 		textField_5.setColumns(10);
-		textField_5.setBounds(224, 736, 218, 31);
+		textField_5.setBounds(228, 765, 218, 31);
 		add(textField_5);
 		
 		JLabel lblNewLabel_1_5_1 = new JLabel("가게 지역 : ");
 		lblNewLabel_1_5_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_5_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_1_5_1.setBounds(82, 482, 132, 33);
+		lblNewLabel_1_5_1.setBounds(86, 511, 132, 33);
 		add(lblNewLabel_1_5_1);
 		
 		JLabel lblNewLabel_1_5_2 = new JLabel("가게 주소 : ");
 		lblNewLabel_1_5_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_5_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_1_5_2.setBounds(82, 539, 132, 33);
+		lblNewLabel_1_5_2.setBounds(86, 568, 132, 33);
 		add(lblNewLabel_1_5_2);
 		
 		JLabel lblNewLabel_1_5_3 = new JLabel("가게대표메뉴 : ");
 		lblNewLabel_1_5_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_5_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_1_5_3.setBounds(59, 597, 151, 33);
+		lblNewLabel_1_5_3.setBounds(63, 626, 151, 33);
 		add(lblNewLabel_1_5_3);
 		
 		JLabel lblNewLabel_1_5_2_1 = new JLabel("전화 번호 : ");
 		lblNewLabel_1_5_2_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_5_2_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_1_5_2_1.setBounds(82, 647, 132, 33);
+		lblNewLabel_1_5_2_1.setBounds(86, 676, 132, 33);
 		add(lblNewLabel_1_5_2_1);
 		
 		JLabel lblNewLabel_1_5_2_1_1 = new JLabel("주차 여부 : ");
 		lblNewLabel_1_5_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_5_2_1_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lblNewLabel_1_5_2_1_1.setBounds(82, 691, 132, 33);
+		lblNewLabel_1_5_2_1_1.setBounds(86, 720, 132, 33);
 		add(lblNewLabel_1_5_2_1_1);
 		
 		RoundedButton_ysh_1 btnNewButton_2 = new RoundedButton_ysh_1("상세위치 지도보기");
@@ -187,26 +188,25 @@ public class Main04_store1_main extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnNewButton_2.setBounds(59, 839, 174, 61);
+		btnNewButton_2.setBounds(62, 839, 174, 61);
 		add(btnNewButton_2);
 		
 		RoundedButton_ysh_1 btnNewButton_2_1 = new RoundedButton_ysh_1("리뷰 작성 및 보기");
 		btnNewButton_2_1.setBackground(new Color(65, 105, 225));
 		btnNewButton_2_1.setBorderPainted(false);
 		btnNewButton_2_1.setForeground(new Color(255, 255, 255));
-		btnNewButton_2_1.setBounds(268, 839, 174, 61);
+		btnNewButton_2_1.setBounds(293, 839, 174, 61);
 		add(btnNewButton_2_1);
-		
-		JButton StarPointButton_1 = new JButton("");
-		StarPointButton_1.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\heart.png"));
-		StarPointButton_1.setBorderPainted(false);
-		StarPointButton_1.setBackground(new Color(255, 240, 245));
-		StarPointButton_1.setBounds(391, 111, 77, 61);
-		add(StarPointButton_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\star3.png"));
-		lblNewLabel_2.setBounds(304, 112, 77, 61);
+		lblNewLabel_2.setBounds(269, 139, 77, 61);
 		add(lblNewLabel_2);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("");
+		rdbtnNewRadioButton.setIconTextGap(0);
+		rdbtnNewRadioButton.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));
+		rdbtnNewRadioButton.setBounds(364, 139, 82, 65);
+		add(rdbtnNewRadioButton);
 	}
 }

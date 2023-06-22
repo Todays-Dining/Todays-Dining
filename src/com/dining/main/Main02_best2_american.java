@@ -15,12 +15,12 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Main02_best6_etc extends JPanel {
+public class Main02_best2_american extends JPanel {
 
 	/**
 	 * Create the application.
 	 */
-	public Main02_best6_etc() {
+	public Main02_best2_american() {
 
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
@@ -75,7 +75,7 @@ public class Main02_best6_etc extends JPanel {
 		mypage.setBackground(new Color(65, 105, 225));
 		movemenu.add(mypage);
 
-		JLabel today = new JLabel("기타 BEST");
+		JLabel today = new JLabel("양식 BEST");
 		today.setOpaque(true);
 		today.setHorizontalAlignment(SwingConstants.CENTER);
 		today.setForeground(new Color(65, 105, 225));
@@ -95,30 +95,30 @@ public class Main02_best6_etc extends JPanel {
 
 		JButton homeButton = new JButton("");
 		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon(Main02_best6_etc.class.getResource("/image/homebutton_1.png")));
+		homeButton.setIcon(new ImageIcon(Main02_best2_american.class.getResource("/image/homebutton_1.png")));
 		homeButton.setBackground(new Color(255, 240, 245));
 		homeButton.setBounds(327, 32, 77, 69);
 		add(homeButton);
 
 		JLabel lable_img = new JLabel("");
-		lable_img.setIcon(new ImageIcon(Main02_best6_etc.class.getResource("/image/label.png")));
+		lable_img.setIcon(new ImageIcon(Main02_best2_american.class.getResource("/image/label.png")));
 		lable_img.setBounds(0, 0, 540, 330);
 		add(lable_img);
 
-		RoundedButton_lsh_1 dif_etc_bt = new RoundedButton_lsh_1("다른 가게 보기");
-		dif_etc_bt.setText("다른 가게 보기(기타)");
-		dif_etc_bt.addActionListener(new ActionListener() {
+		RoundedButton_lsh_1 dif_american_bt = new RoundedButton_lsh_1("다른 가게 보기");
+		dif_american_bt.setText("다른 가게 보기(양식)");
+		dif_american_bt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		dif_etc_bt.setBorderPainted(false);
-		dif_etc_bt.setOpaque(true);
-		dif_etc_bt.setHorizontalAlignment(SwingConstants.CENTER);
-		dif_etc_bt.setForeground(new Color(255, 255, 255));
-		dif_etc_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 20));
-		dif_etc_bt.setBackground(new Color(65, 105, 225));
-		dif_etc_bt.setBounds(157, 762, 223, 45);
-		add(dif_etc_bt);
+		dif_american_bt.setBorderPainted(false);
+		dif_american_bt.setOpaque(true);
+		dif_american_bt.setHorizontalAlignment(SwingConstants.CENTER);
+		dif_american_bt.setForeground(new Color(255, 255, 255));
+		dif_american_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 20));
+		dif_american_bt.setBackground(new Color(65, 105, 225));
+		dif_american_bt.setBounds(157, 762, 223, 45);
+		add(dif_american_bt);
 
 		JButton store_name_bt = new JButton("해당가게이름");
 		store_name_bt.setForeground(new Color(255, 255, 255));

@@ -71,7 +71,7 @@ public class Main01_best1 extends JPanel{
 			JMenu movemenu = new JMenu("");
 			movemenu.setOpaque(true);
 			movemenu.setIconTextGap(0);
-			movemenu.setIcon(new ImageIcon("D:\\KJH\\teamproject\\Todays-Dining\\src\\image\\menubutton.png"));
+			movemenu.setIcon(new ImageIcon(Main01_best1.class.getResource("/image/menubutton.png")));
 			movemenu.setBorderPainted(true);
 			movemenu.setBackground(new Color(255, 240, 245));
 			menuBar.add(movemenu);

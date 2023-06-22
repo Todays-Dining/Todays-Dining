@@ -18,14 +18,14 @@ import java.awt.Button;
 import javax.swing.SwingConstants;
 import java.awt.Label;
 
-public class Main02_category_select extends JPanel{
+public class Main00_Map extends JPanel{
 	
 	
 	
 	/**
 	 * Create the panel.
 	 */
-	public Main02_category_select() {
+	public Main00_Map() {
 		
 		
 		 
@@ -35,7 +35,7 @@ public class Main02_category_select extends JPanel{
 		setLayout(null);
 		
 		
-		JLabel today = new JLabel("음식 종류");
+		JLabel today = new JLabel("지역 선택");
 		today.setOpaque(true);
 		today.setHorizontalAlignment(SwingConstants.CENTER);
 		today.setForeground(new Color(255, 255, 255));
@@ -96,84 +96,85 @@ public class Main02_category_select extends JPanel{
 		
 		JButton homeButton = new JButton("");
 		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon(Main02_category_select.class.getResource("/image/homebutton_1.png")));
+		homeButton.setIcon(new ImageIcon(Main00_Map.class.getResource("/image/homebutton_1.png")));
 		homeButton.setBackground(new Color(255, 240, 245));
 		homeButton.setBounds(327, 32, 77, 69);
 		add(homeButton);
 		
-		RoundedButton_lsh_1 menu1_kr = new RoundedButton_lsh_1("한식");
-		menu1_kr.setBorderPainted(false);
-		menu1_kr.setToolTipText("");
-		menu1_kr.setForeground(new Color(255, 255, 255));
-		menu1_kr.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
-		menu1_kr.setBackground(new Color(65, 105, 225));
-		menu1_kr.setBounds(57, 389, 101, 96);
-		add(menu1_kr);
+		RoundedButton_lsh_1 place1_bt = new RoundedButton_lsh_1("한식");
+		place1_bt.setText("마포구");
+		place1_bt.setBorderPainted(false);
+		place1_bt.setToolTipText("");
+		place1_bt.setForeground(new Color(255, 255, 255));
+		place1_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
+		place1_bt.setBackground(new Color(65, 105, 225));
+		place1_bt.setBounds(57, 389, 101, 96);
+		add(place1_bt);
 		
 
 		JLabel label_lb = new JLabel("");
-		label_lb.setIcon(new ImageIcon(Main02_category_select.class.getResource("/image/label.png")));
+		label_lb.setIcon(new ImageIcon(Main00_Map.class.getResource("/image/label.png")));
 		label_lb.setBounds(0, 0, 540, 330);
 		add(label_lb);
 		
 		JLabel icon_lb = new JLabel("");
-		icon_lb.setIcon(new ImageIcon(Main02_category_select.class.getResource("/image/icon_small.png")));
+		icon_lb.setIcon(new ImageIcon(Main00_Map.class.getResource("/image/icon_small.png")));
 		icon_lb.setBounds(50, 645, 540, 330);
 		add(icon_lb);
 		
-		RoundedButton_lsh_1 menu1_am = new RoundedButton_lsh_1("한식");
-		menu1_am.setText("양식");
-		menu1_am.setToolTipText("");
-		menu1_am.setForeground(Color.WHITE);
-		menu1_am.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
-		menu1_am.setBorderPainted(false);
-		menu1_am.setBackground(new Color(65, 105, 225));
-		menu1_am.setBounds(225, 389, 101, 96);
-		add(menu1_am);
+		RoundedButton_lsh_1 place2_bt = new RoundedButton_lsh_1("한식");
+		place2_bt.setText("신촌");
+		place2_bt.setToolTipText("");
+		place2_bt.setForeground(Color.WHITE);
+		place2_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
+		place2_bt.setBorderPainted(false);
+		place2_bt.setBackground(new Color(65, 105, 225));
+		place2_bt.setBounds(225, 389, 101, 96);
+		add(place2_bt);
 		
-		RoundedButton_lsh_1 menu1_ch = new RoundedButton_lsh_1("한식");
-		menu1_ch.setToolTipText("");
-		menu1_ch.setText("중식");
-		menu1_ch.setForeground(Color.WHITE);
-		menu1_ch.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
-		menu1_ch.setBorderPainted(false);
-		menu1_ch.setBackground(new Color(65, 105, 225));
-		menu1_ch.setBounds(389, 389, 101, 96);
-		add(menu1_ch);
+		RoundedButton_lsh_1 place3_bt = new RoundedButton_lsh_1("한식");
+		place3_bt.setToolTipText("");
+		place3_bt.setText("홍대");
+		place3_bt.setForeground(Color.WHITE);
+		place3_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
+		place3_bt.setBorderPainted(false);
+		place3_bt.setBackground(new Color(65, 105, 225));
+		place3_bt.setBounds(389, 389, 101, 96);
+		add(place3_bt);
 		
-		RoundedButton_lsh_1 menu1_ja = new RoundedButton_lsh_1("한식");
-		menu1_ja.setText("일식");
-		menu1_ja.setToolTipText("");
-		menu1_ja.setForeground(Color.WHITE);
-		menu1_ja.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
-		menu1_ja.setBorderPainted(false);
-		menu1_ja.setBackground(new Color(65, 105, 225));
-		menu1_ja.setBounds(57, 520, 101, 96);
-		add(menu1_ja);
+		RoundedButton_lsh_1 place4_bt = new RoundedButton_lsh_1("한식");
+		place4_bt.setText("을지로");
+		place4_bt.setToolTipText("");
+		place4_bt.setForeground(Color.WHITE);
+		place4_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
+		place4_bt.setBorderPainted(false);
+		place4_bt.setBackground(new Color(65, 105, 225));
+		place4_bt.setBounds(57, 520, 101, 96);
+		add(place4_bt);
 		
-		RoundedButton_lsh_1 menu1_ca = new RoundedButton_lsh_1("한식");
-		menu1_ca.setToolTipText("");
-		menu1_ca.setText("카페");
-		menu1_ca.setForeground(Color.WHITE);
-		menu1_ca.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
-		menu1_ca.setBorderPainted(false);
-		menu1_ca.setBackground(new Color(65, 105, 225));
-		menu1_ca.setBounds(225, 520, 101, 96);
-		add(menu1_ca);
+		RoundedButton_lsh_1 place5_bt = new RoundedButton_lsh_1("한식");
+		place5_bt.setToolTipText("");
+		place5_bt.setText("연남");
+		place5_bt.setForeground(Color.WHITE);
+		place5_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
+		place5_bt.setBorderPainted(false);
+		place5_bt.setBackground(new Color(65, 105, 225));
+		place5_bt.setBounds(225, 520, 101, 96);
+		add(place5_bt);
 		
-		RoundedButton_lsh_1 menu1_etc = new RoundedButton_lsh_1("한식");
-		menu1_etc.addActionListener(new ActionListener() {
+		RoundedButton_lsh_1 place6_bt = new RoundedButton_lsh_1("한식");
+		place6_bt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		menu1_etc.setToolTipText("");
-		menu1_etc.setText("기타");
-		menu1_etc.setForeground(Color.WHITE);
-		menu1_etc.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
-		menu1_etc.setBorderPainted(false);
-		menu1_etc.setBackground(new Color(65, 105, 225));
-		menu1_etc.setBounds(389, 520, 101, 96);
-		add(menu1_etc);
+		place6_bt.setToolTipText("");
+		place6_bt.setText("강남");
+		place6_bt.setForeground(Color.WHITE);
+		place6_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
+		place6_bt.setBorderPainted(false);
+		place6_bt.setBackground(new Color(65, 105, 225));
+		place6_bt.setBounds(389, 520, 101, 96);
+		add(place6_bt);
 		
 //		JLabel lblNewLabel_3 = new JLabel("");
 //		lblNewLabel_3.setIcon(new ImageIcon("C:\\image\\roundbutton.png"));
