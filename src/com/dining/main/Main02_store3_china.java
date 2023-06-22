@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JTable;
 
-public class Main02_store6_etc extends JPanel {
+public class Main02_store3_china extends JPanel {
 	
 	String header[]= {"가게 이름","대표 메뉴","평점"};
 	String contents[][]= {
@@ -42,7 +42,7 @@ public class Main02_store6_etc extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Main02_store6_etc() {
+	public Main02_store3_china() {
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -50,23 +50,23 @@ public class Main02_store6_etc extends JPanel {
 		
 		
 		
-		JLabel etc_lb = new JLabel("뭐먹지?");
-		etc_lb.setOpaque(true);
-		etc_lb.setForeground(new Color(255, 255, 255));
-		etc_lb.setBackground(new Color(65, 105, 225));
-		etc_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 30));
-		etc_lb.setHorizontalAlignment(JLabel.CENTER);
-		etc_lb.setBounds(163, 258, 200, 40);
-		add(etc_lb);
+		JLabel store_lb = new JLabel("중식 뭐먹지?");
+		store_lb.setOpaque(true);
+		store_lb.setForeground(new Color(255, 255, 255));
+		store_lb.setBackground(new Color(65, 105, 225));
+		store_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 30));
+		store_lb.setHorizontalAlignment(JLabel.CENTER);
+		store_lb.setBounds(163, 258, 200, 40);
+		add(store_lb);
 		
 		JLabel ib_img = new JLabel("");
-		ib_img.setIcon(new ImageIcon(Main02_store6_etc.class.getResource("/image/label.png")));
+		ib_img.setIcon(new ImageIcon(Main02_store3_china.class.getResource("/image/label.png")));
 		ib_img.setBounds(0, 0, 540, 330);
 		add(ib_img);
 		
 		JButton homebutton = new JButton("");
 		homebutton.setBorderPainted(false);
-		homebutton.setIcon(new ImageIcon(Main02_store6_etc.class.getResource("/image/backbutton.png")));
+		homebutton.setIcon(new ImageIcon(Main02_store3_china.class.getResource("/image/backbutton.png")));
 		homebutton.setBackground(new Color(255, 240, 245));
 		homebutton.setBounds(346, 40, 60, 60);
 		add(homebutton);

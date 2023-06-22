@@ -50,7 +50,7 @@ public class Admin04_review extends JPanel {
      String selection[]= {"가게 이름", "회원아이디"}; 
      JTable table;
      JTable table_1;
-     JTextField textField;
+     JTextField select_tf;
 	/**
 	 * Create the panel.
 	 */
@@ -66,11 +66,11 @@ public class Admin04_review extends JPanel {
 		rest.setBounds(36, 41, 251, 89);
 		add(rest);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setOpaque(true);
-		lblNewLabel_1.setBackground(new Color(65, 105, 225));
-		lblNewLabel_1.setBounds(36, 115, 1120, 8);
-		add(lblNewLabel_1);
+		JLabel tool_lb = new JLabel("");
+		tool_lb.setOpaque(true);
+		tool_lb.setBackground(new Color(65, 105, 225));
+		tool_lb.setBounds(36, 115, 1120, 8);
+		add(tool_lb);
 		
 		JButton backbutton = new JButton("");
 		backbutton.addActionListener(new ActionListener() {
@@ -138,27 +138,26 @@ public class Admin04_review extends JPanel {
 //		add(rest_1);
 		
 		JComboBox comboBox = new JComboBox(selection);
-		comboBox.setEditable(true);
 		comboBox.setBounds(700, 195, 110, 30);
 		comboBox.setBackground(new Color(255, 255, 255));
 		add(comboBox);
 		
-		textField = new JTextField();
-		textField.setBounds(830, 195, 150, 30);
-		add(textField);
-		textField.setColumns(10);
+		select_tf = new JTextField();
+		select_tf.setBounds(830, 195, 150, 30);
+		add(select_tf);
+		select_tf.setColumns(10);
 		
-		RoundedButton_ksw_1 btnNewButton_3 = new RoundedButton_ksw_1("New button");
-		btnNewButton_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
-		btnNewButton_3.setText("검색");
-		btnNewButton_3.setBounds(999, 195, 50, 30);
-		add(btnNewButton_3);
+		RoundedButton_ksw_1 select_bt = new RoundedButton_ksw_1("New button");
+		select_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
+		select_bt.setText("검색");
+		select_bt.setBounds(999, 195, 50, 30);
+		add(select_bt);
 		
-		RoundedButton_ksw_1 btnNewButton_3_1 = new RoundedButton_ksw_1("New button");
-		btnNewButton_3_1.setText("전체조회");
-		btnNewButton_3_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
-		btnNewButton_3_1.setBounds(1056, 195, 100, 30);
-		add(btnNewButton_3_1);
+		RoundedButton_ksw_1 allselect_bt = new RoundedButton_ksw_1("New button");
+		allselect_bt.setText("전체조회");
+		allselect_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
+		allselect_bt.setBounds(1056, 195, 100, 30);
+		add(allselect_bt);
 		
 //		btnNewButton_3.fillRoundRect(0, 0, 10, 10, 10, 10); 
 	}
