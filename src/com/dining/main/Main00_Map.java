@@ -91,15 +91,6 @@ public class Main00_Map extends JPanel{
 		mypage.setBorderPainted(true);
 		mypage.setBackground(new Color(65, 105, 225));
 		movemenu.add(mypage);
-			
-	
-		
-		JButton homeButton = new JButton("");
-		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon(Main00_Map.class.getResource("/image/homebutton_1.png")));
-		homeButton.setBackground(new Color(255, 240, 245));
-		homeButton.setBounds(327, 32, 77, 69);
-		add(homeButton);
 		
 		RoundedButton_lsh_1 place1_bt = new RoundedButton_lsh_1("한식");
 		place1_bt.setText("마포구");

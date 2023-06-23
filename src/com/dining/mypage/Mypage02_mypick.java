@@ -14,6 +14,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+
+import com.dining.main.Main04_store2_map;
+
 import javax.swing.JButton;
 
 public class Mypage02_mypick extends JPanel {
@@ -43,19 +46,13 @@ public class Mypage02_mypick extends JPanel {
 		
 		JButton btnNewButton = new JButton("");
 		btnNewButton.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/heart.png")));
-		btnNewButton.setBounds(448, 329, 48, 54);
+		btnNewButton.setBounds(448, 329, 60, 54);
 		add(btnNewButton);
 		
 		JLabel icom_lb = new JLabel("");
 		icom_lb.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/icon_small.png")));
 		icom_lb.setBounds(45, 636, 435, 324);
 		add(icom_lb);
-		
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/homebutton_1.png")));
-		lblNewLabel_1.setBounds(346, 41, 60, 60);
-		add(lblNewLabel_1);
 		
 		JLabel sidetool = new JLabel("");
 		sidetool.setOpaque(true);
@@ -106,7 +103,12 @@ public class Mypage02_mypick extends JPanel {
 		movemenu.add(mypage);
 
 
-		
+		JButton homeButton = new JButton("");
+		homeButton.setBorderPainted(false);
+		homeButton.setIcon(new ImageIcon(Main04_store2_map.class.getResource("/image/homebutton_1.png")));
+		homeButton.setBackground(new Color(255, 240, 245));
+		homeButton.setBounds(329, 37, 77, 69);
+		add(homeButton);
 		
 		
 		table = new JTable(contents, header);

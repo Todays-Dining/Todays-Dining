@@ -15,8 +15,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Main04_store3_review extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField store_score_tf;
+	private JTextField now_review_ta;
 
 	/**
 	 * Create the panel.
@@ -27,13 +27,11 @@ public class Main04_store3_review extends JPanel {
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
-		
 		JLabel sidetool = new JLabel("");
 		sidetool.setOpaque(true);
 		sidetool.setBackground(new Color(255, 240, 245));
 		sidetool.setBounds(405, 97, 91, 15);
 		add(sidetool);
-		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
 		menuBar.setToolTipText("");
@@ -44,7 +42,7 @@ public class Main04_store3_review extends JPanel {
 		JMenu movemenu = new JMenu("");
 		movemenu.setOpaque(true);
 		movemenu.setIconTextGap(0);
-		movemenu.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\menubutton.png"));
+		movemenu.setIcon(new ImageIcon(Main00_Home.class.getResource("/image/menubutton.png")));
 		movemenu.setBorderPainted(true);
 		movemenu.setBackground(new Color(255, 240, 245));
 		menuBar.add(movemenu);
@@ -76,101 +74,101 @@ public class Main04_store3_review extends JPanel {
 		mypage.setBorderPainted(true);
 		mypage.setBackground(new Color(65, 105, 225));
 		movemenu.add(mypage);
-		
+
 		JButton homeButton = new JButton("");
 		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon("C:\\TeamProject\\\\src\\image\\homebutton_1.png"));
+		homeButton.setIcon(new ImageIcon(Main04_store3_review.class.getResource("/image/homebutton_1.png")));
 		homeButton.setBackground(new Color(255, 240, 245));
 		homeButton.setBounds(329, 37, 77, 69);
 		add(homeButton);
 		
-		JLabel lblNewLabel = new JLabel("리뷰");
-		lblNewLabel.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 40));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(210, 260, 118, 54);
-		add(lblNewLabel);
+		JLabel lb1 = new JLabel("리뷰");
+		lb1.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 47));
+		lb1.setHorizontalAlignment(SwingConstants.CENTER);
+		lb1.setBounds(202, 260, 127, 54);
+		add(lb1);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\TeamProject\\src\\image\\label.png"));
-		lblNewLabel_1.setBounds(0, 10, 540, 330);
-		add(lblNewLabel_1);
+		JLabel img_lb = new JLabel("");
+		img_lb.setIcon(new ImageIcon(Main04_store3_review.class.getResource("/image/label.png")));
+		img_lb.setBounds(0, 10, 540, 330);
+		add(img_lb);
 		
-		JLabel lblNewLabel_2 = new JLabel("작성자:");
-		lblNewLabel_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(61, 384, 67, 29);
-		add(lblNewLabel_2);
+		JLabel custname1_lb = new JLabel("작성자:");
+		custname1_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		custname1_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		custname1_lb.setBounds(67, 350, 67, 29);
+		add(custname1_lb);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(163, 384, 317, 61);
-		add(textArea);
+		JTextArea review1_ta = new JTextArea();
+		review1_ta.setBounds(169, 350, 317, 61);
+		add(review1_ta);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("2023/06/20");
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lblNewLabel_2_1.setBounds(42, 416, 96, 29);
-		add(lblNewLabel_2_1);
+		JLabel date_1 = new JLabel("최근날짜순");
+		date_1.setHorizontalAlignment(SwingConstants.CENTER);
+		date_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		date_1.setBounds(48, 382, 96, 29);
+		add(date_1);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBounds(163, 486, 317, 61);
-		add(textArea_1);
+		JTextArea review2_ta = new JTextArea();
+		review2_ta.setBounds(169, 452, 317, 61);
+		add(review2_ta);
 		
-		JLabel lblNewLabel_2_2 = new JLabel("작성자:");
-		lblNewLabel_2_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lblNewLabel_2_2.setBounds(61, 491, 67, 29);
-		add(lblNewLabel_2_2);
+		JLabel custname2_lb = new JLabel("작성자:");
+		custname2_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		custname2_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		custname2_lb.setBounds(67, 457, 67, 29);
+		add(custname2_lb);
 		
-		JLabel lblNewLabel_2_1_1 = new JLabel("2023/06/20");
-		lblNewLabel_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lblNewLabel_2_1_1.setBounds(42, 518, 96, 29);
-		add(lblNewLabel_2_1_1);
+		JLabel date_2 = new JLabel("2023/06/20");
+		date_2.setHorizontalAlignment(SwingConstants.CENTER);
+		date_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		date_2.setBounds(48, 484, 96, 29);
+		add(date_2);
 		
-		JTextArea textArea_1_1 = new JTextArea();
-		textArea_1_1.setBounds(163, 587, 317, 61);
-		add(textArea_1_1);
+		JTextArea review3_ta = new JTextArea();
+		review3_ta.setBounds(169, 553, 317, 61);
+		add(review3_ta);
 		
-		JLabel lblNewLabel_2_2_1 = new JLabel("작성자:");
-		lblNewLabel_2_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_2_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lblNewLabel_2_2_1.setBounds(61, 587, 67, 29);
-		add(lblNewLabel_2_2_1);
+		JLabel custname3_lb = new JLabel("작성자:");
+		custname3_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		custname3_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		custname3_lb.setBounds(67, 553, 67, 29);
+		add(custname3_lb);
 		
-		JLabel lblNewLabel_2_1_1_1 = new JLabel("2023/06/20");
-		lblNewLabel_2_1_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_1_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lblNewLabel_2_1_1_1.setBounds(42, 619, 96, 29);
-		add(lblNewLabel_2_1_1_1);
+		JLabel date_3 = new JLabel("2023/06/20");
+		date_3.setHorizontalAlignment(SwingConstants.CENTER);
+		date_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		date_3.setBounds(48, 585, 96, 29);
+		add(date_3);
 		
-		JLabel lblNewLabel_2_2_1_1 = new JLabel("별점 주기");
-		lblNewLabel_2_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_2_1_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lblNewLabel_2_2_1_1.setBounds(61, 705, 67, 29);
-		add(lblNewLabel_2_2_1_1);
+		JLabel store_score_lb = new JLabel("별점 주기");
+		store_score_lb.setHorizontalAlignment(SwingConstants.CENTER);
+		store_score_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		store_score_lb.setBounds(61, 705, 67, 29);
+		add(store_score_lb);
 		
-		textField = new JTextField();
-		textField.setBounds(148, 707, 67, 29);
-		add(textField);
-		textField.setColumns(10);
+		store_score_tf = new JTextField();
+		store_score_tf.setBounds(148, 707, 67, 29);
+		add(store_score_tf);
+		store_score_tf.setColumns(10);
 		
-		JLabel lblNewLabel_3 = new JLabel("리뷰 남기기:");
-		lblNewLabel_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(32, 744, 96, 43);
-		add(lblNewLabel_3);
+		JLabel now_review_lb = new JLabel("리뷰 남기기:");
+		now_review_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
+		now_review_lb.setBounds(32, 744, 96, 43);
+		add(now_review_lb);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(148, 755, 327, 148);
-		add(textField_1);
-		textField_1.setColumns(10);
+		now_review_ta = new JTextField();
+		now_review_ta.setBounds(148, 755, 338, 148);
+		add(now_review_ta);
+		now_review_ta.setColumns(10);
 		
-		RoundedButton_ysh_1 btnNewButton = new RoundedButton_ysh_1("저장하기");
-		btnNewButton.setBorderPainted(false);
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
-		btnNewButton.setBackground(new Color(65, 105, 225));
-		btnNewButton.setBounds(366, 710, 109, 29);
-		add(btnNewButton);
+		RoundedButton_ysh_1 review_save_bt = new RoundedButton_ysh_1("저장하기");
+		review_save_bt.setBorderPainted(false);
+		review_save_bt.setForeground(new Color(255, 255, 255));
+		review_save_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
+		review_save_bt.setBackground(new Color(65, 105, 225));
+		review_save_bt.setBounds(366, 710, 109, 29);
+		add(review_save_bt);
 		
 	}
 
