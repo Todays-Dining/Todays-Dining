@@ -107,12 +107,12 @@ public class Main04_store2_map extends JPanel {
 		lb1.setBounds(49, 480, 108, 24);
 		add(lb1);
 		
-		JButton homeButton_1 = new JButton("");
-		homeButton_1.setIcon(new ImageIcon(Main04_store2_map.class.getResource("/image/backbutton.png")));
-		homeButton_1.setBorderPainted(false);
-		homeButton_1.setBackground(new Color(255, 240, 245));
-		homeButton_1.setBounds(242, 40, 77, 69);
-		add(homeButton_1);
+		JButton back_bt = new JButton("");
+		back_bt.setIcon(new ImageIcon(Main04_store2_map.class.getResource("/image/backbutton.png")));
+		back_bt.setBorderPainted(false);
+		back_bt.setBackground(new Color(255, 240, 245));
+		back_bt.setBounds(242, 40, 77, 69);
+		add(back_bt);
 		
 		store_addr_tf = new JTextField();
 		store_addr_tf.setBounds(49, 514, 414, 24);
