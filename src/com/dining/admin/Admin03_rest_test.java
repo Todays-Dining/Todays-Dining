@@ -1,22 +1,19 @@
 package com.dining.admin;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.SystemColor;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.EventQueue;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import com.dining.db.DB_Client_Test;
+import com.dining.db.Protocol;
+import com.dining.db.VO;
 
 public class Admin03_rest_test extends JPanel {
 	  JTextField textField;
@@ -38,7 +35,10 @@ public class Admin03_rest_test extends JPanel {
 	  JTextField textField_16;
 	  JTextField textField_17;
 	  JTextField textField_18;
-	
+	  
+	Socket s;
+	ObjectOutputStream out;
+	ObjectInputStream in;
 	  
 	  
 	 String header[]={"가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부"};
@@ -81,7 +81,7 @@ public class Admin03_rest_test extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Admin03_rest_test() {
+	public Admin03_rest_test() extends JFrame implements Runnable {
 		
 		
 		JLabel rest = new JLabel("음식점");
@@ -571,6 +571,7 @@ public class Admin03_rest_test extends JPanel {
 		btnNewButton_3_1_3.setBounds(981, 13, 100, 30);
 		panel.add(btnNewButton_3_1_3);
 		
+		// 전체조회 버튼 클릭 시 식당 리스트 전체 조회
 		btnNewButton_3_1_3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -578,4 +579,71 @@ public class Admin03_rest_test extends JPanel {
 			}
 		});
 	}
-}
+		
+		// 접속
+		public void connected() {
+			try {
+				s = new Socket("192.168.25.2", 8897);
+				out = new ObjectOutputStream(s.getOutputStream());
+				in = new ObjectInputStream(s.getInputStream());
+				new Thread(this).start();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+		
+		// 끝내기 
+		public void closed() {
+			try {
+				out.close();
+				in.close();
+				System.exit(0);
+			} catch (Exception e) {
+
+			}
+		}
+		
+		@Override
+		public void run() {
+			esc: while(true) {
+				try {
+					Object obj = in.readObject();
+					if (obj != null) {
+						Protocol p = (Protocol)obj;
+						switch (p.getCmd()) {
+						case 0:
+							break esc;
+						case 1:
+							List<VO> list = p.getList();
+							prn(list);
+							break;
+						case 2:
+							List<VO> list2 = p.getList();
+							prn(list2);
+							break;
+						}
+					}
+				} catch (Exception e) {
+				}
+			}
+			closed();
+		}
+		
+		public void prn(List<VO> list) {
+			for (VO k : list) {
+				jta.append("\t"+k.getCustid()+"\t");
+				jta.append(k.getName()+"\t");
+				jta.append(k.getAddress()+"\t\t");
+				jta.append(k.getPhone()+"\n");
+			}
+		}
+		
+		public static void main(String[] args) {
+			EventQueue.invokeLater(new Runnable() {
+				@Override
+				public void run() {
+					new DB_Client_Test();
+				}
+			});
+		}
+	}

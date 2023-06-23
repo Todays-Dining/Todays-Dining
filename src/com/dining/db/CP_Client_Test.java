@@ -14,7 +14,7 @@ public class CP_Client_Test extends Thread {
 	DB_Server_Test server;
 	ObjectInputStream in;
 	ObjectOutputStream out;
-	List<VO_2> list = null;
+	List<VO> list = null;
 	// 해당 부분 위로 올리면 DB 자체가 오류남
 //	DB_Client dbc = new DB_Client();
 
@@ -50,31 +50,31 @@ public class CP_Client_Test extends Thread {
 							out.flush();
 							break esc;
 						case 1:
-							List<VO_2> list = DAO_2.getList();
+							List<VO> list = DAO.getList();
 							p.setList(list);
 							out.writeObject(p);
 							out.flush();
 							break;
 						case 2:
 //							VO_2 vo = new VO_2();
-							DAO_2.getInsert(p.getVo());
-//							System.out.println("카피클 텍스트 : " + dbc.custid_DB);
-//							vo.setCustid(dbc.jtf1.getText());
-//							vo.setName(dbc.jtf2.getText());
-//							vo.setAddress(dbc.jtf3.getText());
-//							vo.setPhone(dbc.jtf4.getText());
-////							List<VO_2> list3 = p.getList();
-////							DAO_2.getInsert((VO_2) list3);
-//							DB_Client dbc = new DB_Client();
-//							ArrayList<VO_2> list5 = dbc.list();
-//							DAO_2.getInsert(list5);
-							
-							// 있어야 하나?
-							List<VO_2> list2 = DAO_2.getList();
-							p.setList(list2);
-							out.writeObject(p);
-							out.flush();
-							break;
+//							DAO.getInsert(p.getVo());
+////							System.out.println("카피클 텍스트 : " + dbc.custid_DB);
+////							vo.setCustid(dbc.jtf1.getText());
+////							vo.setName(dbc.jtf2.getText());
+////							vo.setAddress(dbc.jtf3.getText());
+////							vo.setPhone(dbc.jtf4.getText());
+//////							List<VO_2> list3 = p.getList();
+//////							DAO_2.getInsert((VO_2) list3);
+////							DB_Client dbc = new DB_Client();
+////							ArrayList<VO_2> list5 = dbc.list();
+////							DAO_2.getInsert(list5);
+//							
+//							// 있어야 하나?
+//							List<VO> list2 = DAO.getList();
+//							p.setList(list2);
+//							out.writeObject(p);
+//							out.flush();
+//							break;
 						}
 					}
 				} catch (Exception e) {
@@ -89,12 +89,18 @@ public class CP_Client_Test extends Thread {
 		}
 	} // run 메서드의 끝
 		
-	public void prn(List<VO_2> list) {
-		for (VO_2 k : list) {
-			System.out.println(k.getCustid()); 
-			System.out.println(k.getName()); 
+	public void prn(List<VO> list) {
+		for (VO k : list) {
+			System.out.println(k.getDiner_no()); 
+			System.out.println(k.getDiner_name()); 
+			System.out.println(k.getFavorited_number()); 
+			System.out.println(k.getOpening_hours()); 
+			System.out.println(k.getMenu()); 
+			System.out.println(k.getPhone_number()); 
+			System.out.println(k.getparking_or_not()); 
+			System.out.println(k.getFood_category()); 
+			System.out.println(k.getRegion()); 
 			System.out.println(k.getAddress()); 
-			System.out.println(k.getPhone()); 
 //			jta.append(k.getName()+"\t");
 //			jta.append(k.getAddress()+"\t");
 //			jta.append(k.getPhone()+"\n");

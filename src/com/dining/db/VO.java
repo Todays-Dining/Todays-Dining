@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class VO implements Serializable {
 //	private String custid, name, address, phone;
 	private String diner_no, diner_name, favorited_number, opening_hours, menu, phone_number,
-	praking_or_not, food_category, region, address;
+	parking_or_not, food_category, region, address;
 
 	public String getDiner_no() {
 		return diner_no;
@@ -55,12 +55,12 @@ public class VO implements Serializable {
 		this.phone_number = phone_number;
 	}
 
-	public String getPraking_or_not() {
-		return praking_or_not;
+	public String getparking_or_not() {
+		return parking_or_not;
 	}
 
-	public void setPraking_or_not(String praking_or_not) {
-		this.praking_or_not = praking_or_not;
+	public void setparking_or_not(String parking_or_not) {
+		this.parking_or_not = parking_or_not;
 	}
 
 	public String getFood_category() {
