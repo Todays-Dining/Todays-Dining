@@ -1,24 +1,34 @@
 package com.dining.login;
 
+import java.awt.CardLayout;
 import java.awt.Color;
-
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import com.dining.start.Admin_frame;
 
 public class Login01_page extends JPanel {
 	JTextField id_textField;
 	JTextField pw_textField;
+	CardLayout cardLayout;
+	JPanel main_pg ;
+	int ad_num= 2;
+	
 
 	/**
 	 * Create the panel.
 	 */
-	public Login01_page() {
+	public Login01_page(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+			this.main_pg = main_pg ;
+		
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -104,5 +114,25 @@ public class Login01_page extends JPanel {
 		pw_label.setBackground(new Color(65, 105, 225));
 		pw_label.setBounds(59, 434, 63, 28);
 		add(pw_label);
+		
+		
+		
+		login_Button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (ad_num == 1) {
+					
+					cardLayout.show(main_pg,"main00_map");
+				} else {
+					new Admin_frame();
+					
+				}
+					
+				
+			}
+		});
 	}
+	
+	
 }

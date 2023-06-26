@@ -162,6 +162,14 @@ public class Main04_store3_review extends JPanel {
 		add(now_review_ta);
 		now_review_ta.setColumns(10);
 		
+		JButton back_bt = new JButton("");
+		back_bt.setIcon(new ImageIcon(Main04_store2_map.class.getResource("/image/backbutton.png")));
+		back_bt.setBorderPainted(false);
+		back_bt.setBackground(new Color(255, 240, 245));
+		back_bt.setBounds(242, 40, 77, 69);
+		add(back_bt);
+		
+		
 		RoundedButton_ysh_1 review_save_bt = new RoundedButton_ysh_1("저장하기");
 		review_save_bt.setBorderPainted(false);
 		review_save_bt.setForeground(new Color(255, 255, 255));

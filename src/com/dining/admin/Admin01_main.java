@@ -1,5 +1,6 @@
 package com.dining.admin;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -7,11 +8,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Admin01_main extends JPanel {
-
+	
+	JPanel admin_pg ;
+	CardLayout cardLayout;
 	/**
 	 * Create the panel.
 	 */
-	public Admin01_main() {
+	public Admin01_main(CardLayout cardLayout,JPanel admin_pg) {
+		this.cardLayout = cardLayout ;
+		this.admin_pg = admin_pg ;
 		
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 1200, 800);

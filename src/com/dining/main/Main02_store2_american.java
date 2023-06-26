@@ -66,7 +66,7 @@ public class Main02_store2_american extends JPanel {
 		
 		JButton homebutton = new JButton("");
 		homebutton.setBorderPainted(false);
-		homebutton.setIcon(new ImageIcon(Main02_store2_american.class.getResource("/image/backbutton.png")));
+		homebutton.setIcon(new ImageIcon(Main02_store2_american.class.getResource("/image/homebutton_1.png")));
 		homebutton.setBackground(new Color(255, 240, 245));
 		homebutton.setBounds(346, 40, 60, 60);
 		add(homebutton);
