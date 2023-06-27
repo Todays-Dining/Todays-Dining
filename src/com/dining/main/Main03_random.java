@@ -2,6 +2,7 @@ package com.dining.main;
 
 
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -19,12 +20,15 @@ import java.awt.event.ActionEvent;
 
 public class  Main03_random extends JPanel{
 
-
+	CardLayout cardLayout;
+	JPanel main_pg ;
 	/**
 	 * Create the application.
 	 */
-	public  Main03_random() {
-			
+	public  Main03_random(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);

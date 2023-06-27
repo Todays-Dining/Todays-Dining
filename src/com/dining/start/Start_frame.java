@@ -76,7 +76,7 @@ public class Start_frame extends JFrame{
 		Main02_store5_cafe main02_store5_cafe = new Main02_store5_cafe(cardLayout,main_pg);
 		Main02_store6_etc main02_store6_etc = new Main02_store6_etc(cardLayout,main_pg);
 		// 메인03_랜덤게임
-		Main03_random main03_random = new Main03_random();
+		Main03_random main03_random = new Main03_random(cardLayout,main_pg);
 		// 메인04_메인스토어화면
 		Main04_store1_main main04_store1_main = new Main04_store1_main(cardLayout,main_pg);
 		Main04_store2_map main04_store2_map = new Main04_store2_map(cardLayout,main_pg);
