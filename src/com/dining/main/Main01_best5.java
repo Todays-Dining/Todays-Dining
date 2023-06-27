@@ -2,9 +2,11 @@ package com.dining.main;
 
 
 
+import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,17 +16,17 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class Main01_best5 extends JPanel{
-
+		CardLayout cardLayout;
+		JPanel main_pg ;	
 
 	/**
 	 * Create the application.
 	 */
-	public Main01_best5() {
-			
+	public Main01_best5(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;	
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -121,18 +123,36 @@ public class Main01_best5 extends JPanel{
 			rank5_lb.setFont(new Font("휴먼매직체", Font.BOLD, 30));
 			rank5_lb.setBounds(127, 634, 297, 61);
 			add(rank5_lb);
+				
 			
-			
-			JButton store_bt = new JButton("가게이름");
+			RoundedButton_kjh_5 store_bt = new RoundedButton_kjh_5("가게이름");
 			store_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 			store_bt.setForeground(new Color(255, 240, 245));
 			store_bt.setBackground(new Color(65, 105, 225));
 			store_bt.setBorderPainted(false);
-			store_bt.setIcon(new ImageIcon("C:\\image\\asd.png"));
-			store_bt.setBounds(165, 732, 227, 95);
+			store_bt.setBounds(157, 731, 227, 95);
 			add(store_bt);
 			
+			// 이전 화면으로 이동 main01_best4
+			befer_bt.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg, "main01_best4");
+				}
+			});
 			
+			// 가게이름 버튼을 누르면 해당 가게로 이동하게된다. main04_store1_main
+			store_bt.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg, "main04_store1_main");
+				}
+			});
+
 		}
 }
 

@@ -1,5 +1,6 @@
 package com.dining.main;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -39,10 +40,16 @@ public class Main02_store1_korea extends JPanel {
     JTable table;
     JTable table_1;
     JTextField textField;
+    CardLayout cardLayout;
+	JPanel main_pg ;
+
 	/**
 	 * Create the panel.
 	 */
-	public Main02_store1_korea() {
+	public Main02_store1_korea(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);

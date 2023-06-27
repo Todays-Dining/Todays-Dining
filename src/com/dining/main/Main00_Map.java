@@ -15,18 +15,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.TextField;
 import java.awt.Button;
+import java.awt.CardLayout;
+
 import javax.swing.SwingConstants;
 import java.awt.Label;
 
 public class Main00_Map extends JPanel{
 	
-	
+	CardLayout cardLayout;
+	JPanel main_pg ;
 	
 	/**
 	 * Create the panel.
 	 */
-	public Main00_Map() {
-		
+	public Main00_Map(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
 		
 		 
 		setForeground(new Color(0, 0, 0));
@@ -92,7 +96,7 @@ public class Main00_Map extends JPanel{
 		mypage.setBackground(new Color(65, 105, 225));
 		movemenu.add(mypage);
 		
-		RoundedButton_lsh_1 place1_bt = new RoundedButton_lsh_1("한식");
+		RoundedButton_lsh_1 place1_bt = new RoundedButton_lsh_1();
 		place1_bt.setText("마포구");
 		place1_bt.setBorderPainted(false);
 		place1_bt.setToolTipText("");
@@ -113,7 +117,7 @@ public class Main00_Map extends JPanel{
 		icon_lb.setBounds(50, 645, 540, 330);
 		add(icon_lb);
 		
-		RoundedButton_lsh_1 place2_bt = new RoundedButton_lsh_1("한식");
+		RoundedButton_lsh_1 place2_bt = new RoundedButton_lsh_1();
 		place2_bt.setText("신촌");
 		place2_bt.setToolTipText("");
 		place2_bt.setForeground(Color.WHITE);
@@ -123,7 +127,7 @@ public class Main00_Map extends JPanel{
 		place2_bt.setBounds(225, 389, 101, 96);
 		add(place2_bt);
 		
-		RoundedButton_lsh_1 place3_bt = new RoundedButton_lsh_1("한식");
+		RoundedButton_lsh_1 place3_bt = new RoundedButton_lsh_1();
 		place3_bt.setToolTipText("");
 		place3_bt.setText("홍대");
 		place3_bt.setForeground(Color.WHITE);
@@ -133,7 +137,7 @@ public class Main00_Map extends JPanel{
 		place3_bt.setBounds(389, 389, 101, 96);
 		add(place3_bt);
 		
-		RoundedButton_lsh_1 place4_bt = new RoundedButton_lsh_1("한식");
+		RoundedButton_lsh_1 place4_bt = new RoundedButton_lsh_1();
 		place4_bt.setText("을지로");
 		place4_bt.setToolTipText("");
 		place4_bt.setForeground(Color.WHITE);
@@ -143,7 +147,7 @@ public class Main00_Map extends JPanel{
 		place4_bt.setBounds(57, 520, 101, 96);
 		add(place4_bt);
 		
-		RoundedButton_lsh_1 place5_bt = new RoundedButton_lsh_1("한식");
+		RoundedButton_lsh_1 place5_bt = new RoundedButton_lsh_1();
 		place5_bt.setToolTipText("");
 		place5_bt.setText("연남");
 		place5_bt.setForeground(Color.WHITE);
@@ -153,7 +157,7 @@ public class Main00_Map extends JPanel{
 		place5_bt.setBounds(225, 520, 101, 96);
 		add(place5_bt);
 		
-		RoundedButton_lsh_1 place6_bt = new RoundedButton_lsh_1("한식");
+		RoundedButton_lsh_1 place6_bt = new RoundedButton_lsh_1();
 		place6_bt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -173,6 +177,53 @@ public class Main00_Map extends JPanel{
 //		add(lblNewLabel_3);
 	
 		
-	
+		place1_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main00_Home");
+			}
+		});
+		place2_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main00_Home");
+			}
+		});
+		place3_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main00_Home");
+			}
+		});
+		place4_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main00_Home");
+			}
+		});
+		place5_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main00_Home");
+			}
+		});
+		place6_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main00_Home");
+			}
+		});
 	}
 }

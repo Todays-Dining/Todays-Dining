@@ -1,5 +1,6 @@
 package com.dining.main;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -17,11 +18,15 @@ import javax.swing.JTextArea;
 
 public class Main04_store2_map extends JPanel {
 	private JTextField store_addr_tf;
-
+	CardLayout cardLayout;
+	JPanel main_pg ;
+		
 	/**
 	 * Create the panel.
 	 */
-	public Main04_store2_map() {
+	public Main04_store2_map(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
 		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));

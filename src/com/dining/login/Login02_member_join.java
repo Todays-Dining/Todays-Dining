@@ -1,5 +1,6 @@
 package com.dining.login;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 
 import javax.swing.JPanel;
@@ -20,11 +21,15 @@ public class Login02_member_join extends JPanel {
 	 private JTextField birth_textField;
 	 private JTextField qa_textField;
 	 private JTextField name_textField;
+	 CardLayout cardLayout;
+		JPanel main_pg ;
 	 
 	/**
 	 * Create the panel.
 	 */
-	public Login02_member_join() {
+	public Login02_member_join(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -220,5 +225,16 @@ public class Login02_member_join extends JPanel {
 		main_icon.setIcon(new ImageIcon(Login02_member_join.class.getResource("/image/icon_small.png")));
 		main_icon.setBounds(51, 654, 446, 306);
 		add(main_icon);
+		
+		
+		cancle_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"login01_page");
+			}
+		});
+		
 	}
 }

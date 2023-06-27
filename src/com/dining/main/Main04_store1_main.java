@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import java.awt.Button;
+import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
@@ -26,11 +27,16 @@ public class Main04_store1_main extends JPanel {
 	 JTextField store_phone_tf;
 	 JTextField store_open_tf;
 	 JTextField paking_tf;
+	 CardLayout cardLayout;
+	 JPanel main_pg ;
+
 
 	/**
 	 * Create the panel.
 	 */
-	public Main04_store1_main() {
+	public Main04_store1_main(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
 		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));

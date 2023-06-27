@@ -15,18 +15,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.TextField;
 import java.awt.Button;
+import java.awt.CardLayout;
+
 import javax.swing.SwingConstants;
 import java.awt.Label;
 
 public class Main02_category_select extends JPanel{
-	
+	CardLayout cardLayout;
+	JPanel main_pg ;
 	
 	
 	/**
 	 * Create the panel.
 	 */
-	public Main02_category_select() {
-		
+	public Main02_category_select(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
 		
 		 
 		setForeground(new Color(0, 0, 0));
@@ -121,9 +125,8 @@ public class Main02_category_select extends JPanel{
 		icon_lb.setBounds(50, 645, 540, 330);
 		add(icon_lb);
 		
-		RoundedButton_lsh_1 menu1_am = new RoundedButton_lsh_1("한식");
+		RoundedButton_lsh_1 menu1_am = new RoundedButton_lsh_1();
 		menu1_am.setText("양식");
-		menu1_am.setToolTipText("");
 		menu1_am.setForeground(Color.WHITE);
 		menu1_am.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
 		menu1_am.setBorderPainted(false);
@@ -131,8 +134,7 @@ public class Main02_category_select extends JPanel{
 		menu1_am.setBounds(225, 389, 101, 96);
 		add(menu1_am);
 		
-		RoundedButton_lsh_1 menu1_ch = new RoundedButton_lsh_1("한식");
-		menu1_ch.setToolTipText("");
+		RoundedButton_lsh_1 menu1_ch = new RoundedButton_lsh_1();
 		menu1_ch.setText("중식");
 		menu1_ch.setForeground(Color.WHITE);
 		menu1_ch.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
@@ -141,7 +143,7 @@ public class Main02_category_select extends JPanel{
 		menu1_ch.setBounds(389, 389, 101, 96);
 		add(menu1_ch);
 		
-		RoundedButton_lsh_1 menu1_ja = new RoundedButton_lsh_1("한식");
+		RoundedButton_lsh_1 menu1_ja = new RoundedButton_lsh_1();
 		menu1_ja.setText("일식");
 		menu1_ja.setToolTipText("");
 		menu1_ja.setForeground(Color.WHITE);
@@ -151,8 +153,7 @@ public class Main02_category_select extends JPanel{
 		menu1_ja.setBounds(57, 520, 101, 96);
 		add(menu1_ja);
 		
-		RoundedButton_lsh_1 menu1_ca = new RoundedButton_lsh_1("한식");
-		menu1_ca.setToolTipText("");
+		RoundedButton_lsh_1 menu1_ca = new RoundedButton_lsh_1();
 		menu1_ca.setText("카페");
 		menu1_ca.setForeground(Color.WHITE);
 		menu1_ca.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
@@ -161,12 +162,7 @@ public class Main02_category_select extends JPanel{
 		menu1_ca.setBounds(225, 520, 101, 96);
 		add(menu1_ca);
 		
-		RoundedButton_lsh_1 menu1_etc = new RoundedButton_lsh_1("한식");
-		menu1_etc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		menu1_etc.setToolTipText("");
+		RoundedButton_lsh_1 menu1_etc = new RoundedButton_lsh_1();
 		menu1_etc.setText("기타");
 		menu1_etc.setForeground(Color.WHITE);
 		menu1_etc.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 30));
@@ -175,11 +171,56 @@ public class Main02_category_select extends JPanel{
 		menu1_etc.setBounds(389, 520, 101, 96);
 		add(menu1_etc);
 		
-//		JLabel lblNewLabel_3 = new JLabel("");
-//		lblNewLabel_3.setIcon(new ImageIcon("C:\\image\\roundbutton.png"));
-//		lblNewLabel_3.setBounds(0, 512, 540, 330);
-//		add(lblNewLabel_3);
-	
+
+		menu1_kr.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main02_best1_korea");
+			}
+		});
+		menu1_am.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main02_best2_american");
+			}
+		});
+		menu1_ch.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main02_best3_china");
+			}
+		});
+		menu1_ja.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main02_best4_japan");
+			}
+		});
+		menu1_ca.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main02_best5_cafe");
+			}
+		});
+		menu1_etc.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main02_best6_etc");
+			}
+		});
+		
 		
 	
 	}
