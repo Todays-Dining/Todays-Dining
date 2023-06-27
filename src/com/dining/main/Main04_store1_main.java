@@ -221,5 +221,26 @@ public class Main04_store1_main extends JPanel {
 		love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));
 		love_jrbt.setBounds(372, 139, 74, 65);
 		add(love_jrbt);
+		
+		// main04_store2_map 상세지도 보기 페이지로 이동
+		open_map_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main04_store2_map");
+			}
+		});
+		
+		// main04_store3_review 리뷰페이지로 이동
+		review_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main04_store3_review");
+			}
+		});
+		
 	}
 }

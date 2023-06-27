@@ -265,8 +265,42 @@ public class  Main03_random extends JPanel{
 			add(goal_line);
 			
 		
-			
-		
+			// 이미지를 누르면 main02_best1_korea 로 이동
+			korean_bt_img.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg,"main02_best1_korea");
+				}
+			});
+			// 이미지를 누르면 main02_best1_korea 로 이동
+			japan_bt_img.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg,"main02_best2_american");
+				}
+			});
+			// 이미지를 누르면 main02_best1_korea 로 이동
+			china_bt_img.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg,"main02_best3_china");
+				}
+			});
+			// 이미지를 누르면 main02_best1_korea 로 이동
+			america_bt_img.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg,"main02_best4_japan");
+				}
+			});
 			
 			
 		}

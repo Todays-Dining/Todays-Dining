@@ -11,6 +11,7 @@ import com.dining.login.Login03_Find_id;
 import com.dining.login.Login04_Find_pw;
 import com.dining.main.Main00_Home;
 import com.dining.main.Main00_Map;
+import com.dining.main.Main00_store_search;
 import com.dining.main.Main01_best1;
 import com.dining.main.Main01_best2;
 import com.dining.main.Main01_best3;
@@ -53,6 +54,8 @@ public class Start_frame extends JFrame{
 		// 메인 맵 화면
 		Main00_Map main00_Map = new Main00_Map(cardLayout,main_pg);
 		Main00_Home main00_Home = new Main00_Home(cardLayout,main_pg);
+		// 검색시 이동할 화면
+		Main00_store_search main00_store_search = new Main00_store_search(cardLayout, main_pg);
 		// 메인(주간best1등~5등)
 		Main01_best1 main01_best1 = new Main01_best1(cardLayout,main_pg);
 		Main01_best2 main01_best2 = new Main01_best2(cardLayout,main_pg);
@@ -93,6 +96,8 @@ public class Start_frame extends JFrame{
 		main_pg.add("main00_map",main00_Map);
 		// 홈화면 
 		main_pg.add("main00_Home",main00_Home);
+		// 검색시 이동할 화면
+		main_pg.add("main00_store_search",main00_store_search);
 		// 메인(주간best1등~5등)
 		main_pg.add("main01_best1",main01_best1);
 		main_pg.add("main01_best2",main01_best2);

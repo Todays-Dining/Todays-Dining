@@ -2,9 +2,8 @@ package com.dining.main;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,20 +12,41 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SwingConstants;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
+import javax.swing.JList;
+import javax.swing.JTable;
 
-public class Main04_store2_map extends JPanel {
-	private JTextField store_addr_tf;
-	CardLayout cardLayout;
+public class Main00_store_search extends JPanel {
+	
+	String header[]= {"가게 이름","대표 메뉴","평점"};
+	String contents[][]= {
+			{"음식점1","햄버거","3.5"},
+			{"음식점2","삼겹살","3.5"},
+			{"음식점3","커피","3.5"},
+			{"음식점4","치킨","3.5"},
+			{"음식점5","김밥","3.5"},
+			{"음식점6","떡볶이","3.5"},
+			{"음식점7","피자","3.5"},
+			{"음식점8","곱창","3.5"},
+			{"음식점9","회","3.5"},
+			{"음식점11","카레","3.5"},
+			{"음식점12","초밥","3.5"},
+			{"음식점13","덮밥","3.5"},
+			{"음식점14","짜장면","3.5"},
+			{"음식점15","마라탕","3.5"},
+	};
+	String selection[]= {"가게 이름"}; 
+    JTable table;
+    JTable table_1;
+    JTextField textField;
+    CardLayout cardLayout;
 	JPanel main_pg ;
-		
+    
 	/**
 	 * Create the panel.
 	 */
-	public Main04_store2_map(CardLayout cardLayout, JPanel main_pg) {
+	public Main00_store_search(CardLayout cardLayout, JPanel main_pg) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
 		
@@ -35,6 +55,28 @@ public class Main04_store2_map extends JPanel {
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
 		
+		
+		
+		JLabel search_lb = new JLabel("뭐먹지?");
+		search_lb.setOpaque(true);
+		search_lb.setForeground(new Color(255, 255, 255));
+		search_lb.setBackground(new Color(65, 105, 225));
+		search_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 30));
+		search_lb.setHorizontalAlignment(JLabel.CENTER);
+		search_lb.setBounds(163, 258, 200, 40);
+		add(search_lb);
+		
+		JLabel ib_img = new JLabel("");
+		ib_img.setIcon(new ImageIcon(Main00_store_search.class.getResource("/image/label.png")));
+		ib_img.setBounds(0, 0, 540, 330);
+		add(ib_img);
+		
+		JButton homebutton = new JButton("");
+		homebutton.setBorderPainted(false);
+		homebutton.setIcon(new ImageIcon(Main00_store_search.class.getResource("/image/homebutton_1.png")));
+		homebutton.setBackground(new Color(255, 240, 245));
+		homebutton.setBounds(346, 40, 60, 60);
+		add(homebutton);
 		JLabel sidetool = new JLabel("");
 		sidetool.setOpaque(true);
 		sidetool.setBackground(new Color(255, 240, 245));
@@ -82,58 +124,22 @@ public class Main04_store2_map extends JPanel {
 		mypage.setBorderPainted(true);
 		mypage.setBackground(new Color(65, 105, 225));
 		movemenu.add(mypage);
-
 		
-		JButton homeButton = new JButton("");
-		homeButton.setBorderPainted(false);
-		homeButton.setIcon(new ImageIcon(Main04_store2_map.class.getResource("/image/homebutton_1.png")));
-		homeButton.setBackground(new Color(255, 240, 245));
-		homeButton.setBounds(329, 37, 77, 69);
-		add(homeButton);
+	
+		table = new JTable(contents, header);
+		table.setBackground(new Color(255, 187, 187));
+		table.setLocation(84, 380);
+		table.setSize(350, 600);
+		table.setPreferredSize(new Dimension(750, 500));
+		table.setPreferredScrollableViewportSize(new Dimension(1030, 450));
+		table.setRowMargin(2);
+		table.setGridColor(new Color(255, 108, 108));
+		table.setRowHeight(40);
+		table.getTableHeader();
+		add(table);
 		
-		JLabel store_img_lb = new JLabel("가게 이미지");
-		store_img_lb.setOpaque(true);
-		store_img_lb.setForeground(new Color(255, 255, 255));
-		store_img_lb.setBackground(new Color(255, 128, 64));
-		store_img_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 50));
-		store_img_lb.setHorizontalAlignment(SwingConstants.CENTER);
-		store_img_lb.setBounds(49, 122, 414, 350);
-		add(store_img_lb);
-		
-		JLabel storeaddr_img_lb = new JLabel("가게 위치");
-		storeaddr_img_lb.setOpaque(true);
-		storeaddr_img_lb.setForeground(new Color(255, 255, 255));
-		storeaddr_img_lb.setBackground(new Color(255, 128, 64));
-		storeaddr_img_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 50));
-		storeaddr_img_lb.setHorizontalAlignment(SwingConstants.CENTER);
-		storeaddr_img_lb.setBounds(49, 548, 414, 350);
-		add(storeaddr_img_lb);
-		
-		JLabel lb1 = new JLabel("<음식점 주소 >");
-		lb1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		lb1.setBounds(49, 480, 108, 24);
-		add(lb1);
-		
-		JButton back_bt = new JButton("");
-		back_bt.setIcon(new ImageIcon(Main04_store2_map.class.getResource("/image/backbutton.png")));
-		back_bt.setBorderPainted(false);
-		back_bt.setBackground(new Color(255, 240, 245));
-		back_bt.setBounds(242, 40, 77, 69);
-		add(back_bt);
-		
-		store_addr_tf = new JTextField();
-		store_addr_tf.setBounds(49, 514, 414, 24);
-		add(store_addr_tf);
-		store_addr_tf.setColumns(10);
-		
-		// 다시 가게보기 첫화면으로 돌아간다 main04_store1_main
-		back_bt.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg,"main04_store1_main");
-			}
-		});
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(49, 350, 450, 450);
+		add(scrollPane);
 	}
 }

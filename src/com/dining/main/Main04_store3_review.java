@@ -3,6 +3,8 @@ package com.dining.main;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -182,6 +184,16 @@ public class Main04_store3_review extends JPanel {
 		review_save_bt.setBackground(new Color(65, 105, 225));
 		review_save_bt.setBounds(366, 710, 109, 29);
 		add(review_save_bt);
+		
+		// 다시 가게보기 첫화면으로 돌아간다 main04_store1_main
+		back_bt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main04_store1_main");
+			}
+		});
 		
 	}
 

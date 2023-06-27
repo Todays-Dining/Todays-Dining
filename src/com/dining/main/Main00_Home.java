@@ -185,6 +185,15 @@ public class Main00_Home extends JPanel {
 			}
 		});
 		
+		// 검색시 
+		search_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main00_store_search");
+			}
+		});
 		
 	}
 
