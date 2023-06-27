@@ -27,7 +27,7 @@ public class  Main03_random extends JPanel{
 	 */
 	public  Main03_random(CardLayout cardLayout, JPanel main_pg) {
 		this.cardLayout = cardLayout ;
-		this.main_pg = main_pg ;
+		this.main_pg = main_pg;
 		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
