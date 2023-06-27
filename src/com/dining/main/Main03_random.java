@@ -2,6 +2,7 @@ package com.dining.main;
 
 
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -19,12 +20,15 @@ import java.awt.event.ActionEvent;
 
 public class  Main03_random extends JPanel{
 
-
+	CardLayout cardLayout;
+	JPanel main_pg ;
 	/**
 	 * Create the application.
 	 */
-	public  Main03_random() {
-			
+	public  Main03_random(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg;
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -261,8 +265,42 @@ public class  Main03_random extends JPanel{
 			add(goal_line);
 			
 		
-			
-		
+			// 이미지를 누르면 main02_best1_korea 로 이동
+			korean_bt_img.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg,"main02_best1_korea");
+				}
+			});
+			// 이미지를 누르면 main02_best1_korea 로 이동
+			japan_bt_img.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg,"main02_best2_american");
+				}
+			});
+			// 이미지를 누르면 main02_best1_korea 로 이동
+			china_bt_img.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg,"main02_best3_china");
+				}
+			});
+			// 이미지를 누르면 main02_best1_korea 로 이동
+			america_bt_img.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg,"main02_best4_japan");
+				}
+			});
 			
 			
 		}

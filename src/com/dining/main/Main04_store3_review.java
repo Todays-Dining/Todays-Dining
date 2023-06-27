@@ -1,7 +1,10 @@
 package com.dining.main;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,11 +20,15 @@ import javax.swing.JTextField;
 public class Main04_store3_review extends JPanel {
 	private JTextField store_score_tf;
 	private JTextField now_review_ta;
+	CardLayout cardLayout;
+	JPanel main_pg ;
 
 	/**
 	 * Create the panel.
 	 */
-	public Main04_store3_review() {
+	public Main04_store3_review(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
 		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
@@ -177,6 +184,16 @@ public class Main04_store3_review extends JPanel {
 		review_save_bt.setBackground(new Color(65, 105, 225));
 		review_save_bt.setBounds(366, 710, 109, 29);
 		add(review_save_bt);
+		
+		// 다시 가게보기 첫화면으로 돌아간다 main04_store1_main
+		back_bt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main04_store1_main");
+			}
+		});
 		
 	}
 

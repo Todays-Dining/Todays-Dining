@@ -7,20 +7,30 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.dining.start.Admin_frame;
+import com.dining.start.Start_frame;
 
 public class Login01_page extends JPanel {
 	JTextField id_textField;
 	JTextField pw_textField;
 	CardLayout cardLayout;
 	JPanel main_pg ;
-	int ad_num= 2;
+	int ad_num= 1 ;
+	int a = 0;
 	
-
+	
+	public int getA() {
+		return a;
+	}
+	public void setA(int a) {
+		this.a = a;
+	}
+	
 	/**
 	 * Create the panel.
 	 */
@@ -116,15 +126,17 @@ public class Login01_page extends JPanel {
 		add(pw_label);
 		
 		
-		
+		// 로그인 화면에서 로그인 버튼클릭시 main00_Map 페이지로 넘어감
 		login_Button.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (ad_num == 1) {
-					
+//					Start_frame main = new Start_frame();
 					cardLayout.show(main_pg,"main00_map");
 				} else {
+					main_pg.setVisible(false);
+					setA(5) ;
 					new Admin_frame();
 					
 				}
@@ -132,8 +144,50 @@ public class Login01_page extends JPanel {
 				
 			}
 		});
+		
+		// 회원가입 버튼 누를시 회원가입창인 login02_member_join 로 이동
+		join_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"login02_member_join");
+			}
+		});
+		
+		
+		
+		
+			
+		// 아이디 찾기 버튼 클릭시 아이디 찾는 페이지로 이동
+		find_id.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"login03_Find_id");
+			}
+		});
+		
+		
+		// 비밀번호 찾기 버튼 클릭시 비밀번호 찾는 페이지로 이동
+		find_pw.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"login04_Find_pw");
+			}
+		});
+		
+		
+		
 	}
 	
 	
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> refs/heads/master
 }

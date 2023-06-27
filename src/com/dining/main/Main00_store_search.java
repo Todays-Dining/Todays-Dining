@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JTable;
 
-public class Main02_store3_china extends JPanel {
+public class Main00_store_search extends JPanel {
 	
 	String header[]= {"가게 이름","대표 메뉴","평점"};
 	String contents[][]= {
@@ -41,12 +41,12 @@ public class Main02_store3_china extends JPanel {
     JTable table_1;
     JTextField textField;
     CardLayout cardLayout;
-	JPanel main_pg ;
+	JPanel main_pg;
     
 	/**
 	 * Create the panel.
 	 */
-	public Main02_store3_china(CardLayout cardLayout, JPanel main_pg) {
+	public Main00_store_search(CardLayout cardLayout, JPanel main_pg) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
 		
@@ -57,23 +57,23 @@ public class Main02_store3_china extends JPanel {
 		
 		
 		
-		JLabel store_lb = new JLabel("중식 뭐먹지?");
-		store_lb.setOpaque(true);
-		store_lb.setForeground(new Color(255, 255, 255));
-		store_lb.setBackground(new Color(65, 105, 225));
-		store_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 30));
-		store_lb.setHorizontalAlignment(JLabel.CENTER);
-		store_lb.setBounds(163, 258, 200, 40);
-		add(store_lb);
+		JLabel search_lb = new JLabel("뭐먹지?");
+		search_lb.setOpaque(true);
+		search_lb.setForeground(new Color(255, 255, 255));
+		search_lb.setBackground(new Color(65, 105, 225));
+		search_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 30));
+		search_lb.setHorizontalAlignment(JLabel.CENTER);
+		search_lb.setBounds(163, 258, 200, 40);
+		add(search_lb);
 		
 		JLabel ib_img = new JLabel("");
-		ib_img.setIcon(new ImageIcon(Main02_store3_china.class.getResource("/image/label.png")));
+		ib_img.setIcon(new ImageIcon(Main00_store_search.class.getResource("/image/label.png")));
 		ib_img.setBounds(0, 0, 540, 330);
 		add(ib_img);
 		
 		JButton homebutton = new JButton("");
 		homebutton.setBorderPainted(false);
-		homebutton.setIcon(new ImageIcon(Main02_store3_china.class.getResource("/image/homebutton_1.png")));
+		homebutton.setIcon(new ImageIcon(Main00_store_search.class.getResource("/image/homebutton_1.png")));
 		homebutton.setBackground(new Color(255, 240, 245));
 		homebutton.setBounds(346, 40, 60, 60);
 		add(homebutton);
