@@ -44,7 +44,6 @@ public class Start_frame extends JFrame{
 	int member_num = 1 ;
 	
 	public Start_frame() {
-		// 상속받아서 하는게 아니라서 새로 생성을 해줘야한다
 		main_pg = new JPanel(); 
 		cardLayout = new CardLayout();
 		main_pg.setLayout(cardLayout);
