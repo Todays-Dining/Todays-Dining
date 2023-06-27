@@ -1,16 +1,16 @@
 package com.dining.admin;
 
 import java.awt.Color;
-
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Admin02_AdMember_add extends JPanel {
 	JTextField id_textField;
@@ -204,12 +204,26 @@ public class Admin02_AdMember_add extends JPanel {
 		name_textField.setBounds(217, 426, 250, 28);
 		add(name_textField);
 		
+		// ID 중복확인 부분
 		RoundedButton_kjh_4 id_chek_bt = new RoundedButton_kjh_4("중복확인");
 		id_chek_bt.setText("ID중복확인");
 		id_chek_bt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String duplicate_chk;
+				duplicate_chk = id_textField.getText();
+				if (duplicate_chk.length() > 0) {
+					// ★ 중복여부 확인하는 쿼리(성훈) 
+					
+					// 중복일 경우
+					JOptionPane.showMessageDialog(null, "ID가 중복됩니다.", "Message", JOptionPane.ERROR_MESSAGE);
+					// 중복이 아닐 경우
+					JOptionPane.showMessageDialog(null, "사용 가능한 ID입니다.", "Message", JOptionPane.ERROR_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "ID를 제대로 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
+
 		id_chek_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16));
 		id_chek_bt.setBorderPainted(false);
 		id_chek_bt.setBackground(new Color(65, 105, 225));
