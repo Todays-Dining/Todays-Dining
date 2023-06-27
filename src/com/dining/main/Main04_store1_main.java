@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import java.awt.Button;
+import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
@@ -26,11 +27,16 @@ public class Main04_store1_main extends JPanel {
 	 JTextField store_phone_tf;
 	 JTextField store_open_tf;
 	 JTextField paking_tf;
+	 CardLayout cardLayout;
+	 JPanel main_pg ;
+
 
 	/**
 	 * Create the panel.
 	 */
-	public Main04_store1_main() {
+	public Main04_store1_main(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
 		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
@@ -215,5 +221,26 @@ public class Main04_store1_main extends JPanel {
 		love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));
 		love_jrbt.setBounds(372, 139, 74, 65);
 		add(love_jrbt);
+		
+		// main04_store2_map 상세지도 보기 페이지로 이동
+		open_map_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main04_store2_map");
+			}
+		});
+		
+		// main04_store3_review 리뷰페이지로 이동
+		review_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"main04_store3_review");
+			}
+		});
+		
 	}
 }

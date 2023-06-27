@@ -1,5 +1,6 @@
 package com.dining.login;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 
 import javax.swing.JPanel;
@@ -15,11 +16,16 @@ public class Login03_Find_id extends JPanel {
 	JTextField id_textField;
 	 JTextField birth_textField;
 	 JTextField email_textField;
+	 CardLayout cardLayout;
+		JPanel main_pg ;
+	 
 
 	/**
 	 * Create the panel.
 	 */
-	public Login03_Find_id() {
+	public Login03_Find_id(CardLayout cardLayout,JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -51,21 +57,21 @@ public class Login03_Find_id extends JPanel {
 		find_id.setForeground(new Color(255, 240, 245));
 		find_id.setBackground(new Color(65, 105, 225));
 		find_id.setBorderPainted(false);
-		find_id.setBounds(112, 518, 118, 49);
+		find_id.setBounds(51, 518, 118, 49);
 		add(find_id);
 		
-		RoundedButton_kjh_1 find_pw = new RoundedButton_kjh_1("비밀번호 찾기");
-		find_pw.setText("취 소");
-		find_pw.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
-		find_pw.setForeground(new Color(255, 240, 245));
-		find_pw.addActionListener(new ActionListener() {
+		RoundedButton_kjh_1 cancle_bt = new RoundedButton_kjh_1();
+		cancle_bt.setText("취 소");
+		cancle_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
+		cancle_bt.setForeground(new Color(255, 240, 245));
+		cancle_bt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		find_pw.setBackground(new Color(65, 105, 225));
-		find_pw.setBorderPainted(false);
-		find_pw.setBounds(300, 518, 118, 49);
-		add(find_pw);
+		cancle_bt.setBackground(new Color(65, 105, 225));
+		cancle_bt.setBorderPainted(false);
+		cancle_bt.setBounds(368, 518, 118, 49);
+		add(cancle_bt);
 		
 		RoundedButton_kjh_2 id_label = new RoundedButton_kjh_2(" I D");
 		id_label.setText("이 름");
@@ -81,7 +87,7 @@ public class Login03_Find_id extends JPanel {
 		id_label.setBounds(94, 333, 92, 28);
 		add(id_label);
 		
-		RoundedButton_kjh_2 birth_label = new RoundedButton_kjh_2(" I D");
+		RoundedButton_kjh_2 birth_label = new RoundedButton_kjh_2();
 		birth_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -100,7 +106,7 @@ public class Login03_Find_id extends JPanel {
 		birth_textField.setBounds(217, 388, 224, 28);
 		add(birth_textField);
 		
-		RoundedButton_kjh_2 email_label = new RoundedButton_kjh_2(" I D");
+		RoundedButton_kjh_2 email_label = new RoundedButton_kjh_2();
 		email_label.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -118,5 +124,35 @@ public class Login03_Find_id extends JPanel {
 		email_textField.setColumns(10);
 		email_textField.setBounds(217, 440, 224, 28);
 		add(email_textField);
+		
+		RoundedButton_kjh_1 find_pw = new RoundedButton_kjh_1();
+		find_pw.setText("pw 찾기");
+		find_pw.setForeground(new Color(255, 240, 245));
+		find_pw.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
+		find_pw.setBorderPainted(false);
+		find_pw.setBackground(new Color(65, 105, 225));
+		find_pw.setBounds(209, 518, 118, 49);
+		add(find_pw);
+		
+		
+		// 취소 버튼을 누르면 login01_page 로 돌아감
+		cancle_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"login01_page");
+			}
+		});
+		
+		// 비밀번호 찾기 버튼을 누르면 login04_Find_pw 페이지로 이동한다
+		find_pw.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"login04_Find_pw");
+			}
+		});
 	}
 }

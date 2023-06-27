@@ -1,5 +1,6 @@
 package com.dining.main;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -16,12 +17,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Main02_best3_china extends JPanel {
-
+	CardLayout cardLayout;
+	 JPanel main_pg ;
 	/**
 	 * Create the application.
 	 */
-	public Main02_best3_china() {
-
+	public Main02_best3_china(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -105,12 +109,8 @@ public class Main02_best3_china extends JPanel {
 		lable_img.setBounds(0, 0, 540, 330);
 		add(lable_img);
 
-		RoundedButton_lsh_1 dif_china_bt = new RoundedButton_lsh_1("다른 가게 보기");
+		RoundedButton_lsh_1 dif_china_bt = new RoundedButton_lsh_1();
 		dif_china_bt.setText("다른 가게 보기(중식)");
-		dif_china_bt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		dif_china_bt.setBorderPainted(false);
 		dif_china_bt.setOpaque(true);
 		dif_china_bt.setHorizontalAlignment(SwingConstants.CENTER);
@@ -128,6 +128,26 @@ public class Main02_best3_china extends JPanel {
 		store_name_bt.setIcon(new ImageIcon("C:\\image\\qww.png"));
 		store_name_bt.setBounds(157, 644, 223, 69);
 		add(store_name_bt);
+		
+		
+		// 해당 가게이름 페이지로 이동 main04_store1_main
+		store_name_bt.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main04_store1_main");
+			}
+		});
+		
+		// main02_store3_china로 이동
+		dif_china_bt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main02_store3_china");
+			}
+		});
 	}
 }
