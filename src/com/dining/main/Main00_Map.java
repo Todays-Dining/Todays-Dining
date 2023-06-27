@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -16,22 +17,20 @@ import java.awt.event.ActionEvent;
 import java.awt.TextField;
 import java.awt.Button;
 import javax.swing.SwingConstants;
+
 import java.awt.Label;
 
 public class Main00_Map extends JPanel{
 	
 	
-	
-	/**
-	 * Create the panel.
-	 */
+
 	public Main00_Map() {
-		
 		
 		 
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
+//		setVisible(true);
 		setLayout(null);
 		
 		
@@ -167,12 +166,10 @@ public class Main00_Map extends JPanel{
 		place6_bt.setBounds(389, 520, 101, 96);
 		add(place6_bt);
 		
-//		JLabel lblNewLabel_3 = new JLabel("");
-//		lblNewLabel_3.setIcon(new ImageIcon("C:\\image\\roundbutton.png"));
-//		lblNewLabel_3.setBounds(0, 512, 540, 330);
-//		add(lblNewLabel_3);
-	
-		
-	
+
 	}
+	public static void main(String[] args) {
+		new Main00_Map();
+	}
+	
 }

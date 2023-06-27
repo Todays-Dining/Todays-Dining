@@ -32,6 +32,6 @@ public class Admin_frame extends JFrame{
 		cardLayout.show(admin_pg,"admin01_main");
 
 	}
-	
+
 	
 }
