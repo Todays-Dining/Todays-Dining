@@ -41,7 +41,7 @@ public class Main00_store_search extends JPanel {
     JTable table_1;
     JTextField textField;
     CardLayout cardLayout;
-	JPanel main_pg ;
+	JPanel main_pg;
     
 	/**
 	 * Create the panel.
