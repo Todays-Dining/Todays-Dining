@@ -3,21 +3,24 @@ package com.dining.admin;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Admin01_main extends JPanel {
-	
-	JPanel admin_pg ;
+
+	JPanel admin_pg;
 	CardLayout cardLayout;
+
 	/**
 	 * Create the panel.
 	 */
-	public Admin01_main(CardLayout cardLayout,JPanel admin_pg) {
-		this.cardLayout = cardLayout ;
-		this.admin_pg = admin_pg ;
-		
+	public Admin01_main(CardLayout cardLayout, JPanel admin_pg) {
+		this.cardLayout = cardLayout;
+		this.admin_pg = admin_pg;
+
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 1200, 800);
 		setLayout(null);
@@ -63,6 +66,34 @@ public class Admin01_main extends JPanel {
 		review_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 40));
 		review_bt.setBounds(849, 285, 230, 255);
 		add(review_bt);
+
+		member_bt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(admin_pg, "admin02_Member");
+			}
+		});
+
+		store_bt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(admin_pg, "admin03_rest");
+			}
+		});
+
+		review_bt.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(admin_pg, "admin04_review");
+			}
+		});
+
 	}
 
 }

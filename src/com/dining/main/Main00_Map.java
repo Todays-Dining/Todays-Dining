@@ -171,10 +171,6 @@ public class Main00_Map extends JPanel{
 		place6_bt.setBounds(389, 520, 101, 96);
 		add(place6_bt);
 		
-//		JLabel lblNewLabel_3 = new JLabel("");
-//		lblNewLabel_3.setIcon(new ImageIcon("C:\\image\\roundbutton.png"));
-//		lblNewLabel_3.setBounds(0, 512, 540, 330);
-//		add(lblNewLabel_3);
 	
 		
 		place1_bt.addActionListener(new ActionListener() {
@@ -223,6 +219,46 @@ public class Main00_Map extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg,"main00_Home");
+			}
+		});
+		
+		// main01_best1 로 이동
+		movemenu_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main01_best1");
+			}
+		});
+
+		// main02_category_select 로 이동
+		movemenu_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main02_category_select");
+			}
+		});
+
+		// main03_random 로 이동
+		movemenu_3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main03_random");
+			}
+		});
+
+		// mypage01_main 로 이동
+		mypage.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "mypage01_main");
 			}
 		});
 	}
