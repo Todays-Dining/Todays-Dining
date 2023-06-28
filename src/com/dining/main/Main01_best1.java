@@ -157,7 +157,55 @@ public class Main01_best1 extends JPanel{
 				}
 			});
 			
+			// Main00_Home으로 돌아간다
+			homeButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg,"main00_Home");
+				}
+			});
 			
+			// main01_best1 로 이동
+			movemenu_1.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg, "main01_best1");
+				}
+			});
+
+			// main02_category_select 로 이동
+			movemenu_2.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg, "main02_category_select");
+				}
+			});
+
+			// main03_random 로 이동
+			movemenu_3.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg, "main03_random");
+				}
+			});
+
+			// mypage01_main 로 이동
+			mypage.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					cardLayout.show(main_pg, "mypage01_main");
+				}
+			});
 		}
 }
 

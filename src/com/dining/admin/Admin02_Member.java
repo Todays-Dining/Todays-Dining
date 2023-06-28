@@ -1,5 +1,6 @@
 package com.dining.admin;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -66,11 +67,17 @@ public class Admin02_Member extends JPanel {
      };
      String selection[]= {"회원번호", "회원아이디"}; 
      private JButton allselect_bt;
+     
+     JPanel admin_pg ;
+ 	CardLayout cardLayout;
     
 	/**
 	 * Create the panel.
 	 */
-	public Admin02_Member() {
+	public Admin02_Member(CardLayout cardLayout,JPanel admin_pg) {
+		this.cardLayout = cardLayout ;
+		this.admin_pg = admin_pg ;
+		
 		
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 1200, 800);
@@ -142,8 +149,6 @@ public class Admin02_Member extends JPanel {
 		
 		model = new DefaultTableModel(contents, header);
 		table = new JTable(model);
-		table.getColumnModel().getColumn(10).setCellRenderer(new Admin02_Member_jtable3());
-		table.getColumnModel().getColumn(10).setCellEditor(new Admin02_Member_jtable3());
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowHeight(25);
 		
@@ -160,37 +165,29 @@ public class Admin02_Member extends JPanel {
 		adminadd_bt.setBounds(989, 150, 133, 43);
 		add(adminadd_bt);
 		
+	
+		
+		// admin02_AdMember_add 관리자 추가페이지로 이동
+		adminadd_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(admin_pg, "admin02_AdMember_add");
+			}
+		});
+		
+		// admin01_main로 이동
+		backbutton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(admin_pg, "admin01_main");
+			}
+		});
 		
 	}
-	class Admin02_Member_jtable3 extends AbstractCellEditor implements TableCellEditor, TableCellRenderer{
-		JCheckBox comp;
-		
-		public Admin02_Member_jtable3() {
-			comp = new JCheckBox("체크");
-			
-			
-		}
-		
-		@Override
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-				int row, int column) {
-			
-			
-			
-			
-			return comp;
-		}
-		
-		@Override
-		public Object getCellEditorValue() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
-		@Override
-		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-			// TODO Auto-generated method stub
-			return comp;
-		}
-	}
+	
+	
 }
