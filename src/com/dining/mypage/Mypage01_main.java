@@ -247,6 +247,13 @@ public class Mypage01_main extends JPanel {
 		like_bt.setBackground(new Color(65, 105, 225));
 		like_bt.setBounds(92, 776, 90, 50);
 		add(like_bt);
+		
+		JButton logout_bt = new JButton("");
+		logout_bt.setBackground(new Color(255, 240, 245));
+		logout_bt.setBorderPainted(false);
+		logout_bt.setIcon(new ImageIcon(Mypage01_main.class.getResource("/image/logout_bt.png")));
+		logout_bt.setBounds(240, 21, 80, 80);
+		add(logout_bt);
 
 		// Main00_Home으로 돌아간다
 		homeButton.addActionListener(new ActionListener() {
@@ -314,6 +321,16 @@ public class Mypage01_main extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "mypage02_mypick");
+			}
+		});
+		
+		// 로그아웃해서 로그인 화면으로 돌아가기 login01_page
+		logout_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "login01_page");
 			}
 		});
 	}
