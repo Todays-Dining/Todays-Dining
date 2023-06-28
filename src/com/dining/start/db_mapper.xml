@@ -17,26 +17,28 @@
 	    <insert id="" parameterType=""></insert>
 	    <delete id="" parameterType=""></delete>
 	 -->
-	<!-- <select id="custList" resultType="mybatis.Sam.VO">
-	    select * from customer order by custid
+	 
+	<select id="ID" resultType="com.dining.start.VO">
+	    select ID from SIGNUP_TABLE
 	</select>
 	
-	<select id="custOne" parameterType="String" resultType="mybatis.Sam.VO">
+	<!-- 
+	<select id="custOne" parameterType="String" resultType="com.dining.start.VO">
 		select * from customer where custid = #{custid} 
 	</select>
 	
-	<insert id="custIns" parameterType="mybatis.Sam.VO">
+	<insert id="custIns" parameterType="com.dining.start.VO">
 		insert into customer(custid, name, address, phone)
 		values(customer_seq.nextval,#{name},#{address},#{phone})
 	</insert>
 	
-	<delete id="custDel" parameterType="mybatis.Sam.VO">
+	<delete id="custDel" parameterType="com.dining.start.VO">
 		delete from customer where custid = #{custid}
 	</delete>
 	
-	<update id="custUpdate" parameterType="mybatis.Sam.VO">
+	<update id="custUpdate" parameterType="com.dining.start.VO">
 		update customer set name=#{name}, address=#{address}, phone=#{phone}
 		where custid = #{custid}
-	</update> -->
-	
+	</update>
+ -->	
 </mapper>

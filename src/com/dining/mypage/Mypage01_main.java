@@ -13,6 +13,8 @@ import javax.swing.SwingConstants;
 
 import com.dining.main.Main00_Home;
 import com.dining.main.Main01_best1;
+import com.dining.start.db_DAO;
+import com.dining.start.db_VO;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -296,6 +298,15 @@ public class Mypage01_main extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "mypage01_main");
+			}
+		});
+		fix_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				db_VO vo = db_DAO.getID();
+				id_tf.setText(vo.getId());
+				
 			}
 		});
 	}
