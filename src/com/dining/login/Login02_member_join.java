@@ -16,11 +16,11 @@ import javax.swing.JComboBox;
 public class Login02_member_join extends JPanel {
 	JTextField id_textField;
 	 JTextField email_textField;
-	 private JTextField pw_textField;
-	 private JTextField pwchek_textField;
-	 private JTextField birth_textField;
-	 private JTextField qa_textField;
-	 private JTextField name_textField;
+	  JTextField pw_textField;
+	 JTextField pwchek_textField;
+	  JTextField birth_textField;
+	  JTextField qa_textField;
+	  JTextField name_textField;
 	 CardLayout cardLayout;
 		JPanel main_pg ;
 	 
@@ -52,7 +52,7 @@ public class Login02_member_join extends JPanel {
 		add(id_textField);
 		id_textField.setColumns(10);
 		
-		RoundedButton_kjh_1 join_bt = new RoundedButton_kjh_1("아이디 찾기");
+		RoundedButton_kjh_1 join_bt = new RoundedButton_kjh_1();
 		join_bt.setText("회원가입");
 		join_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		join_bt.setForeground(new Color(255, 240, 245));
@@ -60,24 +60,16 @@ public class Login02_member_join extends JPanel {
 		join_bt.setBounds(109, 733, 118, 49);
 		add(join_bt);
 		
-		RoundedButton_kjh_1 cancle_bt = new RoundedButton_kjh_1("비밀번호 찾기");
+		RoundedButton_kjh_1 cancle_bt = new RoundedButton_kjh_1();
 		cancle_bt.setText("취 소");
 		cancle_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		cancle_bt.setForeground(new Color(255, 240, 245));
-		cancle_bt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		cancle_bt.setBackground(new Color(65, 105, 225));
 		cancle_bt.setBorderPainted(false);
 		cancle_bt.setBounds(297, 733, 118, 49);
 		add(cancle_bt);
 		
 		RoundedButton_kjh_2 id_label = new RoundedButton_kjh_2(" I D");
-		id_label.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		id_label.setEnabled(false);
 		id_label.setBorderPainted(false);
 		id_label.setBackground(new Color(65, 105, 225));
@@ -86,11 +78,7 @@ public class Login02_member_join extends JPanel {
 		id_label.setBounds(68, 246, 118, 28);
 		add(id_label);
 		
-		RoundedButton_kjh_2 findpw_label = new RoundedButton_kjh_2(" I D");
-		findpw_label.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		RoundedButton_kjh_2 findpw_label = new RoundedButton_kjh_2();
 		findpw_label.setText("PW찾기질문");
 		findpw_label.setForeground(new Color(255, 240, 245));
 		findpw_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -100,11 +88,7 @@ public class Login02_member_join extends JPanel {
 		findpw_label.setBounds(68, 606, 118, 28);
 		add(findpw_label);
 		
-		RoundedButton_kjh_2 email_label = new RoundedButton_kjh_2(" I D");
-		email_label.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		RoundedButton_kjh_2 email_label = new RoundedButton_kjh_2();
 		email_label.setText("이메일주소");
 		email_label.setForeground(new Color(255, 240, 245));
 		email_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -126,11 +110,7 @@ public class Login02_member_join extends JPanel {
 		add(comboBox);
 		
 		
-		RoundedButton_kjh_2 pw_label = new RoundedButton_kjh_2(" I D");
-		pw_label.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		RoundedButton_kjh_2 pw_label = new RoundedButton_kjh_2();
 		pw_label.setText(" P W");
 		pw_label.setForeground(new Color(255, 240, 245));
 		pw_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -145,7 +125,7 @@ public class Login02_member_join extends JPanel {
 		pw_textField.setBounds(217, 306, 250, 28);
 		add(pw_textField);
 		
-		RoundedButton_kjh_2 pwchek_label = new RoundedButton_kjh_2(" I D");
+		RoundedButton_kjh_2 pwchek_label = new RoundedButton_kjh_2();
 		pwchek_label.setText("P W 확인");
 		pwchek_label.setForeground(new Color(255, 240, 245));
 		pwchek_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -160,7 +140,7 @@ public class Login02_member_join extends JPanel {
 		pwchek_textField.setBounds(217, 366, 250, 28);
 		add(pwchek_textField);
 		
-		RoundedButton_kjh_2 birth_label = new RoundedButton_kjh_2(" I D");
+		RoundedButton_kjh_2 birth_label = new RoundedButton_kjh_2();
 		birth_label.setText("생년월일");
 		birth_label.setForeground(new Color(255, 240, 245));
 		birth_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -175,7 +155,7 @@ public class Login02_member_join extends JPanel {
 		birth_textField.setBounds(217, 486, 250, 28);
 		add(birth_textField);
 		
-		RoundedButton_kjh_2 qa_label = new RoundedButton_kjh_2(" I D");
+		RoundedButton_kjh_2 qa_label = new RoundedButton_kjh_2();
 		qa_label.setText("질문 답변");
 		qa_label.setForeground(new Color(255, 240, 245));
 		qa_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -190,11 +170,7 @@ public class Login02_member_join extends JPanel {
 		qa_textField.setBounds(217, 666, 250, 28);
 		add(qa_textField);
 		
-		RoundedButton_kjh_2 name_label = new RoundedButton_kjh_2(" I D");
-		name_label.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		RoundedButton_kjh_2 name_label = new RoundedButton_kjh_2();
 		name_label.setText("이 름");
 		name_label.setForeground(new Color(255, 240, 245));
 		name_label.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
@@ -209,12 +185,8 @@ public class Login02_member_join extends JPanel {
 		name_textField.setBounds(217, 426, 250, 28);
 		add(name_textField);
 		
-		RoundedButton_kjh_2 id_chek_bt = new RoundedButton_kjh_2("중복확인");
+		RoundedButton_kjh_2 id_chek_bt = new RoundedButton_kjh_2();
 		id_chek_bt.setText("ID중복확인");
-		id_chek_bt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		id_chek_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16));
 		id_chek_bt.setBorderPainted(false);
 		id_chek_bt.setBackground(new Color(65, 105, 225));

@@ -1,5 +1,6 @@
 package com.dining.mypage;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
 
@@ -17,11 +18,17 @@ public class Mypage01_changePW extends JPanel {
 	private JTextField textField;
 	private JTextField new_pw_tf;
 	private JTextField old_pw_tf;
+	CardLayout cardLayout;
+	JPanel main_pg;
+	
 
 	/**
 	 * Create the panel.
 	 */
-	public Mypage01_changePW() {
+	public Mypage01_changePW(CardLayout cardLayout, JPanel main_pg) {
+		this.cardLayout = cardLayout ;
+		this.main_pg = main_pg ;
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -77,7 +84,7 @@ public class Mypage01_changePW extends JPanel {
 		pw_change_bt.setBounds(84, 629, 148, 50);
 		add(pw_change_bt);
 		
-		RoundedButton_ha0_1 cancle_bt = new RoundedButton_ha0_1("수정");
+		RoundedButton_ha0_1 cancle_bt = new RoundedButton_ha0_1();
 		cancle_bt.setText("취 소");
 		cancle_bt.setForeground(Color.WHITE);
 		cancle_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
@@ -91,7 +98,14 @@ public class Mypage01_changePW extends JPanel {
 		icon_lb.setBounds(48, 678, 415, 282);
 		add(icon_lb);
 		
-		
-		
+		// mypage01_main 로 이동
+		cancle_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg,"mypage01_main");
+			}
+		});
 	}
 }
