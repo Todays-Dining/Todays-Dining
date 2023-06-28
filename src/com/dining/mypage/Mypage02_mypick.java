@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,6 +19,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.ImageIcon;
 import javax.swing.JTextField;
+import javax.swing.table.TableModel;
 
 import com.dining.main.Main04_store2_map;
 
@@ -33,6 +36,7 @@ public class Mypage02_mypick extends JPanel {
 	JTextField textField;
 	CardLayout cardLayout;
 	JPanel main_pg;
+	String store;
 
 	/**
 	 * Create the panel.
@@ -45,11 +49,6 @@ public class Mypage02_mypick extends JPanel {
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
-
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/heart.png")));
-		btnNewButton.setBounds(448, 329, 60, 54);
-		add(btnNewButton);
 
 		JLabel icom_lb = new JLabel("");
 		icom_lb.setIcon(new ImageIcon(Mypage02_mypick.class.getResource("/image/icon_small.png")));
@@ -111,7 +110,26 @@ public class Mypage02_mypick extends JPanel {
 		homeButton.setBounds(329, 37, 77, 69);
 		add(homeButton);
 
-		table = new JTable(contents, header);
+		table = new JTable(contents, header) {
+			public boolean isCellEditable(int i, int c){
+				return false;
+			}
+		};
+		table.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (e.getClickCount() == 2) { 
+			int row = table.getSelectedRow();
+			TableModel data = table.getModel();
+			 store = (String)data.getValueAt(row,0);
+			 // System.out.println(store);
+			 cardLayout.show(main_pg, "main04_store1_main");
+			 }
+			}
+		});
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		table.isCellEditable(getX(), getY());
 		table.setBackground(new Color(255, 187, 187));
 		table.setLocation(35, 27);
 		table.setSize(343, 244);

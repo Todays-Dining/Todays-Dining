@@ -86,10 +86,6 @@ public class Admin02_Member extends JPanel {
 		JButton backbutton = new JButton("");
 		backbutton.setFocusPainted(false);
 		backbutton.setBounds(1059, 41, 97, 56);
-		backbutton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		backbutton.setBorderPainted(false);
 		backbutton.setBackground(new Color(255, 240, 245));
 		backbutton.setIcon(new ImageIcon(Admin02_Member.class.getResource("/image/backbutton.png")));
@@ -108,7 +104,6 @@ public class Admin02_Member extends JPanel {
 		add(tool_lb);
 		
 		JComboBox comboBox = new JComboBox(selection);
-		comboBox.setEditable(true);
 		comboBox.setBounds(218, 150, 161, 43);
 		add(comboBox);
 		
@@ -147,8 +142,14 @@ public class Admin02_Member extends JPanel {
 		add(del_bt);
 		
 		
-		model = new DefaultTableModel(contents, header);
-		table = new JTable(model);
+		table = new JTable(contents, header) {
+			public boolean isCellEditable(int i, int c){
+				return false;
+			}
+		};
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		table.isCellEditable(getX(), getY());
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowHeight(25);
 		

@@ -219,7 +219,7 @@ public class Mypage01_main extends JPanel {
 		fix_bt.setBorderPainted(false);
 		fix_bt.setBackground(new Color(65, 105, 225));
 		fix_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		fix_bt.setBounds(92, 808, 90, 50);
+		fix_bt.setBounds(225, 776, 90, 50);
 		add(fix_bt);
 
 		RoundedButton_ha0_2 mem_del_bt = new RoundedButton_ha0_2("회원탈퇴");
@@ -227,7 +227,7 @@ public class Mypage01_main extends JPanel {
 		mem_del_bt.setForeground(new Color(255, 255, 255));
 
 		mem_del_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		mem_del_bt.setBounds(356, 808, 90, 50);
+		mem_del_bt.setBounds(225, 859, 90, 50);
 		add(mem_del_bt);
 
 		RoundedButton_ha0_1 pw_change_bt = new RoundedButton_ha0_1();
@@ -236,8 +236,17 @@ public class Mypage01_main extends JPanel {
 		pw_change_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
 		pw_change_bt.setBorderPainted(false);
 		pw_change_bt.setBackground(new Color(65, 105, 225));
-		pw_change_bt.setBounds(225, 808, 90, 50);
+		pw_change_bt.setBounds(356, 776, 90, 50);
 		add(pw_change_bt);
+		
+		RoundedButton_ha0_1 like_bt = new RoundedButton_ha0_1();
+		like_bt.setText("즐겨찾기");
+		like_bt.setForeground(Color.WHITE);
+		like_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		like_bt.setBorderPainted(false);
+		like_bt.setBackground(new Color(65, 105, 225));
+		like_bt.setBounds(92, 776, 90, 50);
+		add(like_bt);
 
 		// Main00_Home으로 돌아간다
 		homeButton.addActionListener(new ActionListener() {
@@ -296,6 +305,15 @@ public class Mypage01_main extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "mypage01_main");
+			}
+		});
+		// 나만의 즐겨찾기로 이동
+		like_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "mypage02_mypick");
 			}
 		});
 	}

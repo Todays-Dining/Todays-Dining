@@ -120,6 +120,7 @@ public class Login04_Find_pw extends JPanel {
 		
 		String[] items = {"질문1", "질문2", "질문3", "질문4","질문5"};
 		JComboBox comboBox = new JComboBox(items);
+		comboBox.setBackground(Color.WHITE);
 		comboBox.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		comboBox.setBounds(217, 388, 224, 28);
 		add(comboBox);

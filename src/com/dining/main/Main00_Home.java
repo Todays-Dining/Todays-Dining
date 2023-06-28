@@ -77,6 +77,8 @@ public class Main00_Home extends JPanel {
 		add(icon_lb);
 
 		keyword_tf = new JTextField("인기많은 검색어 : 한식, 카페, 카레, 일식");
+		keyword_tf.setBorder(null);
+		keyword_tf.setEditable(false);
 		keyword_tf.setBounds(118, 319, 280, 21);
 		keyword_tf.setBackground(new Color(255, 240, 245));
 		keyword_tf.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
@@ -191,6 +193,7 @@ public class Main00_Home extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main00_store_search");
+				search_tf.setText("");
 			}
 		});
 

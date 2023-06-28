@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,6 +18,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.table.TableModel;
 import javax.swing.JList;
 import javax.swing.JTable;
 
@@ -44,6 +47,7 @@ public class Main00_store_search extends JPanel {
     JTextField textField;
     CardLayout cardLayout;
 	JPanel main_pg;
+	String store;
     
 	/**
 	 * Create the panel.
@@ -128,7 +132,26 @@ public class Main00_store_search extends JPanel {
 		movemenu.add(mypage);
 		
 	
-		table = new JTable(contents, header);
+		table = new JTable(contents, header) {
+			public boolean isCellEditable(int i, int c){
+				return false;
+			}
+		};
+		table.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			if (e.getClickCount() == 2) { 
+			int row = table.getSelectedRow();
+			TableModel data = table.getModel();
+			 store = (String)data.getValueAt(row,0);
+			 // System.out.println(store);
+			 cardLayout.show(main_pg, "main04_store1_main");
+			 }
+			}
+		});
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		table.isCellEditable(getX(), getY());
 		table.setBackground(new Color(255, 187, 187));
 		table.setLocation(84, 380);
 		table.setSize(350, 600);

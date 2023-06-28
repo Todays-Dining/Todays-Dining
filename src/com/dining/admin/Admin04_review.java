@@ -66,6 +66,7 @@ public class Admin04_review extends JPanel {
 		
 		
 		JComboBox comboBox = new JComboBox(selection);
+		comboBox.setBackground(Color.WHITE);
 		comboBox.setBounds(700, 195, 110, 30);
 		add(comboBox);
 		

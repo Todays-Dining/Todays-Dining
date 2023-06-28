@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -18,6 +20,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableModel;
 
 public class Admin03_rest extends JPanel {
 	JTextField store_tf;
@@ -77,6 +80,7 @@ public class Admin03_rest extends JPanel {
 	private JTextField select_tf;
 	JPanel admin_pg;
 	CardLayout cardLayout;
+	String store;
 
 	/**
 	 * Create the panel.
@@ -98,10 +102,6 @@ public class Admin03_rest extends JPanel {
 		add(tool_lb);
 
 		JButton backbutton = new JButton("");
-		backbutton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		backbutton.setBorderPainted(false);
 		backbutton.setBackground(new Color(255, 240, 245));
 		backbutton.setIcon(new ImageIcon(Admin03_rest.class.getResource("/image/backbutton.png")));
@@ -115,116 +115,115 @@ public class Admin03_rest extends JPanel {
 		tabbedPane.setBounds(36, 194, 1120, 580);
 		add(tabbedPane);
 
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(218, 226, 250));
-		panel.setPreferredSize(new Dimension(500, 500));
-		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/RegisteredDiner.png")), panel, "");
-//		tabbedPane.setBackgroundAt(27, Color.RED);
+		JPanel admin_store_tab = new JPanel();
+		admin_store_tab.setBackground(new Color(213, 221, 255));
+		admin_store_tab.setPreferredSize(new Dimension(500, 500));
+		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/RegisteredDiner.png")), admin_store_tab, "");
 
 		setBackground(new Color(255, 240, 245));
 		setSize(1200, 800);
 		setLayout(null);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(213, 221, 255));
-		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/DinerNew.png")), panel_1, null);
+		JPanel admin_new_tab = new JPanel();
+		admin_new_tab.setBackground(new Color(213, 221, 255));
+		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/DinerNew.png")), admin_new_tab, null);
 
-		panel_1.setLayout(null);
-
+		admin_new_tab.setLayout(null);
+		
 		newstore_tf = new JTextField();
 		newstore_tf.setColumns(10);
 		newstore_tf.setBounds(200, 75, 227, 21);
-		panel_1.add(newstore_tf);
+		admin_new_tab.add(newstore_tf);
 
 		JLabel newstore_lb = new JLabel("음식점 이름 : ");
 		newstore_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newstore_lb.setBounds(40, 77, 176, 18);
-		panel_1.add(newstore_lb);
+		admin_new_tab.add(newstore_lb);
 
 		JLabel newstoreArea_lb = new JLabel("음식점 지역 : ");
 		newstoreArea_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newstoreArea_lb.setBounds(40, 123, 176, 18);
-		panel_1.add(newstoreArea_lb);
+		admin_new_tab.add(newstoreArea_lb);
 
 		newstoreArea_tf = new JTextField();
 		newstoreArea_tf.setColumns(10);
 		newstoreArea_tf.setBounds(200, 120, 227, 21);
-		panel_1.add(newstoreArea_tf);
+		admin_new_tab.add(newstoreArea_tf);
 
 		JLabel newstoreAddr_lb = new JLabel("음식점 주소 : ");
 		newstoreAddr_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newstoreAddr_lb.setBounds(40, 169, 176, 18);
-		panel_1.add(newstoreAddr_lb);
+		admin_new_tab.add(newstoreAddr_lb);
 
 		newstoreAddr_tf = new JTextField();
 		newstoreAddr_tf.setColumns(10);
 		newstoreAddr_tf.setBounds(200, 165, 228, 21);
-		panel_1.add(newstoreAddr_tf);
+		admin_new_tab.add(newstoreAddr_tf);
 
 		JLabel newfoodcate_lb = new JLabel("가게음식 분류 : ");
 		newfoodcate_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newfoodcate_lb.setBounds(40, 215, 176, 18);
-		panel_1.add(newfoodcate_lb);
+		admin_new_tab.add(newfoodcate_lb);
 
 		newfoodcate_tf = new JTextField();
 		newfoodcate_tf.setColumns(10);
 		newfoodcate_tf.setBounds(200, 210, 227, 21);
-		panel_1.add(newfoodcate_tf);
+		admin_new_tab.add(newfoodcate_tf);
 
 		JLabel newbestfood_lb = new JLabel("가게음식 대표메뉴 : ");
 		newbestfood_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newbestfood_lb.setBounds(40, 261, 176, 18);
-		panel_1.add(newbestfood_lb);
+		admin_new_tab.add(newbestfood_lb);
 
 		JLabel newfoodkey_lb = new JLabel("대표 키워드 : ");
 		newfoodkey_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newfoodkey_lb.setBounds(40, 308, 176, 18);
-		panel_1.add(newfoodkey_lb);
+		admin_new_tab.add(newfoodkey_lb);
 
 		JLabel newstorephone_lb = new JLabel("대표 전화번호 : ");
 		newstorephone_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newstorephone_lb.setBounds(40, 352, 176, 18);
-		panel_1.add(newstorephone_lb);
+		admin_new_tab.add(newstorephone_lb);
 
 		JLabel newopentime_lb = new JLabel("영업 시간 : ");
 		newopentime_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newopentime_lb.setBounds(40, 396, 176, 18);
-		panel_1.add(newopentime_lb);
+		admin_new_tab.add(newopentime_lb);
 
 		JLabel newparking_lb = new JLabel("주차여부 : ");
 		newparking_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newparking_lb.setBounds(40, 438, 176, 18);
-		panel_1.add(newparking_lb);
+		admin_new_tab.add(newparking_lb);
 
 		newbestfood_tf = new JTextField();
 		newbestfood_tf.setColumns(10);
 		newbestfood_tf.setBounds(200, 255, 227, 21);
-		panel_1.add(newbestfood_tf);
+		admin_new_tab.add(newbestfood_tf);
 
 		newfoodkey_tf = new JTextField();
 		newfoodkey_tf.setColumns(10);
 		newfoodkey_tf.setBounds(200, 300, 227, 21);
-		panel_1.add(newfoodkey_tf);
+		admin_new_tab.add(newfoodkey_tf);
 
 		newstorephone_tf = new JTextField();
 		newstorephone_tf.setColumns(10);
 		newstorephone_tf.setBounds(200, 345, 227, 21);
-		panel_1.add(newstorephone_tf);
+		admin_new_tab.add(newstorephone_tf);
 
 		newopentime_tf = new JTextField();
 		newopentime_tf.setColumns(10);
 		newopentime_tf.setBounds(200, 390, 227, 21);
-		panel_1.add(newopentime_tf);
+		admin_new_tab.add(newopentime_tf);
 
 		newparking_tf = new JTextField();
 		newparking_tf.setColumns(10);
 		newparking_tf.setBounds(200, 435, 227, 21);
-		panel_1.add(newparking_tf);
+		admin_new_tab.add(newparking_tf);
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(255, 247, 234));
 		panel_3.setBounds(486, 75, 580, 381);
-		panel_1.add(panel_3);
+		admin_new_tab.add(panel_3);
 		panel_3.setLayout(null);
 
 		JLabel new_lb = new JLabel("   이미지 등록");
@@ -320,103 +319,103 @@ public class Admin03_rest extends JPanel {
 		newadd_bt.setBorderPainted(false);
 		newadd_bt.setBackground(new Color(65, 105, 255));
 		newadd_bt.setBounds(171, 480, 125, 34);
-		panel_1.add(newadd_bt);
+		admin_new_tab.add(newadd_bt);
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 15));
-		panel_2.setBackground(new Color(213, 221, 255));
-		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/DinerRevise.png")), panel_2, null);
-		panel_2.setLayout(null);
+		JPanel admin_del_up_tab = new JPanel();
+		admin_del_up_tab.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 15));
+		admin_del_up_tab.setBackground(new Color(213, 221, 255));
+		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/DinerRevise.png")), admin_del_up_tab, null);
+		admin_del_up_tab.setLayout(null);
 
 		store_tf = new JTextField();
 		store_tf.setBounds(200, 75, 227, 21);
-		panel_2.add(store_tf);
+		admin_del_up_tab.add(store_tf);
 		store_tf.setColumns(10);
 
 		JLabel store_lb = new JLabel("음식점 이름 : ");
 		store_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		store_lb.setBounds(40, 77, 176, 18);
-		panel_2.add(store_lb);
+		admin_del_up_tab.add(store_lb);
 
 		JLabel storeArea_lb = new JLabel("음식점 지역 : ");
 		storeArea_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		storeArea_lb.setBounds(40, 123, 176, 18);
-		panel_2.add(storeArea_lb);
+		admin_del_up_tab.add(storeArea_lb);
 
 		storeArea_tf = new JTextField();
 		storeArea_tf.setColumns(10);
 		storeArea_tf.setBounds(200, 120, 227, 21);
-		panel_2.add(storeArea_tf);
+		admin_del_up_tab.add(storeArea_tf);
 
 		JLabel storeAddr_lb = new JLabel("음식점 주소 : ");
 		storeAddr_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		storeAddr_lb.setBounds(40, 169, 176, 18);
-		panel_2.add(storeAddr_lb);
+		admin_del_up_tab.add(storeAddr_lb);
 
 		storeAddr_tf = new JTextField();
 		storeAddr_tf.setColumns(10);
 		storeAddr_tf.setBounds(200, 165, 228, 21);
-		panel_2.add(storeAddr_tf);
+		admin_del_up_tab.add(storeAddr_tf);
 
 		JLabel foodcate_lb = new JLabel("가게음식 분류 : ");
 		foodcate_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		foodcate_lb.setBounds(40, 215, 176, 18);
-		panel_2.add(foodcate_lb);
+		admin_del_up_tab.add(foodcate_lb);
 
 		foodcate_tf = new JTextField();
 		foodcate_tf.setColumns(10);
 		foodcate_tf.setBounds(200, 210, 227, 21);
-		panel_2.add(foodcate_tf);
+		admin_del_up_tab.add(foodcate_tf);
 
 		JLabel bestfood_lb = new JLabel("가게음식 대표메뉴 : ");
 		bestfood_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		bestfood_lb.setBounds(40, 261, 176, 18);
-		panel_2.add(bestfood_lb);
+		admin_del_up_tab.add(bestfood_lb);
 
 		JLabel foodkey_lb = new JLabel("대표 키워드 : ");
 		foodkey_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		foodkey_lb.setBounds(40, 308, 176, 18);
-		panel_2.add(foodkey_lb);
+		admin_del_up_tab.add(foodkey_lb);
 
 		JLabel storephone_lb = new JLabel("대표 전화번호 : ");
 		storephone_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		storephone_lb.setBounds(40, 352, 176, 18);
-		panel_2.add(storephone_lb);
+		admin_del_up_tab.add(storephone_lb);
 
 		JLabel opentime_lb = new JLabel("영업 시간 : ");
 		opentime_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		opentime_lb.setBounds(40, 396, 176, 18);
-		panel_2.add(opentime_lb);
+		admin_del_up_tab.add(opentime_lb);
 
 		JLabel parking_lb = new JLabel("주차여부 : ");
 		parking_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		parking_lb.setBounds(40, 438, 135, 18);
-		panel_2.add(parking_lb);
+		admin_del_up_tab.add(parking_lb);
 
 		bestfood_tf = new JTextField();
 		bestfood_tf.setColumns(10);
 		bestfood_tf.setBounds(200, 255, 227, 21);
-		panel_2.add(bestfood_tf);
+		admin_del_up_tab.add(bestfood_tf);
 
 		foodkey_tf = new JTextField();
 		foodkey_tf.setColumns(10);
 		foodkey_tf.setBounds(200, 300, 227, 21);
-		panel_2.add(foodkey_tf);
+		admin_del_up_tab.add(foodkey_tf);
 
 		storephone_tf = new JTextField();
 		storephone_tf.setColumns(10);
 		storephone_tf.setBounds(200, 345, 227, 21);
-		panel_2.add(storephone_tf);
+		admin_del_up_tab.add(storephone_tf);
 
 		opentime_tf = new JTextField();
 		opentime_tf.setColumns(10);
 		opentime_tf.setBounds(200, 390, 227, 21);
-		panel_2.add(opentime_tf);
+		admin_del_up_tab.add(opentime_tf);
 
 		parking_tf = new JTextField();
 		parking_tf.setColumns(10);
 		parking_tf.setBounds(200, 435, 227, 21);
-		panel_2.add(parking_tf);
+		admin_del_up_tab.add(parking_tf);
 
 		JButton update_bt = new JButton("수  정");
 		update_bt.setForeground(new Color(255, 240, 245));
@@ -424,7 +423,7 @@ public class Admin03_rest extends JPanel {
 		update_bt.setBorderPainted(false);
 		update_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 25));
 		update_bt.setBounds(50, 473, 125, 34);
-		panel_2.add(update_bt);
+		admin_del_up_tab.add(update_bt);
 
 		JButton alldel_1 = new JButton("전체삭제");
 		alldel_1.setBackground(new Color(65, 105, 255));
@@ -432,13 +431,13 @@ public class Admin03_rest extends JPanel {
 		alldel_1.setForeground(new Color(255, 240, 245));
 		alldel_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 25));
 		alldel_1.setBounds(246, 473, 125, 34);
-		panel_2.add(alldel_1);
+		admin_del_up_tab.add(alldel_1);
 
 		JPanel panel_3_2 = new JPanel();
 		panel_3_2.setLayout(null);
 		panel_3_2.setBackground(new Color(255, 247, 234));
 		panel_3_2.setBounds(486, 75, 580, 381);
-		panel_2.add(panel_3_2);
+		admin_del_up_tab.add(panel_3_2);
 
 		JLabel lb1 = new JLabel("   이미지 등록");
 		lb1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
@@ -530,7 +529,14 @@ public class Admin03_rest extends JPanel {
 //		65, 105, 225
 //		명도만 220 
 
-		table = new JTable(contents, header);
+		table = new JTable(contents, header) {
+			public boolean isCellEditable(int i, int c){
+				return false;
+			}
+		};
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		table.isCellEditable(getX(), getY());
 		table.setPreferredSize(new Dimension(750, 500));
 		table.setPreferredScrollableViewportSize(new Dimension(1030, 450));
 		table.setRowMargin(2);
@@ -538,33 +544,32 @@ public class Admin03_rest extends JPanel {
 		table.setRowHeight(25);
 		scrollPane.setViewportView(table);
 		table.getTableHeader();
-		panel.setLayout(null);
+		admin_store_tab.setLayout(null);
 
-		panel.add(scrollPane);
+		admin_store_tab.add(scrollPane);
 
 		JComboBox comboBox_1 = new JComboBox(new Object[] {});
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "음식점 이름", "지역", "음식분류", "대표메뉴", "대표 키워드" }));
-		comboBox_1.setEditable(true);
 		comboBox_1.setBackground(Color.WHITE);
 		comboBox_1.setBounds(625, 13, 110, 30);
-		panel.add(comboBox_1);
+		admin_store_tab.add(comboBox_1);
 
 		select_tf = new JTextField();
 		select_tf.setColumns(10);
 		select_tf.setBounds(755, 13, 150, 30);
-		panel.add(select_tf);
+		admin_store_tab.add(select_tf);
 
 		RoundedButton_kjhw_2 select_bt = new RoundedButton_kjhw_2();
 		select_bt.setText("검색");
 		select_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		select_bt.setBounds(924, 13, 50, 30);
-		panel.add(select_bt);
+		admin_store_tab.add(select_bt);
 
 		RoundedButton_kjhw_2 allselect_bt = new RoundedButton_kjhw_2();
 		allselect_bt.setText("전체조회");
 		allselect_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		allselect_bt.setBounds(981, 13, 100, 30);
-		panel.add(allselect_bt);
+		admin_store_tab.add(allselect_bt);
 
 		// admin01_main로 이동
 		backbutton.addActionListener(new ActionListener() {
