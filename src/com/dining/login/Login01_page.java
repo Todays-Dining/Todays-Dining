@@ -183,11 +183,4 @@ public class Login01_page extends JPanel {
 		
 		
 	}
-	
-	
-	
-<<<<<<< HEAD
-=======
-	
->>>>>>> refs/heads/master
 }
