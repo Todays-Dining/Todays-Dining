@@ -20,7 +20,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-public class Admin03_rest extends JPanel {
+public class Admin03_rest2 extends JPanel {
 	  JTextField store_tf;
 	  JTextField storeArea_tf;
 	  JTextField storeAddr_tf;
@@ -83,7 +83,7 @@ public class Admin03_rest extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Admin03_rest() {
+	public Admin03_rest2() {
 		
 		
 		JLabel rest = new JLabel("음식점");
@@ -105,7 +105,7 @@ public class Admin03_rest extends JPanel {
 		});
 		backbutton.setBorderPainted(false);
 		backbutton.setBackground(new Color(255, 240, 245));
-		backbutton.setIcon(new ImageIcon(Admin03_rest.class.getResource("/image/backbutton.png")));
+		backbutton.setIcon(new ImageIcon(Admin03_rest2.class.getResource("/image/backbutton.png")));
 		backbutton.setBounds(1055, 51, 101, 54);
 		add(backbutton);
 		
@@ -120,7 +120,7 @@ public class Admin03_rest extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(218, 226, 250));
 		panel.setPreferredSize(new Dimension(500, 500));
-		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/RegisteredDiner.png")), panel, "");
+		tabbedPane.addTab("", new ImageIcon(Admin03_rest2.class.getResource("/image/RegisteredDiner.png")), panel, "");
 		tabbedPane.setBackgroundAt(29, Color.RED);
 		
 		setBackground(new Color(255, 240, 245));
@@ -130,7 +130,7 @@ public class Admin03_rest extends JPanel {
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(213, 221, 255));
-		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/DinerNew.png")), panel_1, null);
+		tabbedPane.addTab("", new ImageIcon(Admin03_rest2.class.getResource("/image/DinerNew.png")), panel_1, null);
 		
 		panel_1.setLayout(null);
 		
@@ -330,7 +330,7 @@ public class Admin03_rest extends JPanel {
 		JPanel panel_2 = new JPanel();
 		panel_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 15));
 		panel_2.setBackground(new Color(213, 221, 255));
-		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/DinerRevise.png")), panel_2, null);
+		tabbedPane.addTab("", new ImageIcon(Admin03_rest2.class.getResource("/image/DinerRevise.png")), panel_2, null);
 		panel_2.setLayout(null);
 		
 		store_tf = new JTextField();

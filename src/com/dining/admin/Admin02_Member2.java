@@ -26,7 +26,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.JRadioButton;
 import javax.swing.DefaultComboBoxModel;
 
-public class Admin02_Member extends JPanel {
+public class Admin02_Member2 extends JPanel {
 	JTextField select_tf;
 	DefaultTableModel model;
 	JTable table;
@@ -71,7 +71,7 @@ public class Admin02_Member extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Admin02_Member() {
+	public Admin02_Member2() {
 		
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 1200, 800);
@@ -86,7 +86,7 @@ public class Admin02_Member extends JPanel {
 		});
 		backbutton.setBorderPainted(false);
 		backbutton.setBackground(new Color(255, 240, 245));
-		backbutton.setIcon(new ImageIcon(Admin02_Member.class.getResource("/image/backbutton.png")));
+		backbutton.setIcon(new ImageIcon(Admin02_Member2.class.getResource("/image/backbutton.png")));
 		add(backbutton);
 		
 		JLabel member_lb = new JLabel("회원정보");

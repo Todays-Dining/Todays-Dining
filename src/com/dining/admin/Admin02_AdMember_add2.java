@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Admin02_AdMember_add extends JPanel {
+public class Admin02_AdMember_add2 extends JPanel {
 	JTextField id_textField;
 	 JTextField email_textField;
 	 private JTextField pw_textField;
@@ -24,14 +24,14 @@ public class Admin02_AdMember_add extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Admin02_AdMember_add() {
+	public Admin02_AdMember_add2() {
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
 		
 		JLabel main_label = new JLabel("");
-		main_label.setIcon(new ImageIcon(Admin02_AdMember_add.class.getResource("/image/label.png")));
+		main_label.setIcon(new ImageIcon(Admin02_AdMember_add2.class.getResource("/image/label.png")));
 		main_label.setBounds(0, 0, 516, 210);
 		add(main_label);
 		
@@ -231,7 +231,7 @@ public class Admin02_AdMember_add extends JPanel {
 		add(id_chek_bt);
 		
 		JLabel main_icon = new JLabel("");
-		main_icon.setIcon(new ImageIcon(Admin02_AdMember_add.class.getResource("/image/icon_small.png")));
+		main_icon.setIcon(new ImageIcon(Admin02_AdMember_add2.class.getResource("/image/icon_small.png")));
 		main_icon.setBounds(51, 654, 446, 306);
 		add(main_icon);
 	}
