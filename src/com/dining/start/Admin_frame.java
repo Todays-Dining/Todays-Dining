@@ -47,4 +47,5 @@ public class Admin_frame extends JFrame{
 	public static void main(String[] args) {
 		new Admin_frame();
 	}
+
 }

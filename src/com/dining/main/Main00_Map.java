@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -18,10 +19,14 @@ import java.awt.Button;
 import java.awt.CardLayout;
 
 import javax.swing.SwingConstants;
+
 import java.awt.Label;
 
 public class Main00_Map extends JPanel{
-	
+
+//	public Main00_Map() {
+
+
 	CardLayout cardLayout;
 	JPanel main_pg ;
 	
@@ -31,11 +36,13 @@ public class Main00_Map extends JPanel{
 	public Main00_Map(CardLayout cardLayout, JPanel main_pg) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
+
 		
 		 
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
+//		setVisible(true);
 		setLayout(null);
 		
 		
@@ -171,6 +178,7 @@ public class Main00_Map extends JPanel{
 		place6_bt.setBounds(389, 520, 101, 96);
 		add(place6_bt);
 		
+
 	
 		
 		place1_bt.addActionListener(new ActionListener() {
@@ -221,6 +229,7 @@ public class Main00_Map extends JPanel{
 				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
+
 		
 		// main01_best1 로 이동
 		movemenu_1.addActionListener(new ActionListener() {
@@ -261,5 +270,6 @@ public class Main00_Map extends JPanel{
 				cardLayout.show(main_pg, "mypage01_main");
 			}
 		});
-	}
+}
+	
 }
