@@ -34,6 +34,9 @@ import com.dining.main.Main03_random;
 import com.dining.main.Main04_store1_main;
 import com.dining.main.Main04_store2_map;
 import com.dining.main.Main04_store3_review;
+import com.dining.mypage.Mypage01_changePW;
+import com.dining.mypage.Mypage01_main;
+import com.dining.mypage.Mypage02_mypick;
 
 public class Start_frame extends JFrame{
 	JPanel main_pg ;
@@ -41,11 +44,14 @@ public class Start_frame extends JFrame{
 	int member_num = 1 ;
 	
 	public Start_frame() {
-		// 상속받아서 하는게 아니라서 새로 생성을 해줘야한다
 		main_pg = new JPanel(); 
 		cardLayout = new CardLayout();
 		main_pg.setLayout(cardLayout);
 		// 각종패널들 가져오기
+		// 마이페이지 
+		Mypage01_main mypage01_main = new Mypage01_main(cardLayout,main_pg);
+		Mypage01_changePW mypage01_changePW = new Mypage01_changePW(cardLayout,main_pg);
+		Mypage02_mypick mypage02_mypick = new Mypage02_mypick(cardLayout,main_pg);
 		// 로그인 화면단
 		Login01_page login01_page = new Login01_page(cardLayout,main_pg);
 		Login02_member_join login02_member_join = new Login02_member_join(cardLayout,main_pg);
@@ -92,6 +98,10 @@ public class Start_frame extends JFrame{
 		main_pg.add("login02_member_join",login02_member_join);
 		main_pg.add("login03_Find_id",login03_Find_id);
 		main_pg.add("login04_Find_pw",login04_Find_pw);
+		// 마이페이지 
+		main_pg.add("mypage01_main",mypage01_main);
+		main_pg.add("mypage01_changePW",mypage01_changePW);
+		main_pg.add("mypage02_mypick",mypage02_mypick);
 		// 메인 맵
 		main_pg.add("main00_map",main00_Map);
 		// 홈화면 

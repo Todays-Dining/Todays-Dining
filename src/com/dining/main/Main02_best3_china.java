@@ -18,14 +18,15 @@ import java.awt.event.ActionEvent;
 
 public class Main02_best3_china extends JPanel {
 	CardLayout cardLayout;
-	 JPanel main_pg ;
+	JPanel main_pg;
+
 	/**
 	 * Create the application.
 	 */
 	public Main02_best3_china(CardLayout cardLayout, JPanel main_pg) {
-		this.cardLayout = cardLayout ;
-		this.main_pg = main_pg ;
-		
+		this.cardLayout = cardLayout;
+		this.main_pg = main_pg;
+
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -128,8 +129,7 @@ public class Main02_best3_china extends JPanel {
 		store_name_bt.setIcon(new ImageIcon("C:\\image\\qww.png"));
 		store_name_bt.setBounds(157, 644, 223, 69);
 		add(store_name_bt);
-		
-		
+
 		// 해당 가게이름 페이지로 이동 main04_store1_main
 		store_name_bt.addActionListener(new ActionListener() {
 
@@ -139,7 +139,7 @@ public class Main02_best3_china extends JPanel {
 				cardLayout.show(main_pg, "main04_store1_main");
 			}
 		});
-		
+
 		// main02_store3_china로 이동
 		dif_china_bt.addActionListener(new ActionListener() {
 
@@ -149,5 +149,57 @@ public class Main02_best3_china extends JPanel {
 				cardLayout.show(main_pg, "main02_store3_china");
 			}
 		});
+
+		// Main00_Home으로 돌아간다
+		homeButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main00_Home");
+			}
+		});
+		
+		// main01_best1 로 이동
+		movemenu_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main01_best1");
+			}
+		});
+
+		// main02_category_select 로 이동
+		movemenu_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main02_category_select");
+			}
+		});
+
+		// main03_random 로 이동
+		movemenu_3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "main03_random");
+			}
+		});
+
+		// mypage01_main 로 이동
+		mypage.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "mypage01_main");
+			}
+		});
+		
+		
 	}
 }
