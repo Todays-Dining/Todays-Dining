@@ -1,12 +1,17 @@
 package com.dining.admin;
 
+import java.awt.AWTException;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Robot;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableModel;
 import javax.swing.JComboBox;
 
 public class Admin04_review extends JPanel {
@@ -64,8 +70,8 @@ public class Admin04_review extends JPanel {
 		tool_lb.setBounds(36, 115, 1120, 8);
 		add(tool_lb);
 		
-		
 		JComboBox comboBox = new JComboBox(selection);
+		comboBox.setBackground(Color.WHITE);
 		comboBox.setBounds(700, 195, 110, 30);
 		add(comboBox);
 		
@@ -94,30 +100,28 @@ public class Admin04_review extends JPanel {
 		add(backbutton);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setForeground(new Color(65, 105, 225));
 		tabbedPane.setToolTipText("음식점 신규등록");
-		tabbedPane.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 25));
-		tabbedPane.setBackground(new Color(170, 187, 255));
+		tabbedPane.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 35));
+		tabbedPane.setBackground(new Color(255, 240, 245));
 		tabbedPane.setBounds(36, 190, 1120, 580);
 		add(tabbedPane);
 
-		// ★★★ //
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(218, 226, 250));
 		panel.setPreferredSize(new Dimension(500, 500));
-		tabbedPane.addTab("", new ImageIcon(Admin04_review.class.getResource("/image/ReviewsandRating.png")), panel,
-				"");
-//		tabbedPane.setBackgroundAt(5, Color.RED);
-
-
-
+		
+		tabbedPane.addTab("리뷰 및 평점", null, panel, null);
 		JScrollPane scrollPane = new JScrollPane();
 		JScrollPane scrollPane_1 = new JScrollPane();
 
-		// 테이블 있는곳 색은
-//		65, 105, 225
-//		명도만 220 
+		// 테이블 있는곳 색은 65, 105, 225, 명도만 220 
 
-		table = new JTable(contents, header);
+		table = new JTable(contents, header) {
+			public boolean isCellEditable(int i, int c){
+				return false;
+			}
+		};		
 		table.setPreferredSize(new Dimension(750, 500));
 		table.setPreferredScrollableViewportSize(new Dimension(1030, 450));
 		table.setRowMargin(2);
@@ -125,10 +129,36 @@ public class Admin04_review extends JPanel {
 		table.setRowHeight(25);
 		scrollPane.setViewportView(table);
 		table.getTableHeader();
-
-
-
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
 		panel.add(scrollPane);
+		
+		// 전체조회 버튼
+		allselect_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// ★ REVIEW_TABLE에 있는 모든 자료 불러오는 쿼리
+			}
+		});
+		
+		// 검색 버튼
+		select_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 콤보박스에서 선택한 항목
+				String sel_option = "";
+				sel_option = comboBox.getSelectedItem().toString();
+				// tf에서 받아온 값 
+				String input_text = "";
+				input_text = select_tf.getText();
+				if (sel_option == "가게 이름") {
+					// ★ REVIEW_TABLE에서 변수 input_text 값과 일치하는 DINER_NAME 및 해당 row 불러오기.
+				} else if (sel_option == "회원아이디") {
+					// ★ REVIEW_TABLE에서 변수 input_text 값과 일치하는 ID 및 해당 row 불러오기.
+				}
+				
+			}
+		});
 
 		// admin01_main로 이동
 		backbutton.addActionListener(new ActionListener() {
