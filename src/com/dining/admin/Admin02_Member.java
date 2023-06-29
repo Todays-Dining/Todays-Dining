@@ -29,7 +29,6 @@ import javax.swing.DefaultComboBoxModel;
 
 public class Admin02_Member extends JPanel {
 	JTextField select_tf;
-	DefaultTableModel model;
 	JTable table;
 	JScrollPane jScrollPane;
 	JRadioButton rb;
@@ -161,8 +160,14 @@ public class Admin02_Member extends JPanel {
 		});
 		
 		
-		model = new DefaultTableModel(contents, header);
-		table = new JTable(model);
+		table = new JTable(contents, header) {
+			public boolean isCellEditable(int i, int c){
+				return false;
+			}
+		};
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		table.isCellEditable(getX(), getY());
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowHeight(25);
 		

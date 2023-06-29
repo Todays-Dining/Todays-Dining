@@ -77,6 +77,15 @@ public class Login01_page extends JPanel {
 		login_Button.setBorderPainted(false);
 		login_Button.setBounds(400, 367, 97, 95);
 		add(login_Button);
+		// 작업해야할 버튼(코딩하기전에 작업자 자기 이름 작성하기) 이 기능을 작업하는 내이름은:
+		login_Button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 		RoundedButton_kjh_1 find_id = new RoundedButton_kjh_1("아이디 찾기");
 		find_id.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));

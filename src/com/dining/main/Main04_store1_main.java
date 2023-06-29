@@ -217,9 +217,10 @@ public class Main04_store1_main extends JPanel {
 		add(star_lb);
 		
 		JRadioButton love_jrbt = new JRadioButton("");
+		love_jrbt.setBackground(new Color(255, 240, 245));
 		love_jrbt.setIconTextGap(0);
 		love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));
-		love_jrbt.setBounds(372, 139, 74, 65);
+		love_jrbt.setBounds(359, 139, 70, 61);
 		add(love_jrbt);
 		
 		// main04_store2_map 상세지도 보기 페이지로 이동
