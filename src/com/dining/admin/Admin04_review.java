@@ -95,9 +95,10 @@ public class Admin04_review extends JPanel {
 		add(backbutton);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setForeground(new Color(65, 105, 225));
 		tabbedPane.setToolTipText("음식점 신규등록");
-		tabbedPane.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 25));
-		tabbedPane.setBackground(new Color(170, 187, 255));
+		tabbedPane.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 35));
+		tabbedPane.setBackground(new Color(255, 240, 245));
 		tabbedPane.setBounds(36, 190, 1120, 580);
 		add(tabbedPane);
 
@@ -105,8 +106,8 @@ public class Admin04_review extends JPanel {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(218, 226, 250));
 		panel.setPreferredSize(new Dimension(500, 500));
-		tabbedPane.addTab("", new ImageIcon(Admin04_review.class.getResource("/image/ReviewsandRating.png")), panel,
-				"");
+		tabbedPane.addTab("리뷰 및 평점", null, panel,
+				null);
 //		tabbedPane.setBackgroundAt(5, Color.RED);
 
 

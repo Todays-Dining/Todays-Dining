@@ -446,7 +446,7 @@ public class Main03_random extends JPanel {
 							}
 						}
 						korean =Thread.currentThread().getName();
-						rank_list.add("korean");
+						rank_list.add(korean);
 					}
 				}, "한식").start();
 
@@ -463,7 +463,7 @@ public class Main03_random extends JPanel {
 							}
 						}
 						japan =Thread.currentThread().getName();
-						rank_list.add("japan");
+						rank_list.add(japan);
 					}
 				}, "일식").start();
 
@@ -480,7 +480,7 @@ public class Main03_random extends JPanel {
 							}
 						}
 						china =Thread.currentThread().getName();
-						 rank_list.add("china");
+						 rank_list.add(china);
 						//System.out.println(Thread.currentThread());
 					}
 				}, "중식").start();
@@ -498,7 +498,7 @@ public class Main03_random extends JPanel {
 							}
 						}
 						 america =Thread.currentThread().getName();
-						 rank_list.add("america");
+						 rank_list.add(america);
 						 
 					}
 				}, "양식").start();

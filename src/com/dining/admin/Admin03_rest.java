@@ -1,12 +1,15 @@
 package com.dining.admin;
 
+import java.awt.AWTException;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Robot;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -109,16 +112,17 @@ public class Admin03_rest extends JPanel {
 		add(backbutton);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setForeground(new Color(65, 105, 225));
 		tabbedPane.setToolTipText("음식점 신규등록");
-		tabbedPane.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 25));
-		tabbedPane.setBackground(new Color(170, 187, 255));
+		tabbedPane.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 35));
+		tabbedPane.setBackground(new Color(255, 240, 245));
 		tabbedPane.setBounds(36, 194, 1120, 580);
 		add(tabbedPane);
 
 		JPanel admin_store_tab = new JPanel();
 		admin_store_tab.setBackground(new Color(213, 221, 255));
 		admin_store_tab.setPreferredSize(new Dimension(500, 500));
-		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/RegisteredDiner.png")), admin_store_tab, "");
+		tabbedPane.addTab("등록된 음식점", null, admin_store_tab, "");
 
 		setBackground(new Color(255, 240, 245));
 		setSize(1200, 800);
@@ -126,7 +130,7 @@ public class Admin03_rest extends JPanel {
 
 		JPanel admin_new_tab = new JPanel();
 		admin_new_tab.setBackground(new Color(213, 221, 255));
-		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/DinerNew.png")), admin_new_tab, null);
+		tabbedPane.addTab("음식점 신규등록", null , admin_new_tab, null);
 
 		admin_new_tab.setLayout(null);
 		
@@ -324,7 +328,7 @@ public class Admin03_rest extends JPanel {
 		JPanel admin_del_up_tab = new JPanel();
 		admin_del_up_tab.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 15));
 		admin_del_up_tab.setBackground(new Color(213, 221, 255));
-		tabbedPane.addTab("", new ImageIcon(Admin03_rest.class.getResource("/image/DinerRevise.png")), admin_del_up_tab, null);
+		tabbedPane.addTab("음식점 수정및 삭제", null, admin_del_up_tab, null);
 		admin_del_up_tab.setLayout(null);
 
 		store_tf = new JTextField();
@@ -534,6 +538,29 @@ public class Admin03_rest extends JPanel {
 				return false;
 			}
 		};
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) { 
+				int row = table.getSelectedRow();
+				TableModel data = table.getModel();
+				 store = (String)data.getValueAt(row,0);
+				 // System.out.println(store);
+				 // cardLayout.show(main_pg, "main04_store1_main");
+				 Robot robot;
+				try {
+					robot = new Robot();
+					robot.mouseMove(1300,350); // 오토 마우스 위치값 설정
+					robot.mousePress(InputEvent.BUTTON1_DOWN_MASK); // 좌클릭 한번눌렀다가
+					robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK); // 때는역할
+				} catch (AWTException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 
+				 }
+				}
+			});
 		table.getTableHeader().setReorderingAllowed(false);
 		table.getTableHeader().setResizingAllowed(false);
 		table.isCellEditable(getX(), getY());
