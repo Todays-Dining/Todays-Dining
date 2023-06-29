@@ -3,7 +3,9 @@ package com.dining.admin;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FileDialog;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -21,50 +24,42 @@ import javax.swing.JTextField;
 
 public class Admin03_rest extends JPanel {
 	JTextField store_tf;
-	JTextField storeArea_tf;
 	JTextField storeAddr_tf;
-	JTextField foodcate_tf;
 	JTextField bestfood_tf;
-	JTextField foodkey_tf;
 	JTextField storephone_tf;
 	JTextField opentime_tf;
-	JTextField parking_tf;
 	JTextField textField_9;
 	JTextField newstore_tf;
-	JTextField newstoreArea_tf;
 	JTextField newstoreAddr_tf;
-	JTextField newfoodcate_tf;
 	JTextField newbestfood_tf;
-	JTextField newfoodkey_tf;
 	JTextField newstorephone_tf;
 	JTextField newopentime_tf;
-	JTextField newparking_tf;
 
-	String header[] = { "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" };
+	String header[] = { "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" };
 	String contents[][] = { { "0", "끼로끼로부엉이", "신촌", "신촌 어딘가", "한식", "삼겹살", "회식", "02-2212-2121", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" },
-			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 키워드", "대표 전화번호", "영업시간", "주차 여부" } };
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" },
+			{ "가게번호", "음식점 이름", "지역", "상세주소", "음식분류", "대표메뉴", "대표 전화번호", "영업시간", "주차 여부" } };
 	String selection[] = { "회원번호", "회원아이디" };
 	JTable table;
 	JTable table_1;
@@ -96,7 +91,8 @@ public class Admin03_rest extends JPanel {
 		tool_lb.setBackground(new Color(65, 105, 225));
 		tool_lb.setBounds(36, 115, 1120, 8);
 		add(tool_lb);
-
+		
+		// 뒤로가기 버튼
 		JButton backbutton = new JButton("");
 		backbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -131,31 +127,26 @@ public class Admin03_rest extends JPanel {
 
 		panel_1.setLayout(null);
 
-		newstore_tf = new JTextField();
-		newstore_tf.setColumns(10);
-		newstore_tf.setBounds(200, 75, 227, 21);
-		panel_1.add(newstore_tf);
 
 		JLabel newstore_lb = new JLabel("음식점 이름 : ");
 		newstore_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newstore_lb.setBounds(40, 77, 176, 18);
 		panel_1.add(newstore_lb);
+		
+		newstore_tf = new JTextField();
+		newstore_tf.setColumns(10);
+		newstore_tf.setBounds(200, 75, 227, 21);
+		panel_1.add(newstore_tf);
 
 		JLabel newstoreArea_lb = new JLabel("음식점 지역 : ");
 		newstoreArea_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newstoreArea_lb.setBounds(40, 123, 176, 18);
 		panel_1.add(newstoreArea_lb);
 
-		newstoreArea_tf = new JTextField();
-		newstoreArea_tf.setColumns(10);
-		newstoreArea_tf.setBounds(200, 120, 227, 21);
-		panel_1.add(newstoreArea_tf);
-
 		JLabel newstoreAddr_lb = new JLabel("음식점 주소 : ");
 		newstoreAddr_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		newstoreAddr_lb.setBounds(40, 169, 176, 18);
 		panel_1.add(newstoreAddr_lb);
-
 		newstoreAddr_tf = new JTextField();
 		newstoreAddr_tf.setColumns(10);
 		newstoreAddr_tf.setBounds(200, 165, 228, 21);
@@ -166,60 +157,39 @@ public class Admin03_rest extends JPanel {
 		newfoodcate_lb.setBounds(40, 215, 176, 18);
 		panel_1.add(newfoodcate_lb);
 
-		newfoodcate_tf = new JTextField();
-		newfoodcate_tf.setColumns(10);
-		newfoodcate_tf.setBounds(200, 210, 227, 21);
-		panel_1.add(newfoodcate_tf);
-
 		JLabel newbestfood_lb = new JLabel("가게음식 대표메뉴 : ");
 		newbestfood_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		newbestfood_lb.setBounds(40, 261, 176, 18);
+		newbestfood_lb.setBounds(40, 257, 176, 18);
 		panel_1.add(newbestfood_lb);
-
-		JLabel newfoodkey_lb = new JLabel("대표 키워드 : ");
-		newfoodkey_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		newfoodkey_lb.setBounds(40, 308, 176, 18);
-		panel_1.add(newfoodkey_lb);
-
-		JLabel newstorephone_lb = new JLabel("대표 전화번호 : ");
-		newstorephone_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		newstorephone_lb.setBounds(40, 352, 176, 18);
-		panel_1.add(newstorephone_lb);
-
-		JLabel newopentime_lb = new JLabel("영업 시간 : ");
-		newopentime_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		newopentime_lb.setBounds(40, 396, 176, 18);
-		panel_1.add(newopentime_lb);
-
-		JLabel newparking_lb = new JLabel("주차여부 : ");
-		newparking_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		newparking_lb.setBounds(40, 438, 176, 18);
-		panel_1.add(newparking_lb);
-
 		newbestfood_tf = new JTextField();
 		newbestfood_tf.setColumns(10);
 		newbestfood_tf.setBounds(200, 255, 227, 21);
 		panel_1.add(newbestfood_tf);
 
-		newfoodkey_tf = new JTextField();
-		newfoodkey_tf.setColumns(10);
-		newfoodkey_tf.setBounds(200, 300, 227, 21);
-		panel_1.add(newfoodkey_tf);
-
+		JLabel newstorephone_lb = new JLabel("대표 전화번호 : ");
+		newstorephone_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
+		newstorephone_lb.setBounds(40, 303, 176, 18);
+		panel_1.add(newstorephone_lb);
 		newstorephone_tf = new JTextField();
 		newstorephone_tf.setColumns(10);
-		newstorephone_tf.setBounds(200, 345, 227, 21);
+		newstorephone_tf.setBounds(200, 300, 227, 21);
 		panel_1.add(newstorephone_tf);
 
+		JLabel newopentime_lb = new JLabel("영업 시간 : ");
+		newopentime_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
+		newopentime_lb.setBounds(40, 347, 176, 18);
+		panel_1.add(newopentime_lb);
 		newopentime_tf = new JTextField();
 		newopentime_tf.setColumns(10);
-		newopentime_tf.setBounds(200, 390, 227, 21);
+		newopentime_tf.setBounds(200, 345, 227, 21);
 		panel_1.add(newopentime_tf);
+		
+		JLabel newparking_lb = new JLabel("주차여부 : ");
+		newparking_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
+		newparking_lb.setBounds(40, 392, 176, 18);
+		panel_1.add(newparking_lb);
 
-		newparking_tf = new JTextField();
-		newparking_tf.setColumns(10);
-		newparking_tf.setBounds(200, 435, 227, 21);
-		panel_1.add(newparking_tf);
+	
 
 		JPanel panel_3 = new JPanel();
 		panel_3.setBackground(new Color(255, 247, 234));
@@ -236,27 +206,24 @@ public class Admin03_rest extends JPanel {
 		newstroe_img_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
 		newstroe_img_lb.setBounds(12, 52, 115, 32);
 		panel_3.add(newstroe_img_lb);
-
-		JLabel newbestfood_img_lb = new JLabel("대표 메뉴 : ");
-		newbestfood_img_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
-		newbestfood_img_lb.setBounds(12, 160, 115, 32);
-		panel_3.add(newbestfood_img_lb);
-
-		JLabel newstoreAddr_img_lb = new JLabel("가게 위치 : ");
-		newstoreAddr_img_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
-		newstoreAddr_img_lb.setBounds(12, 275, 115, 32);
-		panel_3.add(newstoreAddr_img_lb);
-
 		newstroe_img_tf = new JTextField();
 		newstroe_img_tf.setColumns(10);
 		newstroe_img_tf.setBounds(115, 57, 453, 21);
 		panel_3.add(newstroe_img_tf);
 
+		JLabel newbestfood_img_lb = new JLabel("대표 메뉴 : ");
+		newbestfood_img_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
+		newbestfood_img_lb.setBounds(12, 160, 115, 32);
+		panel_3.add(newbestfood_img_lb);
 		newbestfood_img_tf = new JTextField();
 		newbestfood_img_tf.setColumns(10);
 		newbestfood_img_tf.setBounds(115, 165, 453, 21);
 		panel_3.add(newbestfood_img_tf);
 
+		JLabel newstoreAddr_img_lb = new JLabel("가게 위치 : ");
+		newstoreAddr_img_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
+		newstoreAddr_img_lb.setBounds(12, 275, 115, 32);
+		panel_3.add(newstoreAddr_img_lb);
 		newstoreAddr_img_tf = new JTextField();
 		newstoreAddr_img_tf.setColumns(10);
 		newstoreAddr_img_tf.setBounds(115, 280, 453, 21);
@@ -321,6 +288,22 @@ public class Admin03_rest extends JPanel {
 		newadd_bt.setBackground(new Color(65, 105, 255));
 		newadd_bt.setBounds(171, 480, 125, 34);
 		panel_1.add(newadd_bt);
+		
+		JComboBox comboBox_newstoreArea = new JComboBox();
+		comboBox_newstoreArea.setModel(new DefaultComboBoxModel(new String[] {"마포구", "신촌", "홍대", "을지로", "연남", "강남"}));
+		comboBox_newstoreArea.setBounds(200, 120, 227, 21);
+		panel_1.add(comboBox_newstoreArea);
+		
+		JComboBox comboBox_newfoodcate = new JComboBox();
+		comboBox_newfoodcate.setModel(new DefaultComboBoxModel(new String[] {"한식", "양식", "중식", "일식", "카페", "기타"}));
+		comboBox_newfoodcate.setBounds(200, 210, 227, 21);
+		panel_1.add(comboBox_newfoodcate);
+		
+		JComboBox comboBox_newparking = new JComboBox();
+		comboBox_newparking.setModel(new DefaultComboBoxModel(new String[] {"가능", "불가능"}));
+		comboBox_newparking.setBounds(200, 390, 227, 21);
+		panel_1.add(comboBox_newparking);
+	
 
 		JPanel panel_2 = new JPanel();
 		panel_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 15));
@@ -343,11 +326,6 @@ public class Admin03_rest extends JPanel {
 		storeArea_lb.setBounds(40, 123, 176, 18);
 		panel_2.add(storeArea_lb);
 
-		storeArea_tf = new JTextField();
-		storeArea_tf.setColumns(10);
-		storeArea_tf.setBounds(200, 120, 227, 21);
-		panel_2.add(storeArea_tf);
-
 		JLabel storeAddr_lb = new JLabel("음식점 주소 : ");
 		storeAddr_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
 		storeAddr_lb.setBounds(40, 169, 176, 18);
@@ -363,34 +341,24 @@ public class Admin03_rest extends JPanel {
 		foodcate_lb.setBounds(40, 215, 176, 18);
 		panel_2.add(foodcate_lb);
 
-		foodcate_tf = new JTextField();
-		foodcate_tf.setColumns(10);
-		foodcate_tf.setBounds(200, 210, 227, 21);
-		panel_2.add(foodcate_tf);
-
 		JLabel bestfood_lb = new JLabel("가게음식 대표메뉴 : ");
 		bestfood_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		bestfood_lb.setBounds(40, 261, 176, 18);
+		bestfood_lb.setBounds(40, 257, 176, 18);
 		panel_2.add(bestfood_lb);
-
-		JLabel foodkey_lb = new JLabel("대표 키워드 : ");
-		foodkey_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		foodkey_lb.setBounds(40, 308, 176, 18);
-		panel_2.add(foodkey_lb);
 
 		JLabel storephone_lb = new JLabel("대표 전화번호 : ");
 		storephone_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		storephone_lb.setBounds(40, 352, 176, 18);
+		storephone_lb.setBounds(40, 303, 176, 18);
 		panel_2.add(storephone_lb);
 
 		JLabel opentime_lb = new JLabel("영업 시간 : ");
 		opentime_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		opentime_lb.setBounds(40, 396, 176, 18);
+		opentime_lb.setBounds(40, 347, 176, 18);
 		panel_2.add(opentime_lb);
 
 		JLabel parking_lb = new JLabel("주차여부 : ");
 		parking_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 20));
-		parking_lb.setBounds(40, 438, 135, 18);
+		parking_lb.setBounds(40, 392, 160, 18);
 		panel_2.add(parking_lb);
 
 		bestfood_tf = new JTextField();
@@ -398,25 +366,15 @@ public class Admin03_rest extends JPanel {
 		bestfood_tf.setBounds(200, 255, 227, 21);
 		panel_2.add(bestfood_tf);
 
-		foodkey_tf = new JTextField();
-		foodkey_tf.setColumns(10);
-		foodkey_tf.setBounds(200, 300, 227, 21);
-		panel_2.add(foodkey_tf);
-
 		storephone_tf = new JTextField();
 		storephone_tf.setColumns(10);
-		storephone_tf.setBounds(200, 345, 227, 21);
+		storephone_tf.setBounds(200, 300, 227, 21);
 		panel_2.add(storephone_tf);
 
 		opentime_tf = new JTextField();
 		opentime_tf.setColumns(10);
-		opentime_tf.setBounds(200, 390, 227, 21);
+		opentime_tf.setBounds(200, 345, 227, 21);
 		panel_2.add(opentime_tf);
-
-		parking_tf = new JTextField();
-		parking_tf.setColumns(10);
-		parking_tf.setBounds(200, 435, 227, 21);
-		panel_2.add(parking_tf);
 
 		JButton update_bt = new JButton("수  정");
 		update_bt.setForeground(new Color(255, 240, 245));
@@ -522,6 +480,21 @@ public class Admin03_rest extends JPanel {
 		view_3.setBackground(new Color(65, 105, 255));
 		view_3.setBounds(348, 317, 97, 39);
 		panel_3_2.add(view_3);
+		
+		JComboBox comboBox_storeAddr = new JComboBox();
+		comboBox_storeAddr.setModel(new DefaultComboBoxModel(new String[] {"마포구", "신촌", "홍대", "을지로", "연남", "강남"}));
+		comboBox_storeAddr.setBounds(200, 120, 227, 21);
+		panel_2.add(comboBox_storeAddr);
+		
+		JComboBox comboBox_foodcate = new JComboBox();
+		comboBox_foodcate.setModel(new DefaultComboBoxModel(new String[] {"한식", "양식", "중식", "일식", "카페", "기타"}));
+		comboBox_foodcate.setBounds(200, 210, 227, 21);
+		panel_2.add(comboBox_foodcate);
+		
+		JComboBox comboBox_parking = new JComboBox();
+		comboBox_parking.setModel(new DefaultComboBoxModel(new String[] {"가능", "불가능"}));
+		comboBox_parking.setBounds(200, 390, 227, 21);
+		panel_2.add(comboBox_parking);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(33, 53, 1049, 444);
@@ -543,11 +516,10 @@ public class Admin03_rest extends JPanel {
 		panel.add(scrollPane);
 
 		JComboBox comboBox_1 = new JComboBox(new Object[] {});
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { "음식점 이름", "지역", "음식분류", "대표메뉴", "대표 키워드" }));
-		comboBox_1.setEditable(true);
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"음식점 이름", "지역", "음식분류", "대표메뉴"}));
 		comboBox_1.setBackground(Color.WHITE);
 		comboBox_1.setBounds(625, 13, 110, 30);
-		panel.add(comboBox_1);
+		panel.add(comboBox_1);		
 
 		select_tf = new JTextField();
 		select_tf.setColumns(10);
@@ -559,16 +531,190 @@ public class Admin03_rest extends JPanel {
 		select_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		select_bt.setBounds(924, 13, 50, 30);
 		panel.add(select_bt);
+		select_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// comboBox_1 에서 선택된 값을 받아서 해당 값을 select_bt 에 넘겨주자!
+				String combo_sel = "";
+				combo_sel = comboBox_1.getSelectedItem().toString();
+				String input_text = "";
+				input_text = select_tf.getText();
+				if (combo_sel == "음식점 이름") {
+					// ★ DINER_TABLE의 DINER_NAME열에서 변수 input_text에 입력된 값과 일치하는 row들을 찾아서 반환.
+				}else if (combo_sel == "지역") {
+					// ★ DINER_TABLE의 REGION열에서 변수 input_text에 입력된 값과 일치하는 row들을 찾아서 반환.
+				}else if (combo_sel == "음식분류") {
+					// ★ DINER_TABLE의 FOOD_CATEGORY열에서 변수 input_text에 입력된 값과 일치하는 row들을 찾아서 반환.
+				}else if (combo_sel == "대표메뉴") {
+					// ★ DINER_TABLE의 MENU열에서 변수 input_text에 입력된 값과 일치하는 row들을 찾아서 반환.
+				}
+			}
+		});
 
 		RoundedButton_kjhw_2 allselect_bt = new RoundedButton_kjhw_2();
 		allselect_bt.setText("전체조회");
 		allselect_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		allselect_bt.setBounds(981, 13, 100, 30);
 		panel.add(allselect_bt);
+		allselect_bt.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// ★ DINER_TABLE에 있는 모든 정보를 보여주는 쿼리
+			}
+		});
+		
+		// 식당 신규등록
+		newadd_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 이름 32자, 즐겨찾기 숫자 0, 오픈시간 숫자 32개, 메뉴 128자, 전번 숫자 32개, 주소 128자 제한
+				String store_name = "";
+				store_name = newstore_tf.getText();	
+				int store_name_no = 0; 
+				if (store_name.length() == 0) {
+					JOptionPane.showMessageDialog(null, "식당 이름을 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+					store_name_no = 0;
+				} else {
+					store_name_no = 1;
+				}
+				if (store_name.length() > 32) {
+					JOptionPane.showMessageDialog(null, "식당 이름은 최대 32자 입니다!", "Message", JOptionPane.ERROR_MESSAGE);
+					store_name_no = 0;
+				} else {
+					store_name_no = 1;
+				}
+				String open_hours = "";
+				open_hours = newopentime_tf.getText();
+				int open_hours_no = 0;
+				if (open_hours.length() > 32) {
+					JOptionPane.showMessageDialog(null, "영업 시간을 제대로 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+					open_hours_no = 0;
+				} else {
+					open_hours_no = 1;
+				}
+				String menu_text = "";
+				menu_text = newbestfood_tf.getText();
+				int menu_text_no = 0;
+				if (open_hours.length() > 128) {
+					JOptionPane.showMessageDialog(null, "메뉴명은 최대 128자입니다!", "Message", JOptionPane.ERROR_MESSAGE);
+					menu_text_no = 0;
+				} else {
+					menu_text_no = 1;
+				}
+				String phone_number = "";
+				phone_number = newstorephone_tf.getText();
+				int phone_number_no = 0;
+				if (phone_number.length() > 32) {
+					JOptionPane.showMessageDialog(null, "전화번호는 최대 32자입니다!", "Message", JOptionPane.ERROR_MESSAGE);
+					phone_number_no = 0;
+				} else {
+					phone_number_no = 1;
+				}
+				String input_address = "";
+				input_address = newstoreAddr_tf.getText();
+				int input_address_no = 0;
+				if (input_address.length() > 128) {
+					JOptionPane.showMessageDialog(null, "주소는 최대 128자입니다!", "Message", JOptionPane.ERROR_MESSAGE);
+					input_address_no = 0;
+				} else {
+					input_address_no = 1;
+				}
+				
 
+				
+				// 모든 조건 만족 시, DB에 자료 신규 등록
+				if (store_name_no == 1 && open_hours_no == 1 && menu_text_no == 1 && phone_number_no == 1 && input_address_no == 1) {
+					// ★ 음식점 이름, 지역, 주소, 분류, 메뉴, 전화번호, 영업시간, 주차여부 받아서 DB에 INSERT 하는 쿼리문
+					// 음식점 이름 
+					System.out.println(store_name);
+					// 지역 값 받아오기 (콤보박스)
+					String input_region = "";
+					input_region = comboBox_newstoreArea.getSelectedItem().toString();
+					System.out.println(input_region);
+//					주소 : input_address
+					System.out.println(input_address);
+//					분류 값 받아오기 (콤보박스)
+					String food_caterogy = "";
+					food_caterogy = comboBox_newfoodcate.getSelectedItem().toString();
+					System.out.println(food_caterogy); 
+//					메뉴 받아오기 
+					System.out.println(menu_text);
+//					전화번호 
+					System.out.println(phone_number);				
+//					영업 시간 
+					System.out.println(open_hours);
+//					주차여부 값 받아오기 (콤보박스)
+					String parking_chk = "";
+					parking_chk = comboBox_newparking.getSelectedItem().toString();
+					System.out.println(parking_chk);
+				}
+			}
+		});
+		
+		// 이미지 불러오기 (가게 이미지)
+		img1.addActionListener(new ActionListener() {
+			@Override
+		public void actionPerformed(ActionEvent e) {
+				FileDialog fd = new FileDialog(new Frame(),"My Settings",FileDialog.LOAD);
+				fd.setVisible(true);
+				String msg = fd.getDirectory()+fd.getFile();
+				String path = fd.getDirectory(); // 파일경로 
+				String name = fd.getFile(); // 파일이름
+				// 취소 눌렀을 때 nullnull 표시하는 대신 아무반응 안 하게!!
+			if (! msg.equals("nullnull")){
+				newstroe_img_tf.setText(path+name);
+				}
+			}
+		});
+		// 이미지 불러오기 (가게 이미지)
+		img2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FileDialog fd = new FileDialog(new Frame(),"My Settings",FileDialog.LOAD);
+				fd.setVisible(true);
+				String msg = fd.getDirectory()+fd.getFile();
+				String path = fd.getDirectory(); // 파일경로 
+				String name = fd.getFile(); // 파일이름
+				// 취소 눌렀을 때 nullnull 표시하는 대신 아무반응 안 하게!!
+				if (! msg.equals("nullnull")){
+					newbestfood_img_tf.setText(path+name);
+				}
+			}
+		});
+		// 이미지 불러오기 (가게 이미지)
+		img3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				FileDialog fd = new FileDialog(new Frame(),"My Settings",FileDialog.LOAD);
+				fd.setVisible(true);
+				String msg = fd.getDirectory()+fd.getFile();
+				String path = fd.getDirectory(); // 파일경로 
+				String name = fd.getFile(); // 파일이름
+				// 취소 눌렀을 때 nullnull 표시하는 대신 아무반응 안 하게!!
+				if (! msg.equals("nullnull")){
+					newstoreAddr_img_tf.setText(path+name);
+				}
+			}
+		});
+		
+	
+		// 미리보기 버튼 (가게 이미지)
+		look1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (newstroe_img_tf.getText().length() == 0) {
+					JOptionPane.showMessageDialog(null, "이미지 경로를 입력하거나, 이미지 불러오기를 클릭하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+				}
+				ImageIcon img_peek =  new ImageIcon(newstroe_img_tf.getText());
+				JLabel img_label = new JLabel();
+				admin_pg.add(img_label);
+				admin_pg.setLocation(300, 200);
+				admin_pg.setVisible(true);
+			}
+		});
+		
 		// admin01_main로 이동
 		backbutton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub

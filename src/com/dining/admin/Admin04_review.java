@@ -129,6 +129,33 @@ public class Admin04_review extends JPanel {
 
 
 		panel.add(scrollPane);
+		
+		// 전체조회 버튼
+		allselect_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// ★ REVIEW_TABLE에 있는 모든 자료 불러오는 쿼리
+			}
+		});
+		
+		// 검색 버튼
+		select_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// 콤보박스에서 선택한 항목
+				String sel_option = "";
+				sel_option = comboBox.getSelectedItem().toString();
+				// tf에서 받아온 값 
+				String input_text = "";
+				input_text = select_tf.getText();
+				if (sel_option == "가게 이름") {
+					// ★ REVIEW_TABLE에서 변수 input_text 값과 일치하는 DINER_NAME 및 해당 row 불러오기.
+				} else if (sel_option == "회원아이디") {
+					// ★ REVIEW_TABLE에서 변수 input_text 값과 일치하는 ID 및 해당 row 불러오기.
+				}
+				
+			}
+		});
 
 		// admin01_main로 이동
 		backbutton.addActionListener(new ActionListener() {
