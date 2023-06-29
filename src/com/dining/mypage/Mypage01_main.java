@@ -274,7 +274,6 @@ public class Mypage01_main extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "mypage01_changePW");
 			}
 		});
