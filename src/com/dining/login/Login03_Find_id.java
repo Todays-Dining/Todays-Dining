@@ -2,15 +2,18 @@ package com.dining.login;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import com.dining.start.db_DAO;
+import com.dining.start.db_VO;
 
 public class Login03_Find_id extends JPanel {
 	JTextField id_textField;
@@ -60,11 +63,32 @@ public class Login03_Find_id extends JPanel {
 		add(find_id);
 		// 작업해야할 버튼(코딩하기전에 작업자 자기 이름 작성하기) 이 기능을 작업하는 내이름은:
 		find_id.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				String name = id_textField.getText().trim();
+				String email = email_textField.getText().trim();
+				String birthday = birth_textField.getText().trim();
+				db_VO vo = new db_VO();
+				vo.setName(name);
+				vo.setEmail(email);
+				vo.setBirthday(birthday);
+//				db_VO find_id = db_DAO.findYourId(vo);
+                vo = db_DAO.findYourId(vo);
+//				if(name.equals(vo.getName())&& email.equals(vo.getEmail())&&birthday.equals(vo.getBirthday())) {
+                try {
+                	JOptionPane.showMessageDialog(null, "당신의 ID는 " +  vo.getId() + "입니다.", "Message", JOptionPane.ERROR_MESSAGE);
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "입력된 정보가 일치하지 않습니다.", "Message", JOptionPane.ERROR_MESSAGE);
+				}
+//                if (vo.getId() == null) {
+//					
+//                }else if (vo.getId() != null) {
+//                
+//                }
+					
+//				} else {
 
+//				}
 			}
 		});
 

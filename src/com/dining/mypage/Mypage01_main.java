@@ -29,13 +29,13 @@ import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class Mypage01_main extends JPanel {
-	JTextField textField;
-	 JTextField id_tf;
-	 JTextField pwanser_tf;
-	 JTextField email_tf;
-	 JTextField birth_tf;
-	 JTextField name_tf;
-	 JTextField pw_tf;
+	public JTextField textField;
+	 public JTextField id_tf;
+	 public JTextField pwanser_tf;
+	 public JTextField email_tf;
+	 public JTextField birth_tf;
+	 public JTextField name_tf;
+	 public JTextField pw_tf;
 	CardLayout cardLayout;
 	JPanel main_pg;
 

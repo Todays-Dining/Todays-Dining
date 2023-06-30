@@ -42,6 +42,7 @@ public class Start_frame extends JFrame{
 	JPanel main_pg ;
 	CardLayout cardLayout;
 	int member_num = 1 ;
+	public static db_VO vo = new db_VO();
 	
 	public Start_frame() {
 		main_pg = new JPanel(); 
@@ -147,7 +148,38 @@ public class Start_frame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 			
 		setVisible(true);
+		
+		// ★   로그인한 ID 정보를 mypage에 띄워주는 코드
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while (true) {
+					while (mypage01_main.id_tf.getText().length() == 0 && mypage01_main.pw_tf.getText().length() == 0
+							&& mypage01_main.name_tf.getText().length() == 0 && mypage01_main.birth_tf.getText().length() == 0
+							&& mypage01_main.email_tf.getText().length() == 0 && mypage01_main.pwanser_tf.getText().length() == 0
+							) 
+					try {
+						String id_show = vo.getId();
+						String pw_show = vo.getPassword();
+						String name_show = vo.getName();
+						String birth_show = vo.getBirthday();
+						String email_show = vo.getEmail();
+						String panswer_show = vo.getPassword_search_a();
+						Thread.sleep(500);
+						mypage01_main.id_tf.setText(id_show);
+						mypage01_main.pw_tf.setText(pw_show);
+						mypage01_main.name_tf.setText(name_show);
+						mypage01_main.birth_tf.setText(birth_show);
+						mypage01_main.email_tf.setText(email_show);
+						mypage01_main.pwanser_tf.setText(panswer_show);
+					} catch (Exception e3) {
 
+					}
+				}
+			}
+		}, "rank").start();	
+		
+		
 
 	}
 	public int getMember_num() {
