@@ -1,9 +1,16 @@
 package com.dining.start;
 
 import java.awt.CardLayout;
+import java.awt.EventQueue;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 import com.dining.login.Login01_page;
 import com.dining.login.Login02_member_join;
@@ -38,23 +45,30 @@ import com.dining.mypage.Mypage01_changePW;
 import com.dining.mypage.Mypage01_main;
 import com.dining.mypage.Mypage02_mypick;
 
-public class Start_frame extends JFrame{
+public class Start_frame extends JFrame implements Runnable {
+
 	JPanel main_pg ;
 	CardLayout cardLayout;
 	int member_num = 1 ;
-	public static db_VO vo = new db_VO();
+	public db_VO vo;
+	public Socket s;
+	public ObjectOutputStream out;
+	public ObjectInputStream in;
+	public Login01_page login01_page = new Login01_page(cardLayout,main_pg , this);	
 	
 	public Start_frame() {
+		// 연결하기
+		connected();
 		main_pg = new JPanel(); 
 		cardLayout = new CardLayout();
 		main_pg.setLayout(cardLayout);
+		vo = new db_VO();
 		// 각종패널들 가져오기
 		// 마이페이지 
 		Mypage01_main mypage01_main = new Mypage01_main(cardLayout,main_pg);
 		Mypage01_changePW mypage01_changePW = new Mypage01_changePW(cardLayout,main_pg);
 		Mypage02_mypick mypage02_mypick = new Mypage02_mypick(cardLayout,main_pg);
 		// 로그인 화면단
-		Login01_page login01_page = new Login01_page(cardLayout,main_pg);
 		Login02_member_join login02_member_join = new Login02_member_join(cardLayout,main_pg);
 		Login03_Find_id login03_Find_id = new Login03_Find_id(cardLayout,main_pg);
 		Login04_Find_pw login04_Find_pw = new Login04_Find_pw(cardLayout,main_pg);
@@ -148,6 +162,8 @@ public class Start_frame extends JFrame{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 			
 		setVisible(true);
+
+		
 		
 		// ★   로그인한 ID 정보를 mypage에 띄워주는 코드
 		new Thread(new Runnable() {
@@ -179,16 +195,91 @@ public class Start_frame extends JFrame{
 			}
 		}, "rank").start();	
 		
-		
-
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				if (s != null) {
+					try {
+						Protocol p = new Protocol();
+						p.setCmd(0);
+						out.writeObject(p);
+						out.flush();
+					} catch (Exception e2) {
+					}
+				} else {
+					closed();
+				}
+			}
+		});
 	}
+
+	// 접속
+	public void connected() {
+		try {
+			s = new Socket("192.168.0.69", 7778);
+			out = (new ObjectOutputStream(s.getOutputStream()));
+			in = new ObjectInputStream(s.getInputStream());
+			new Thread(this).start();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public void run() {
+		esc:while(true) {
+			try {
+				Object obj = in.readObject();
+				if(obj != null) {
+					Protocol p = (Protocol)obj;
+					vo = p.getVo();
+					switch(p.getCmd()) {
+					case 0:	// 종료
+						break esc;
+					case 1: // 로그인
+						if(p.getResult() == 1) {
+							cardLayout.show(main_pg,"main00_Home");
+						}else {
+							System.out.println("로그인실패");
+						}
+						break;
+					case 2:
+						break;
+					}
+				}
+			} catch (Exception e) {
+
+			}			
+		}// while문 끝
+		closed();		
+	}
+	
 	public int getMember_num() {
 		return member_num;
 	}
 	public void setMember_num(int member_num) {
 		this.member_num = member_num;
 	}
-	public static void main(String[] args) {
-		new Start_frame();
+	
+	// 끝내기 
+		public void closed() {
+			try {
+				out.close();
+				in.close();
+				System.exit(0);
+			} catch (Exception e) {
+
+			}
+		}
+		
+		public static void main(String[] args) {
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						new Start_frame();
+					} catch (Exception e) {
+						System.out.println("시작페이지오류");
+					}
+				}
+			});
+		}
 	}
-}

@@ -7,40 +7,56 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.net.Socket;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JOptionPane;
 
-import com.dining.mypage.Mypage01_main;
-import com.dining.start.Start_frame;
-import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
+import com.dining.start.Admin_frame;
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
+
 
 public class Login01_page extends JPanel {
+	Socket s;
+	ObjectOutputStream out;
+	ObjectInputStream in;
+	
 	public JTextField id_textField;
 	public JTextField pw_textField;
 	CardLayout cardLayout;
 	JPanel main_pg;
+	Start_frame main;
 	int ad_num = 1;
 	int a = 0;
+	public boolean idChk = true;
 	String msg ;
+	public int setcmd = 0;
+	
+	
 	public int getA() {
 		return a;
 	}
-
 	public void setA(int a) {
 		this.a = a;
 	}
 
-	/**
-	 * Create the panel.
-	 */
-	public Login01_page(CardLayout cardLayout, JPanel main_pg) {
+	// 생성자에 클라이언트위치인 Start_frame 객체를 집어넣어서 전역변수로 만들고  socket , 아웃스트림 , 인풋스트림
+		// 만들어서 요청을 보낼때 사용? 확인해봐야할거같음
+	public Login01_page(CardLayout cardLayout, JPanel main_pg , Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
+		this.main = main;
+		this.s = main.s;
+		this.out = main.out;
+		this.in = main.in;
 
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
@@ -90,7 +106,7 @@ public class Login01_page extends JPanel {
 					e.consume();
 			}
 		});
-
+		
 		RoundedButton_kjh_1 login_Button = new RoundedButton_kjh_1("Login");
 		login_Button.setForeground(new Color(255, 240, 245));
 		login_Button.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 23));
@@ -98,41 +114,27 @@ public class Login01_page extends JPanel {
 		login_Button.setBorderPainted(false);
 		login_Button.setBounds(400, 367, 97, 95);
 		add(login_Button);
-		// 작업해야할 버튼(코딩하기전에 작업자 자기 이름 작성하기) 이 기능을 작업하는 내이름은:
-		// 재훈,하영
-
 		
+		// 로그인 화면에서 로그인 버튼클릭시 main00_Map 페이지로 넘어감
 		login_Button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				msg = id_textField.getText().trim();
-				String msg_pw = pw_textField.getText().trim();
-				if (msg.length() == 0 && msg_pw.length() == 0) {
-					JOptionPane.showMessageDialog(getParent(), "정보를 입력해주세요.");
-				}else if (msg.length() == 0) {
-					JOptionPane.showMessageDialog(getParent(), "id를 입력해주세요.");
-				}else if (msg_pw.length() == 0) {
-					JOptionPane.showMessageDialog(getParent(), "pw를 입력해주세요.");
-				}
-				if (msg.length() > 0 && msg_pw.length() > 0) {
-					boolean idchk = db_DAO.getidChk(msg);
-					if (idchk) {
-						JOptionPane.showMessageDialog(getParent(), "입력하신 id가 존재하지 않습니다.");
-					} else {
-							db_VO pwchk = db_DAO.getpwChk(msg);
-							if (msg_pw.equals(pwchk.getPassword().trim())) {
-								
-								Mypage01_main mypage = new Mypage01_main(cardLayout, main_pg);
-									// 마이페이지로 정보 보내기
-								db_VO vo = db_DAO.getmyid(msg);
-									// 표시 안되는 부분
-								cardLayout.show(main_pg, "main00_map");
-								Start_frame.vo = vo;
-							}
-					}
+				try {
+					db_VO vo = new db_VO();
+					Protocol p = new Protocol();
+					vo.setId(id_textField.getText());
+					vo.setPassword(pw_textField.getText());
+					p.setCmd(1);
+					p.setVo(vo);
+					main.out.writeObject(p);
+					System.out.println("작동");
+					main.out.flush();
+				} catch (IOException e1) {
+					e1.printStackTrace();
 				}
 			}
 		});
+		
 		RoundedButton_kjh_1 find_id = new RoundedButton_kjh_1("아이디 찾기");
 		find_id.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		find_id.setForeground(new Color(255, 240, 245));
@@ -180,31 +182,10 @@ public class Login01_page extends JPanel {
 		pw_label.setBounds(59, 434, 63, 28);
 		add(pw_label);
 
-//		// 로그인 화면에서 로그인 버튼클릭시 main00_Map 페이지로 넘어감
-//		login_Button.addActionListener(new ActionListener() {
-//			
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				if (ad_num == 1) {
-//					Start_frame main = new Start_frame();
-//					cardLayout.show(main_pg,"main00_map");
-//				} else {
-//					main_pg.setVisible(false);
-//					setA(5) ;
-//					new Admin_frame();
-//					
-//				}
-//					
-//				
-//			}
-//		});
-
 		// 회원가입 버튼 누를시 회원가입창인 login02_member_join 로 이동
 		join_bt.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "login02_member_join");
 			}
 		});
@@ -214,20 +195,16 @@ public class Login01_page extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "login03_Find_id");
 			}
 		});
 
 		// 비밀번호 찾기 버튼 클릭시 비밀번호 찾는 페이지로 이동
 		find_pw.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "login04_Find_pw");
 			}
 		});
-
 	}
 }

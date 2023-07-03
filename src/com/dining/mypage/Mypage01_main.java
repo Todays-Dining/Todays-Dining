@@ -3,30 +3,26 @@ package com.dining.mypage;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.dining.main.Main00_Home;
 import com.dining.main.Main01_best1;
 import com.dining.start.db_DAO;
-import com.dining.start.db_Service;
 import com.dining.start.db_VO;
-
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.awt.event.ActionEvent;
 
 public class Mypage01_main extends JPanel {
 	public JTextField textField;
@@ -338,20 +334,58 @@ public class Mypage01_main extends JPanel {
 			}
 		});
 		
-		fix_bt.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				db_VO vo = new db_VO();
-				vo = db_DAO.getid();
-				id_tf.setText(vo.getId());
-//				List<db_VO> list = db_DAO.getidAll();
-				
-//				for (db_VO k : list) {
-//					System.out.print(k.getId()+"\t");
-//					System.out.print(k.getPassword()+"\t");
-//					System.out.println(k.getName());
-//				}
-			}
-		});
+//		fix_bt.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				db_VO vo = new db_VO();
+//				vo = db_DAO.getid();
+//				id_tf.setText(vo.getId());
+////				List<db_VO> list = db_DAO.getidAll();
+//				
+////				for (db_VO k : list) {
+////					System.out.print(k.getId()+"\t");
+////					System.out.print(k.getPassword()+"\t");
+////					System.out.println(k.getName());
+////				}
+//			}
+//		});
+
+		fix_bt.addActionListener(new ActionListener() {// 회원정보수정버튼            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                db_VO vo = new db_VO();
+                // 아이디 필드 값을 수정할수 있으면 자기아이디가 아닌 다른 회원 아이디를 입력해서 삭제가 가능해짐
+                // 이런걸 방지하려면 로그인할때 입력한 id값을 가져와서 그 값이랑 일치할경우에만 수정할수 있게 해주거나
+                // 아이디가 pk라서 id는 수정불가능하게 id_tf.setEditable(false) 고정값해두면 해결됨
+                // 변수선언해서 따로  텍스트필드에 입력값을 안받고 바로 집어넣었는데
+                // trim때문에 오류 날수도 있으니 안될경우 String id = id_tf.getText().trim();해보기
+                vo.setId(id_tf.getText().trim());
+                vo.setName(name_tf.getText().trim());
+                vo.setBirthday(birth_tf.getText().trim());
+                vo.setEmail(email_tf.getText().trim());
+                vo.setPassword_search_q((String) pw_comboBox.getSelectedItem());
+                vo.setPassword_search_a(pw_tf.getText().trim());
+                int res = db_DAO.getUpdate(vo);    
+                
+                if(res>0) {
+                    JOptionPane.showMessageDialog(getParent(), "수정 성공");
+                }
+                
+            }
+        });
+        
+        mem_del_bt.addActionListener(new ActionListener() {// 회원정보 삭제버튼
+            public void actionPerformed(ActionEvent e) {
+                db_VO vo = new db_VO();                
+                int res = db_DAO.getDelete(id_tf.getText().trim());
+                
+                if(res>0) {
+                    JOptionPane.showMessageDialog(getParent(), "그동안의 이용 감사합니다.");
+                    //다이얼 로그 메시지 보내고 로그인 페이지로 이동하게하기
+                    cardLayout.show(main_pg,"login01_page");
+                }
+            }
+        });
+		
 	}
 }

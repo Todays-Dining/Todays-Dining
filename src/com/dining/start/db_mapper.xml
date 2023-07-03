@@ -39,29 +39,44 @@
 		where custid = #{custid}
 	</update> -->
 	
-	<select id="idChk" parameterType="String" resultType="com.dining.start.db_VO">
-        select ID from SIGNUP_TABLE where ID = #{ID}
-    </select>
-    
 	<!-- <select id="findyourid" parameterType="String" resultType="com.dining.start.db_VO">
 	SELECT ID FROM SIGNUP_TABLE WHERE NAME = #{name} AND EMAIL = #{email} AND BIRTHDAY = #{birthday};
 	select ID from SIGNUP_TABLE where NAME = #{name} and EMAIL = #{email} and BIRTHDAY = #{birthday}
     </select> -->
+    
+    <select id="login" resultType="com.dining.start.db_VO">
+	    select * from SIGNUP_TABLE where id = #{id} and password = #{password} 
+	</select>
+    
     <select id="getID" resultType="com.dining.start.db_VO">
         select ID from SIGNUP_TABLE where name = #{name} and email = #{email} and birthday = #{birthday}
     </select>
 	
+	<select id="idChk" parameterType="String" resultType="com.dining.start.db_VO">
+        select ID from SIGNUP_TABLE where ID = #{id}
+    </select>
+    
 	<insert id="infoIns" parameterType="com.dining.start.db_VO">
         insert into SIGNUP_TABLE(STATUS, ID , PASSWORD, NAME, EMAIL, BIRTHDAY, PASSWORD_SEARCH_Q , PASSWORD_SEARCH_A, FAVORITE_LIST, REPORTED_COUNT)
         values(#{status}, #{id} , #{password}, #{name}, #{email}, #{birthday}, #{password_search_q}    , #{password_search_a}, #{favorite_list}, #{reported_count})
     </insert>
     
+    <delete id="infoDel" parameterType="com.dining.start.db_VO">
+        delete from SIGNUP_TABLE where ID = #{ID}
+    </delete>
+    
+    <update id="infoUpdate" parameterType="com.dining.start.db_VO">
+        update SIGNUP_TABLE set ID=#{id}, NAME=#{name}, EMAIL=#{email} , BIRTHDAY=#{birthday}
+        , PASSWORD_SEARCH_Q =#{password_search_q} , PASSWORD_SEARCH_A =#{password_search_a}
+        where ID = #{id}
+    </update>
+    
      <select id="pwChk" parameterType="String" resultType="com.dining.start.db_VO">
-        select PASSWORD from SIGNUP_TABLE where ID = #{ID} 
+        select PASSWORD from SIGNUP_TABLE where ID = #{id} 
     </select>
 
     <select id="getmyid" parameterType="String" resultType="com.dining.start.db_VO">
         select * from SIGNUP_TABLE where ID = #{id}
     </select>
-	
+    
 </mapper>

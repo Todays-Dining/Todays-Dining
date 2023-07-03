@@ -21,9 +21,8 @@ public class db_Service {
 				InputStream inputStream = Resources.getResourceAsStream(resource);
 				factory = new SqlSessionFactoryBuilder().build(inputStream);
 			} catch (Exception e) {
-				System.out.println("db서버 연결중 문제 발생");
+				System.out.println("db서버 연결중 문제 발생!!");
 				e.printStackTrace();
-
 			}
 		}
 		
@@ -31,6 +30,4 @@ public class db_Service {
 		static SqlSessionFactory getFactory() {
 			return factory;
 		}
-	
-	
 }

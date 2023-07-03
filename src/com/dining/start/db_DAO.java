@@ -18,8 +18,13 @@ public class db_DAO {
 		return ss;
 	} // 아이디 불러오는 메서드 getID
 
-	public static db_VO getid() {
-		db_VO vo = getSession().selectOne("getID");
+	public static db_VO getid(db_VO vo) {
+		vo = getSession().selectOne("getID",vo);
+		return vo; 
+	}
+	
+	public static db_VO login(db_VO vo) {
+		vo = getSession().selectOne("login",vo);
 		return vo;
 	}
 	
@@ -37,12 +42,13 @@ public class db_DAO {
 //		// ID 리스트를 받아온다.
 //		return vo2;
 //	}
-//	
+	
 	public static db_VO findYourId(db_VO vo) {
         vo = getSession().selectOne("getID",vo);
         return vo; 
     }
 	
+	// ID 체크하는 DAO, 입력한 ID가 있는지 여부를 boolean으로 반환
 	public static boolean getidChk(String ID){
         boolean result = false;
         db_VO vo = getSession().selectOne("idChk",ID);
@@ -51,7 +57,7 @@ public class db_DAO {
         }
         return result;
 	}
-	
+
 	public static int insInfoMember(db_VO vo){
         int result = getSession().insert("infoIns",vo);
         ss.commit();
@@ -59,16 +65,28 @@ public class db_DAO {
     }
 	
 	// 하영 재훈 마이페이지 정보 불러오기
-		public static db_VO getmyid(String id) {
-	        db_VO vo = getSession().selectOne("getmyid" , id);
-	        return vo;
-	    }
-		
-		public static db_VO getpwChk(String ID){
-			db_VO vo = getSession().selectOne("pwChk", ID );
-		
-			return vo;
-		}
+	public static db_VO getmyid(String id) {
+        db_VO vo = getSession().selectOne("getmyid" , id);
+        return vo;
+    }
+	
+	public static db_VO getpwChk(String ID){
+		db_VO vo = getSession().selectOne("pwChk", ID );
+	
+		return vo;
+	}
+	
+	public static int getDelete(String id) {
+        int result = getSession().delete("infoDel",id);
+        ss.commit();
+        return result;        
+    }
+    
+    public static int getUpdate(db_VO vo) {
+        int result = getSession().update("infoUpdate",vo);
+        ss.commit();
+        return result;        
+    }
 	
 //	public static db_VO getid2(String name, String email, String birth){
 //		List<db_VO> = db_VO 

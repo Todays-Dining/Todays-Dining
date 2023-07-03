@@ -3,7 +3,7 @@ package com.dining.start;
 import java.io.Serializable;
 
 public class db_VO implements Serializable {
-	public String status, id, password, name, email, birthday, password_search_q, password_search_a,
+	private String status, id, password, name, email, birthday, password_search_q, password_search_a,
 			favorite_list, reported_count, deleted_time, review_no;
 	private String diner_no, diner_name, favorited_number, opening_hour, menu, phone_number, 
 			parking_or_not, food_category, region, address;
