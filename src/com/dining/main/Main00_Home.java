@@ -23,11 +23,8 @@ public class Main00_Home extends JPanel {
 	JTextField keyword_tf;
 	CardLayout cardLayout;
 	JPanel main_pg;
-	
-	/**
-	 * Create the panel.
-	 */
-	public Main00_Home(CardLayout cardLayout, JPanel main_pg , Start_frame main) {
+
+	public Main00_Home(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
 		setForeground(new Color(0, 0, 0));
@@ -35,20 +32,21 @@ public class Main00_Home extends JPanel {
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
 
-		RoundedButton_ha0_1 best_bt = new RoundedButton_ha0_1("주간 Best");
-		best_bt.setForeground(new Color(255, 255, 255));
-		best_bt.setBorderPainted(false);
-		best_bt.setBackground(new Color(65, 105, 225));
-		best_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		best_bt.setBounds(169, 391, 204, 61);
-		add(best_bt);
+		// 주간 Best 버튼 삭제 (김상우)
+//		RoundedButton_ha0_1 best_bt = new RoundedButton_ha0_1("주간 Best");
+//		best_bt.setForeground(new Color(255, 255, 255));
+//		best_bt.setBorderPainted(false);
+//		best_bt.setBackground(new Color(65, 105, 225));
+//		best_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+//		best_bt.setBounds(169, 391, 204, 61);
+//		add(best_bt);
 
 		RoundedButton_ha0_1 foodcategory_bt = new RoundedButton_ha0_1("음식 카테고리");
 		foodcategory_bt.setForeground(new Color(255, 255, 255));
 		foodcategory_bt.setBorderPainted(false);
 		foodcategory_bt.setBackground(new Color(65, 105, 225));
 		foodcategory_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		foodcategory_bt.setBounds(169, 462, 204, 61);
+		foodcategory_bt.setBounds(169, 400, 204, 61);
 		add(foodcategory_bt);
 
 		RoundedButton_ha0_1 random_bt = new RoundedButton_ha0_1("오늘 뭐먹죠?");
@@ -56,7 +54,7 @@ public class Main00_Home extends JPanel {
 		random_bt.setBorderPainted(false);
 		random_bt.setBackground(new Color(65, 105, 225));
 		random_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		random_bt.setBounds(169, 533, 204, 61);
+		random_bt.setBounds(169, 480, 204, 61);
 		add(random_bt);
 
 		search_tf = new JTextField();
@@ -157,14 +155,12 @@ public class Main00_Home extends JPanel {
 		});
 
 		// best1화면으로 이동함 main01_best1
-		best_bt.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main01_best1");
-			}
-		});
+//		best_bt.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				cardLayout.show(main_pg, "main01_best1");
+//			}
+//		});
 
 		// 음식카테고리 화면으로 이동한다.
 		foodcategory_bt.addActionListener(new ActionListener() {

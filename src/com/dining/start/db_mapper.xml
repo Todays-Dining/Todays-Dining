@@ -54,7 +54,7 @@
     </insert>
     
     <delete id="infoDel" parameterType="com.dining.start.db_VO">
-        delete from SIGNUP_TABLE where ID = #{ID}
+        delete from SIGNUP_TABLE where ID = #{id}
     </delete>
     
     <update id="infoUpdate" parameterType="com.dining.start.db_VO">
@@ -79,7 +79,7 @@
     
     <!-- 상우 best 식당명, 카테고리 받아오기 -->
     <select id="bestOfAll" resultType="com.dining.start.db_VO">
-   		select * from REVIEW_AVG_VIEW where rownum=1;  
+   		select * from REVIEW_AVG_VIEW where rownum=1
     </select>
     
 </mapper>

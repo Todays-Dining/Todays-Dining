@@ -112,7 +112,9 @@ public class db_DAO {
     
     // 상우 best 식당명, 평점, 카테고리 받아오기
     public static List<db_VO> getbestAll(){
-        List<db_VO> list = getSession().selectList("bestOfAll");
+        List<db_VO> list = null;
+        list = getSession().selectList("bestOfAll");
+        System.out.println("DAO에 list 받아왔음");
 		return list;
     }
 	

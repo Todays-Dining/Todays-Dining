@@ -75,9 +75,13 @@ public class CP_Client extends Thread {
 							// 회원가입 이후에 다시 접속 안됨 (위 메시지 때문에)
 						}
 				    case 31: // best 식당 1위 받아오기
-				    	db_VO vo3 = new db_VO();
-	                    vo3 = p.getVo();
-                    	vo3 = (db_VO) db_DAO.getbestAll();
+//				    	List<VO_2> list = DAO_2.getList();
+//						p.setList(list);
+//						out.writeObject(p);
+//						out.flush();
+//						break;
+				    	List<db_VO> list = db_DAO.getbestAll();
+                    	p.setList(list);
                     	out.writeObject(p);
                     	out.flush();
                     	System.out.println("best 1번 성공");

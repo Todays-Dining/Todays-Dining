@@ -1,50 +1,46 @@
 package com.dining.main;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.TextField;
-import java.awt.Button;
-import java.awt.CardLayout;
-
 import javax.swing.SwingConstants;
 
-import java.awt.Label;
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
 
 public class Main00_Map extends JPanel{
-
-//	public Main00_Map() {
-
-
+	Socket s;
+	ObjectOutputStream out;
+	ObjectInputStream in;
 	CardLayout cardLayout;
 	JPanel main_pg ;
-	
-	/**
-	 * Create the panel.
-	 */
+	Start_frame main;
+
 	public Main00_Map(CardLayout cardLayout, JPanel main_pg) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
-
-		
-		 
+		this.main = main;
+		this.s = main.s;
+		this.out = main.out;
+		this.in = main.in;
+	
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
-//		setVisible(true);
 		setLayout(null);
-		
 		
 		JLabel today = new JLabel("지역 선택");
 		today.setOpaque(true);
@@ -113,7 +109,7 @@ public class Main00_Map extends JPanel{
 		place1_bt.setBounds(57, 389, 101, 96);
 		add(place1_bt);
 		
-
+	
 		JLabel label_lb = new JLabel("");
 		label_lb.setIcon(new ImageIcon(Main00_Map.class.getResource("/image/label.png")));
 		label_lb.setBounds(0, 0, 540, 330);
@@ -178,98 +174,84 @@ public class Main00_Map extends JPanel{
 		place6_bt.setBounds(389, 520, 101, 96);
 		add(place6_bt);
 		
-
 	
-		
+		// 마포구 버튼 눌렀을 때 주간베스트 식당명, 이미지 쏴주기 (김상우)
 		place1_bt.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg,"main00_Home");
+				Protocol p = new Protocol();
+				p.setCmd(31);
+				try {
+					main.out.writeObject(p);
+					main.out.flush();	
+				} catch (Exception e2) {
+					System.out.println("flush 안됨");
+					System.out.println(e2);
+				}
+				System.out.println("cmd 31번으로 변경 완");
 			}
 		});
 		place2_bt.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
 		place3_bt.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
 		place4_bt.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
 		place5_bt.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
 		place6_bt.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
-
-		
+	
 		// main01_best1 로 이동
 		movemenu_1.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main01_best1");
 			}
 		});
-
+	
 		// main02_category_select 로 이동
 		movemenu_2.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main02_category_select");
 			}
 		});
-
+	
 		// main03_random 로 이동
 		movemenu_3.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main03_random");
 			}
 		});
-
+	
 		// mypage01_main 로 이동
 		mypage.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "mypage01_main");
-			}
+				}
 		});
-}
-	
+	}
 }

@@ -51,7 +51,6 @@ import com.dining.mypage.Mypage01_main;
 import com.dining.mypage.Mypage02_mypick;
 
 public class Start_frame extends JFrame implements Runnable {
-
 	JPanel main_pg ;
 	CardLayout cardLayout;
 	int member_num = 1 ;
@@ -277,7 +276,36 @@ public class Start_frame extends JFrame implements Runnable {
                                     new ImageIcon(Login02_member_join.class.getResource("/image/icon_mini.png")));
                         }
 						break;
-					case 31:
+					case 31: // best식당 표시해주기
+						if(p.getList() != null) {
+						vo = p.getVo();
+						String store_name = "";
+						store_name = vo.getDiner_name();
+						System.out.println("가게 이름은" + store_name);
+						String food_category = "";
+						food_category = vo.getFood_category();
+						String path = "";
+						if (food_category == "중식") {
+							path = "/diner_image/Chinese/" + store_name + "_1.png";			
+						} else if (food_category == "카페") {
+							path = "/diner_image/Cafe/" + store_name + "_1.png";			
+						} else if (food_category == "일식") {
+							path = "/diner_image/Japanese/" + store_name + "_1.png";			
+						} else if (food_category == "한식") {
+							path = "/diner_image/Korean/" + store_name + "_1.png";			
+						} else if (food_category == "양식") {
+							path = "/diner_image/Western/" + store_name + "_1.png";			
+						}	
+						try {
+							out.writeObject(p);
+							out.flush();	
+						}catch (Exception e1) {
+							System.out.println("31번 Start frame 오류");
+						}	
+						cardLayout.show(main_pg,"main01_best1");
+						} else {
+							System.out.println("31번 작동 안해 (빈값)");
+						}
 						break;
 					}
 				}
