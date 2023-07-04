@@ -16,17 +16,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.dining.mypage.RoundedButton_ha0_1;
+import com.dining.start.Start_frame;
 
 public class Main00_Home extends JPanel {
 	JTextField search_tf;
 	JTextField keyword_tf;
 	CardLayout cardLayout;
 	JPanel main_pg;
-
+	
 	/**
 	 * Create the panel.
 	 */
-	public Main00_Home(CardLayout cardLayout, JPanel main_pg) {
+	public Main00_Home(CardLayout cardLayout, JPanel main_pg , Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
 		setForeground(new Color(0, 0, 0));

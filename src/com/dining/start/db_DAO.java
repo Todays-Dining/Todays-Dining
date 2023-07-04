@@ -109,6 +109,12 @@ public class db_DAO {
         List<db_VO> list = getSession().selectList("Search", search);
            return list;
     }
+    
+    // 상우 best 식당명, 평점, 카테고리 받아오기
+    public static List<db_VO> getbestAll(){
+        List<db_VO> list = getSession().selectList("bestOfAll");
+		return list;
+    }
 	
 //	public static db_VO getid2(String name, String email, String birth){
 //		List<db_VO> = db_VO 

@@ -77,4 +77,9 @@
         or MENU like '%'||#{search}||'%' OR food_category like '%'||#{search}||'%'
     </select>
     
+    <!-- 상우 best 식당명, 카테고리 받아오기 -->
+    <select id="bestOfAll" resultType="com.dining.start.db_VO">
+   		select * from REVIEW_AVG_VIEW where rownum=1;  
+    </select>
+    
 </mapper>

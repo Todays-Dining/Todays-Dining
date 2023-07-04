@@ -61,7 +61,7 @@ public class Start_frame extends JFrame implements Runnable {
 	public ObjectInputStream in;
 	Login01_page login01_page;
 	Login02_member_join login02_member_join;
-	
+	Main00_Home main00_Home ;
 	public Start_frame() {
 		UIManager ui = new UIManager(); // 전체적인 UI시스템 이미지, 색상, 폰트 변경
 	    ui.put("Button.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // 버튼의 폰트 변경
@@ -90,11 +90,11 @@ public class Start_frame extends JFrame implements Runnable {
 		Login04_Find_pw login04_Find_pw = new Login04_Find_pw(cardLayout,main_pg);
 		// 메인 맵 화면
 		Main00_Map main00_Map = new Main00_Map(cardLayout,main_pg);
-		Main00_Home main00_Home = new Main00_Home(cardLayout,main_pg);
+		main00_Home = new Main00_Home(cardLayout,main_pg,this);
 		// 검색시 이동할 화면
 		Main00_store_search main00_store_search = new Main00_store_search(cardLayout, main_pg);
 		// 메인(주간best1등~5등)
-		Main01_best1 main01_best1 = new Main01_best1(cardLayout,main_pg);
+		Main01_best1 main01_best1 = new Main01_best1(cardLayout,main_pg,this);
 		Main01_best2 main01_best2 = new Main01_best2(cardLayout,main_pg);
 		Main01_best3 main01_best3 = new Main01_best3(cardLayout,main_pg);
 		Main01_best4 main01_best4 = new Main01_best4(cardLayout,main_pg);
@@ -257,13 +257,33 @@ public class Start_frame extends JFrame implements Runnable {
 							 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 						}
 						break;
-					case 2:
+					case 2: // 회원가입
+                        if(p.getResult()>0) {
+                            System.out.println("mainframe도착");
+                            System.out.println(p.getResult());
+                            // 메인으로 돌아오고 나서 성공이 뜸
+                            JOptionPane.showMessageDialog(login02_member_join, "회원가입성공.", null, JOptionPane.INFORMATION_MESSAGE,
+                                    new ImageIcon(Login02_member_join.class.getResource("/image/icon_mini.png")));
+                            cardLayout.show(main_pg,"login01_page");
+//                            try {
+//                            	connected();
+//							} catch (Exception e) {
+//								System.out.println("재연결 실패");
+//							}
+                            // ★ 성공하고 나면 연결이 끊어져 있음. 재연결 시도
+//                            JOptionPane.showMessageDialog(login02_member_join, "회원가입 성공");
+                        }else {
+                            JOptionPane.showMessageDialog(login02_member_join, "회원가입실패", null, JOptionPane.INFORMATION_MESSAGE,
+                                    new ImageIcon(Login02_member_join.class.getResource("/image/icon_mini.png")));
+                        }
+						break;
+					case 31:
 						break;
 					}
 				}
 			} catch (Exception e) {
-
-			}			
+				
+			} 
 		}// while문 끝
 		closed();		
 	}
@@ -293,6 +313,7 @@ public class Start_frame extends JFrame implements Runnable {
 						new Start_frame();
 					} catch (Exception e) {
 						System.out.println("시작페이지오류");
+						System.out.println(e);
 					}
 				}
 			});

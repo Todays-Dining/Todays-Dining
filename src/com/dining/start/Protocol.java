@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Protocol implements Serializable{
-	
 	// cmd 0번 종료 , 1번 로그인
 	public int cmd ;
 	public int result;
