@@ -7,21 +7,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.IOException;
 import java.net.Socket;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
-import com.dining.start.db_VO;
-import com.dining.start.Admin_frame;
 import com.dining.start.Protocol;
 import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
 
 
 public class Login01_page extends JPanel {
@@ -31,6 +31,7 @@ public class Login01_page extends JPanel {
 	
 	public JTextField id_textField;
 	public JTextField pw_textField;
+	private JPasswordField passwordField;
 	CardLayout cardLayout;
 	JPanel main_pg;
 	Start_frame main;
@@ -39,7 +40,6 @@ public class Login01_page extends JPanel {
 	public boolean idChk = true;
 	String msg ;
 	public int setcmd = 0;
-	
 	
 	public int getA() {
 		return a;
@@ -93,12 +93,12 @@ public class Login01_page extends JPanel {
 			}
 		});
 
-		pw_textField = new JTextField();
-		pw_textField.setColumns(10);
-		pw_textField.setBounds(144, 434, 224, 28);
-		add(pw_textField);
+		passwordField = new JPasswordField();
+		passwordField.setColumns(10);
+		passwordField.setBounds(144, 434, 224, 28);
+		add(passwordField);
 
-		pw_textField.addKeyListener(new KeyAdapter() {
+		passwordField.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				JTextField src = (JTextField) e.getSource();
@@ -106,7 +106,7 @@ public class Login01_page extends JPanel {
 					e.consume();
 			}
 		});
-		
+
 		RoundedButton_kjh_1 login_Button = new RoundedButton_kjh_1("Login");
 		login_Button.setForeground(new Color(255, 240, 245));
 		login_Button.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 23));
@@ -123,11 +123,11 @@ public class Login01_page extends JPanel {
 					db_VO vo = new db_VO();
 					Protocol p = new Protocol();
 					vo.setId(id_textField.getText());
-					vo.setPassword(pw_textField.getText());
+					vo.setPassword(passwordField.getText());
 					p.setCmd(1);
 					p.setVo(vo);
 					main.out.writeObject(p);
-					System.out.println("작동");
+//					System.out.println("작동");
 					main.out.flush();
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -182,28 +182,34 @@ public class Login01_page extends JPanel {
 		pw_label.setBounds(59, 434, 63, 28);
 		add(pw_label);
 
-		// 회원가입 버튼 누를시 회원가입창인 login02_member_join 로 이동
-		join_bt.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg, "login02_member_join");
-			}
-		});
-
 		// 아이디 찾기 버튼 클릭시 아이디 찾는 페이지로 이동
 		find_id.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(main_pg, "login03_Find_id");
+				// 이동할 때 입력된 내용 초기화. ★ 아래 코드 중복 제거 가능한가??
+				id_textField.setText("");
+				passwordField.setText("");
 			}
 		});
-
+		
 		// 비밀번호 찾기 버튼 클릭시 비밀번호 찾는 페이지로 이동
 		find_pw.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.show(main_pg, "login04_Find_pw");
+				id_textField.setText("");
+				passwordField.setText("");
+			}
+		});
+		
+		// 회원가입 버튼 누를시 회원가입창인 login02_member_join 로 이동
+		join_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(main_pg, "login02_member_join");
+				id_textField.setText("");
+				passwordField.setText("");
 			}
 		});
 	}

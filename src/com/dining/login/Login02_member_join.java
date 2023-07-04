@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -17,10 +20,16 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import com.dining.start.Start_frame;
 import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
 
 public class Login02_member_join extends JPanel {
+	Socket s;
+	ObjectOutputStream out;
+	ObjectInputStream in;
+	Start_frame main;
+	
 	JTextField id_textField;
 	JTextField email_textField;
 	JTextField birth_textField;
@@ -36,9 +45,14 @@ public class Login02_member_join extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Login02_member_join(CardLayout cardLayout, JPanel main_pg) {
+	public Login02_member_join(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
+		this.main = main;
+		this.s = main.s;
+		this.out = main.out;
+		this.in = main.in;
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -238,20 +252,28 @@ public class Login02_member_join extends JPanel {
 						// ★ 중복여부 확인하는 쿼리(성훈) 
 						// 중복일 경우
 						if (db_DAO.getidChk(id_textField.getText()) == false) {
-							JOptionPane.showMessageDialog(null, "ID가 중복됩니다.", "Message", JOptionPane.ERROR_MESSAGE);
+//							JOptionPane.showMessageDialog(null, "ID가 중복됩니다.", "Message", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(getParent(), "ID가 중복됩니다.", null, JOptionPane.INFORMATION_MESSAGE,
+			           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 							duplicate_or_not = 0;
 						} else {
 							// 중복이 아닐 경우
-							JOptionPane.showMessageDialog(null, "사용 가능한 ID입니다.", "Message", JOptionPane.INFORMATION_MESSAGE);
+//							JOptionPane.showMessageDialog(null, "사용 가능한 ID입니다.", "Message", JOptionPane.INFORMATION_MESSAGE);
+							JOptionPane.showMessageDialog(getParent(), "사용 가능한 ID입니다.", null, JOptionPane.INFORMATION_MESSAGE,
+			           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 							// ★ 회원가입 통과했을 때 수정 못하게 함!! (상화 헌정 코드)
 							id_textField.setEditable(false);
 							duplicate_or_not = 1;					
 						}
 					}else {
-						JOptionPane.showMessageDialog(null, "ID를 제대로 입력하세요!(특수문자, 한글 사용 불가)", "Message", JOptionPane.ERROR_MESSAGE);
+//						JOptionPane.showMessageDialog(null, "ID를 제대로 입력하세요!(특수문자, 한글 사용 불가)", "Message", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getParent(), "ID를 제대로 입력하세요!(특수문자, 한글 사용 불가)", null, JOptionPane.INFORMATION_MESSAGE,
+		           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 					}
 				} else {
-					JOptionPane.showMessageDialog(null, "ID를 제대로 입력하세요!(특수문자, 한글 사용 불가)", "Message", JOptionPane.ERROR_MESSAGE);
+//					JOptionPane.showMessageDialog(null, "ID를 제대로 입력하세요!(특수문자, 한글 사용 불가)", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(getParent(), "ID를 제대로 입력하세요!(특수문자, 한글 사용 불가)", null, JOptionPane.INFORMATION_MESSAGE,
+	           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 				}
 			}
 		});
@@ -269,7 +291,9 @@ public class Login02_member_join extends JPanel {
 				if (id_textField.getText().length() == 0 || passwordField.getText().length() == 0 || passwordField_1.getText().length() == 0 ||
 				name_textField.getText().length() == 0 || birth_textField.getText().length() == 0 || email_textField.getText().length() == 0 ||
 				qa_textField.getText().length() == 0) {
-					JOptionPane.showMessageDialog(null, "정보를 모두 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+//					JOptionPane.showMessageDialog(null, "정보를 모두 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(getParent(), "정보를 모두 입력하세요!", null, JOptionPane.INFORMATION_MESSAGE,
+	           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 				// 다 입력이 됐을 경우에
 				} else {
 					// ★ 찾는중
@@ -297,8 +321,11 @@ public class Login02_member_join extends JPanel {
 					// 생년월에 숫자가 아닌 다른 문자가 포함된 경우 다이얼로그
 					String birth = birth_textField.getText();
 					Boolean birth_test = Pattern.matches("^[0-9]*$", birth);
-					if (birth.length() != 8) {
-						JOptionPane.showMessageDialog(null, "생년월일은 숫자 6자리로 입력해 주세요!", "Message", JOptionPane.ERROR_MESSAGE);
+					// 생년월일 길이 체크
+					if (birth.length() != 6) {
+//						JOptionPane.showMessageDialog(null, "생년월일은 숫자 6자리로 입력해 주세요!", "Message", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getParent(), "생년월일은 숫자 6자리로 입력해 주세요!", null, JOptionPane.INFORMATION_MESSAGE,
+		           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 					}
 					// 이메일에 특수문자, @이 들어가고, 영문, 숫자로만 이루어져있는지 확인
 					String email;
@@ -307,13 +334,19 @@ public class Login02_member_join extends JPanel {
 					int email_test2 = 0;
 					email = email_textField.getText();
 					if (email.contains("@") == false) {
-						JOptionPane.showMessageDialog(null, "이메일 주소를 제대로 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+						// 제대로 입력해라 두번 뜬다!!
+						
+//						JOptionPane.showMessageDialog(null, "이메일 주소를 제대로 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getParent(), "이메일 주소를 제대로 입력하세요!", null, JOptionPane.INFORMATION_MESSAGE,
+		           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 					} else{
 						email_test1 = 1;
 					}
 					if(email.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*")) {
 						//한글이 포함된 문자열
-						JOptionPane.showMessageDialog(null, "이메일 주소를 제대로 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+//						JOptionPane.showMessageDialog(null, "이메일 주소를 제대로 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getParent(), "이메일 주소를 제대로 입력하세요!", null, JOptionPane.INFORMATION_MESSAGE,
+		           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 					} else {
 						email_test2 = 1;
 					}
@@ -327,14 +360,36 @@ public class Login02_member_join extends JPanel {
 					
 					if (id_test == true && pass_test == true && name_test == true && birth_test == true
 							&& email_duplicate_or_not == 1 && pass_answer_test == true && duplicate_or_not == 1) {
-						JOptionPane.showMessageDialog(null, "회원 가입 성공!", "Message", JOptionPane.INFORMATION_MESSAGE);
+//						JOptionPane.showMessageDialog(null, "회원 가입 성공!", "Message", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(getParent(), "회원 가입 성공!", null, JOptionPane.INFORMATION_MESSAGE,
+		           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+						setTextBlank();
+						cardLayout.show(main_pg, "login01_page");
 						// ★ INSERT 쿼리
 					} else if (duplicate_or_not == 0) {
-						JOptionPane.showMessageDialog(null, "ID 중복확인을 해주세요!", "Message", JOptionPane.ERROR_MESSAGE);
+//						JOptionPane.showMessageDialog(null, "ID 중복확인을 해주세요!", "Message", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getParent(), "ID 중복확인을 해주세요!", null, JOptionPane.INFORMATION_MESSAGE,
+		           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 					}else {
-						JOptionPane.showMessageDialog(null, "정보를 제대로 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+//						JOptionPane.showMessageDialog(null, "정보를 제대로 입력하세요!", "Message", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(getParent(), "정보를 제대로 입력하세요!", null, JOptionPane.INFORMATION_MESSAGE,
+		           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 					}
 				}
+				
+				
+				// 버튼 코드
+//				UIManager ui = new UIManager(); // 전체적인 UI시스템 이미지, 색상, 폰트 변경
+//		         ui.put("Button.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // 버튼의 폰트 변경
+//		         ui.put("Button.background", new Color(65, 105, 225)); // 버튼의 색상변경
+//		         ui.put("Button.focus", new Color(65, 105, 225)); // 버튼의 글자 테두리의 색상 변경
+//		         ui.put("Label.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // o
+//		         ui.put("OptionPane.background",new Color(255, 240, 245)); // 다이얼로그의 배경색 변경
+//		         ui.put("Panel.background",new Color(255, 240, 245)); // 다이얼로그의 패널부분 배경색 변경
+//
+//		JOptionPane.showMessageDialog(getParent(), "정보를 입력해주세요.", null, JOptionPane.INFORMATION_MESSAGE,
+				// new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+				
 				
 				  String status = "1";
 	                String id = id_textField.getText().trim();
@@ -361,27 +416,31 @@ public class Login02_member_join extends JPanel {
 	                vo.setReported_count(reported_count);
 	                int res = db_DAO.insInfoMember(vo);
 	                if(res>0) {
-	                    System.out.println("회원가입 성공!");
+//	                    System.out.println("회원가입 성공!");
 	                }
 			}
 
 		});
 
+		// 취소 버튼
 		cancle_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				id_textField.setText("");
-				passwordField.setText("");
-				passwordField_1.setText("");
-				name_textField.setText("");
-				birth_textField.setText("");
-				email_textField.setText("");
-				qa_textField.setText("");
-				id_textField.setEditable(true);
-				email_textField.setEditable(true);
-
+				setTextBlank();
 				cardLayout.show(main_pg, "login01_page");
 			}
 		});
+	}
+	
+	public void setTextBlank() {
+		id_textField.setText("");
+		passwordField.setText("");
+		passwordField_1.setText("");
+		name_textField.setText("");
+		birth_textField.setText("");
+		email_textField.setText("");
+		qa_textField.setText("");
+		id_textField.setEditable(true);
+		email_textField.setEditable(true);
 	}
 }

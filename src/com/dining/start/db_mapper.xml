@@ -17,32 +17,24 @@
 	    <insert id="" parameterType=""></insert>
 	    <delete id="" parameterType=""></delete>
 	 -->
-	<!-- <select id="custList" resultType="mybatis.Sam.VO">
-	    select * from customer order by custid
-	</select>
-	
-	<select id="custOne" parameterType="String" resultType="mybatis.Sam.VO">
-		select * from customer where custid = #{custid} 
-	</select>
-	
-	<insert id="custIns" parameterType="mybatis.Sam.VO">
-		insert into customer(custid, name, address, phone)
-		values(customer_seq.nextval,#{name},#{address},#{phone})
-	</insert>
-	
-	<delete id="custDel" parameterType="mybatis.Sam.VO">
-		delete from customer where custid = #{custid}
-	</delete>
-	
-	<update id="custUpdate" parameterType="mybatis.Sam.VO">
-		update customer set name=#{name}, address=#{address}, phone=#{phone}
-		where custid = #{custid}
-	</update> -->
 	
 	<!-- <select id="findyourid" parameterType="String" resultType="com.dining.start.db_VO">
 	SELECT ID FROM SIGNUP_TABLE WHERE NAME = #{name} AND EMAIL = #{email} AND BIRTHDAY = #{birthday};
 	select ID from SIGNUP_TABLE where NAME = #{name} and EMAIL = #{email} and BIRTHDAY = #{birthday}
     </select> -->
+    
+    
+   	<!-- 좌현 ID찾기 -> 아이디 찾기에서 이름, 생년월일, 이메일이 일치하면 그에 맞는 아이디를 db에서 호출  -->
+	<select id="findid" resultType="com.dining.start.db_VO"> select ID from SIGNUP_TABLE where name = #{name} and email = #{email} and to_char(birthday,'yymmdd') = #{birthday} </select>
+	<select id="findpw" resultType="com.dining.start.db_VO"> select PASSWORD from SIGNUP_TABLE where id = #{id} and PASSWORD_SEARCH_Q = #{password_search_q} and PASSWORD_SEARCH_A = #{password_search_a} </select>
+	<!--  <select id="selectId" parameterType="java.util.HashMap" resultType="String">
+		select
+			id
+		from signup_page
+		where name = #{name}
+		and email = #{email}
+		and birthday = cast(#{birthday} as date)
+	</select>  -->
     
     <select id="login" resultType="com.dining.start.db_VO">
 	    select * from SIGNUP_TABLE where id = #{id} and password = #{password} 
@@ -77,6 +69,12 @@
 
     <select id="getmyid" parameterType="String" resultType="com.dining.start.db_VO">
         select * from SIGNUP_TABLE where ID = #{id}
+    </select>
+    
+    <!-- 재훈 Serach -->
+     <select id="Search"  resultType="com.dining.start.db_VO">
+        select * from DINER_TABLE where DINER_NAME like '%'||#{search}||'%'
+        or MENU like '%'||#{search}||'%' OR food_category like '%'||#{search}||'%'
     </select>
     
 </mapper>

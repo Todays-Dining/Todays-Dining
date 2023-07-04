@@ -76,9 +76,13 @@ public class Login03_Find_id extends JPanel {
                 vo = db_DAO.findYourId(vo);
 //				if(name.equals(vo.getName())&& email.equals(vo.getEmail())&&birthday.equals(vo.getBirthday())) {
                 try {
-                	JOptionPane.showMessageDialog(null, "당신의 ID는 " +  vo.getId() + "입니다.", "Message", JOptionPane.ERROR_MESSAGE);
+//                	JOptionPane.showMessageDialog(null, "당신의 ID는 " +  vo.getId() + "입니다.", "Message", JOptionPane.ERROR_MESSAGE);
+            		JOptionPane.showMessageDialog(getParent(), name + " 님의 ID는 "  + vo.getId() + "입니다.", null, JOptionPane.INFORMATION_MESSAGE,
+    				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(null, "입력된 정보가 일치하지 않습니다.", "Message", JOptionPane.ERROR_MESSAGE);
+//					JOptionPane.showMessageDialog(null, "입력된 정보가 일치하지 않습니다.", "Message", JOptionPane.ERROR_MESSAGE);
+            		JOptionPane.showMessageDialog(getParent(), "입력된 정보가 일치하지 않습니다.", null, JOptionPane.INFORMATION_MESSAGE,
+    				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 				}
 //                if (vo.getId() == null) {
 //					
@@ -152,21 +156,23 @@ public class Login03_Find_id extends JPanel {
 
 		// 취소 버튼을 누르면 login01_page 로 돌아감
 		cancle_bt.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "login01_page");
+				id_textField.setText("");
+				birth_textField.setText("");
+				email_textField.setText("");
 			}
 		});
 
 		// 비밀번호 찾기 버튼을 누르면 login04_Find_pw 페이지로 이동한다
 		find_pw.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "login04_Find_pw");
+				id_textField.setText("");
+				birth_textField.setText("");
+				email_textField.setText("");
 			}
 		});
 	}

@@ -1,16 +1,21 @@
 package com.dining.start;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
 
 import com.dining.login.Login01_page;
 import com.dining.login.Login02_member_join;
@@ -54,9 +59,18 @@ public class Start_frame extends JFrame implements Runnable {
 	public Socket s;
 	public ObjectOutputStream out;
 	public ObjectInputStream in;
-	public Login01_page login01_page = new Login01_page(cardLayout,main_pg , this);	
+	Login01_page login01_page;
+	Login02_member_join login02_member_join;
 	
 	public Start_frame() {
+		UIManager ui = new UIManager(); // 전체적인 UI시스템 이미지, 색상, 폰트 변경
+	    ui.put("Button.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // 버튼의 폰트 변경
+	    ui.put("Button.background", new Color(65, 105, 225)); // 버튼의 색상변경
+	    ui.put("Button.focus", new Color(65, 105, 225)); // 버튼의 글자 테두리의 색상 변경
+	    ui.put("Label.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // o
+	    ui.put("OptionPane.background",new Color(255, 240, 245)); // 다이얼로그의 배경색 변경
+	    ui.put("Panel.background",new Color(255, 240, 245)); // 다이얼로그의 패널부분 배경색 변경
+	    
 		// 연결하기
 		connected();
 		main_pg = new JPanel(); 
@@ -65,11 +79,13 @@ public class Start_frame extends JFrame implements Runnable {
 		vo = new db_VO();
 		// 각종패널들 가져오기
 		// 마이페이지 
+		
 		Mypage01_main mypage01_main = new Mypage01_main(cardLayout,main_pg);
 		Mypage01_changePW mypage01_changePW = new Mypage01_changePW(cardLayout,main_pg);
 		Mypage02_mypick mypage02_mypick = new Mypage02_mypick(cardLayout,main_pg);
 		// 로그인 화면단
-		Login02_member_join login02_member_join = new Login02_member_join(cardLayout,main_pg);
+		Login01_page login01_page = new Login01_page(cardLayout,main_pg ,this);	
+		Login02_member_join login02_member_join = new Login02_member_join(cardLayout,main_pg,this);
 		Login03_Find_id login03_Find_id = new Login03_Find_id(cardLayout,main_pg);
 		Login04_Find_pw login04_Find_pw = new Login04_Find_pw(cardLayout,main_pg);
 		// 메인 맵 화면
@@ -105,8 +121,6 @@ public class Start_frame extends JFrame implements Runnable {
 		Main04_store1_main main04_store1_main = new Main04_store1_main(cardLayout,main_pg);
 		Main04_store2_map main04_store2_map = new Main04_store2_map(cardLayout,main_pg);
 		Main04_store3_review main04_store3_review = new Main04_store3_review(cardLayout,main_pg);
-		
-		
 		
 		// 로그인
 		main_pg.add("login01_page",login01_page);
@@ -157,28 +171,27 @@ public class Start_frame extends JFrame implements Runnable {
 	
 		setSize(555, 1000);
 			
-			
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 			
 		setVisible(true);
 
-		
-		
 		// ★   로그인한 ID 정보를 mypage에 띄워주는 코드
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				while (true) {
+					// mypage의 모든 정보가 공란인 동안은 계속해서 getText로 값을 넣어준다. 
 					while (mypage01_main.id_tf.getText().length() == 0 && mypage01_main.pw_tf.getText().length() == 0
 							&& mypage01_main.name_tf.getText().length() == 0 && mypage01_main.birth_tf.getText().length() == 0
 							&& mypage01_main.email_tf.getText().length() == 0 && mypage01_main.pwanser_tf.getText().length() == 0
-							) 
+							)
 					try {
 						String id_show = vo.getId();
 						String pw_show = vo.getPassword();
 						String name_show = vo.getName();
 						String birth_show = vo.getBirthday();
+						birth_show = birth_show.substring(0, birth_show.length()-9);
 						String email_show = vo.getEmail();
 						String panswer_show = vo.getPassword_search_a();
 						Thread.sleep(500);
@@ -193,7 +206,7 @@ public class Start_frame extends JFrame implements Runnable {
 					}
 				}
 			}
-		}, "rank").start();	
+		}, "mypage").start();	
 		
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -239,7 +252,9 @@ public class Start_frame extends JFrame implements Runnable {
 						if(p.getResult() == 1) {
 							cardLayout.show(main_pg,"main00_Home");
 						}else {
-							System.out.println("로그인실패");
+//							System.out.println("로그인실패");
+							JOptionPane.showMessageDialog(getParent(), "ID 및 패스워드를 확인해주세요.", null, JOptionPane.INFORMATION_MESSAGE,
+							 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 						}
 						break;
 					case 2:

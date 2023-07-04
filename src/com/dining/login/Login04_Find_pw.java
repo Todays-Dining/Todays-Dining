@@ -2,26 +2,28 @@ package com.dining.login;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import com.dining.start.db_DAO;
+import com.dining.start.db_VO;
 
 public class Login04_Find_pw extends JPanel {
 	JTextField id_textField;
 	JTextField email_textField;
 	CardLayout cardLayout;
 	JPanel main_pg;
+	JComboBox comboBox;
+	JTextField add_textField;
 
-	/**
-	 * Create the panel.
-	 */
 	public Login04_Find_pw(CardLayout cardLayout, JPanel main_pg) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
@@ -61,11 +63,34 @@ public class Login04_Find_pw extends JPanel {
 		add(find_pw);
 		// 작업해야할 버튼(코딩하기전에 작업자 자기 이름 작성하기) 이 기능을 작업하는 내이름은:
 		find_pw.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
+				//if(!id_textField.getText().isBlank() && !email_textField.getText().isBlank()) {
+				//Map<String,String> param = new HashMap<>();
+				//param.put("name",id_textField.getText());
+				//param.put("email",email_textField.getText());
+				String id = id_textField.getText().trim();
+				String cb = comboBox.getSelectedItem().toString().trim();
+				String res = add_textField.getText().trim();
+				
+				db_VO vo = new db_VO();
+				vo.setId(id);
+				vo.setPassword_search_q(cb);
+				vo.setPassword_search_a(res);
+				//vo.setBirthday(birthday);
+				System.out.println(cb);
+				System.out.println(res);
+                vo = db_DAO.findpw(vo);
+                try {
+//                	JOptionPane.showMessageDialog(null, "당신의 PASSWORD는 " +  vo.getPassword() + "입니다.", "Message", JOptionPane.ERROR_MESSAGE);
+                	JOptionPane.showMessageDialog(getParent(), id + " 님의 PASSWORD는 " +  vo.getPassword() + "입니다.", null, JOptionPane.INFORMATION_MESSAGE,
+           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+				} catch (Exception e2) {
+//					JOptionPane.showMessageDialog(null, "입력된 정보가 일치하지 않습니다.", "Message", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(getParent(), "입력된 정보가 일치하지 않습니다.", null, JOptionPane.INFORMATION_MESSAGE,
+	           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+				}
+				
 			}
 		});
 
@@ -107,22 +132,22 @@ public class Login04_Find_pw extends JPanel {
 		email_label.setBounds(68, 441, 118, 28);
 		add(email_label);
 
-		email_textField = new JTextField();
-		email_textField.setColumns(10);
-		email_textField.setBounds(217, 440, 224, 28);
-		add(email_textField);
 
-		String[] items = { "질문1", "질문2", "질문3", "질문4", "질문5" };
-		JComboBox comboBox = new JComboBox(items);
+		add_textField = new JTextField();
+		add_textField.setColumns(10);
+		add_textField.setBounds(217, 440, 224, 28);
+		add(add_textField);
+		String[] items = { "질문 선택해주세요.", "1. 나의 최애 음식은?", "2. 꼭 가보고 싶은 여행 장소는?", "3. 가장 좋아하는 과일은?", "4. 내가 태어난 곳은?", "5. 부모님의 고향은?" };
+		comboBox = new JComboBox(items);
 		comboBox.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		comboBox.setBounds(217, 388, 224, 28);
 		add(comboBox);
 
 		cancle_bt.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				id_textField.setText("");
+				add_textField.setText("");
 				cardLayout.show(main_pg, "login01_page");
 			}
 		});

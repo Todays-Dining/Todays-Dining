@@ -16,8 +16,9 @@ public class db_DAO {
 			ss = db_Service.getFactory().openSession();
 		}
 		return ss;
-	} // 아이디 불러오는 메서드 getID
-
+	} 
+	
+	// 아이디 불러오는 메서드 getID
 	public static db_VO getid(db_VO vo) {
 		vo = getSession().selectOne("getID",vo);
 		return vo; 
@@ -86,6 +87,27 @@ public class db_DAO {
         int result = getSession().update("infoUpdate",vo);
         ss.commit();
         return result;        
+    }
+    
+    // 좌현 id찾기
+	public static db_VO findid(db_VO vo) {
+		System.out.println(vo.getName());
+		System.out.println(vo.getEmail());
+		System.out.println(vo.getBirthday());
+        vo = getSession().selectOne("findid",vo);
+        return vo; 
+    }
+	
+	// 좌현 pw찾기
+	public static db_VO findpw(db_VO vo) {
+		vo = getSession().selectOne("findpw",vo);
+		return vo;
+	}
+    
+    // 재훈 Search 
+    public static List<db_VO> getSearch(String search){
+        List<db_VO> list = getSession().selectList("Search", search);
+           return list;
     }
 	
 //	public static db_VO getid2(String name, String email, String birth){

@@ -46,10 +46,10 @@ public class CP_Client extends Thread {
 						vo = db_DAO.login(vo);
 						p.setVo(vo);
 						if(vo != null) {
-							System.out.println("로그인 성공");
+//							System.out.println("로그인 성공");
 							p.setResult(1);
 						}else {
-							System.out.println("로그인 실패");
+//							System.out.println("로그인 실패");
 							p.setResult(0);
 						}
 						out.writeObject(p);
