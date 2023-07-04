@@ -4,8 +4,9 @@ package com.dining.main;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,30 +16,28 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
+import com.dining.start.Protocol;
 
 public class Main01_best1 extends JPanel{
 	CardLayout cardLayout;
 	JPanel main_pg ;
 
-	/**
-	 * Create the application.
-	 */
-	public Main01_best1(CardLayout cardLayout, JPanel main_pg) {
+	public Main01_best1(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;	
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
-			
 		
+		// 2위로 가는 버튼
 		JButton after_bt = new JButton("");
 		after_bt.setIcon(new ImageIcon(Main01_best1.class.getResource("/image/afterbutton.png")));
 		after_bt.setBounds(471, 415, 69, 69);
 		add(after_bt);
-		
 		
 		JLabel today = new JLabel("주간 BEST");
 		today.setOpaque(true);
@@ -48,8 +47,9 @@ public class Main01_best1 extends JPanel{
 		today.setBackground(new Color(255, 240, 245));
 		today.setBounds(77, 236, 381, 69);
 		add(today);
-		
-		JLabel store_food_image = new JLabel("가게이미지");
+
+		// 가게이미지 추가 (김상우)
+		JLabel store_food_image = new JLabel("");
 		store_food_image.setOpaque(true);
 		store_food_image.setHorizontalAlignment(SwingConstants.CENTER);
 		store_food_image.setForeground(new Color(255, 255, 255));
@@ -58,7 +58,23 @@ public class Main01_best1 extends JPanel{
 		store_food_image.setBounds(54, 315, 429, 292);
 		add(store_food_image);
 		
+		// 카테고리별 분류
+//		String food_cate = "";
+//		if (food_cate == "카페") {
+//			
+//		}
+//		db_VO vo = new db_VO();
+//		vo = p.getVO();
+//		diner_name =
+//		food_category
+//		star
 		
+		String store_name = "";
+		store_name = "고요베이크샵";
+		String path = "";
+		path = "/diner_image/Cafe/" + store_name + "_1.png";
+		store_food_image.setIcon(new ImageIcon(Main01_best1.class.getResource(path)));
+
 			JLabel sidetool = new JLabel("");
 			sidetool.setOpaque(true);
 			sidetool.setBackground(new Color(255, 240, 245));
@@ -139,70 +155,56 @@ public class Main01_best1 extends JPanel{
 			
 			// 다음 화면으로 이동  main01_best2
 			after_bt.addActionListener(new ActionListener() {
-				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					cardLayout.show(main_pg,"main01_best2");
 				}
 			});
 			
 			// 가게이름 버튼을 누르면 해당 가게로 이동하게된다. main04_store1_main 
 			store_bt.addActionListener(new ActionListener() {
-				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					cardLayout.show(main_pg,"main04_store1_main");
 				}
 			});
 			
 			// Main00_Home으로 돌아간다
 			homeButton.addActionListener(new ActionListener() {
-				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					cardLayout.show(main_pg,"main00_Home");
 				}
 			});
 			
 			// main01_best1 로 이동
 			movemenu_1.addActionListener(new ActionListener() {
-
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					cardLayout.show(main_pg, "main01_best1");
 				}
 			});
 
 			// main02_category_select 로 이동
 			movemenu_2.addActionListener(new ActionListener() {
-
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					cardLayout.show(main_pg, "main02_category_select");
 				}
 			});
 
 			// main03_random 로 이동
 			movemenu_3.addActionListener(new ActionListener() {
-
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					cardLayout.show(main_pg, "main03_random");
 				}
 			});
 
 			// mypage01_main 로 이동
 			mypage.addActionListener(new ActionListener() {
-
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					// TODO Auto-generated method stub
 					cardLayout.show(main_pg, "mypage01_main");
 				}
 			});

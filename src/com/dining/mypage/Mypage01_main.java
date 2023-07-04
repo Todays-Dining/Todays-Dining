@@ -3,18 +3,27 @@ package com.dining.mypage;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JPanel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.dining.main.Main00_Home;
 import com.dining.main.Main01_best1;
 import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
+<<<<<<< HEAD
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -24,15 +33,17 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+=======
+>>>>>>> refs/remotes/origin/ksw7
 
 public class Mypage01_main extends JPanel {
-	JTextField textField;
-	 JTextField id_tf;
-	 JTextField pwanser_tf;
-	 JTextField email_tf;
-	 JTextField birth_tf;
-	 JTextField name_tf;
-	 JTextField pw_tf;
+	public JTextField textField;
+	 public JTextField id_tf;
+	 public JTextField pwanser_tf;
+	 public JTextField email_tf;
+	 public JTextField birth_tf;
+	 public JTextField name_tf;
+	 public JTextField pw_tf;
 	CardLayout cardLayout;
 	JPanel main_pg;
 
@@ -195,8 +206,7 @@ public class Mypage01_main extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		pw_comboBox.setModel(new DefaultComboBoxModel(
-				new String[] { "비밀번호를 찾을 때 사용할 질문을 선택하세요.", "1번 질문", "2번 질문", "3번 질문", "4번 질문" }));
+		pw_comboBox.setModel(new DefaultComboBoxModel(new String[] { "비밀번호를 찾을 때 사용할 질문을 선택하세요.", "1번 질문", "2번 질문", "3번 질문", "4번 질문" }));
 		pw_comboBox.setBounds(196, 620, 250, 35);
 		pw_comboBox.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 13));
 
@@ -221,7 +231,7 @@ public class Mypage01_main extends JPanel {
 		fix_bt.setBorderPainted(false);
 		fix_bt.setBackground(new Color(65, 105, 225));
 		fix_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		fix_bt.setBounds(92, 808, 90, 50);
+		fix_bt.setBounds(225, 776, 90, 50);
 		add(fix_bt);
 
 		RoundedButton_ha0_2 mem_del_bt = new RoundedButton_ha0_2("회원탈퇴");
@@ -229,7 +239,7 @@ public class Mypage01_main extends JPanel {
 		mem_del_bt.setForeground(new Color(255, 255, 255));
 
 		mem_del_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		mem_del_bt.setBounds(356, 808, 90, 50);
+		mem_del_bt.setBounds(225, 859, 90, 50);
 		add(mem_del_bt);
 
 		RoundedButton_ha0_1 pw_change_bt = new RoundedButton_ha0_1();
@@ -238,8 +248,24 @@ public class Mypage01_main extends JPanel {
 		pw_change_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
 		pw_change_bt.setBorderPainted(false);
 		pw_change_bt.setBackground(new Color(65, 105, 225));
-		pw_change_bt.setBounds(225, 808, 90, 50);
+		pw_change_bt.setBounds(356, 776, 90, 50);
 		add(pw_change_bt);
+		
+		RoundedButton_ha0_1 like_bt = new RoundedButton_ha0_1();
+		like_bt.setText("즐겨찾기");
+		like_bt.setForeground(Color.WHITE);
+		like_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		like_bt.setBorderPainted(false);
+		like_bt.setBackground(new Color(65, 105, 225));
+		like_bt.setBounds(92, 776, 90, 50);
+		add(like_bt);
+		
+		JButton logout_bt = new JButton("");
+		logout_bt.setBackground(new Color(255, 240, 245));
+		logout_bt.setBorderPainted(false);
+		logout_bt.setIcon(new ImageIcon(Mypage01_main.class.getResource("/image/logout_bt.png")));
+		logout_bt.setBounds(240, 21, 80, 80);
+		add(logout_bt);
 
 		// Main00_Home으로 돌아간다
 		homeButton.addActionListener(new ActionListener() {
@@ -300,6 +326,7 @@ public class Mypage01_main extends JPanel {
 				cardLayout.show(main_pg, "mypage01_main");
 			}
 		});
+<<<<<<< HEAD
 		fix_bt.addActionListener(new ActionListener() {
 			
 			@Override
@@ -309,5 +336,80 @@ public class Mypage01_main extends JPanel {
 				
 			}
 		});
+=======
+		// 나만의 즐겨찾기로 이동
+		like_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "mypage02_mypick");
+			}
+		});
+		
+		// 로그아웃해서 로그인 화면으로 돌아가기 login01_page
+		logout_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cardLayout.show(main_pg, "login01_page");
+			}
+		});
+		
+//		fix_bt.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				db_VO vo = new db_VO();
+//				vo = db_DAO.getid();
+//				id_tf.setText(vo.getId());
+////				List<db_VO> list = db_DAO.getidAll();
+//				
+////				for (db_VO k : list) {
+////					System.out.print(k.getId()+"\t");
+////					System.out.print(k.getPassword()+"\t");
+////					System.out.println(k.getName());
+////				}
+//			}
+//		});
+
+		fix_bt.addActionListener(new ActionListener() {// 회원정보수정버튼            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                db_VO vo = new db_VO();
+                // 아이디 필드 값을 수정할수 있으면 자기아이디가 아닌 다른 회원 아이디를 입력해서 삭제가 가능해짐
+                // 이런걸 방지하려면 로그인할때 입력한 id값을 가져와서 그 값이랑 일치할경우에만 수정할수 있게 해주거나
+                // 아이디가 pk라서 id는 수정불가능하게 id_tf.setEditable(false) 고정값해두면 해결됨
+                // 변수선언해서 따로  텍스트필드에 입력값을 안받고 바로 집어넣었는데
+                // trim때문에 오류 날수도 있으니 안될경우 String id = id_tf.getText().trim();해보기
+                vo.setId(id_tf.getText().trim());
+                vo.setName(name_tf.getText().trim());
+                vo.setBirthday(birth_tf.getText().trim());
+                vo.setEmail(email_tf.getText().trim());
+                vo.setPassword_search_q((String) pw_comboBox.getSelectedItem());
+                vo.setPassword_search_a(pw_tf.getText().trim());
+                int res = db_DAO.getUpdate(vo);    
+                
+                if(res>0) {
+                    JOptionPane.showMessageDialog(getParent(), "수정 성공");
+                }
+                
+            }
+        });
+        
+        mem_del_bt.addActionListener(new ActionListener() {// 회원정보 삭제버튼
+            public void actionPerformed(ActionEvent e) {
+                db_VO vo = new db_VO();                
+                int res = db_DAO.getDelete(id_tf.getText().trim());
+                
+                if(res>0) {
+                    JOptionPane.showMessageDialog(getParent(), "그동안의 이용 감사합니다.");
+                    //다이얼 로그 메시지 보내고 로그인 페이지로 이동하게하기
+                    cardLayout.show(main_pg,"login01_page");
+                }
+            }
+        });
+		
+>>>>>>> refs/remotes/origin/ksw7
 	}
 }

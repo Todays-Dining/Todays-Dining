@@ -25,10 +25,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.JRadioButton;
+import javax.swing.DefaultComboBoxModel;
 
 public class Admin02_Member extends JPanel {
 	JTextField select_tf;
-	DefaultTableModel model;
 	JTable table;
 	JScrollPane jScrollPane;
 	JRadioButton rb;
@@ -108,7 +108,7 @@ public class Admin02_Member extends JPanel {
 		add(tool_lb);
 		
 		JComboBox comboBox = new JComboBox(selection);
-		comboBox.setEditable(true);
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"회원아이디"}));
 		comboBox.setBounds(218, 150, 161, 43);
 		add(comboBox);
 		
@@ -122,6 +122,9 @@ public class Admin02_Member extends JPanel {
 		select_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
 		select_bt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String search_id = "";
+				search_id = select_tf.getText();
+				// ★ DB의 SIGNUP_TABLE ID에서 search_id의 값과 일치하는 ID를 찾은 후, 해당 row를 가져와서 보여주는 쿼리. 
 			}
 		});
 		select_bt.setBackground(Color.WHITE);
@@ -131,6 +134,7 @@ public class Admin02_Member extends JPanel {
 		allselect_bt = new JButton("전체검색");
 		allselect_bt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// ★ DB에서 전체 회원 리스트를 가져와서 표시해주는 쿼리
 			}
 		});
 		allselect_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
@@ -145,10 +149,25 @@ public class Admin02_Member extends JPanel {
 		del_bt.setBackground(Color.WHITE);
 		del_bt.setBounds(842, 150, 102, 43);
 		add(del_bt);
+		del_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// ★ table에서 클릭한 (선택된) 회원아이디가 있는 row의 아이디만 선택해서 해당 id의 정보를 DB에서 삭제하는 쿼리 
+				int sel_row = table.getSelectedRow();
+				int sel_col = table.getSelectedColumn();
+				Object id_value = table.getValueAt(sel_row, sel_col);
+			}
+		});
 		
 		
-		model = new DefaultTableModel(contents, header);
-		table = new JTable(model);
+		table = new JTable(contents, header) {
+			public boolean isCellEditable(int i, int c){
+				return false;
+			}
+		};
+		table.getTableHeader().setReorderingAllowed(false);
+		table.getTableHeader().setResizingAllowed(false);
+		table.isCellEditable(getX(), getY());
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowHeight(25);
 		

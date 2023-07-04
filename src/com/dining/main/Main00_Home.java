@@ -16,17 +16,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.dining.mypage.RoundedButton_ha0_1;
+import com.dining.start.Start_frame;
 
 public class Main00_Home extends JPanel {
 	JTextField search_tf;
 	JTextField keyword_tf;
 	CardLayout cardLayout;
 	JPanel main_pg;
-
+	
 	/**
 	 * Create the panel.
 	 */
-	public Main00_Home(CardLayout cardLayout, JPanel main_pg) {
+	public Main00_Home(CardLayout cardLayout, JPanel main_pg , Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
 		setForeground(new Color(0, 0, 0));
@@ -77,6 +78,7 @@ public class Main00_Home extends JPanel {
 		add(icon_lb);
 
 		keyword_tf = new JTextField("인기많은 검색어 : 한식, 카페, 카레, 일식");
+		keyword_tf.setBorder(null);
 		keyword_tf.setBounds(118, 319, 280, 21);
 		keyword_tf.setBackground(new Color(255, 240, 245));
 		keyword_tf.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));

@@ -1,0 +1,441 @@
+[33mcommit 1db31f6b629e4f96b598f49e955e798efb5454ad[m[33m ([m[1;36mHEAD -> [m[1;32mksw3[m[33m, [m[1;31morigin/ksw3[m[33m)[m
+Author: KimSangwoo <rlatkddn09@naver.com>
+Date:   Thu Jun 29 09:32:00 2023 +0900
+
+    0629 new branch
+
+[33mcommit f5e215c3c89b0fce8aab623cbe4a5d9726853f57[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m, [m[1;32mksw2[m[33m)[m
+Merge: 274f74c 0aa8683
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Wed Jun 28 09:31:28 2023 +0900
+
+    Merge pull request #7 from Todays-Dining/jaehoon
+    
+    Jaehoon
+
+[33mcommit 0aa8683a65f50d8875bbd84329153bf5f748284b[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Wed Jun 28 01:01:22 2023 +0900
+
+    0628home
+
+[33mcommit eb8d8b79ba74f05cad5699545886fd8ea9dc7d07[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 27 19:45:34 2023 +0900
+
+    0627_final_zebal4
+
+[33mcommit 274f74c72ab4ca82c001175e08e975b03b89522e[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 27 17:38:52 2023 +0900
+
+    0627_final_zebal3
+
+[33mcommit 47fe268f2c9752ac38af1d0653baad7013fe9084[m
+Merge: 5b378f7 2e38974
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 27 17:36:25 2023 +0900
+
+    Merge branch 'master' of https://github.com/Todays-Dining/Todays-Dining
+
+[33mcommit 5b378f75de423c14c44a363a8f06bdebbab83e0f[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 27 17:32:23 2023 +0900
+
+    0627_final_zebal2
+
+[33mcommit 2e3897490118067c930ad72fc443fd8e885ed0d7[m
+Author: KimSangwoo <rlatkddn09@naver.com>
+Date:   Tue Jun 27 17:19:25 2023 +0900
+
+    0627 diner_image
+
+[33mcommit 55889b4bab5509f16c5ba70dd4a8863caed564c9[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 27 17:00:18 2023 +0900
+
+    0627_final_zebal
+
+[33mcommit 76eb590b5a2342119eb61015baee5ab757db6835[m
+Merge: c24d71d 231800c
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 27 16:56:10 2023 +0900
+
+    Merge branch 'master' of https://github.com/Todays-Dining/Todays-Dining
+
+[33mcommit c24d71dd39d859c87530bd73dc672095724fa768[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 27 16:37:55 2023 +0900
+
+    0627_final
+
+[33mcommit a21a2cab5672da14d8ca39294bda060c692a795e[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 27 16:33:11 2023 +0900
+
+    0627_final
+
+[33mcommit 231800c021d252175da2dab1e617109ccc3fd414[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Tue Jun 27 16:32:51 2023 +0900
+
+    Delete Todays_Diner_ERMaster.erm
+
+[33mcommit 8443496819ac218e52e825c009e27e58c00438ad[m
+Author: KimSangwoo <rlatkddn09@naver.com>
+Date:   Tue Jun 27 11:18:24 2023 +0900
+
+    0627 ERM update
+
+[33mcommit 68d7a9a901ba8b087f92b039d1765f9a9460b358[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Mon Jun 26 18:49:37 2023 +0900
+
+    0626_final
+
+[33mcommit 65792d760ec8266422b4cb4b5cdd7ab1f7f597d7[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Fri Jun 23 18:20:03 2023 +0900
+
+    final_2
+
+[33mcommit daf6b10ecd34f4ffd5e34a651157d22f6a281ddd[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Fri Jun 23 18:06:03 2023 +0900
+
+    final_1
+
+[33mcommit f1cc4079cb0d9a931e7e3f0e13a8afd640aab367[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Fri Jun 23 01:05:26 2023 +0900
+
+    0623up1
+
+[33mcommit 8da1303f6e6d450c0250e6a35399e1acef67c875[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 22 19:43:45 2023 +0900
+
+    jaehoon_up_0622_3
+
+[33mcommit 2bb139550d8bb4fec9f85896ef1ea5a86180437d[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 22 18:18:10 2023 +0900
+
+    jaehoon_up_0622_2
+
+[33mcommit 3c9fab128bbc0e4413b15da1236849ce01c01969[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 22 16:45:43 2023 +0900
+
+    jaehoon_up_0622_1
+
+[33mcommit 0ddd5d2e622435b3a1df8ec0a42a7f6a4450c34a[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 22 11:35:54 2023 +0900
+
+    jaehoon_up
+
+[33mcommit df5558c88bd8ad9f898fd7b4049a2f51307dbcc8[m
+Merge: 4d830fd 44f16e2
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Thu Jun 22 10:35:08 2023 +0900
+
+    Merge pull request #6 from Todays-Dining/jaehoon
+    
+    0622up1
+
+[33mcommit 44f16e2644e020c4446d7477b71960492735cd11[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 10:34:31 2023 +0900
+
+    Delete test01.java
+
+[33mcommit 1ba683ebe2e5122e60120a7e3a0a029b3105c2ff[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 10:34:15 2023 +0900
+
+    Delete main_tool.java
+
+[33mcommit 4d830fd6839faa15f4a2291f3e313984ed5d14a9[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:37:45 2023 +0900
+
+    Delete src/image directory
+
+[33mcommit 882c1d33b65dd82e78d63c27eda54f453603d370[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:37:29 2023 +0900
+
+    Delete src/com/dining/tool directory
+
+[33mcommit a387efdfc9a7dfb5a3fa724f0a462975f3183088[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:37:23 2023 +0900
+
+    Delete src/com/dining/mypage directory
+
+[33mcommit 7034c1e4b49f1844394515e831d07dd5c4b5249b[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:37:15 2023 +0900
+
+    Delete src/com/dining/main directory
+
+[33mcommit d5e15275cd6869eb77b4af2da161f623dd5708a0[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:37:08 2023 +0900
+
+    Delete src/com/dining/login directory
+
+[33mcommit a388c889937d6ef655e516148f90a1d8f2acdb2d[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:36:38 2023 +0900
+
+    Delete src/com/dining/admin directory
+
+[33mcommit 39039dc243b01facc7fd2497e299a73e3af2683c[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:35:56 2023 +0900
+
+    Delete store_grade.java
+
+[33mcommit 1e9dc1af4f56d3c5837819c07e2341ab484ddb1c[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:35:46 2023 +0900
+
+    Delete my_pick.java
+
+[33mcommit 356ce53cd5d863cc17ff41eaab9eb57a01f76583[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:35:35 2023 +0900
+
+    Delete myPage.java
+
+[33mcommit e40841d17acc3dbc28e7808c70f69fae8ce0dbe2[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:35:28 2023 +0900
+
+    Delete home.java
+
+[33mcommit ce2e913fe015df37fa709dcecb8b44d389660f9e[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:35:19 2023 +0900
+
+    Delete RoundedButton2.java
+
+[33mcommit 784abad2a1e2cebd5690cf7f4e212c77b58102ef[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 22 09:35:10 2023 +0900
+
+    Delete RoundedButton.java
+
+[33mcommit a3a58dc2f6c61ff5bad380fe8125626e32fb895a[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 22 00:36:51 2023 +0900
+
+    0622up1
+
+[33mcommit 3d9abde1d4d29a50a9de0e2ebaa5f24f562bfa97[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Wed Jun 21 19:43:20 2023 +0900
+
+    Delete FindID_Page.java
+
+[33mcommit 1acc07bc172b4604b164150ad0f98f02aaedff5c[m
+Author: KimSangwoo <rlatkddn09@naver.com>
+Date:   Wed Jun 21 18:21:02 2023 +0900
+
+    0621 first merge
+
+[33mcommit 04bb293a99568a096a8e085e7e56fbd19067ee5e[m
+Merge: f2753a8 c682351
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Wed Jun 21 18:14:22 2023 +0900
+
+    Merge pull request #5 from Todays-Dining/hayeong
+    
+    0621
+
+[33mcommit f2753a89a979a9f9a578246fe51d5cf8f7f96cc5[m
+Merge: 95bef0d 82bd3ad
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Wed Jun 21 18:11:47 2023 +0900
+
+    Merge pull request #3 from Todays-Dining/jaehoon
+    
+    Jaehoon
+
+[33mcommit 82bd3ad5387ecead4391e9f176666a534eacd4a5[m
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Wed Jun 21 18:11:38 2023 +0900
+
+    Delete RoundedButton.java
+
+[33mcommit 6b945ac6294e62331e1b2ffc9f6856eee2351f80[m
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Wed Jun 21 18:11:22 2023 +0900
+
+    Delete roundbutton.png
+
+[33mcommit b7be39909f344f648a7bb86ad03c194f4556a157[m
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Wed Jun 21 18:11:09 2023 +0900
+
+    Delete homebutton_1.png
+
+[33mcommit 95bef0d254c995af5c6b75453e7223b123afc2e1[m
+Merge: d6bf98c 2a3e690
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Wed Jun 21 18:06:06 2023 +0900
+
+    Merge pull request #4 from Todays-Dining/ksw
+    
+    0621 first branch
+
+[33mcommit 6c132d67e332936703329da06b6094531405a74a[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Wed Jun 21 18:05:06 2023 +0900
+
+    UP0621
+
+[33mcommit 94a5b6c7087bd0542583cd721a3b7a9845c1ca0c[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Wed Jun 21 18:01:44 2023 +0900
+
+    Delete 1x1button.png
+
+[33mcommit 2a3e6902dd8a064887e6c17ba27deb6f3ffb09cb[m
+Author: KimSangwoo <rlatkddn09@naver.com>
+Date:   Wed Jun 21 17:55:21 2023 +0900
+
+    0621 first branch
+
+[33mcommit d6bf98c78010637a376be6c6cfb4932beb5febcb[m
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Wed Jun 21 17:45:38 2023 +0900
+
+    Delete backbutton.png
+
+[33mcommit c653ab85eb4829fb16997388c9a9716bfd34323f[m
+Author: Kebiskim <96052112+Kebiskim@users.noreply.github.com>
+Date:   Wed Jun 21 17:45:28 2023 +0900
+
+    Delete menubutton.png
+
+[33mcommit c682351a4d446611122f37f7c79815eae274f66e[m
+Author: hayeong <hayoungju98@naver.com>
+Date:   Wed Jun 21 17:36:46 2023 +0900
+
+    0621
+
+[33mcommit cf7942c74c155a218dc6fed43a48fbf0f52d5534[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 20 23:57:44 2023 +0900
+
+    0620up2
+
+[33mcommit 7797298b6e6c65ccdb542104a77efcdfa28d2809[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 20 20:18:21 2023 +0900
+
+    UP0620
+
+[33mcommit 24d5607d28e5b1779c1464091748a4ce6de700dd[m
+Merge: fd43347 eb0e0bb
+Author: yun-cording <129955678+yun-cording@users.noreply.github.com>
+Date:   Tue Jun 20 16:30:14 2023 +0900
+
+    Merge pull request #1 from Todays-Dining/ysh
+    
+    Ysh
+
+[33mcommit eb0e0bb64ed0d2ba3101391c88fbb14a0e877744[m
+Author: younseonghun <zdbstjdgnsz@naver.com>
+Date:   Tue Jun 20 16:25:57 2023 +0900
+
+    main_store
+
+[33mcommit 7539cbac3d168c5babcc13752ea16a48ec1628e6[m
+Author: younseonghun <zdbstjdgnsz@naver.com>
+Date:   Tue Jun 20 16:07:31 2023 +0900
+
+    main_store
+
+[33mcommit cdbcaf3cc8d6223d3b30abd7db8cea8d2d2a9d98[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Tue Jun 20 01:10:15 2023 +0900
+
+    0620up
+
+[33mcommit de56eb33f78379d8dbdefe35ef4a796e53803dbc[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Mon Jun 19 19:30:03 2023 +0900
+
+    UP0619
+
+[33mcommit f45579887f242373f4409ec00d6e34d9e246bac5[m
+Merge: d17020b 725893b
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 8 12:39:12 2023 +0900
+
+    UP0608
+
+[33mcommit 725893b003897f4a2d367d60c83dfb2dfd17e416[m
+Author: kimjaehoon <127195906+GiftPen@users.noreply.github.com>
+Date:   Thu Jun 8 12:37:06 2023 +0900
+
+    Delete src/com/dining/admin directory
+
+[33mcommit d17020bb5bfbde489ff64b62fa59000e20496334[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 8 12:25:16 2023 +0900
+
+    UP0608
+
+[33mcommit 17bbdefffe5fe7a3ffa7922832b1f450a243bd60[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 8 00:54:42 2023 +0900
+
+    admin_up1
+
+[33mcommit d34722b4a2141fa3f945d6f8002a3ffad079bd08[m
+Author: younseonghun <zdbstjdgnsz@naver.com>
+Date:   Sun Jun 4 08:46:18 2023 +0900
+
+    test
+
+[33mcommit 31c747beea030347be7991797abd189f19487a4e[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Fri Jun 2 00:39:24 2023 +0900
+
+    admin_up
+
+[33mcommit 57235a986d4f8658645d8ff98c97a49e9cba84ae[m
+Merge: 8d7148e 7c8fc8c
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 1 22:23:36 2023 +0900
+
+    Merge branch 'jaehoon' of https://github.com/Todays-Dining/Todays-Dining into jaehoon
+
+[33mcommit 7c8fc8cbf3d54fd43e97263612f5d08234e6599a[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 1 10:16:50 2023 +0900
+
+    jaehoon_test
+
+[33mcommit aa3a3d2b496a892b4d85000916e8e256dd7e7f5d[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Thu Jun 1 10:07:38 2023 +0900
+
+    jaehoon_test
+
+[33mcommit 8d7148e4a2625a19a0f46a0324a7df3237b49f2d[m
+Author: kimjaehoon <kjh950805@naver.com>
+Date:   Wed May 31 23:03:54 2023 +0900
+
+    0531test
+
+[33mcommit fd433472211c3a8ce2b46ea092a2b6dedf73faf7[m
+Author: KebisKim <https://github.com/Kebiskim/2023_javastudy.git>
+Date:   Wed May 31 20:36:56 2023 +0900
+
+    테스트

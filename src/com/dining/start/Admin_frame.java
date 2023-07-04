@@ -1,6 +1,7 @@
 package com.dining.start;
 
 import java.awt.CardLayout;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,8 +11,6 @@ import com.dining.admin.Admin02_AdMember_add;
 import com.dining.admin.Admin02_Member;
 import com.dining.admin.Admin03_rest;
 import com.dining.admin.Admin04_review;
-import com.dining.login.Login01_page;
-import com.dining.main.Main00_Map;
 
 public class Admin_frame extends JFrame{
 	
@@ -44,7 +43,7 @@ public class Admin_frame extends JFrame{
 
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InvocationTargetException, InterruptedException {
 		new Admin_frame();
 	}
 
