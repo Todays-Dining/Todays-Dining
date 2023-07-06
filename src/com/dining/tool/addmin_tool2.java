@@ -34,9 +34,6 @@ public class addmin_tool2 {
      };
      String selection[]= {"회원번호", "회원아이디"}; 
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,16 +47,10 @@ public class addmin_tool2 {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public addmin_tool2() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		jPanel_admin = new JPanel();
 		jPanel_admin.setBackground(new Color(255, 240, 245));

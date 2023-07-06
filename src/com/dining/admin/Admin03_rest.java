@@ -27,6 +27,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.TableModel;
 
+import com.dining.start.Admin_frame;
+
 public class Admin03_rest extends JPanel {
 	JTextField store_tf;
 	JTextField storeArea_tf;
@@ -83,11 +85,12 @@ public class Admin03_rest extends JPanel {
 	private JTextField bestfood_img_tf;
 	private JTextField storeAddr_img_tf;
 	private JTextField select_tf;
+	Admin_frame admin;
 	JPanel admin_pg;
 	CardLayout cardLayout;
 	String store;
 
-	public Admin03_rest(CardLayout cardLayout, JPanel admin_pg) {
+	public Admin03_rest(CardLayout cardLayout, JPanel admin_pg , Admin_frame admin) {
 		this.cardLayout = cardLayout;
 		this.admin_pg = admin_pg;
 

@@ -71,15 +71,58 @@
         select * from SIGNUP_TABLE where ID = #{id}
     </select>
     
+    <!-- 재훈 Serach 확인 -->
+     <select id="Search_Ck" parameterType="String" resultType="com.dining.start.db_VO">
+       select DINER_NAME from (select * from DINER_TABLE where DINER_NAME like '%'||#{search}||'%'
+        or MENU like '%'||#{search}||'%' OR food_category like '%'||#{search}||'%') where rownum=1
+    </select>
     <!-- 재훈 Serach -->
      <select id="Search"  resultType="com.dining.start.db_VO">
-        select * from DINER_TABLE where DINER_NAME like '%'||#{search}||'%'
-        or MENU like '%'||#{search}||'%' OR food_category like '%'||#{search}||'%'
+      select DINER_NAME, MENU from (select * from DINER_TABLE where DINER_NAME like '%'||#{search}||'%'
+        or MENU like '%'||#{search}||'%' OR food_category like '%'||#{search}||'%')
     </select>
     
     <!-- 상우 best 식당명, 카테고리 받아오기 -->
     <select id="bestOfAll" resultType="com.dining.start.db_VO">
    		select * from REVIEW_AVG_VIEW where rownum=1
     </select>
+    
+    <!-- 상우 mypage 비밀번호 변경 -->
+     <update id="changePw" parameterType="com.dining.start.db_VO">
+        update SIGNUP_TABLE set PASSWORD = #{new_pw} where ID=#{update_id};
+    </update>
+    
+    <!-- 성훈 매퍼 41~ -->
+    <!-- 41 관리자 리뷰페이지 전체가져오기 기능 -->
+    <select id="reviewAll" resultType="com.dining.start.db_VO">
+        select r.id , r.review_content , r.review_number , r.star , d.diner_name
+        from REVIEW_TABLE r , DINER_TABLE d
+        where r.diner_no = d.diner_no 
+    </select>
+    
+    <!-- 42 가게이름으로 리뷰 검색 -->
+    <select id="s_namereview" parameterType="String" resultType="com.dining.start.db_VO">
+        select r.id , r.review_content , r.review_number , r.star , d.diner_name
+        from REVIEW_TABLE r , DINER_TABLE d
+        where r.diner_no = d.diner_no and d.diner_name= #{d.diner_name}
+    </select>
+    
+    <!-- 43 회원이름으로 리뷰 검색 -->
+    <select id="idreview" parameterType="String" resultType="com.dining.start.db_VO">
+        select r.id , r.review_content , r.review_number , r.star , d.diner_name
+        from REVIEW_TABLE r , DINER_TABLE d
+        where r.diner_no = d.diner_no and r.id = #{r.id}
+    </select>
+    
+    <!-- 44 회원정보 전부 받아오기 -->
+    <select id="memberAll" resultType="com.dining.start.db_VO">
+        select * from SIGNUP_TABLE
+    </select>
+    
+    <!-- 45회원아이디로 정보 검색 -->
+    <select id="shmbid" parameterType="com.dining.start.db_VO" resultType="com.dining.start.db_VO">
+        select * from SIGNUP_TABLE where id = #{id} 
+    </select>
+
     
 </mapper>

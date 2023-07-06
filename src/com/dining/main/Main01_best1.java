@@ -23,12 +23,17 @@ import com.dining.start.Protocol;
 
 public class Main01_best1 extends JPanel{
 	CardLayout cardLayout;
-	JPanel main_pg ;
+	JPanel main_pg;
+	Start_frame main;
+	int error_chk_flag = 0;
+	public String store_name;
+	
 	public JLabel store_food_image;
 
 	public Main01_best1(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
-		this.cardLayout = cardLayout ;
-		this.main_pg = main_pg ;	
+		this.cardLayout = cardLayout;
+		this.main_pg = main_pg;
+		this.main = main;
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -55,11 +60,9 @@ public class Main01_best1 extends JPanel{
 		store_food_image.setHorizontalAlignment(SwingConstants.CENTER);
 		store_food_image.setForeground(new Color(255, 255, 255));
 		store_food_image.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 50));
-		store_food_image.setBackground(new Color(0, 255, 128));
+		store_food_image.setBackground(new Color(255, 240, 245));
 		store_food_image.setBounds(54, 315, 429, 292);
 		add(store_food_image);
-		
-		
 
 		JLabel sidetool = new JLabel("");
 		sidetool.setOpaque(true);
@@ -109,7 +112,8 @@ public class Main01_best1 extends JPanel{
 		mypage.setBackground(new Color(65, 105, 225));
 		movemenu.add(mypage);
 		
-		JButton homeButton = new JButton("");
+		// 가게이름 넣자
+		JButton homeButton = new JButton(store_name);
 		homeButton.setIcon(new ImageIcon(Main01_best1.class.getResource("/image/homebutton_1.png")));
 		homeButton.setBorderPainted(false);
 		homeButton.setBackground(new Color(255, 240, 245));
@@ -130,7 +134,7 @@ public class Main01_best1 extends JPanel{
 		add(rank1_lb);
 		
 		
-		RoundedButton_kjh_5 store_bt = new RoundedButton_kjh_5("가게이름");
+		RoundedButton_kjh_5 store_bt = new RoundedButton_kjh_5("");
 		store_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		store_bt.setForeground(new Color(255, 240, 245));
 		store_bt.setBackground(new Color(65, 105, 225));
@@ -143,6 +147,9 @@ public class Main01_best1 extends JPanel{
 		after_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (error_chk_flag == 1) {
+				System.out.println("버튼 안가짐");					
+				}
 				cardLayout.show(main_pg,"main01_best2");
 			}
 		});

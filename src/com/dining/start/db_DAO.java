@@ -86,7 +86,7 @@ public class db_DAO {
     public static int getUpdate(db_VO vo) {
         int result = getSession().update("infoUpdate",vo);
         ss.commit();
-        return result;        
+        return result; 
     }
     
     // 좌현 id찾기
@@ -104,20 +104,74 @@ public class db_DAO {
 		return vo;
 	}
     
-    // 재훈 Search 
-    public static List<db_VO> getSearch(String search){
-        List<db_VO> list = getSession().selectList("Search", search);
-           return list;
+	 // 재훈 검색기능 (검색어 존재여부)
+	 public static db_VO getSearch_Ck(db_VO vo){
+		 vo = getSession().selectOne("Search_Ck", vo);
+		 return vo; 
+	 }
+	 // 재훈 검색기능
+	 public static List<db_VO> getSearch(String search){
+		 List<db_VO> list = getSession().selectList("Search", search);
+		 return list;
+	 }
+    // 상우 best 식당명, 평점, 카테고리 받아오기
+    public static db_VO getbestAll(){
+    	db_VO vo = getSession().selectOne("bestOfAll"); 
+//        List<db_VO> list = null;
+//        list = getSession().selectList("bestOfAll");
+//        System.out.println("DAO에 list 받아왔음");
+//		return list;
+    	return vo;
     }
     
-    // 상우 best 식당명, 평점, 카테고리 받아오기
-    public static List<db_VO> getbestAll(){
-        List<db_VO> list = null;
-        list = getSession().selectList("bestOfAll");
-        System.out.println("DAO에 list 받아왔음");
-		return list;
+//    public static db_VO changePw(db_VO vo) {
+//		System.out.println(vo.getOld_pw());
+//		System.out.println(vo.getNew_pw());
+//        vo = getSession().update("changePw",vo);
+//        return vo;
+//    }
+    
+    // 상우 DAO (비밀번호 변경), update문은 int형으로 받아야 함.
+    public static int changePw(db_VO vo) {
+        int result = getSession().update("changePw",vo);
+        ss.commit();
+        return result;
     }
-	
+    
+    // 윤성훈 DAO 41~
+    //41
+    public static List<db_VO> getreviewAll(){// 리뷰리스트 전부 받아오기
+        List<db_VO> list = null;
+        list = getSession().selectList("reviewAll");
+        return list;
+    }
+    //42
+    public static List<db_VO> s_namereview(String diner_name){// 가게이름으로 리뷰 검색
+        List<db_VO> list = null;
+        list = getSession().selectList("s_namereview",diner_name);
+        return list;
+    }
+    //43
+    public static List<db_VO> getidreview(String id){// 회원아이디로 리뷰 검색
+        List<db_VO> list = null;
+        list = getSession().selectList("idreview", id);
+        return list;
+    }
+    
+    //44
+    public static List<db_VO> getmeminfoAll(){// 회원정보 전부 받아오기
+        List<db_VO> list = null;
+        list = getSession().selectList("memberAll");
+        return list;
+    }
+    
+    //45
+        public static db_VO IdinfoSh(db_VO vo){// 회원아이디로 특정 회원정보 검색
+            vo = getSession().selectOne("shmbid",vo); 
+            return vo;
+    }
+    
+ 
 //	public static db_VO getid2(String name, String email, String birth){
 //		List<db_VO> = db_VO 
 //		

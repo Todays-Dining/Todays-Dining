@@ -2,35 +2,33 @@ package com.dining.admin;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.AbstractCellEditor;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.JRadioButton;
-import javax.swing.DefaultComboBoxModel;
+
+import com.dining.start.Admin_frame;
+import com.dining.start.Protocol;
+import com.dining.start.db_VO;
 
 public class Admin02_Member extends JPanel {
 	JTextField select_tf;
-	JTable table;
-	JScrollPane jScrollPane;
+	public JTable table;
+    public DefaultTableModel dtm;
+    public JScrollPane scroll_table;
 	JRadioButton rb;
 	
 	 String header[]={"회원번호", "회원아이디", "비밀번호", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"};
@@ -67,14 +65,14 @@ public class Admin02_Member extends JPanel {
      };
      String selection[]= {"회원번호", "회원아이디"}; 
      private JButton allselect_bt;
-     
+     Admin_frame admin;
      JPanel admin_pg ;
  	CardLayout cardLayout;
     
 	/**
 	 * Create the panel.
 	 */
-	public Admin02_Member(CardLayout cardLayout,JPanel admin_pg) {
+	public Admin02_Member(CardLayout cardLayout,JPanel admin_pg , Admin_frame admin) {
 		this.cardLayout = cardLayout ;
 		this.admin_pg = admin_pg ;
 		
@@ -160,22 +158,24 @@ public class Admin02_Member extends JPanel {
 		});
 		
 		
-		table = new JTable(contents, header) {
-			public boolean isCellEditable(int i, int c){
-				return false;
-			}
-		};
+		dtm = new DefaultTableModel(contents, header);
+        table = new JTable(dtm) {
+            public boolean isCellEditable(int i, int c){
+                return false;
+            }
+        };
+        
 		table.getTableHeader().setReorderingAllowed(false);
 		table.getTableHeader().setResizingAllowed(false);
 		table.isCellEditable(getX(), getY());
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowHeight(25);
 		
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setIgnoreRepaint(true);
-		scrollPane.setPreferredSize(new Dimension(5, 5));
-		scrollPane.setBounds(74, 219, 1048, 516);
-		add(scrollPane);
+		JScrollPane scroll_table = new JScrollPane(table);
+		scroll_table.setIgnoreRepaint(true);
+		scroll_table.setPreferredSize(new Dimension(5, 5));
+		scroll_table.setBounds(74, 219, 1048, 516);
+		add(scroll_table);
 		
 		JButton adminadd_bt = new JButton("관리자추가");
 		adminadd_bt.setBackground(new Color(255, 0, 128));
@@ -205,6 +205,42 @@ public class Admin02_Member extends JPanel {
 				cardLayout.show(admin_pg, "admin01_main");
 			}
 		});
+		
+		// 전체검색 버튼
+        allselect_bt.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {    
+                Protocol p = new Protocol();
+                try {
+                    dtm.setNumRows(0);
+                    p.setCmd(44);
+                    admin.out.writeObject(p);
+                    admin.out.flush();                    
+                } catch (Exception e2) {
+                }
+            }
+        });
+        
+        // 회원아이디로 검색 버튼 
+        select_bt.addActionListener(new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            Protocol p = new Protocol();
+            try {
+                dtm.setNumRows(0);
+                db_VO vo = new db_VO();
+                vo.setId(select_tf.getText());
+                p.setVo(vo);
+                p.setCmd(45);
+                admin.out.writeObject(p);
+                admin.out.flush();
+            } catch (Exception e2) {
+            }
+                
+            }
+        });
 		
 	}
 	

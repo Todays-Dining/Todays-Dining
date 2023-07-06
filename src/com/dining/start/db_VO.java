@@ -4,11 +4,48 @@ import java.io.Serializable;
 
 public class db_VO implements Serializable {
 	private String status, id, password, name, email, birthday, password_search_q, password_search_a,
-			favorite_list, reported_count, deleted_time, review_no;
+			favorite_list, reported_count, deleted_time, review_number, old_pw, new_pw, update_id;
 	private String diner_no, diner_name, favorited_number, opening_hour, menu, phone_number, 
 			parking_or_not, food_category, region, address;
 	private String review_content, star;
+	// 재훈 검색기능으로 인한 서치 추가
+		private String search;
+		
+		public String getSearch() {
+			return search;
+		}
+		public void setSearch(String search) {
+			this.search = search;
+		}
+	public String getReview_number() {
+		return review_number;
+	}
+	public void setReview_number(String review_number) {
+		this.review_number = review_number;
+	}
 	private String recents;
+	
+	// password 찾기용으로 만든 변수 (김상우)
+	public String getUpdate_id() {
+		return update_id;
+	}
+	public void setUpdate_id(String update_id) {
+		this.update_id = update_id;
+	}
+	public String getOld_pw() {
+		return old_pw;
+	}
+	public void setOld_pw(String old_pw) {
+		this.old_pw = old_pw;
+	}
+	public String getNew_pw() {
+		return new_pw;
+	}
+	public void setNew_pw(String new_pw) {
+		this.new_pw = new_pw;
+	}
+	
+	// 
 	public String getStatus() {
 		return status;
 	}
@@ -75,12 +112,7 @@ public class db_VO implements Serializable {
 	public void setDeleted_time(String deleted_time) {
 		this.deleted_time = deleted_time;
 	}
-	public String getReview_no() {
-		return review_no;
-	}
-	public void setReview_no(String review_no) {
-		this.review_no = review_no;
-	}
+	
 	public String getDiner_no() {
 		return diner_no;
 	}

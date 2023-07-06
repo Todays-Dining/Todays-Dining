@@ -19,8 +19,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.dining.login.Login01_page;
 import com.dining.main.Main00_Home;
 import com.dining.main.Main01_best1;
+import com.dining.start.Start_frame;
 import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
 
@@ -35,10 +37,9 @@ public class Mypage01_main extends JPanel {
 	CardLayout cardLayout;
 	JPanel main_pg;
 
-	/**
-	 * Create the panel.
-	 */
-	public Mypage01_main(CardLayout cardLayout, JPanel main_pg) {
+	public Mypage01_main(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
+//		Login01_page login01_page = new Login01_page(cardLayout,main_pg ,this);	
+
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
 		setForeground(new Color(0, 0, 0));
@@ -210,6 +211,7 @@ public class Mypage01_main extends JPanel {
 		add(pwanser_lb);
 
 		id_tf = new JTextField();
+		id_tf.setEditable(false);
 		id_tf.setBounds(196, 229, 250, 35);
 		add(id_tf);
 		id_tf.setColumns(10);
@@ -257,7 +259,6 @@ public class Mypage01_main extends JPanel {
 
 		// Main00_Home으로 돌아간다
 		homeButton.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -326,10 +327,12 @@ public class Mypage01_main extends JPanel {
 		
 		// 로그아웃해서 로그인 화면으로 돌아가기 login01_page
 		logout_bt.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+//				main.
+//				main.login01_page.
+//				login01_page.id_textField.setText("");
+//				login01_page.passwordField.setText("");
 				cardLayout.show(main_pg, "login01_page");
 			}
 		});
@@ -378,7 +381,6 @@ public class Mypage01_main extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 db_VO vo = new db_VO();                
                 int res = db_DAO.getDelete(id_tf.getText().trim());
-                
                 if(res>0) {
                     JOptionPane.showMessageDialog(getParent(), "그동안의 이용 감사합니다.");
                     //다이얼 로그 메시지 보내고 로그인 페이지로 이동하게하기

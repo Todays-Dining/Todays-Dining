@@ -55,16 +55,10 @@ public class addmin_tool {
 		});
 	}
 
-	/**
-	 * Create the application.
-	 */
 	public addmin_tool() {
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
 	private void initialize() {
 		jPanel_admin = new JPanel();
 		jPanel_admin.setBackground(new Color(255, 240, 245));

@@ -9,7 +9,26 @@ public class Protocol implements Serializable{
 	public int result;
 	public db_VO vo;
 	public List<db_VO> list;
+
+	// 재훈 검색기능으로 인한 서치 추가
+	private String search ;
 	
+	// 재훈 이미지 이름값 전달
+	private String imgname ;
+	
+	
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	public String getImgname() {
+		return imgname;
+	}
+	public void setImgname(String imgname) {
+		this.imgname = imgname;
+	}
 	public int getCmd() {
 		return cmd;
 	}

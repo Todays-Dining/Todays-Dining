@@ -26,18 +26,18 @@ import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
 
 public class Login02_member_join extends JPanel {
-	Socket s;
-	ObjectOutputStream out;
-	ObjectInputStream in;
+//	Socket s;
+//	ObjectOutputStream out;
+//	ObjectInputStream in;
+	JPanel main_pg;
 	Start_frame main;
 	
+	CardLayout cardLayout;
 	public JTextField id_textField;
 	public JTextField email_textField;
 	public JTextField birth_textField;
 	public JTextField qa_textField;
 	public JTextField name_textField;
-	CardLayout cardLayout;
-	JPanel main_pg;
 	int duplicate_or_not = 0;
 	int email_duplicate_or_not = 0;
 	// private 하면 VO 로 안 담아짐!!
@@ -46,7 +46,7 @@ public class Login02_member_join extends JPanel {
 	
 	public String status;
 	public String id ;
-	public String password; 
+	public String password;
 	public String name;
 	public String email; 
 	public String birthday; 
@@ -59,9 +59,9 @@ public class Login02_member_join extends JPanel {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
 		this.main = main;
-		this.s = main.s;
-		this.out = main.out;
-		this.in = main.in;
+//		this.s = main.s;
+//		this.out = main.out;
+//		this.in = main.in;
 		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));

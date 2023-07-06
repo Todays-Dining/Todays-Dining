@@ -25,17 +25,20 @@ public class Main00_Map extends JPanel{
 	Socket s;
 	ObjectOutputStream out;
 	ObjectInputStream in;
-	CardLayout cardLayout;
 	JPanel main_pg ;
 	Start_frame main;
+	
+	CardLayout cardLayout;
 
-	public Main00_Map(CardLayout cardLayout, JPanel main_pg) {
+	public Main00_Map(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
-		this.main = main;
-		this.s = main.s;
-		this.out = main.out;
-		this.in = main.in;
+		// 주석	
+//		java.lang.NullPointerException: Cannot read field "s" because "this.main" is null
+//		this.main = main;
+//		this.s = main.s;
+//		this.out = main.out;
+//		this.in = main.in;
 	
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
@@ -63,41 +66,41 @@ public class Main00_Map extends JPanel{
 		menuBar.setBounds(418, 40, 62, 61);
 		add(menuBar);
 		
-		JMenu movemenu = new JMenu("");
-		movemenu.setOpaque(true);
-		movemenu.setIconTextGap(0);
-		movemenu.setIcon(new ImageIcon(Main00_Home.class.getResource("/image/menubutton.png")));
-		movemenu.setBorderPainted(true);
-		movemenu.setBackground(new Color(255, 240, 245));
-		menuBar.add(movemenu);
-		
-		JMenuItem movemenu_1 = new JMenuItem("주간Best");
-		movemenu_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
-		movemenu_1.setOpaque(true);
-		movemenu_1.setBorderPainted(true);
-		movemenu_1.setBackground(new Color(65, 105, 225));
-		movemenu.add(movemenu_1);
-		
-		JMenuItem movemenu_2 = new JMenuItem("음식카테고리");
-		movemenu_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
-		movemenu_2.setOpaque(true);
-		movemenu_2.setBorderPainted(true);
-		movemenu_2.setBackground(new Color(65, 105, 225));
-		movemenu.add(movemenu_2);
-		
-		JMenuItem movemenu_3 = new JMenuItem("오늘 뭐먹죠?");
-		movemenu_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
-		movemenu_3.setOpaque(true);
-		movemenu_3.setBorderPainted(true);
-		movemenu_3.setBackground(new Color(65, 105, 225));
-		movemenu.add(movemenu_3);
+//		JMenu movemenu = new JMenu("");
+//		movemenu.setOpaque(true);
+//		movemenu.setIconTextGap(0);
+//		movemenu.setIcon(new ImageIcon(Main00_Home.class.getResource("/image/menubutton.png")));
+//		movemenu.setBorderPainted(true);
+//		movemenu.setBackground(new Color(255, 240, 245));
+//		menuBar.add(movemenu);
+//		
+////		JMenuItem movemenu_1 = new JMenuItem("주간Best");
+////		movemenu_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
+////		movemenu_1.setOpaque(true);
+////		movemenu_1.setBorderPainted(true);
+////		movemenu_1.setBackground(new Color(65, 105, 225));
+////		movemenu.add(movemenu_1);
+//		
+//		JMenuItem movemenu_2 = new JMenuItem("음식카테고리");
+//		movemenu_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
+//		movemenu_2.setOpaque(true);
+//		movemenu_2.setBorderPainted(true);
+//		movemenu_2.setBackground(new Color(65, 105, 225));
+//		movemenu.add(movemenu_2);
+//		
+//		JMenuItem movemenu_3 = new JMenuItem("오늘 뭐먹죠?");
+//		movemenu_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
+//		movemenu_3.setOpaque(true);
+//		movemenu_3.setBorderPainted(true);
+//		movemenu_3.setBackground(new Color(65, 105, 225));
+//		movemenu.add(movemenu_3);
 		
 		JMenuItem mypage = new JMenuItem("MY Page");
 		mypage.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 14));
 		mypage.setOpaque(true);
 		mypage.setBorderPainted(true);
 		mypage.setBackground(new Color(65, 105, 225));
-		movemenu.add(mypage);
+//		movemenu.add(mypage);
 		
 		RoundedButton_lsh_1 place1_bt = new RoundedButton_lsh_1();
 		place1_bt.setText("마포구");
@@ -184,6 +187,8 @@ public class Main00_Map extends JPanel{
 				try {
 					main.out.writeObject(p);
 					main.out.flush();	
+//					System.out.println("flush 완료");
+					cardLayout.show(main_pg,"main00_Home");
 				} catch (Exception e2) {
 					System.out.println("flush 안됨");
 					System.out.println(e2);
@@ -222,30 +227,31 @@ public class Main00_Map extends JPanel{
 			}
 		});
 	
-		// main01_best1 로 이동
-		movemenu_1.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg, "main01_best1");
-			}
-		});
+//		// main01_best1 로 이동
+		// 버튼 삭제
+//		movemenu_1.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				cardLayout.show(main_pg, "main01_best1");
+//			}
+//		});
 	
-		// main02_category_select 로 이동
-		movemenu_2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg, "main02_category_select");
-			}
-		});
-	
-		// main03_random 로 이동
-		movemenu_3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg, "main03_random");
-			}
-		});
-	
+//		// main02_category_select 로 이동
+//		movemenu_2.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				cardLayout.show(main_pg, "main02_category_select");
+//			}
+//		});
+//	
+//		// main03_random 로 이동
+//		movemenu_3.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				cardLayout.show(main_pg, "main03_random");
+//			}
+//		});
+//	
 		// mypage01_main 로 이동
 		mypage.addActionListener(new ActionListener() {
 			@Override

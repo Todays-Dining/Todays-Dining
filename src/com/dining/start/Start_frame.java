@@ -4,11 +4,10 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -54,13 +53,21 @@ public class Start_frame extends JFrame implements Runnable {
 	JPanel main_pg ;
 	CardLayout cardLayout;
 	int member_num = 1 ;
+	int break_num = 0;
+	
+	public String path = "";
 	public db_VO vo;
 	public Socket s;
 	public ObjectOutputStream out;
 	public ObjectInputStream in;
-	Login01_page login01_page;
 	Login02_member_join login02_member_join;
-	Main00_Home main00_Home ;
+	Main00_Home main00_Home;
+	Main00_Map main00_Map;
+	Main00_store_search main00_store_search;
+	Main04_store3_review main04_store3_review;
+	Main02_category_select main02_category_select;
+	int initialize_flag = 0;
+	int imgIns_flag = 0;
 	public Start_frame() {
 		UIManager ui = new UIManager(); // 전체적인 UI시스템 이미지, 색상, 폰트 변경
 	    ui.put("Button.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // 버튼의 폰트 변경
@@ -76,11 +83,10 @@ public class Start_frame extends JFrame implements Runnable {
 		cardLayout = new CardLayout();
 		main_pg.setLayout(cardLayout);
 		vo = new db_VO();
-		// 각종패널들 가져오기
+		// 각종패널들 가져오기 (★ 패널들은 지역변수로 딱 한번만 선언해야 함)
 		// 마이페이지 
-		
-		Mypage01_main mypage01_main = new Mypage01_main(cardLayout,main_pg);
-		Mypage01_changePW mypage01_changePW = new Mypage01_changePW(cardLayout,main_pg);
+		Mypage01_main mypage01_main = new Mypage01_main(cardLayout,main_pg,this);
+		Mypage01_changePW mypage01_changePW = new Mypage01_changePW(cardLayout,main_pg,this);
 		Mypage02_mypick mypage02_mypick = new Mypage02_mypick(cardLayout,main_pg);
 		// 로그인 화면단
 		Login01_page login01_page = new Login01_page(cardLayout,main_pg ,this);	
@@ -88,10 +94,10 @@ public class Start_frame extends JFrame implements Runnable {
 		Login03_Find_id login03_Find_id = new Login03_Find_id(cardLayout,main_pg);
 		Login04_Find_pw login04_Find_pw = new Login04_Find_pw(cardLayout,main_pg);
 		// 메인 맵 화면
-		Main00_Map main00_Map = new Main00_Map(cardLayout,main_pg);
+		main00_Map = new Main00_Map(cardLayout,main_pg, this);
 		main00_Home = new Main00_Home(cardLayout,main_pg,this);
 		// 검색시 이동할 화면
-		Main00_store_search main00_store_search = new Main00_store_search(cardLayout, main_pg);
+		main00_store_search = new Main00_store_search(cardLayout, main_pg, this);
 		// 메인(주간best1등~5등)
 		Main01_best1 main01_best1 = new Main01_best1(cardLayout,main_pg,this);
 		Main01_best2 main01_best2 = new Main01_best2(cardLayout,main_pg);
@@ -99,7 +105,7 @@ public class Start_frame extends JFrame implements Runnable {
 		Main01_best4 main01_best4 = new Main01_best4(cardLayout,main_pg);
 		Main01_best5 main01_best5 = new Main01_best5(cardLayout,main_pg);
 		// 음식 카테고리
-		Main02_category_select main02_category_select = new Main02_category_select(cardLayout,main_pg);
+		 main02_category_select = new Main02_category_select(cardLayout,main_pg);
 		// 메인02_best(카테고리)
 		Main02_best1_korea main02_best1_korea = new Main02_best1_korea(cardLayout,main_pg);
 		Main02_best2_american main02_best2_american = new Main02_best2_american(cardLayout,main_pg);
@@ -175,6 +181,8 @@ public class Start_frame extends JFrame implements Runnable {
 			
 		setVisible(true);
 
+		
+		
 		// ★   로그인한 ID 정보를 mypage에 띄워주는 코드
 		new Thread(new Runnable() {
 			@Override
@@ -194,6 +202,8 @@ public class Start_frame extends JFrame implements Runnable {
 						String email_show = vo.getEmail();
 						String panswer_show = vo.getPassword_search_a();
 						Thread.sleep(500);
+						mypage01_changePW.id_forchk = vo.getId();
+						mypage01_changePW.pw_forchk = vo.getPassword();						
 						mypage01_main.id_tf.setText(id_show);
 						mypage01_main.pw_tf.setText(pw_show);
 						mypage01_main.name_tf.setText(name_show);
@@ -205,25 +215,85 @@ public class Start_frame extends JFrame implements Runnable {
 					}
 				}
 			}
-		}, "mypage").start();	
+		}, "mypage").start();
 		
-		addWindowListener(new WindowAdapter() {
+		// 로그인 하고나서 다시 로그아웃 할 때 textfield 초기화
+		new Thread(new Runnable() {
 			@Override
-			public void windowClosing(WindowEvent e) {
-				if (s != null) {
+			public void run() {
+				while (true) { 
+//					System.out.println("작동은 함");
 					try {
-						Protocol p = new Protocol();
-						p.setCmd(0);
-						out.writeObject(p);
-						out.flush();
-					} catch (Exception e2) {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
 					}
-				} else {
-					closed();
+					// 플래그가 안 먹음.
+					if (initialize_flag == 1) {
+						while(login01_page.id_textField.getText().length() != 00 && login01_page.passwordField.getText().length() != 00) {
+							try {
+								Thread.sleep(500);
+//								System.out.println("로그인 id 비번 초기화");
+								login01_page.id_textField.setText("");
+								login01_page.passwordField.setText("");
+							} catch (Exception e3) {
+								System.out.println("로그인페이지 입력창 초기화 오류");
+							}							
+						}
+					}
 				}
 			}
-		});
-	}
+		}, "initialize").start();
+		
+		// Best 식당에 이미지 넣어주기 (김상우)
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				esc: while (true) {
+//					System.out.println("스레드 작동은 함");
+					try {
+						Thread.sleep(500);
+						// 플래그가 안 먹음.
+						if (imgIns_flag == 1) {
+//							System.out.println("플래그가 1이긴 함");
+							String store_name = "";
+							// java.lang.NullPointerException: Cannot invoke "com.dining.start.db_VO.getDiner_name()" because "this.vo" is null
+							store_name = vo.getDiner_name();
+//							System.out.println("가게 이름" + store_name);
+							String food_category = "";
+							food_category = vo.getFood_category();
+//							System.out.println("카테고리" + food_category);
+							if (food_category.equals("중식")) {
+								path = "/diner_image/Chinese/" + store_name + "_1.png";			
+							} else if (food_category.equals("카페")) {
+								path = "/diner_image/Cafe/" + store_name + "_1.png";			
+							} else if (food_category.equals("일식")) {
+								path = "/diner_image/Japanese/" + store_name + "_1.png";
+							} else if (food_category.equals("한식")) {
+								path = "/diner_image/Korean/" + store_name + "_1.png";			
+							} else if (food_category.equals("양식")) {
+								path = "/diner_image/Western/" + store_name + "_1.png";			
+							}	
+//							System.out.println("경로는" + path);
+							main01_best1.store_food_image.setIcon(new ImageIcon(Main01_best1.class.getResource(path)));
+							main01_best1.store_name = store_name;
+							break esc;
+							// break 안해버림
+//							Thread.sleep(1000000);
+						} else {
+//							System.out.println("플래그가 0입니다.");
+						}
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}, "imgins_1").start();	
+		
+		
+		
+		
+	} // 생성자 끝
 
 	// 접속
 	public void connected() {
@@ -249,16 +319,38 @@ public class Start_frame extends JFrame implements Runnable {
 						break esc;
 					case 1: // 로그인
 						if(p.getResult() == 1) {
-							cardLayout.show(main_pg,"main00_Home");
+							System.out.println("start_frame 로그인 성공!");
+							cardLayout.show(main_pg,"main00_map");
+							initialize_flag = 1;
+//							System.out.println("플래그는" + initialize_flag);
+//							new Thread(new Runnable() {
+//								@Override
+//								public void run() {
+//									while (true) {
+//										// mypage의 모든 정보가 공란인 동안은 계속해서 getText로 값을 넣어준다. 
+//										while (login01_page.id_textField.getText().length() != 0 
+//												&& login01_page.passwordField.getText().length() != 0  
+//							login01_page.id_textField.setText("");		
+//							login01_page.passwordField.setText("");
+//												)
+//										try {
+//											Thread.sleep(500);
+//										} catch (Exception e3) {
+//											System.out.println(e3);
+//										}
+//									}
+//								}
+//							}, "initialize").start();	
+//							
 						}else {
 //							System.out.println("로그인실패");
 							JOptionPane.showMessageDialog(getParent(), "ID 및 패스워드를 확인해주세요.", null, JOptionPane.INFORMATION_MESSAGE,
 							 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 						}
 						break;
-					case 2: // 회원가입
+					case 2: // ★ 회원가입 (김상우, 이상화, 윤성훈)
                         if(p.getResult()>0) {
-                            System.out.println("mainframe도착");
+//                            System.out.println("mainframe도착");
                             System.out.println(p.getResult());
                             // 메인으로 돌아오고 나서 성공이 뜸
                             JOptionPane.showMessageDialog(login02_member_join, "회원가입성공.", null, JOptionPane.INFORMATION_MESSAGE,
@@ -276,41 +368,73 @@ public class Start_frame extends JFrame implements Runnable {
                                     new ImageIcon(Login02_member_join.class.getResource("/image/icon_mini.png")));
                         }
 						break;
-					case 31: // best식당 표시해주기
-						if(p.getList() != null) {
-						vo = p.getVo();
-						String store_name = "";
-						store_name = vo.getDiner_name();
-						System.out.println("가게 이름은" + store_name);
-						String food_category = "";
-						food_category = vo.getFood_category();
-						String path = "";
-						if (food_category == "중식") {
-							path = "/diner_image/Chinese/" + store_name + "_1.png";			
-						} else if (food_category == "카페") {
-							path = "/diner_image/Cafe/" + store_name + "_1.png";			
-						} else if (food_category == "일식") {
-							path = "/diner_image/Japanese/" + store_name + "_1.png";			
-						} else if (food_category == "한식") {
-							path = "/diner_image/Korean/" + store_name + "_1.png";			
-						} else if (food_category == "양식") {
-							path = "/diner_image/Western/" + store_name + "_1.png";			
+						// 재훈 검색기능 
+					case 21:  // 홈화면에서 검색기능
+						if(p.getResult() == 1) {
+						int length_arr;
+						length_arr = p.list.size();
+						String diner_name[] = new String[length_arr];
+						String menu[] = new String[length_arr];
+						for (int i = 0; i < length_arr; i++) {
+						    db_VO k = p.list.get(i);
+						    diner_name[i] = k.getDiner_name();
+						    menu[i] = k.getMenu();
+						}
+						
+						for (int i = 0; i < length_arr; i++) {
+							main00_store_search.table.setValueAt(diner_name[i],i,0) ;
+							main00_store_search.table.setValueAt(menu[i],i,1) ;
 						}	
+						
+						cardLayout.show(main_pg,"main00_store_search");
+						}else {
+							JOptionPane.showMessageDialog(getParent(), "검색결과가 존재하지 않습니다.", null, JOptionPane.INFORMATION_MESSAGE,
+									 new ImageIcon(Main00_Home.class.getResource("/image/icon_mini.png")));
+						}
+						break;
+						
+					case 31: // ★ best식당 표시해주기 (김상우)
+//						System.out.println("설정된 cmd" + p.getCmd());
+//						System.out.println("sf에서 31번 cmd 작동중!!");
+						if(p.getVo() != null) {
+//						List<db_VO> vo_list = p.getList();
+						this.vo = p.getVo();
+						imgIns_flag = 1;
 						try {
 							out.writeObject(p);
 							out.flush();	
 						}catch (Exception e1) {
-							System.out.println("31번 Start frame 오류");
+//							System.out.println("31번 Start frame 오류");
 						}	
-						cardLayout.show(main_pg,"main01_best1");
 						} else {
-							System.out.println("31번 작동 안해 (빈값)");
+//							System.out.println("31번 작동 안해 (빈값)");
 						}
+//						p.setCmd(39);
+						out.writeObject(p);
+						out.flush();
+						break;
+						
+					case 36: // 비밀번호 변경 (김상우)
+						if (p.getResult() == 1) {
+							System.out.println("cmd는 " + p.getCmd() + "입니다.");
+						} else {
+							JOptionPane.showMessageDialog(getParent(), "기존 패스워드를 확인해주세요.", null, JOptionPane.INFORMATION_MESSAGE,
+									new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+						}
+						break;
+						
+					case 39: // 쉬어가는 cmd (김상우)
+//						p.setCmd(1);
+//						System.out.println();
+//						out.writeObject(p);
+//						out.flush();	
+						System.out.println("cmd는 " + p.getCmd());
 						break;
 					}
 				}
 			} catch (Exception e) {
-				
+				System.out.println("best1번 sf에서 실패");
+				System.out.println(e);
 			} 
 		}// while문 끝
 		closed();		

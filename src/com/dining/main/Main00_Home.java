@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,11 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.dining.mypage.RoundedButton_ha0_1;
+import com.dining.start.Protocol;
 import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
 
 public class Main00_Home extends JPanel {
 	JTextField search_tf;
@@ -33,20 +37,20 @@ public class Main00_Home extends JPanel {
 		setLayout(null);
 
 		// 주간 Best 버튼 삭제 (김상우)
-//		RoundedButton_ha0_1 best_bt = new RoundedButton_ha0_1("주간 Best");
-//		best_bt.setForeground(new Color(255, 255, 255));
-//		best_bt.setBorderPainted(false);
-//		best_bt.setBackground(new Color(65, 105, 225));
-//		best_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-//		best_bt.setBounds(169, 391, 204, 61);
-//		add(best_bt);
+		RoundedButton_ha0_1 best_bt = new RoundedButton_ha0_1("주간 Best");
+		best_bt.setForeground(new Color(255, 255, 255));
+		best_bt.setBorderPainted(false);
+		best_bt.setBackground(new Color(65, 105, 225));
+		best_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		best_bt.setBounds(169, 370, 204, 61);
+		add(best_bt);
 
 		RoundedButton_ha0_1 foodcategory_bt = new RoundedButton_ha0_1("음식 카테고리");
 		foodcategory_bt.setForeground(new Color(255, 255, 255));
 		foodcategory_bt.setBorderPainted(false);
 		foodcategory_bt.setBackground(new Color(65, 105, 225));
 		foodcategory_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		foodcategory_bt.setBounds(169, 400, 204, 61);
+		foodcategory_bt.setBounds(169, 465, 204, 61);
 		add(foodcategory_bt);
 
 		RoundedButton_ha0_1 random_bt = new RoundedButton_ha0_1("오늘 뭐먹죠?");
@@ -54,7 +58,7 @@ public class Main00_Home extends JPanel {
 		random_bt.setBorderPainted(false);
 		random_bt.setBackground(new Color(65, 105, 225));
 		random_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		random_bt.setBounds(169, 480, 204, 61);
+		random_bt.setBounds(169, 560, 204, 61);
 		add(random_bt);
 
 		search_tf = new JTextField();
@@ -149,18 +153,17 @@ public class Main00_Home extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main00_map");
 			}
 		});
 
 		// best1화면으로 이동함 main01_best1
-//		best_bt.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				cardLayout.show(main_pg, "main01_best1");
-//			}
-//		});
+		best_bt.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardLayout.show(main_pg, "main01_best1");
+			}
+		});
 
 		// 음식카테고리 화면으로 이동한다.
 		foodcategory_bt.addActionListener(new ActionListener() {
@@ -187,8 +190,29 @@ public class Main00_Home extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main00_store_search");
+				String search = search_tf.getText().trim();
+				// 값이 있는지 확인
+				if (search.length() > 0) {
+					Protocol p = new Protocol();
+					db_VO vo = new db_VO();
+					// 검색가능한지 테스트(null값 확인)
+					vo.setSearch(search);
+					// 검색 가능했을때 검색어 저장해두기
+					p.setSearch(search);
+					p.setCmd(21);
+					p.setVo(vo);
+					search_tf.setText("");
+					try {
+						main.out.writeObject(p);
+						main.out.flush();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} else {
+					JOptionPane.showMessageDialog(getParent(), "검색어를 입력해주세요.", null, JOptionPane.INFORMATION_MESSAGE,
+							new ImageIcon(Main00_Home.class.getResource("/image/icon_mini.png")));
+				}		
 			}
 		});
 

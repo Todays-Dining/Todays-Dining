@@ -28,13 +28,13 @@ public class Login01_page extends JPanel {
 	Socket s;
 	ObjectOutputStream out;
 	ObjectInputStream in;
-	
-	public JTextField id_textField;
-	public JTextField pw_textField;
-	private JPasswordField passwordField;
-	CardLayout cardLayout;
 	JPanel main_pg;
 	Start_frame main;
+	
+	CardLayout cardLayout;
+	public JTextField id_textField;
+	public JTextField pw_textField;
+	public JPasswordField passwordField;
 	int ad_num = 1;
 	int a = 0;
 	public boolean idChk = true;
@@ -115,26 +115,6 @@ public class Login01_page extends JPanel {
 		login_Button.setBounds(400, 367, 97, 95);
 		add(login_Button);
 		
-		// 로그인 화면에서 로그인 버튼클릭시 main00_Map 페이지로 넘어감
-		login_Button.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				try {
-					db_VO vo = new db_VO();
-					Protocol p = new Protocol();
-					vo.setId(id_textField.getText());
-					vo.setPassword(passwordField.getText());
-					p.setCmd(1);
-					p.setVo(vo);
-					main.out.writeObject(p);
-//					System.out.println("작동");
-					main.out.flush();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-			}
-		});
-		
 		RoundedButton_kjh_1 find_id = new RoundedButton_kjh_1("아이디 찾기");
 		find_id.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 17));
 		find_id.setForeground(new Color(255, 240, 245));
@@ -181,6 +161,26 @@ public class Login01_page extends JPanel {
 		pw_label.setBackground(new Color(65, 105, 225));
 		pw_label.setBounds(59, 434, 63, 28);
 		add(pw_label);
+		
+		// 로그인 화면에서 로그인 버튼클릭시 main00_Map 페이지로 넘어감
+		login_Button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					db_VO vo = new db_VO();
+					Protocol p = new Protocol();
+					vo.setId(id_textField.getText());
+					vo.setPassword(passwordField.getText());
+					p.setCmd(1);
+					p.setVo(vo);
+					main.out.writeObject(p);
+//					System.out.println("작동");
+					main.out.flush();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		// 아이디 찾기 버튼 클릭시 아이디 찾는 페이지로 이동
 		find_id.addActionListener(new ActionListener() {

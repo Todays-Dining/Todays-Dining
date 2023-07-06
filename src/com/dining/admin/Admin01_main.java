@@ -9,15 +9,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.dining.start.Admin_frame;
+
 public class Admin01_main extends JPanel {
 
 	JPanel admin_pg;
 	CardLayout cardLayout;
-
+	Admin_frame admin;
 	/**
 	 * Create the panel.
 	 */
-	public Admin01_main(CardLayout cardLayout, JPanel admin_pg) {
+	public Admin01_main(CardLayout cardLayout, JPanel admin_pg , Admin_frame admin) {
 		this.cardLayout = cardLayout;
 		this.admin_pg = admin_pg;
 
