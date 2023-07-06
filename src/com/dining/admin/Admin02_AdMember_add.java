@@ -6,13 +6,14 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import com.dining.start.Admin_frame;
 
 public class Admin02_AdMember_add extends JPanel {
 	JTextField id_textField;
@@ -32,7 +33,7 @@ public class Admin02_AdMember_add extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Admin02_AdMember_add(CardLayout cardLayout,JPanel admin_pg) {
+	public Admin02_AdMember_add(CardLayout cardLayout,JPanel admin_pg , Admin_frame admin) {
 		this.cardLayout = cardLayout ;
 		this.admin_pg = admin_pg ;
 		

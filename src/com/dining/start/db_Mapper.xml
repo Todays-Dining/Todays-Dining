@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dining.start.db_DAO">
+
+	 <!-- 
+	 	해당 sql을 메서드와 연결해서 처리
+	 	id = 변수명
+	 	resultType = 리턴
+	 	parameterType = 매개변수	 
+	  -->		 
+	 <!--  -->
+
+	<!-- 41 관리자 리뷰페이지 전체가져오기 기능 -->
+	<select id="reviewAll" resultType="com.dining.start.db_VO">
+		select r.id , r.review_content , r.review_number , r.star , d.diner_name
+		from REVIEW_TABLE r , DINER_TABLE d
+		where r.diner_no = d.diner_no 
+	</select>
+	
+	<!-- 42 가게이름으로 리뷰 검색 -->
+	<select id="s_namereview" parameterType="String" resultType="com.dining.start.db_VO">
+		select r.id , r.review_content , r.review_number , r.star , d.diner_name
+		from REVIEW_TABLE r , DINER_TABLE d
+		where r.diner_no = d.diner_no and d.diner_name= #{d.diner_name}
+	</select>
+	
+	<!-- 43 회원이름으로 리뷰 검색 -->
+	<select id="idreview" parameterType="String" resultType="com.dining.start.db_VO">
+		select r.id , r.review_content , r.review_number , r.star , d.diner_name
+		from REVIEW_TABLE r , DINER_TABLE d
+		where r.diner_no = d.diner_no and r.id = #{r.id}
+	</select>
+	
+	<!-- 44 회원정보 전부 받아오기 -->
+	<select id="memberAll" resultType="com.dining.start.db_VO">
+		select * from SIGNUP_TABLE
+	</select>
+	
+	<!-- 45회원아이디로 정보 검색 -->
+	<select id="shmbid" parameterType="com.dining.start.db_VO" resultType="com.dining.start.db_VO">
+	    select * from SIGNUP_TABLE where id = #{id} 
+	</select>
+	
+	<select id="login" resultType="com.dining.start.db_VO">
+	    select * from SIGNUP_TABLE where id = #{id} and password = #{password} 
+	</select>
+	
+	<select id="getID" resultType="com.dining.start.db_VO">
+	    select ID from SIGNUP_TABLE where name = #{name} and email = #{email} and birthday = #{birthday}
+	</select>
+	
+	<select id="idChk" parameterType="String" resultType="com.dining.start.db_VO">
+		select ID from SIGNUP_TABLE where ID = #{id}
+	</select>
+	
+	<insert id="infoIns" parameterType="com.dining.start.db_VO">
+		insert into SIGNUP_TABLE(STATUS, ID , PASSWORD, NAME, EMAIL, BIRTHDAY, PASSWORD_SEARCH_Q , PASSWORD_SEARCH_A, FAVORITE_LIST, REPORTED_COUNT)
+		values(#{status}, #{id} , #{password}, #{name}, #{email}, #{birthday}, #{password_search_q}	, #{password_search_a}, #{favorite_list}, #{reported_count})
+	</insert>
+	
+	<delete id="infoDel" parameterType="com.dining.start.db_VO">
+		delete from SIGNUP_TABLE where ID = #{ID}
+	</delete>
+	
+	<update id="infoUpdate" parameterType="com.dining.start.db_VO">
+        update SIGNUP_TABLE set ID=#{id}, NAME=#{name}, EMAIL=#{email} , BIRTHDAY=#{birthday}
+        , PASSWORD_SEARCH_Q =#{password_search_q} , PASSWORD_SEARCH_A =#{password_search_a}
+        where ID = #{id}
+    </update>
+	
+	
+	
+	<!-- <select id="custOne" parameterType="String" resultType="com.dining.start.VO">
+		select * from customer where custid = #{custid} 
+	</select> -->
+	<!-- 
+	<select id="custOne" parameterType="String" resultType="com.dining.start.VO">
+		select * from customer where custid = #{custid} 
+	</select>
+	
+	<insert id="custIns" parameterType="com.dining.start.VO">
+		insert into customer(custid, name, address, phone)
+		values(customer_seq.nextval,#{name},#{address},#{phone})
+	</insert>
+	
+	<delete id="custDel" parameterType="com.dining.start.VO">
+		delete from customer where custid = #{custid}
+	</delete>
+	
+	<update id="custUpdate" parameterType="com.dining.start.VO">
+		update customer set name=#{name}, address=#{address}, phone=#{phone}
+		where custid = #{custid}
+	</update>
+ -->	
+</mapper>

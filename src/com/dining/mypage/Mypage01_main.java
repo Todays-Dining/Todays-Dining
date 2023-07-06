@@ -23,7 +23,7 @@ import com.dining.main.Main00_Home;
 import com.dining.main.Main01_best1;
 import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
-<<<<<<< HEAD
+
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -33,8 +33,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-=======
->>>>>>> refs/remotes/origin/ksw7
+
 
 public class Mypage01_main extends JPanel {
 	public JTextField textField;
@@ -326,17 +325,18 @@ public class Mypage01_main extends JPanel {
 				cardLayout.show(main_pg, "mypage01_main");
 			}
 		});
-<<<<<<< HEAD
+
 		fix_bt.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				db_VO vo = db_DAO.getID();
+				db_VO vo = new db_VO();
+				vo = db_DAO.getid(vo);
 				id_tf.setText(vo.getId());
 				
 			}
 		});
-=======
+
 		// 나만의 즐겨찾기로 이동
 		like_bt.addActionListener(new ActionListener() {
 			
@@ -409,7 +409,5 @@ public class Mypage01_main extends JPanel {
                 }
             }
         });
-		
->>>>>>> refs/remotes/origin/ksw7
 	}
 }

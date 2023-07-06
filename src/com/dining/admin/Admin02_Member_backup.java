@@ -22,13 +22,12 @@ import javax.swing.table.DefaultTableModel;
 
 import com.dining.start.Admin_frame;
 import com.dining.start.Protocol;
-import com.dining.start.db_VO;
 
-public class Admin02_Member extends JPanel {
+public class Admin02_Member_backup extends JPanel {
 	JTextField select_tf;
 	public JTable table;
 	public DefaultTableModel dtm;
-	public JScrollPane scroll_table;
+	JScrollPane jScrollPane;
 	JRadioButton rb;
 	Admin_frame admin;
 	 String header[]={"회원번호", "회원아이디", "비밀번호", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"};
@@ -72,7 +71,7 @@ public class Admin02_Member extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Admin02_Member(CardLayout cardLayout,JPanel admin_pg , Admin_frame admin) {
+	public Admin02_Member_backup(CardLayout cardLayout,JPanel admin_pg , Admin_frame admin) {
 		this.cardLayout = cardLayout ;
 		this.admin_pg = admin_pg ;
 		
@@ -90,7 +89,7 @@ public class Admin02_Member extends JPanel {
 		});
 		backbutton.setBorderPainted(false);
 		backbutton.setBackground(new Color(255, 240, 245));
-		backbutton.setIcon(new ImageIcon(Admin02_Member.class.getResource("/image/backbutton.png")));
+		backbutton.setIcon(new ImageIcon(Admin02_Member_backup.class.getResource("/image/backbutton.png")));
 		add(backbutton);
 		
 		JLabel member_lb = new JLabel("회원정보");
@@ -157,8 +156,8 @@ public class Admin02_Member extends JPanel {
 			}
 		});
 		
-		dtm = new DefaultTableModel(contents, header);
-		table = new JTable(dtm) {
+		
+		table = new JTable(contents, header) {
 			public boolean isCellEditable(int i, int c){
 				return false;
 			}
@@ -169,11 +168,11 @@ public class Admin02_Member extends JPanel {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setRowHeight(25);
 		
-		JScrollPane scroll_table = new JScrollPane(table);
-		scroll_table.setIgnoreRepaint(true);
-		scroll_table.setPreferredSize(new Dimension(5, 5));
-		scroll_table.setBounds(74, 219, 1048, 516);
-		add(scroll_table);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setIgnoreRepaint(true);
+		scrollPane.setPreferredSize(new Dimension(5, 5));
+		scrollPane.setBounds(74, 219, 1048, 516);
+		add(scrollPane);
 		
 		JButton adminadd_bt = new JButton("관리자추가");
 		adminadd_bt.setBackground(new Color(255, 0, 128));
@@ -211,7 +210,6 @@ public class Admin02_Member extends JPanel {
 			public void actionPerformed(ActionEvent e) {	
 				Protocol p = new Protocol();
 				try {
-					dtm.setNumRows(0);
 					p.setCmd(44);
 					admin.out.writeObject(p);
 					admin.out.flush();					
@@ -227,10 +225,6 @@ public class Admin02_Member extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			Protocol p = new Protocol();
 			try {
-				dtm.setNumRows(0);
-				db_VO vo = new db_VO();
-				vo.setId(select_tf.getText());
-				p.setVo(vo);
 				p.setCmd(45);
 				admin.out.writeObject(p);
 				admin.out.flush();

@@ -6,14 +6,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FileDialog;
 import java.awt.Font;
-import java.awt.Robot;
 import java.awt.Frame;
+import java.awt.Robot;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,6 +27,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.TableModel;
+
+import com.dining.start.Admin_frame;
 
 public class Admin03_rest extends JPanel {
 	JTextField store_tf;
@@ -87,7 +90,7 @@ public class Admin03_rest extends JPanel {
 	CardLayout cardLayout;
 	String store;
 
-	public Admin03_rest(CardLayout cardLayout, JPanel admin_pg) {
+	public Admin03_rest(CardLayout cardLayout, JPanel admin_pg , Admin_frame admin) {
 		this.cardLayout = cardLayout;
 		this.admin_pg = admin_pg;
 

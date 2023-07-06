@@ -1,29 +1,5 @@
-<<<<<<< HEAD
 package com.dining.start;
 
-import org.apache.ibatis.session.SqlSession;
-
-public class db_DAO {
-	
-	private static SqlSession ss;
-	
-	private synchronized static SqlSession getSession(){
-		if(ss == null) {
-			ss = db_Service.getFactory().openSession();
-		}
-		return ss;
-	}
-	// 아이디 불러오는 메서드
-	public static db_VO getID() {
-		db_VO vo = getSession().selectOne("ID");
-		return vo;
-	}
-}
-=======
-
-package com.dining.start;
-
-import java.util.Collection;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -46,9 +22,42 @@ public class db_DAO {
 		return vo; 
 	}
 	
+
+	
 	public static db_VO login(db_VO vo) {
 		vo = getSession().selectOne("login",vo);
 		return vo;
+	}
+	//41
+	public static List<db_VO> getreviewAll(){// 리뷰리스트 전부 받아오기
+		List<db_VO> list = null;
+		list = getSession().selectList("reviewAll");
+		return list;
+	}
+	//42
+	public static List<db_VO> s_namereview(String diner_name){// 가게이름으로 리뷰 검색
+		List<db_VO> list = null;
+		list = getSession().selectList("s_namereview",diner_name);
+		return list;
+	}
+	//43
+	public static List<db_VO> getidreview(String id){// 회원아이디로 리뷰 검색
+		List<db_VO> list = null;
+		list = getSession().selectList("idreview", id);
+		return list;
+	}
+	
+	//44
+	public static List<db_VO> getmeminfoAll(){// 회원정보 전부 받아오기
+		List<db_VO> list = null;
+		list = getSession().selectList("memberAll");
+		return list;
+	}
+	
+	//45
+		public static db_VO IdinfoSh(db_VO vo){// 회원아이디로 특정 회원정보 검색
+			vo = getSession().selectOne("shmbid",vo); 
+			return vo;
 	}
 	
 	public static List<db_VO> getidAll(){
@@ -56,15 +65,6 @@ public class db_DAO {
 		// ID 리스트를 받아온다.
 		return list;
 	}
-	
-//	public static db_VO findYourId(db_VO vo){
-////		vo = getSession().selectOne("findyourid");
-//		db_VO vo2 = new db_VO();
-//		vo2 = getSession().selectOne("findyourid",vo);
-//		
-//		// ID 리스트를 받아온다.
-//		return vo2;
-//	}
 	
 	public static db_VO findYourId(db_VO vo) {
         vo = getSession().selectOne("getID",vo);
@@ -111,14 +111,14 @@ public class db_DAO {
         return result;        
     }
     
-    // 좌현 id찾기
-	public static db_VO findid(db_VO vo) {
-		System.out.println(vo.getName());
-		System.out.println(vo.getEmail());
-		System.out.println(vo.getBirthday());
-        vo = getSession().selectOne("findid",vo);
-        return vo; 
-    }
+//    // 좌현 id찾기
+//	public static db_VO findid(db_VO vo) {
+//		System.out.println(vo.getName());
+//		System.out.println(vo.getEmail());
+//		System.out.println(vo.getBirthday());
+//        vo = getSession().selectOne("findid",vo);
+//        return vo; 
+//    }
 	
 	// 좌현 pw찾기
 	public static db_VO findpw(db_VO vo) {
@@ -138,15 +138,5 @@ public class db_DAO {
 		return list;
     }
 	
-//	public static db_VO getid2(String name, String email, String birth){
-//		List<db_VO> = db_VO 
-//		
-//		db_VO vo = getSession().selectOne(name);
-//		db_VO vo2 = getSession().selectOne(email);
-//		db_VO vo3 = getSession().selectOne(birth);
-//
-//		retrun result;
-//
-//	}
 }
->>>>>>> refs/remotes/origin/ksw7
+

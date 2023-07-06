@@ -229,7 +229,7 @@ public class Start_frame extends JFrame implements Runnable {
 	// 접속
 	public void connected() {
 		try {
-			s = new Socket("192.168.0.69", 7778);
+			s = new Socket("192.168.0.16", 7778);
 			out = (new ObjectOutputStream(s.getOutputStream()));
 			in = new ObjectInputStream(s.getInputStream());
 			new Thread(this).start();
@@ -265,13 +265,6 @@ public class Start_frame extends JFrame implements Runnable {
                             JOptionPane.showMessageDialog(login02_member_join, "회원가입성공.", null, JOptionPane.INFORMATION_MESSAGE,
                                     new ImageIcon(Login02_member_join.class.getResource("/image/icon_mini.png")));
                             cardLayout.show(main_pg,"login01_page");
-//                            try {
-//                            	connected();
-//							} catch (Exception e) {
-//								System.out.println("재연결 실패");
-//							}
-                            // ★ 성공하고 나면 연결이 끊어져 있음. 재연결 시도
-//                            JOptionPane.showMessageDialog(login02_member_join, "회원가입 성공");
                         }else {
                             JOptionPane.showMessageDialog(login02_member_join, "회원가입실패", null, JOptionPane.INFORMATION_MESSAGE,
                                     new ImageIcon(Login02_member_join.class.getResource("/image/icon_mini.png")));

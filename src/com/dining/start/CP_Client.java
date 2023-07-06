@@ -81,8 +81,44 @@ public class CP_Client extends Thread {
                     	out.writeObject(p);
                     	out.flush();
                     	System.out.println("best 1번 성공");
-                    	break;				
-					}
+                    	break;		
+				    case 41: // Admin04_review 관리자 리뷰관리페이지 리뷰 모두 불러오기 기능
+				    	List<db_VO> list41 = db_DAO.getreviewAll();				    	
+				    	p.setList(list41);
+				    	out.writeObject(p);
+				    	out.flush();
+				    	break;
+				    case 42: // 리뷰페이지 가게이름 검색 불러오기
+						db_VO vo42 = new db_VO();
+						vo42 = p.getVo();
+						List<db_VO> list42 = db_DAO.s_namereview(vo42.getDiner_name());
+						p.setList(list42);
+						out.writeObject(p);
+						out.flush();						
+						break;
+					case 43: // 리뷰페이지 회원 아이디 검색 불러오기
+						db_VO vo43 = new db_VO();
+						vo43 = p.getVo();
+						List<db_VO> list43 = db_DAO.getidreview(vo43.getId());
+						p.setList(list43);
+						out.writeObject(p);
+						out.flush();
+						break;
+					case 44: // Admin02_Member페이지 전체검색
+						List<db_VO> list44 = db_DAO.getmeminfoAll();
+						p.setList(list44);
+						out.writeObject(p);
+						out.flush();
+						break;
+					case 45: // Admin02_Member 회원아이디로 검색
+						db_VO vo45 = p.getVo();
+						p.setVo(db_DAO.IdinfoSh(vo45));
+						out.writeObject(p);
+						out.flush();
+						break;
+					case 46: // Admin02_Member 회원아이디 검색시 삭제 버튼
+						break;						
+					}// switch문 끝
 				}
 			} 
 //			catch (java.sql.SQLDataException e2) {
