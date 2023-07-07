@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.plaf.FontUIResource;
 
@@ -130,7 +131,7 @@ public class Start_frame extends JFrame implements Runnable {
 		// 메인04_메인스토어화면
 		main04_store1_main = new Main04_store1_main(cardLayout,main_pg,this);
 		Main04_store2_map main04_store2_map = new Main04_store2_map(cardLayout,main_pg);
-		main04_store3_review = new Main04_store3_review(cardLayout,main_pg);
+		main04_store3_review = new Main04_store3_review(cardLayout,main_pg,this);
 		
 		// 로그인
 		main_pg.add("login01_page",login01_page);
@@ -355,6 +356,48 @@ public class Start_frame extends JFrame implements Runnable {
 									 new ImageIcon(Main00_Home.class.getResource("/image/icon_mini.png")));
 						}
 						break;
+						
+					case 39: // 39번 상우 리뷰 및 별점 작성
+						// ID, 식당명 넘겨주기
+						System.out.println("sf 39번 작동중");
+						String diner_name2 = main04_store1_main.store_name.getText();
+				    	String diner_no = db_DAO.findDiner(diner_name2);
+						main04_store3_review.id_forchk = id_for_pwchk;
+						System.out.println("sf의 아이디" + id_for_pwchk);
+						main04_store3_review.tf_forid.setText(id_for_pwchk);
+						main04_store3_review.tf_fordiner.setText(diner_name2);
+//						main04_store3_review.tf_fordiner.setText(id_for_pwchk);
+						String score = main04_store3_review.store_score_tf.getText();
+						String content = main04_store3_review.now_review_ta.getText();
+						db_VO vo = new db_VO();
+						System.out.println(id_for_pwchk);
+						vo.setId(id_for_pwchk);
+						
+						vo.setDiner_no(diner_no);
+						vo.setReview_content2(content);
+//						vo.setDiner_name(diner_name2);
+						vo.setReview_score(score);
+						
+						p.setVo(vo);
+						int result = db_DAO.insReview(vo);
+//						out.writeObject(p);
+//	                    out.flush();
+	                    if (result == 1) {
+	                    	JOptionPane.showMessageDialog(getParent(), "리뷰 작성 성공!", null, JOptionPane.INFORMATION_MESSAGE,
+									 new ImageIcon(Main00_Home.class.getResource("/image/icon_mini.png")));
+	                    }else if (result == 0) {
+	                    	JOptionPane.showMessageDialog(getParent(), "리뷰 작성 실패!", null, JOptionPane.INFORMATION_MESSAGE,
+									 new ImageIcon(Main00_Home.class.getResource("/image/icon_mini.png")));
+	                    }
+//						// 평점 텍스트필드
+//						public JTextField store_score_tf;
+//						// 리뷰 텍스트필드
+//						public JTextField now_review_ta;
+						break;
+					case 40: // 상우 식당명에 해당하는 식당번호 받아오기
+						
+						break;
+						
 					case 51:
 						System.out.println("sf 51번 가동");
 						List<db_VO> list51 = p.getList();

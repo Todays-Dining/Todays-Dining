@@ -147,9 +147,22 @@ public class db_DAO {
     public static int changePw(db_VO vo) {
     	int result = getSession().update("changePw",vo);
     	ss.commit();
-    	System.out.println("38번 DAO 완료");
     	return result;
     }
+    
+    // 39번 상우 식당리뷰 넣기
+    public static int insReview(db_VO vo) {
+    	int result = getSession().update("insReview",vo);
+    	ss.commit();
+    	return result;
+    }
+    
+    // 39번 상우 식당명에 해당하는 식당번호 받아오기
+    public static String findDiner(String diner_name){
+    	String result_no = "";
+		result_no = getSession().selectOne("findDiner",diner_name); 
+        return result_no;
+}
     
     // 윤성훈 DAO 41~
     //41

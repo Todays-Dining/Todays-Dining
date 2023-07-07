@@ -5,14 +5,26 @@ import java.io.Serializable;
 public class db_VO implements Serializable {
 	private String status, id, password, name, email, birthday, password_search_q, password_search_a,
 			favorite_list, reported_count, deleted_time, review_number, old_pw, new_pw, update_id, id_for_pwchk,
-			pw_for_pwchk;
+			pw_for_pwchk, review_score, review_content2;
 	private String diner_no, diner_name, favorited_number, opening_hour, menu, phone_number, 
 			parking_or_not, food_category, region, address;
 	private String review_content, star;
 	// 재훈 검색기능으로 인한 서치 추가
 	private String search;
 	
-	
+	// 상우 리뷰 평점, 리뷰 내용
+	public String getReview_score() {
+		return review_score;
+	}
+	public void setReview_score(String review_score) {
+		this.review_score = review_score;
+	}
+	public String getReview_content2() {
+		return review_content2;
+	}
+	public void setReview_content2(String review_content2) {
+		this.review_content2 = review_content2;
+	}
 	// 상우 비번변경 시 ID확인용
 	public String getId_for_pwchk() {
 		return id_for_pwchk;

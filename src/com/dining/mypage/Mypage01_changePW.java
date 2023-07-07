@@ -145,6 +145,7 @@ public class Mypage01_changePW extends JPanel {
 				int same_flag = 0;
 				int old_chk_flag = 0;
 				int id_chk_flag = 0;
+				int old_now_flag = 0;
 				// 빈칸이 없는지 확인
 				if (old_pw.length() == 0 || new_pw.length() == 0 || new_pw_chk.length() == 0) {
 					JOptionPane.showMessageDialog(getParent(), "내용을 모두 입력해주세요!", null, JOptionPane.INFORMATION_MESSAGE,
@@ -180,11 +181,11 @@ public class Mypage01_changePW extends JPanel {
 					p.setVo(vo);
 					main.out.writeObject(p);
 					main.out.flush();
-//					old_new_flag = 1;
+					old_now_flag = 1;
 				} catch (Exception e2) {
 					System.out.println("아이디 확인에서 오류");
 					System.out.println(e2);
-//					old_new_flag = 0;
+					old_now_flag = 0;
 				}
 //				System.out.println("pw_forchk는" + pw_forchk);
 				
@@ -206,7 +207,7 @@ public class Mypage01_changePW extends JPanel {
 					same_flag = 1;
 				}
 				// 모든 조건 만족 시 통과하여 update 하자
-				if (blank_flag == 1 && same_flag == 1 && old_chk_flag == 1) {
+				if (blank_flag == 1 && same_flag == 1 && old_chk_flag == 1 && old_now_flag == 1) {
 		
 						Protocol p = new Protocol();
 						db_VO vo = new db_VO();

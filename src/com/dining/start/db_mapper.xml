@@ -122,6 +122,18 @@
         update SIGNUP_TABLE set PASSWORD = #{new_pw} where ID=#{id}
     </update>
     
+    <!-- 상우 39번 식당이름에 해당하는 넘버 받아오기 -->
+    <select id="findDiner" resultType="String" parameterType="String">
+    	select DINER_NO from DINER_TABLE where DINER_NAME = #{diner_name}
+    </select>
+    
+    <!-- 상우 39번 식당 리뷰 넣기 -->
+    <insert id="insReview" parameterType="com.dining.start.db_VO">
+	    insert into REVIEW_TABLE
+		values(review_seq.nextval, #{id}, #{diner_no}, #{review_content2}, SYSDATE, #{review_score})
+	</insert>
+    
+    
     <!-- 성훈 매퍼 41~ -->
     <!-- 41 관리자 리뷰페이지 전체가져오기 기능 -->
     <select id="reviewAll" resultType="com.dining.start.db_VO">

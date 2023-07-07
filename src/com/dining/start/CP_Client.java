@@ -131,7 +131,22 @@ public class CP_Client extends Thread {
 				    		System.out.println("cpc에서 비번 변경 에러");
 				    	}
 				    	break;
-				    	
+				    	// CPC와 main 동시에 case가 존재할 때, cpc에서 flush 안해주면 main으로 안 넘어간다??
+				    case 39:
+				    	System.out.println("cpc 39번 작동중");
+//				    	db_VO vo1 = db_DAO.findDiner(p.getVo());
+//				    	p.setVo(vo1);
+//				    	out.writeObject(p);
+//	                    out.flush();
+//				    	Thread.sleep(2000);
+				    	out.writeObject(p);
+	                    out.flush();
+	                    System.out.println("cpc 39번 완료");
+				    	break;
+//				    case 40:
+//				    	System.out.println("cpc 40번 실행!");
+//	                    System.out.println("cpc의 식당 번호 " + vo1.getDiner_no());
+//				    	break;
 				    	// 성훈 41~
 				    case 41: // Admin04_review 관리자 리뷰관리페이지 리뷰 모두 불러오기 기능
                         List<db_VO> list41 = db_DAO.getreviewAll();                        

@@ -101,7 +101,7 @@ public class Main03_random extends JPanel {
 		homeButton.setBorderPainted(false);
 		homeButton.setIcon(new ImageIcon(Main03_random.class.getResource("/image/homebutton_1.png")));
 		homeButton.setBackground(new Color(255, 240, 245));
-		homeButton.setBounds(327, 32, 77, 69);
+		homeButton.setBounds(329, 37, 77, 69);
 		add(homeButton);
 
 		JLabel label_img = new JLabel("");

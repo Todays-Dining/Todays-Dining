@@ -97,7 +97,7 @@ public class Main02_category_select extends JPanel {
 		homeButton.setBorderPainted(false);
 		homeButton.setIcon(new ImageIcon(Main02_category_select.class.getResource("/image/homebutton_1.png")));
 		homeButton.setBackground(new Color(255, 240, 245));
-		homeButton.setBounds(327, 32, 77, 69);
+		homeButton.setBounds(329, 37, 77, 69);
 		add(homeButton);
 
 		RoundedButton_lsh_1 menu1_kr = new RoundedButton_lsh_1("한식");
