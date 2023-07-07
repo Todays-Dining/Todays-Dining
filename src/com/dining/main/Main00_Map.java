@@ -193,7 +193,7 @@ public class Main00_Map extends JPanel{
 					System.out.println("flush 안됨");
 					System.out.println(e2);
 				}
-				System.out.println("cmd 31번으로 변경 완");
+//				System.out.println("cmd 31번으로 변경 완");
 			}
 		});
 		place2_bt.addActionListener(new ActionListener() {

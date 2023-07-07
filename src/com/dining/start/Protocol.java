@@ -9,6 +9,9 @@ public class Protocol implements Serializable{
 	public int result;
 	public db_VO vo;
 	public List<db_VO> list;
+	
+	// 재훈 가게이름 보내기
+	private String store_name ;
 
 	// 재훈 검색기능으로 인한 서치 추가
 	private String search ;
@@ -16,6 +19,13 @@ public class Protocol implements Serializable{
 	// 재훈 이미지 이름값 전달
 	private String imgname ;
 	
+	// 하영 or 재훈 추가부분
+	public String getStore_name() {
+		return store_name;
+	}
+	public void setStore_name(String store_name) {
+		this.store_name = store_name;
+	}
 	
 	public String getSearch() {
 		return search;

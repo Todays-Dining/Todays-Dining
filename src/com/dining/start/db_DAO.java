@@ -104,16 +104,21 @@ public class db_DAO {
 		return vo;
 	}
     
-	 // 재훈 검색기능 (검색어 존재여부)
+	 // 21 재훈 검색기능 (검색어 존재여부)
 	 public static db_VO getSearch_Ck(db_VO vo){
 		 vo = getSession().selectOne("Search_Ck", vo);
 		 return vo; 
 	 }
-	 // 재훈 검색기능
+	 // 21 재훈 검색기능
 	 public static List<db_VO> getSearch(String search){
 		 List<db_VO> list = getSession().selectList("Search", search);
 		 return list;
 	 }
+	// 22 재훈 가게 정보 받아오기
+		 public static db_VO getStoreInfo(db_VO vo){
+				 vo = getSession().selectOne("storeInfo", vo);
+				 return vo; 
+		}
     // 상우 best 식당명, 평점, 카테고리 받아오기
     public static db_VO getbestAll(){
     	db_VO vo = getSession().selectOne("bestOfAll"); 
@@ -131,11 +136,19 @@ public class db_DAO {
 //        return vo;
 //    }
     
-    // 상우 DAO (비밀번호 변경), update문은 int형으로 받아야 함.
+    
+    // 상우 37 (비밀번호 일치 확인용 비번 받아오기)
+    public static String getPwforChk(){
+    	String result = getSession().selectOne("getPw"); 
+    	return result;
+    }
+    
+    // 38번 상우 DAO (비밀번호 변경), update문은 int형으로 받아야 함.
     public static int changePw(db_VO vo) {
-        int result = getSession().update("changePw",vo);
-        ss.commit();
-        return result;
+    	int result = getSession().update("changePw",vo);
+    	ss.commit();
+    	System.out.println("38번 DAO 완료");
+    	return result;
     }
     
     // 윤성훈 DAO 41~
@@ -170,6 +183,13 @@ public class db_DAO {
             vo = getSession().selectOne("shmbid",vo); 
             return vo;
     }
+        
+    //51 하영
+    public static List<db_VO> getinfoReview(db_VO vo) {
+		List<db_VO> list = getSession().selectList("infoReview",vo);
+		ss.commit();
+		return list;
+	}
     
  
 //	public static db_VO getid2(String name, String email, String birth){

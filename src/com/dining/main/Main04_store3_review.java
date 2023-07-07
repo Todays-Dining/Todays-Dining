@@ -18,14 +18,18 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class Main04_store3_review extends JPanel {
-	private JTextField store_score_tf;
-	private JTextField now_review_ta;
+	public JTextField store_score_tf;
+	public JTextField now_review_ta;
 	CardLayout cardLayout;
 	JPanel main_pg;
+	
+	public JTextArea review1_ta;
+	public JTextArea review2_ta;
+	public JTextArea review3_ta;
+	public JTextField review1_id;
+	public JTextField review2_id;
+	public JTextField review3_id;
 
-	/**
-	 * Create the panel.
-	 */
 	public Main04_store3_review(CardLayout cardLayout, JPanel main_pg) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
@@ -106,7 +110,7 @@ public class Main04_store3_review extends JPanel {
 		custname1_lb.setBounds(67, 350, 67, 29);
 		add(custname1_lb);
 
-		JTextArea review1_ta = new JTextArea();
+		review1_ta = new JTextArea();
 		review1_ta.setBounds(169, 350, 317, 61);
 		add(review1_ta);
 
@@ -116,7 +120,7 @@ public class Main04_store3_review extends JPanel {
 		date_1.setBounds(48, 382, 96, 29);
 		add(date_1);
 
-		JTextArea review2_ta = new JTextArea();
+		review2_ta = new JTextArea();
 		review2_ta.setBounds(169, 452, 317, 61);
 		add(review2_ta);
 
@@ -132,7 +136,7 @@ public class Main04_store3_review extends JPanel {
 		date_2.setBounds(48, 484, 96, 29);
 		add(date_2);
 
-		JTextArea review3_ta = new JTextArea();
+		review3_ta = new JTextArea();
 		review3_ta.setBounds(169, 553, 317, 61);
 		add(review3_ta);
 
@@ -168,6 +172,22 @@ public class Main04_store3_review extends JPanel {
 		now_review_ta.setBounds(148, 755, 338, 148);
 		add(now_review_ta);
 		now_review_ta.setColumns(10);
+		
+		// 작성자 ID 입력 받아오기(하영)
+		review1_id = new JTextField();
+		review1_id.setBounds(169, 319, 116, 21);
+		add(review1_id);
+		review1_id.setColumns(10);
+				
+		review2_id = new JTextField();
+		review2_id.setBounds(169, 421, 116, 21);
+		add(review2_id);
+		review2_id.setColumns(10);
+				
+		review3_id = new JTextField();
+		review3_id.setBounds(169, 522, 116, 21);
+		add(review3_id);
+		review3_id.setColumns(10);
 
 		JButton back_bt = new JButton("");
 		back_bt.setIcon(new ImageIcon(Main04_store2_map.class.getResource("/image/backbutton.png")));
@@ -243,6 +263,18 @@ public class Main04_store3_review extends JPanel {
 				cardLayout.show(main_pg, "mypage01_main");
 			}
 		});
+		
+		/* 리뷰 저장 버튼 (하영)
+		review_save_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(store_score_tf||now_review_lb.getText().length() ==0)
+				
+			}
+		});
+		 */
 
 	}
 

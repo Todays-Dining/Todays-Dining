@@ -97,39 +97,28 @@ public class CP_Client extends Thread {
 						out.writeObject(p);
 						out.flush();
 						break;
-				    case 31: // best 식당 1위 받아오기
-//				    	List<VO_2> list = DAO_2.getList();
-//						p.setList(list);
-//						out.writeObject(p);
-//						out.flush();
-//						break; 
-				    	db_VO vo1 = db_DAO.getbestAll();
-                    	p.setVo(vo1);
-                    	out.writeObject(p);
-                    	out.flush();
-//                    	System.out.println("best 1번 받아오기 성공");
-                    	Thread.sleep(1000);
-                    	break;
-				    case 36: // 비밀번호 변경
-				    	// id를 받아와야 함
-//				    	  db_VO vo2 = new db_VO();
-//	                        vo2 = p.getVo();
-//	                        try {
-//	                        	p.setResult(db_DAO.insInfoMember(vo2));
-//	                        	out.writeObject(p);
-//	                        	out.flush();
-//	                        	System.out.println("cp_client 회원가입 성공");
-//	                        	break;							
-//							} catch (Exception e) {
-//								// 생년월일 양식 이상하게 입력했을 때 나는 오류 잡아야 함!
-////								System.out.println("회원가입 오류");
-//								System.out.println(e);
-//								// 아니면 메시지 띄워야 함
-//								
-//								// java.net.SocketException: 현재 연결은 사용자의 호스트 시스템의 소프트웨어의 의해 중단되었습니다
-//								// 회원가입 이후에 다시 접속 안됨 (위 메시지 때문에)
-//							}
-				    	System.out.println("★★★cpc 36번 작동중");
+						
+					case 22:// 재훈 가게 이름 다른 페이지 보내고 db정보 받아오기
+                        System.out.println(p.getStore_name());
+                        db_VO vo22 =  new db_VO();
+                        vo22 = db_DAO.getStoreInfo(p.getVo());
+                        p.setVo(vo22);
+                        
+                        out.writeObject(p);
+                        out.flush();
+                        break;	
+						
+//				    case 31: // best 식당 1위 받아오기
+//				    	db_VO vo1 = db_DAO.getbestAll();
+//                    	p.setVo(vo1);
+//                    	out.writeObject(p);
+//                    	out.flush();
+////                    	System.out.println("best 1번 식당 CPC에서 받아오기 성공");
+//                    	break;
+//						// CPC에서 작동해야 하나?
+//						// 쿼리문 에러가, start_frame에서는 안 나옴
+				    case 38: // 비밀번호 변경
+//				    	System.out.println("★★★cpc 38번 작동중");
 				    	db_VO vo3 = new db_VO();
 				    	vo3 = p.getVo();
 				    	try {
@@ -137,10 +126,10 @@ public class CP_Client extends Thread {
 				    		out.writeObject(p);
 				    		out.flush();
 				    		System.out.println("cpc에서 비번 변경 완료");
-						} catch (Exception e) {
-							System.out.println(e);
-							System.out.println("cpc에서 에러");
-						}
+				    	} catch (Exception e) {
+				    		System.out.println(e);
+				    		System.out.println("cpc에서 비번 변경 에러");
+				    	}
 				    	break;
 				    	
 				    	// 성훈 41~
@@ -178,7 +167,17 @@ public class CP_Client extends Thread {
                         out.writeObject(p);
                         out.flush();
                         break;
-				    	
+                    case 51 : // 하영 식당 리뷰
+				    	db_VO vo51 = new db_VO();
+						vo51 = p.getVo();
+						List<db_VO> list = db_DAO.getinfoReview(vo51);
+						p.setList(list);
+						out.writeObject(p);
+						out.flush();
+						System.out.println("성공");
+						break;	
+                        
+                        
 					}
 				}
 			} 

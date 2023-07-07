@@ -71,15 +71,29 @@
         select * from SIGNUP_TABLE where ID = #{id}
     </select>
     
-    <!-- 재훈 Serach 확인 -->
+    <!-- 재훈 21 Serach 확인 -->
      <select id="Search_Ck" parameterType="String" resultType="com.dining.start.db_VO">
        select DINER_NAME from (select * from DINER_TABLE where DINER_NAME like '%'||#{search}||'%'
         or MENU like '%'||#{search}||'%' OR food_category like '%'||#{search}||'%') where rownum=1
     </select>
-    <!-- 재훈 Serach -->
+    <!-- 재훈 21 Serach -->
      <select id="Search"  resultType="com.dining.start.db_VO">
       select DINER_NAME, MENU from (select * from DINER_TABLE where DINER_NAME like '%'||#{search}||'%'
         or MENU like '%'||#{search}||'%' OR food_category like '%'||#{search}||'%')
+    </select>
+    
+      <!-- 재훈 22 Serach -->
+     <select id="storeInfo"  resultType="com.dining.start.db_VO">
+         select * from DINER_TABLE where DINER_NAME = #{diner_name} 
+	<!--    SELECT *
+	FROM (
+	    SELECT d.*, TRUNC(AVG(r.star) OVER (PARTITION BY r.diner_no), 1) AS avg_star,
+	           ROW_NUMBER() OVER (PARTITION BY r.diner_no ORDER BY r.review_time DESC) AS row_num
+	    FROM diner_table d
+	    JOIN review_table r ON d.diner_no = r.diner_no
+	    WHERE d.diner_name = #{diner_name}
+	) sub
+	WHERE row_num = 1 -->
     </select>
     
     <!-- 상우 best 식당명, 카테고리 받아오기 -->
@@ -87,9 +101,25 @@
    		select * from REVIEW_AVG_VIEW where rownum=1
     </select>
     
-    <!-- 상우 mypage 비밀번호 변경 -->
-     <update id="changePw" parameterType="com.dining.start.db_VO">
-        update SIGNUP_TABLE set PASSWORD = #{new_pw} where ID=#{update_id};
+<!--      <update id="infoUpdate" parameterType="com.dining.start.db_VO">
+        update SIGNUP_TABLE set ID=#{id}, NAME=#{name}, EMAIL=#{email} , BIRTHDAY=#{birthday}
+        , PASSWORD_SEARCH_Q =#{password_search_q} , PASSWORD_SEARCH_A =#{password_search_a}
+        where ID = #{id}
+    </update> -->
+    
+    <!-- <select id="s_namereview" parameterType="String" resultType="com.dining.start.db_VO">
+		select password from SIGNUP_TABLE where ID=#{id}
+    </select> -->
+    
+    <!-- 상우 37 비밀번호 확인용 받아오기 -->
+    <select id="getPw" resultType="String" parameterType="com.dining.start.db_VO">
+        select PASSWORD from SIGNUP_TABLE where ID = #{id_for_pwchk}
+    </select>
+    
+    <!-- mapper에 세미콜론; 절대 찍지 말자!!! -->
+    <!-- 38 상우 mypage 비밀번호 변경 -->
+    <update id="changePw" parameterType="com.dining.start.db_VO">
+        update SIGNUP_TABLE set PASSWORD = #{new_pw} where ID=#{id}
     </update>
     
     <!-- 성훈 매퍼 41~ -->
@@ -123,6 +153,20 @@
     <select id="shmbid" parameterType="com.dining.start.db_VO" resultType="com.dining.start.db_VO">
         select * from SIGNUP_TABLE where id = #{id} 
     </select>
+    
+    <!-- 51 하영 가게이름으로 리뷰 작성자 아이디, 리뷰 내용 검색 -->
+    <select id="infoReview" resultType="com.dining.start.db_VO" parameterType="com.dining.start.db_VO">
+		select d.diner_name, r.id, r.review_content, r.review_time
+		from diner_table d, review_table r
+		where d.diner_no = r.diner_no and d.diner_name=#{diner_name}
+		order by r.review_time desc
+	</select>
+    
+    <!-- 52 하영 가게 리뷰 작성하기(입력) 작성중... -->
+    <insert id="starNreview" parameterType="com.dining.start.db_VO">
+    	insert into review_table(id,diner_no,review_content,review_time,star)
+    	values(id,diner_no,review_content,review_time,star)
+    </insert>
 
     
 </mapper>

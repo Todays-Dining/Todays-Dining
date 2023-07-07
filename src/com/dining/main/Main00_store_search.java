@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,7 +23,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.dining.start.Protocol;
 import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
 
 public class Main00_store_search extends JPanel {
 	
@@ -135,9 +138,28 @@ public class Main00_store_search extends JPanel {
 				int row = table.getSelectedRow();
 				TableModel data = table.getModel();
 				 store = (String)data.getValueAt(row,0);
-				 // System.out.println(store);
-				 cardLayout.show(main_pg, "main04_store1_main");
+				// 가게 이름 다른 페이지 보내기	재훈 0706 학원
+				 if (store != null) {
+					
+				
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 vo.setDiner_name(store);
+				 p.setStore_name(store);
+				 p.setVo(vo);
+				 p.setCmd(22);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 
+				  System.out.println(store);
+//				 cardLayout.show(main_pg, "main04_store1_main");
 				 clear();
+				 }
 			 } 
 			}
 		});

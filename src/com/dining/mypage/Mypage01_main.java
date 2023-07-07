@@ -261,7 +261,6 @@ public class Mypage01_main extends JPanel {
 		homeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main00_Home");
 			}
 		});
@@ -329,10 +328,7 @@ public class Mypage01_main extends JPanel {
 		logout_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				main.
-//				main.login01_page.
-//				login01_page.id_textField.setText("");
-//				login01_page.passwordField.setText("");
+				
 				cardLayout.show(main_pg, "login01_page");
 			}
 		});

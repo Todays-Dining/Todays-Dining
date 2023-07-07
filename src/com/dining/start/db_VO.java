@@ -4,19 +4,35 @@ import java.io.Serializable;
 
 public class db_VO implements Serializable {
 	private String status, id, password, name, email, birthday, password_search_q, password_search_a,
-			favorite_list, reported_count, deleted_time, review_number, old_pw, new_pw, update_id;
+			favorite_list, reported_count, deleted_time, review_number, old_pw, new_pw, update_id, id_for_pwchk,
+			pw_for_pwchk;
 	private String diner_no, diner_name, favorited_number, opening_hour, menu, phone_number, 
 			parking_or_not, food_category, region, address;
 	private String review_content, star;
 	// 재훈 검색기능으로 인한 서치 추가
-		private String search;
-		
-		public String getSearch() {
-			return search;
-		}
-		public void setSearch(String search) {
-			this.search = search;
-		}
+	private String search;
+	
+	
+	// 상우 비번변경 시 ID확인용
+	public String getId_for_pwchk() {
+		return id_for_pwchk;
+	}
+	public void setId_for_pwchk(String id_for_pwchk) {
+		this.id_for_pwchk = id_for_pwchk;
+	}
+	
+	public String getPw_for_pwchk() {
+		return pw_for_pwchk;
+	}
+	public void setPw_for_pwchk(String pw_for_pwchk) {
+		this.pw_for_pwchk = pw_for_pwchk;
+	}
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	public String getReview_number() {
 		return review_number;
 	}

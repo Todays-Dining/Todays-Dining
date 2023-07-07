@@ -33,7 +33,6 @@ public class Login01_page extends JPanel {
 	
 	CardLayout cardLayout;
 	public JTextField id_textField;
-	public JTextField pw_textField;
 	public JPasswordField passwordField;
 	int ad_num = 1;
 	int a = 0;

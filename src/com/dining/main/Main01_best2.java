@@ -20,9 +20,6 @@ public class Main01_best2 extends JPanel {
 	CardLayout cardLayout;
 	JPanel main_pg;
 
-	/**
-	 * Create the application.
-	 */
 	public Main01_best2(CardLayout cardLayout, JPanel main_pg) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;

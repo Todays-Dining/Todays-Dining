@@ -64,10 +64,15 @@ public class Start_frame extends JFrame implements Runnable {
 	Main00_Home main00_Home;
 	Main00_Map main00_Map;
 	Main00_store_search main00_store_search;
+	Main04_store1_main main04_store1_main;
 	Main04_store3_review main04_store3_review;
 	Main02_category_select main02_category_select;
+	Mypage01_changePW mypage01_changePW;
+	Login01_page login01_page;
+	
 	int initialize_flag = 0;
 	int imgIns_flag = 0;
+	String id_for_pwchk;
 	public Start_frame() {
 		UIManager ui = new UIManager(); // 전체적인 UI시스템 이미지, 색상, 폰트 변경
 	    ui.put("Button.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // 버튼의 폰트 변경
@@ -86,10 +91,10 @@ public class Start_frame extends JFrame implements Runnable {
 		// 각종패널들 가져오기 (★ 패널들은 지역변수로 딱 한번만 선언해야 함)
 		// 마이페이지 
 		Mypage01_main mypage01_main = new Mypage01_main(cardLayout,main_pg,this);
-		Mypage01_changePW mypage01_changePW = new Mypage01_changePW(cardLayout,main_pg,this);
+		mypage01_changePW = new Mypage01_changePW(cardLayout,main_pg,this);
 		Mypage02_mypick mypage02_mypick = new Mypage02_mypick(cardLayout,main_pg);
 		// 로그인 화면단
-		Login01_page login01_page = new Login01_page(cardLayout,main_pg ,this);	
+		login01_page = new Login01_page(cardLayout,main_pg ,this);	
 		Login02_member_join login02_member_join = new Login02_member_join(cardLayout,main_pg,this);
 		Login03_Find_id login03_Find_id = new Login03_Find_id(cardLayout,main_pg);
 		Login04_Find_pw login04_Find_pw = new Login04_Find_pw(cardLayout,main_pg);
@@ -123,9 +128,9 @@ public class Start_frame extends JFrame implements Runnable {
 		// 메인03_랜덤게임
 		Main03_random main03_random = new Main03_random(cardLayout,main_pg);
 		// 메인04_메인스토어화면
-		Main04_store1_main main04_store1_main = new Main04_store1_main(cardLayout,main_pg);
+		main04_store1_main = new Main04_store1_main(cardLayout,main_pg,this);
 		Main04_store2_map main04_store2_map = new Main04_store2_map(cardLayout,main_pg);
-		Main04_store3_review main04_store3_review = new Main04_store3_review(cardLayout,main_pg);
+		main04_store3_review = new Main04_store3_review(cardLayout,main_pg);
 		
 		// 로그인
 		main_pg.add("login01_page",login01_page);
@@ -183,7 +188,7 @@ public class Start_frame extends JFrame implements Runnable {
 
 		
 		
-		// ★   로그인한 ID 정보를 mypage에 띄워주는 코드
+		// ★   로그인한 ID 정보를 mypage에 띄워주는 코드 (프로토콜 안에 넣는 것으로 수정해야 함!!)
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -194,8 +199,9 @@ public class Start_frame extends JFrame implements Runnable {
 							&& mypage01_main.email_tf.getText().length() == 0 && mypage01_main.pwanser_tf.getText().length() == 0
 							)
 					try {
-						String id_show = vo.getId();
 						String pw_show = vo.getPassword();
+						String id_show = vo.getId();
+						id_for_pwchk = vo.getId();
 						String name_show = vo.getName();
 						String birth_show = vo.getBirthday();
 						birth_show = birth_show.substring(0, birth_show.length()-9);
@@ -216,83 +222,7 @@ public class Start_frame extends JFrame implements Runnable {
 				}
 			}
 		}, "mypage").start();
-		
-		// 로그인 하고나서 다시 로그아웃 할 때 textfield 초기화
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				while (true) { 
-//					System.out.println("작동은 함");
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					// 플래그가 안 먹음.
-					if (initialize_flag == 1) {
-						while(login01_page.id_textField.getText().length() != 00 && login01_page.passwordField.getText().length() != 00) {
-							try {
-								Thread.sleep(500);
-//								System.out.println("로그인 id 비번 초기화");
-								login01_page.id_textField.setText("");
-								login01_page.passwordField.setText("");
-							} catch (Exception e3) {
-								System.out.println("로그인페이지 입력창 초기화 오류");
-							}							
-						}
-					}
-				}
-			}
-		}, "initialize").start();
-		
-		// Best 식당에 이미지 넣어주기 (김상우)
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				esc: while (true) {
-//					System.out.println("스레드 작동은 함");
-					try {
-						Thread.sleep(500);
-						// 플래그가 안 먹음.
-						if (imgIns_flag == 1) {
-//							System.out.println("플래그가 1이긴 함");
-							String store_name = "";
-							// java.lang.NullPointerException: Cannot invoke "com.dining.start.db_VO.getDiner_name()" because "this.vo" is null
-							store_name = vo.getDiner_name();
-//							System.out.println("가게 이름" + store_name);
-							String food_category = "";
-							food_category = vo.getFood_category();
-//							System.out.println("카테고리" + food_category);
-							if (food_category.equals("중식")) {
-								path = "/diner_image/Chinese/" + store_name + "_1.png";			
-							} else if (food_category.equals("카페")) {
-								path = "/diner_image/Cafe/" + store_name + "_1.png";			
-							} else if (food_category.equals("일식")) {
-								path = "/diner_image/Japanese/" + store_name + "_1.png";
-							} else if (food_category.equals("한식")) {
-								path = "/diner_image/Korean/" + store_name + "_1.png";			
-							} else if (food_category.equals("양식")) {
-								path = "/diner_image/Western/" + store_name + "_1.png";			
-							}	
-//							System.out.println("경로는" + path);
-							main01_best1.store_food_image.setIcon(new ImageIcon(Main01_best1.class.getResource(path)));
-							main01_best1.store_name = store_name;
-							break esc;
-							// break 안해버림
-//							Thread.sleep(1000000);
-						} else {
-//							System.out.println("플래그가 0입니다.");
-						}
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}, "imgins_1").start();	
-		
-		
-		
-		
+
 	} // 생성자 끝
 
 	// 접속
@@ -317,37 +247,22 @@ public class Start_frame extends JFrame implements Runnable {
 					switch(p.getCmd()) {
 					case 0:	// 종료
 						break esc;
+						
 					case 1: // 로그인
 						if(p.getResult() == 1) {
 							System.out.println("start_frame 로그인 성공!");
 							cardLayout.show(main_pg,"main00_map");
 							initialize_flag = 1;
-//							System.out.println("플래그는" + initialize_flag);
-//							new Thread(new Runnable() {
-//								@Override
-//								public void run() {
-//									while (true) {
-//										// mypage의 모든 정보가 공란인 동안은 계속해서 getText로 값을 넣어준다. 
-//										while (login01_page.id_textField.getText().length() != 0 
-//												&& login01_page.passwordField.getText().length() != 0  
-//							login01_page.id_textField.setText("");		
-//							login01_page.passwordField.setText("");
-//												)
-//										try {
-//											Thread.sleep(500);
-//										} catch (Exception e3) {
-//											System.out.println(e3);
-//										}
-//									}
-//								}
-//							}, "initialize").start();	
-//							
+							// ID, 비번 공란으로 변경
+							login01_page.id_textField.setText("");
+							login01_page.passwordField.setText("");
 						}else {
 //							System.out.println("로그인실패");
 							JOptionPane.showMessageDialog(getParent(), "ID 및 패스워드를 확인해주세요.", null, JOptionPane.INFORMATION_MESSAGE,
 							 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 						}
 						break;
+						
 					case 2: // ★ 회원가입 (김상우, 이상화, 윤성훈)
                         if(p.getResult()>0) {
 //                            System.out.println("mainframe도착");
@@ -356,13 +271,6 @@ public class Start_frame extends JFrame implements Runnable {
                             JOptionPane.showMessageDialog(login02_member_join, "회원가입성공.", null, JOptionPane.INFORMATION_MESSAGE,
                                     new ImageIcon(Login02_member_join.class.getResource("/image/icon_mini.png")));
                             cardLayout.show(main_pg,"login01_page");
-//                            try {
-//                            	connected();
-//							} catch (Exception e) {
-//								System.out.println("재연결 실패");
-//							}
-                            // ★ 성공하고 나면 연결이 끊어져 있음. 재연결 시도
-//                            JOptionPane.showMessageDialog(login02_member_join, "회원가입 성공");
                         }else {
                             JOptionPane.showMessageDialog(login02_member_join, "회원가입실패", null, JOptionPane.INFORMATION_MESSAGE,
                                     new ImageIcon(Login02_member_join.class.getResource("/image/icon_mini.png")));
@@ -380,7 +288,6 @@ public class Start_frame extends JFrame implements Runnable {
 						    diner_name[i] = k.getDiner_name();
 						    menu[i] = k.getMenu();
 						}
-						
 						for (int i = 0; i < length_arr; i++) {
 							main00_store_search.table.setValueAt(diner_name[i],i,0) ;
 							main00_store_search.table.setValueAt(menu[i],i,1) ;
@@ -393,47 +300,86 @@ public class Start_frame extends JFrame implements Runnable {
 						}
 						break;
 						
-					case 31: // ★ best식당 표시해주기 (김상우)
-//						System.out.println("설정된 cmd" + p.getCmd());
-//						System.out.println("sf에서 31번 cmd 작동중!!");
-						if(p.getVo() != null) {
-//						List<db_VO> vo_list = p.getList();
-						this.vo = p.getVo();
-						imgIns_flag = 1;
-						try {
-							out.writeObject(p);
-							out.flush();	
-						}catch (Exception e1) {
-//							System.out.println("31번 Start frame 오류");
-						}	
-						} else {
-//							System.out.println("31번 작동 안해 (빈값)");
-						}
-//						p.setCmd(39);
-						out.writeObject(p);
-						out.flush();
-						break;
+					case 22: // 재훈 가게 이름 보내기
+	                     main04_store1_main.store_name.setText( p.getStore_name());
+	                     main04_store1_main.store_area_t.setText(p.getVo().getRegion());
+	                     main04_store1_main.store_addr_t.setText(p.getVo().getAddress());
+	                     main04_store1_main.store_bestfd_t.setText(p.getVo().getMenu());
+	                     main04_store1_main.store_phone_t.setText(p.getVo().getPhone_number());
+	                     main04_store1_main.store_open_t.setText(p.getVo().getOpening_hour());
+//	                     main04_store1_main.avg_score_lb.setText(p.getVo().getStar());
+	                  if(p.getVo().getParking_or_not().equals("1")) {
+	                	  	// 주차가능
+	                	  main04_store1_main.paking_t.setText("주차 가능");
+	                  }else {
+	                	  main04_store1_main.paking_t.setText("주차 불가능");
+	                  }
+	                     cardLayout.show(main_pg, "main04_store1_main");
+                       break;
 						
-					case 36: // 비밀번호 변경 (김상우)
-						if (p.getResult() == 1) {
-							System.out.println("cmd는 " + p.getCmd() + "입니다.");
-						} else {
-							JOptionPane.showMessageDialog(getParent(), "기존 패스워드를 확인해주세요.", null, JOptionPane.INFORMATION_MESSAGE,
-									new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
-						}
-						break;
-						
-					case 39: // 쉬어가는 cmd (김상우)
-//						p.setCmd(1);
-//						System.out.println();
+//					case 31: // ★ best식당 표시해주기 (김상우)
+////						System.out.println("SF 31번 실행중");
+////						System.out.println("설정된 cmd" + p.getCmd());
+////						System.out.println("sf에서 31번 cmd 작동중!!");
+//						if(p.getVo() != null) {
+////						List<db_VO> vo_list = p.getList();
+//						vo = p.getVo();
+//						imgIns_flag = 1;
 //						out.writeObject(p);
 //						out.flush();	
-						System.out.println("cmd는 " + p.getCmd());
+//						} else {
+////							System.out.println("31번 작동 안해 (빈값)");
+//						}
+//						break;
+						
+					case 36: // Id 받아오기
+						mypage01_changePW.id_forchk = id_for_pwchk;
+						break;
+						
+					case 37: // 해당 ID에 있는 pw와 비번변경 페이지에 입력된 pw가 일치하는지 확인
+						String getpw = db_DAO.getPwforChk();
+						mypage01_changePW.pw_forchk = getpw;
+						System.out.println("sf 37번 실행");
+						break;
+						
+					case 38: // 비밀번호 변경 (김상우)
+						System.out.println("sf cmd 38 실행중");
+						if(p.getResult() == 1) {
+							JOptionPane.showMessageDialog(getParent(), "비밀번호 변경 성공!", null, JOptionPane.INFORMATION_MESSAGE,
+									 new ImageIcon(Main00_Home.class.getResource("/image/icon_mini.png")));
+							mypage01_changePW.old_pw_tf.setText("");
+							mypage01_changePW.new_pw_tf.setText("");
+							mypage01_changePW.new_pw_chk_tf.setText("");
+						} else {
+							JOptionPane.showMessageDialog(getParent(), "비밀번호 변경 실패!", null, JOptionPane.INFORMATION_MESSAGE,
+									 new ImageIcon(Main00_Home.class.getResource("/image/icon_mini.png")));
+						}
+						break;
+					case 51:
+						System.out.println("sf 51번 가동");
+						List<db_VO> list51 = p.getList();
+						int length_arr = list51.size();
+						String id[] = new String[length_arr];
+						String review_content[] = new String[length_arr];
+						for (int i = 0; i < length_arr; i++) {
+							db_VO k = p.list.get(i);
+							id[i] = k.getId();
+							review_content[i] = k.getReview_content();
+							System.out.println("id" + k.getId()+"나왔다");
+							System.out.println("리뷰" +k.getReview_content()+"나왔다");
+						}
+						main04_store3_review.review1_id.setText(id[0]);
+						main04_store3_review.review2_id.setText(id[1]);
+						main04_store3_review.review3_id.setText(id[2]);
+						main04_store3_review.review1_ta.setText(review_content[0]);
+						main04_store3_review.review2_ta.setText(review_content[1]);
+						main04_store3_review.review3_ta.setText(review_content[2]);
+						cardLayout.show(main_pg, "main04_store3_review");
 						break;
 					}
 				}
 			} catch (Exception e) {
-				System.out.println("best1번 sf에서 실패");
+				System.out.println("sf case문 오류 실패");
 				System.out.println(e);
 			} 
 		}// while문 끝
@@ -445,7 +391,7 @@ public class Start_frame extends JFrame implements Runnable {
 	}
 	public void setMember_num(int member_num) {
 		this.member_num = member_num;
-	}
+	}	
 	
 	// 끝내기 
 		public void closed() {
@@ -454,7 +400,8 @@ public class Start_frame extends JFrame implements Runnable {
 				in.close();
 				System.exit(0);
 			} catch (Exception e) {
-
+				System.out.println("Start frame closed 에러");
+				System.out.println(e);
 			}
 		}
 		
