@@ -1,4 +1,3 @@
-
 package com.dining.start;
 
 import java.util.Collection;
@@ -97,23 +96,53 @@ public class db_DAO {
         vo = getSession().selectOne("findid",vo);
         return vo; 
     }
+
 	
-	// 좌현 pw찾기
-	public static db_VO findpw(db_VO vo) {
-		vo = getSession().selectOne("findpw",vo);
-		return vo;
-	}
     
-	 // 재훈 검색기능 (검색어 존재여부)
+	 // 21 재훈 검색기능 (검색어 존재여부)
 	 public static db_VO getSearch_Ck(db_VO vo){
 		 vo = getSession().selectOne("Search_Ck", vo);
 		 return vo; 
 	 }
-	 // 재훈 검색기능
+	 // 21 재훈 검색기능
 	 public static List<db_VO> getSearch(String search){
 		 List<db_VO> list = getSession().selectList("Search", search);
 		 return list;
 	 }
+	// 22 재훈 가게 정보 받아오기
+	 public static db_VO getStoreInfo(db_VO vo){
+			 vo = getSession().selectOne("storeInfo", vo);
+			 return vo; 
+	}
+	 // 23 카테고리별 best 가게이름 가져오기
+	 public static db_VO getCategory(db_VO vo){
+		 vo = getSession().selectOne("category", vo);
+		 return vo; 
+	 }
+	 // 24 카테고리별 가게 테이블 보여주기
+	 public static List<db_VO> getCategory_tb(db_VO vo){
+		 List<db_VO> list = getSession().selectList("table_cate", vo);
+		 return list; 
+	 }
+	 
+	 // 좌현 26번 id찾기
+	 public static db_VO findid2(db_VO vo) {
+		 vo = getSession().selectOne("findid2",vo);
+		 return vo; 
+	 }
+	 
+	 // 좌현 27번 pw찾기
+	 public static db_VO findpw(db_VO vo) {
+		 vo = getSession().selectOne("findpw",vo);
+		 return vo;
+	 }
+	 
+	 // 좌현 28번 가게 이미지 화면
+	 public static db_VO getImage(db_VO vo) {
+		 vo = getSession().selectOne(null);
+		 return null;
+	 }
+	 
     // 상우 best 식당명, 평점, 카테고리 받아오기
     public static db_VO getbestAll(){
     	db_VO vo = getSession().selectOne("bestOfAll"); 
@@ -123,19 +152,32 @@ public class db_DAO {
 //		return list;
     	return vo;
     }
+
+    // 상우 37 (비밀번호 일치 확인용 비번 받아오기)
+    public static String getPwforChk(){
+    	String result = getSession().selectOne("getPw"); 
+    	return result;
+    }
     
-//    public static db_VO changePw(db_VO vo) {
-//		System.out.println(vo.getOld_pw());
-//		System.out.println(vo.getNew_pw());
-//        vo = getSession().update("changePw",vo);
-//        return vo;
-//    }
-    
-    // 상우 DAO (비밀번호 변경), update문은 int형으로 받아야 함.
+    // 38번 상우 DAO (비밀번호 변경), update문은 int형으로 받아야 함.
     public static int changePw(db_VO vo) {
-        int result = getSession().update("changePw",vo);
-        ss.commit();
-        return result;
+    	int result = getSession().update("changePw",vo);
+    	ss.commit();
+    	return result;
+    }
+    
+    // 39번 상우 식당리뷰 넣기
+    public static int insReview(db_VO vo) {
+    	int result = getSession().update("insReview",vo);
+    	ss.commit();
+    	return result;
+    }
+    
+    // 39번 상우 식당명에 해당하는 식당번호 받아오기
+    public static String findDiner(String diner_name){
+    	String result_no = "";
+		result_no = getSession().selectOne("findDiner",diner_name); 
+        return result_no;
     }
     
     // 윤성훈 DAO 41~
@@ -170,8 +212,22 @@ public class db_DAO {
             vo = getSession().selectOne("shmbid",vo); 
             return vo;
     }
-    
+        //51 검색할게 있는지 확인
+        public static db_VO getinfoReview_ck(db_VO vo){
+   		 vo = getSession().selectOne("infoReview_Ck", vo);
+   		 return vo; 
+   	 }
+      //51
+        public static List<db_VO> getinfoReview(String search) {
+    		List<db_VO> list = getSession().selectList("infoReview",search);
+    		return list;
+    	}
  
+     // 77 상화 best 식당명, 평점, 카테고리 받아오기
+        public static List<db_VO> getbestAll2(){
+        	List<db_VO> list = getSession().selectList("bestOfAll2"); 
+        	return list;
+        }
 //	public static db_VO getid2(String name, String email, String birth){
 //		List<db_VO> = db_VO 
 //		

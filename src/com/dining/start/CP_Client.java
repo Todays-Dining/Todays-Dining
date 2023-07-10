@@ -84,8 +84,6 @@ public class CP_Client extends Thread {
 						vo21_ck = db_DAO.getSearch_Ck(vo21_ck);
 						if(vo21_ck != null) {
 							// null값이 아닌것 다시 검색해서 결과 가져오기
-							db_VO vo21 =  new db_VO();
-							vo21 = p.getVo();
 							List<db_VO> store_list ; 
 							store_list = db_DAO.getSearch(p.getSearch());
 							p.setList(store_list);
@@ -97,19 +95,73 @@ public class CP_Client extends Thread {
 						out.writeObject(p);
 						out.flush();
 						break;
-				    case 31: // best 식당 1위 받아오기
-//				    	List<VO_2> list = DAO_2.getList();
-//						p.setList(list);
-//						out.writeObject(p);
-//						out.flush();
-//						break; 
-				    	db_VO vo1 = db_DAO.getbestAll();
-                    	p.setVo(vo1);
-                    	out.writeObject(p);
-                    	out.flush();
-//                    	System.out.println("best 1번 받아오기 성공");
-                    	Thread.sleep(1000);
-                    	break;
+					case 22:// 재훈 가게 이름 다른 페이지 보내고 db정보 받아오기
+                        db_VO vo22 =  new db_VO();
+                        vo22 = db_DAO.getStoreInfo(p.getVo());
+                        p.setVo(vo22);
+                        
+                        out.writeObject(p);
+                        out.flush();
+                        break;	
+					case 23: // 재훈 카테고리 정보 가져오기 
+						db_VO vo23 =  new db_VO();
+						 vo23 = db_DAO.getCategory(p.getVo());
+						 p.setVo(vo23);
+						 out.writeObject(p);
+	                     out.flush();
+						 
+						 break;
+					case 24: // 재훈 카테고리별 리스트 가져오기
+						 db_VO vo24 =  new db_VO();
+						 vo24 = p.getVo();
+						List<db_VO> list24 = db_DAO.getCategory_tb(vo24);
+						if(list24 != null) {
+							p.setResult(1);
+						}
+						p.setList(list24);
+						out.writeObject(p);
+	                     out.flush();
+						 break;
+					case 26 : // 좌현 아이디찾기	
+						db_VO vo26 = new db_VO();	
+						vo26 = p.getVo();	
+						vo26 = db_DAO.findid2(vo26);	
+						p.setVo(vo26);	
+						if(vo26 != null){	
+							System.out.println("아이디찾기 성공");	
+							p.setResult(1);	
+						} else {	
+							System.out.println("아이디찾기 실패");	
+							p.setResult(0);	
+						}	
+						out.writeObject(p);	
+						out.flush();	
+						break;	
+					case 27 : // 좌현 비번찾기	
+						
+						db_VO vo27 = new db_VO();	
+						vo27 = p.getVo();	
+						vo27 = db_DAO.findpw(vo27);
+						System.out.println("dao 완료");
+						p.setVo(vo27);	
+						if(vo27 != null){	
+							System.out.println("비밀번호찾기 성공");	
+							p.setResult(1);	
+						} else {	
+							System.out.println("비밀번호찾기 실패");	
+							p.setResult(0);	
+						}	
+						out.writeObject(p);	
+						out.flush();	
+						break;	 
+					case 28 : // 가게 이미지 불러오기
+						db_VO vo28 = new db_VO();
+						vo28 = p.getVo();
+						p.setVo(vo28);
+						out.writeObject(p);
+						out.flush();
+						break;
+
 				    case 36: // 비밀번호 변경
 				    	// id를 받아와야 함
 //				    	  db_VO vo2 = new db_VO();
@@ -141,6 +193,34 @@ public class CP_Client extends Thread {
 							System.out.println(e);
 							System.out.println("cpc에서 에러");
 						}
+				    	break;
+				    case 38: // 비밀번호 변경
+//				    	System.out.println("★★★cpc 38번 작동중");
+				    	db_VO vo38 = new db_VO();
+				    	vo38 = p.getVo();
+				    	
+				    	System.out.println("cpc 안에서 비번" + vo38.getNew_pw());
+				    	try {
+				    		p.setResult(db_DAO.changePw(vo38));
+				    		out.writeObject(p);
+				    		out.flush();
+				    		System.out.println("38번 cpc에서 비번 변경 완료");
+				    	} catch (Exception e) {
+				    		System.out.println(e);
+				    		System.out.println("38번 cpc에서 비번 변경 에러");
+				    	}
+				    	break;
+				    	// CPC와 main 동시에 case가 존재할 때, cpc에서 flush 안해주면 main으로 안 넘어간다??
+				    case 39:
+				    	System.out.println("cpc 39번 작동중");
+//				    	db_VO vo1 = db_DAO.findDiner(p.getVo());
+//				    	p.setVo(vo1);
+//				    	out.writeObject(p);
+//	                    out.flush();
+//				    	Thread.sleep(2000);
+				    	out.writeObject(p);
+	                    out.flush();
+	                    System.out.println("cpc 39번 완료");
 				    	break;
 				    	
 				    	// 성훈 41~
@@ -179,6 +259,30 @@ public class CP_Client extends Thread {
                         out.flush();
                         break;
 				    	
+                    case 51 : // 식당 리뷰
+                    	
+				    	db_VO vo51_ck = new db_VO();
+				    	vo51_ck = p.getVo();
+						vo51_ck = db_DAO.getinfoReview_ck(vo51_ck);
+						if(vo51_ck != null) {
+							
+						List<db_VO> list51 ;
+						list51 = db_DAO.getinfoReview(p.getSearch());
+						
+							p.setList(list51);
+							p.setResult(1);
+						}else {
+							p.setResult(0);
+						}
+						out.writeObject(p);
+						out.flush();
+						System.out.println("성공");
+						break;  
+                    case 77 : // 주간베스트	
+                    	p.setList(db_DAO.getbestAll2());	
+                    	out.writeObject(p);	
+                    	out.flush();	
+                    	break;
 					}
 				}
 			} 

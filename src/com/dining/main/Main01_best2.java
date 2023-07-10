@@ -13,19 +13,30 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
+
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class Main01_best2 extends JPanel {
 	CardLayout cardLayout;
 	JPanel main_pg;
-
+	Start_frame main;
+	
+	public JLabel store_food_image2;
+	public String store_name2;
+	public RoundedButton_kjh_5 store_bt ;
 	/**
 	 * Create the application.
 	 */
-	public Main01_best2(CardLayout cardLayout, JPanel main_pg) {
+	public Main01_best2(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
+		this.main = main;
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -50,14 +61,13 @@ public class Main01_best2 extends JPanel {
 		today.setBounds(77, 236, 381, 69);
 		add(today);
 
-		JLabel store_food_image = new JLabel("가게이미지");
-		store_food_image.setOpaque(true);
-		store_food_image.setHorizontalAlignment(SwingConstants.CENTER);
-		store_food_image.setForeground(new Color(255, 255, 255));
-		store_food_image.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 50));
-		store_food_image.setBackground(new Color(0, 255, 128));
-		store_food_image.setBounds(54, 315, 429, 292);
-		add(store_food_image);
+		store_food_image2 = new JLabel();
+		store_food_image2.setOpaque(true);
+		store_food_image2.setHorizontalAlignment(SwingConstants.CENTER);
+		store_food_image2.setForeground(new Color(255, 255, 255));
+		store_food_image2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 50));
+		store_food_image2.setBounds(54, 315, 429, 292);
+		add(store_food_image2);
 
 		JLabel sidetool = new JLabel("");
 		sidetool.setOpaque(true);
@@ -125,7 +135,7 @@ public class Main01_best2 extends JPanel {
 		rank2_lb.setBounds(127, 634, 297, 61);
 		add(rank2_lb);
 
-		RoundedButton_kjh_5 store_bt = new RoundedButton_kjh_5("가게이름");
+		store_bt = new RoundedButton_kjh_5();
 		store_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		store_bt.setForeground(new Color(255, 240, 245));
 		store_bt.setBackground(new Color(65, 105, 225));
@@ -158,8 +168,19 @@ public class Main01_best2 extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main04_store1_main");
+				Protocol p = new Protocol();
+				db_VO vo = new db_VO();
+				vo.setDiner_name(store_bt.getText()); 
+				p.setStore_name(store_bt.getText()); 
+				p.setVo(vo);
+				 p.setCmd(22);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 

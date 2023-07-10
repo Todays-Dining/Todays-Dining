@@ -54,6 +54,7 @@ public class Login02_member_join extends JPanel {
 	public String pw_search_a ;
 	public String favorite_list ;
 	public String reported_count ;
+	JComboBox comboBox;
 
 	public Login02_member_join(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
@@ -199,7 +200,7 @@ public class Login02_member_join extends JPanel {
 		findpw_label.setBounds(68, 606, 118, 28);
 		add(findpw_label);
 		String[] items = {"1. 나의 최애 음식은?", "2. 꼭 가보고 싶은 여행 장소는?", "3. 가장 좋아하는 과일은?", "4. 내가 태어난 곳은?", "5. 부모님의 고향은?"};
-		JComboBox comboBox = new JComboBox(items);
+		comboBox = new JComboBox(items);
 		comboBox.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		comboBox.setBounds(217, 606, 250, 28);
 		add(comboBox);
@@ -255,7 +256,7 @@ public class Login02_member_join extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String duplicate_chk;
-				duplicate_chk = id_textField.getText();
+				duplicate_chk = id_textField.getText().trim();
 				// ID에 영어나 숫자 아닌 다른 문자가 포함된 경우 다이얼로그
 				 id = id_textField.getText();
 				Boolean id_test = Pattern.matches("^[0-9a-zA-Z]*$", id);
@@ -290,6 +291,14 @@ public class Login02_member_join extends JPanel {
 		main_icon.setIcon(new ImageIcon(Login02_member_join.class.getResource("/image/icon_small.png")));
 		main_icon.setBounds(51, 654, 446, 306);
 		add(main_icon);
+		
+		JLabel lblNewLabel = new JLabel("예시)040827");
+		lblNewLabel.setBorder(null);
+		lblNewLabel.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 13));
+		lblNewLabel.setForeground(new Color(65, 105, 225));
+		lblNewLabel.setBackground(new Color(255, 255, 255));
+		lblNewLabel.setBounds(217, 464, 83, 19);
+		add(lblNewLabel);
 		
 		// 작업해야할 버튼(코딩하기전에 작업자 자기 이름 작성하기) 이 기능을 작업하는 내이름은: 이상화 김상우 윤성훈
 		join_bt.addActionListener(new ActionListener() {
@@ -329,8 +338,8 @@ public class Login02_member_join extends JPanel {
 					String birth = birth_textField.getText();
 					Boolean birth_test = Pattern.matches("^[0-9]*$", birth);
 					// 생년월일 길이 체크
-					if (birth.length() != 8) {
-						JOptionPane.showMessageDialog(getParent(), "생년월일은 숫자 8자리로 입력해 주세요!", null, JOptionPane.INFORMATION_MESSAGE,
+					if (birth.length() != 6) {
+						JOptionPane.showMessageDialog(getParent(), "생년월일은 숫자 6자리로 입력해 주세요!", null, JOptionPane.INFORMATION_MESSAGE,
 		           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 					}
 					// 이메일에 특수문자, @이 들어가고, 영문, 숫자로만 이루어져있는지 확인
@@ -427,6 +436,7 @@ public class Login02_member_join extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setTextBlank();
+				comboBox.setSelectedIndex(0);
 				cardLayout.show(main_pg, "login01_page");
 			}
 		});

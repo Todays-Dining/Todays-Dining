@@ -4,19 +4,20 @@ import java.io.Serializable;
 
 public class db_VO implements Serializable {
 	private String status, id, password, name, email, birthday, password_search_q, password_search_a,
-			favorite_list, reported_count, deleted_time, review_number, old_pw, new_pw, update_id;
-	private String diner_no, diner_name, favorited_number, opening_hour, menu, phone_number, 
+			favorite_list, reported_count, deleted_time, review_number, old_pw, new_pw, update_id, id_for_pwchk,
+			pw_for_pwchk, review_score, review_content2;
+	private String diner_no, diner_name, favorited_number, opening_hours, menu, phone_number, 
 			parking_or_not, food_category, region, address;
 	private String review_content, star;
 	// 재훈 검색기능으로 인한 서치 추가
-		private String search;
-		
-		public String getSearch() {
-			return search;
-		}
-		public void setSearch(String search) {
-			this.search = search;
-		}
+	private String search;
+	
+	public String getSearch() {
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
 	public String getReview_number() {
 		return review_number;
 	}
@@ -26,6 +27,30 @@ public class db_VO implements Serializable {
 	private String recents;
 	
 	// password 찾기용으로 만든 변수 (김상우)
+	public String getId_for_pwchk() {
+		return id_for_pwchk;
+	}
+	public void setId_for_pwchk(String id_for_pwchk) {
+		this.id_for_pwchk = id_for_pwchk;
+	}
+	public String getPw_for_pwchk() {
+		return pw_for_pwchk;
+	}
+	public void setPw_for_pwchk(String pw_for_pwchk) {
+		this.pw_for_pwchk = pw_for_pwchk;
+	}
+	public String getReview_score() {
+		return review_score;
+	}
+	public void setReview_score(String review_score) {
+		this.review_score = review_score;
+	}
+	public String getReview_content2() {
+		return review_content2;
+	}
+	public void setReview_content2(String review_content2) {
+		this.review_content2 = review_content2;
+	}
 	public String getUpdate_id() {
 		return update_id;
 	}
@@ -131,11 +156,11 @@ public class db_VO implements Serializable {
 	public void setFavorited_number(String favorited_number) {
 		this.favorited_number = favorited_number;
 	}
-	public String getOpening_hour() {
-		return opening_hour;
+	public String getOpening_hours() {
+		return opening_hours;
 	}
-	public void setOpening_hour(String opening_hour) {
-		this.opening_hour = opening_hour;
+	public void setOpening_hours(String opening_hours) {
+		this.opening_hours = opening_hours;
 	}
 	public String getMenu() {
 		return menu;

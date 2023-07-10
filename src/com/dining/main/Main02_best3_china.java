@@ -13,19 +13,29 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
+
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 
 public class Main02_best3_china extends JPanel {
 	CardLayout cardLayout;
 	JPanel main_pg;
-
+	public JLabel store_food_img ;
+	public JButton store_name_bt ;
+	Start_frame main;
+	
 	/**
 	 * Create the application.
 	 */
-	public Main02_best3_china(CardLayout cardLayout, JPanel main_pg) {
+	public Main02_best3_china(CardLayout cardLayout, JPanel main_pg,Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
+		this.main = main;
 
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
@@ -89,7 +99,7 @@ public class Main02_best3_china extends JPanel {
 		today.setBounds(79, 224, 381, 81);
 		add(today);
 
-		JLabel store_food_img = new JLabel("가게이미지");
+		store_food_img = new JLabel();
 		store_food_img.setOpaque(true);
 		store_food_img.setHorizontalAlignment(SwingConstants.CENTER);
 		store_food_img.setForeground(new Color(255, 255, 255));
@@ -121,7 +131,7 @@ public class Main02_best3_china extends JPanel {
 		dif_china_bt.setBounds(157, 762, 223, 45);
 		add(dif_china_bt);
 
-		JButton store_name_bt = new JButton("해당가게이름");
+		store_name_bt = new JButton();
 		store_name_bt.setForeground(new Color(255, 255, 255));
 		store_name_bt.setBorderPainted(false);
 		store_name_bt.setBackground(new Color(65, 105, 225));
@@ -135,8 +145,19 @@ public class Main02_best3_china extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main04_store1_main");
+				Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 vo.setDiner_name(store_name_bt.getText());
+				 p.setStore_name(store_name_bt.getText());
+				 p.setVo(vo);
+				 p.setCmd(22);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -145,8 +166,20 @@ public class Main02_best3_china extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_store3_china");
+				Protocol p = new Protocol();
+				db_VO vo = new db_VO();
+				String str = "중식";
+				vo.setFood_category(str);
+				p.setCmd(24);
+				p.setVo(vo);
+				try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}
 		});
 

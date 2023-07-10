@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,10 +27,13 @@ public class Main01_best1 extends JPanel{
 	JPanel main_pg;
 	Start_frame main;
 	int error_chk_flag = 0;
-	public String store_name;
 	
+	
+	
+	public RoundedButton_kjh_5 store_bt ;
 	public JLabel store_food_image;
-
+	
+	
 	public Main01_best1(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
@@ -113,7 +117,7 @@ public class Main01_best1 extends JPanel{
 		movemenu.add(mypage);
 		
 		// 가게이름 넣자
-		JButton homeButton = new JButton(store_name);
+		JButton homeButton = new JButton("");
 		homeButton.setIcon(new ImageIcon(Main01_best1.class.getResource("/image/homebutton_1.png")));
 		homeButton.setBorderPainted(false);
 		homeButton.setBackground(new Color(255, 240, 245));
@@ -134,7 +138,7 @@ public class Main01_best1 extends JPanel{
 		add(rank1_lb);
 		
 		
-		RoundedButton_kjh_5 store_bt = new RoundedButton_kjh_5("");
+		store_bt = new RoundedButton_kjh_5();
 		store_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		store_bt.setForeground(new Color(255, 240, 245));
 		store_bt.setBackground(new Color(65, 105, 225));
@@ -158,7 +162,19 @@ public class Main01_best1 extends JPanel{
 		store_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg,"main04_store1_main");
+				Protocol p = new Protocol();
+				db_VO vo = new db_VO();
+				vo.setDiner_name(store_bt.getText()); 
+				p.setStore_name(store_bt.getText()); 
+				p.setVo(vo);
+				 p.setCmd(22);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		

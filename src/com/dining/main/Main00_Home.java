@@ -6,6 +6,9 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -79,7 +82,7 @@ public class Main00_Home extends JPanel {
 		icon_lb.setBounds(54, 643, 430, 307);
 		add(icon_lb);
 
-		keyword_tf = new JTextField("인기많은 검색어 : 한식, 카페, 카레, 일식");
+		keyword_tf = new JTextField("인기많은 검색어 : 한식, 카페, 일식, 카레");
 		keyword_tf.setBorder(null);
 		keyword_tf.setBounds(118, 319, 280, 21);
 		keyword_tf.setBackground(new Color(255, 240, 245));
@@ -184,6 +187,7 @@ public class Main00_Home extends JPanel {
 				cardLayout.show(main_pg, "main03_random");
 			}
 		});
+		
 
 		// 검색시
 		search_bt.addActionListener(new ActionListener() {
@@ -205,6 +209,7 @@ public class Main00_Home extends JPanel {
 					try {
 						main.out.writeObject(p);
 						main.out.flush();
+						
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

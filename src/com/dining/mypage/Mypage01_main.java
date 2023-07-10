@@ -33,7 +33,7 @@ public class Mypage01_main extends JPanel {
 	 public JTextField email_tf;
 	 public JTextField birth_tf;
 	 public JTextField name_tf;
-	 public JTextField pw_tf;
+	 public JComboBox pw_comboBox;
 	CardLayout cardLayout;
 	JPanel main_pg;
 
@@ -118,24 +118,9 @@ public class Mypage01_main extends JPanel {
 		id_lb.setHorizontalAlignment(JLabel.CENTER);
 		id_lb.setBounds(92, 229, 90, 35);
 		add(id_lb);
-
-		pw_tf = new JTextField();
-		pw_tf.setEditable(false);
-		pw_tf.setBounds(196, 304, 250, 35);
-		add(pw_tf);
-		pw_tf.setColumns(10);
-
-		JLabel pw_lb = new JLabel("PW");
-		pw_lb.setOpaque(true);
-		pw_lb.setForeground(new Color(255, 255, 255));
-		pw_lb.setBackground(new Color(65, 105, 225));
-		pw_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		pw_lb.setHorizontalAlignment(JLabel.CENTER);
-		pw_lb.setBounds(92, 304, 90, 35);
-		add(pw_lb);
-
+		
 		name_tf = new JTextField();
-		name_tf.setBounds(196, 384, 250, 35);
+		name_tf.setBounds(196, 305, 250, 35);
 		add(name_tf);
 		name_tf.setColumns(10);
 
@@ -145,11 +130,11 @@ public class Mypage01_main extends JPanel {
 		name_lb.setBackground(new Color(65, 105, 225));
 		name_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
 		name_lb.setHorizontalAlignment(JLabel.CENTER);
-		name_lb.setBounds(92, 384, 90, 35);
+		name_lb.setBounds(92, 305, 90, 35);
 		add(name_lb);
 
 		birth_tf = new JTextField();
-		birth_tf.setBounds(196, 464, 250, 35);
+		birth_tf.setBounds(196, 385, 250, 35);
 		add(birth_tf);
 		birth_tf.setColumns(10);
 
@@ -159,11 +144,11 @@ public class Mypage01_main extends JPanel {
 		birth_lb.setBackground(new Color(65, 105, 225));
 		birth_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
 		birth_lb.setHorizontalAlignment(JLabel.CENTER);
-		birth_lb.setBounds(92, 464, 90, 35);
+		birth_lb.setBounds(92, 385, 90, 35);
 		add(birth_lb);
 
 		email_tf = new JTextField();
-		email_tf.setBounds(196, 542, 250, 35);
+		email_tf.setBounds(196, 463, 250, 35);
 		add(email_tf);
 		email_tf.setColumns(10);
 
@@ -173,7 +158,7 @@ public class Mypage01_main extends JPanel {
 		email_lb.setBackground(new Color(65, 105, 225));
 		email_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 20));
 		email_lb.setHorizontalAlignment(JLabel.CENTER);
-		email_lb.setBounds(92, 542, 90, 35);
+		email_lb.setBounds(92, 463, 90, 35);
 		add(email_lb);
 
 		JLabel pwqa_lb = new JLabel("비번 찾기 질문");
@@ -182,21 +167,21 @@ public class Mypage01_main extends JPanel {
 		pwqa_lb.setBackground(new Color(65, 105, 225));
 		pwqa_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 16));
 		pwqa_lb.setHorizontalAlignment(JLabel.CENTER);
-		pwqa_lb.setBounds(92, 620, 90, 35);
+		pwqa_lb.setBounds(92, 541, 90, 35);
 		add(pwqa_lb);
 
 		pwanser_tf = new JTextField();
-		pwanser_tf.setBounds(196, 693, 250, 35);
+		pwanser_tf.setBounds(196, 614, 250, 35);
 		add(pwanser_tf);
 		pwanser_tf.setColumns(10);
-
-		JComboBox pw_comboBox = new JComboBox();
+		
+		String[] items = {"1. 나의 최애 음식은?", "2. 꼭 가보고 싶은 여행 장소는?", "3. 가장 좋아하는 과일은?", "4. 내가 태어난 곳은?", "5. 부모님의 고향은?"};
+		pw_comboBox = new JComboBox(items);
 		pw_comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		pw_comboBox.setModel(new DefaultComboBoxModel(new String[] { "비밀번호를 찾을 때 사용할 질문을 선택하세요.", "1번 질문", "2번 질문", "3번 질문", "4번 질문" }));
-		pw_comboBox.setBounds(196, 620, 250, 35);
+		pw_comboBox.setBounds(196, 541, 250, 35);
 		pw_comboBox.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 13));
 
 		add(pw_comboBox);
@@ -207,7 +192,7 @@ public class Mypage01_main extends JPanel {
 		pwanser_lb.setBackground(new Color(65, 105, 225));
 		pwanser_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
 		pwanser_lb.setHorizontalAlignment(JLabel.CENTER);
-		pwanser_lb.setBounds(92, 693, 90, 35);
+		pwanser_lb.setBounds(92, 614, 90, 35);
 		add(pwanser_lb);
 
 		id_tf = new JTextField();
@@ -217,11 +202,12 @@ public class Mypage01_main extends JPanel {
 		id_tf.setColumns(10);
 
 		RoundedButton_ha0_1 fix_bt = new RoundedButton_ha0_1("수정");
+		fix_bt.setText("정보 수정");
 		fix_bt.setForeground(new Color(255, 255, 255));
 		fix_bt.setBorderPainted(false);
 		fix_bt.setBackground(new Color(65, 105, 225));
 		fix_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		fix_bt.setBounds(225, 776, 90, 50);
+		fix_bt.setBounds(225, 717, 90, 50);
 		add(fix_bt);
 
 		RoundedButton_ha0_2 mem_del_bt = new RoundedButton_ha0_2("회원탈퇴");
@@ -229,7 +215,7 @@ public class Mypage01_main extends JPanel {
 		mem_del_bt.setForeground(new Color(255, 255, 255));
 
 		mem_del_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		mem_del_bt.setBounds(225, 859, 90, 50);
+		mem_del_bt.setBounds(225, 800, 90, 50);
 		add(mem_del_bt);
 
 		RoundedButton_ha0_1 pw_change_bt = new RoundedButton_ha0_1();
@@ -238,7 +224,7 @@ public class Mypage01_main extends JPanel {
 		pw_change_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
 		pw_change_bt.setBorderPainted(false);
 		pw_change_bt.setBackground(new Color(65, 105, 225));
-		pw_change_bt.setBounds(356, 776, 90, 50);
+		pw_change_bt.setBounds(356, 717, 90, 50);
 		add(pw_change_bt);
 		
 		RoundedButton_ha0_1 like_bt = new RoundedButton_ha0_1();
@@ -247,7 +233,7 @@ public class Mypage01_main extends JPanel {
 		like_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
 		like_bt.setBorderPainted(false);
 		like_bt.setBackground(new Color(65, 105, 225));
-		like_bt.setBounds(92, 776, 90, 50);
+		like_bt.setBounds(92, 717, 90, 50);
 		add(like_bt);
 		
 		JButton logout_bt = new JButton("");
@@ -367,7 +353,7 @@ public class Mypage01_main extends JPanel {
                 vo.setBirthday(birth_tf.getText().trim());
                 vo.setEmail(email_tf.getText().trim());
                 vo.setPassword_search_q((String) pw_comboBox.getSelectedItem());
-                vo.setPassword_search_a(pw_tf.getText().trim());
+                vo.setPassword_search_a(pwanser_tf.getText().trim());
                 int res = db_DAO.getUpdate(vo);    
                 
                 if(res>0) {

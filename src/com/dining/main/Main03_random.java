@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -17,6 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
+
 public class Main03_random extends JPanel {
 
 	CardLayout cardLayout;
@@ -27,11 +32,12 @@ public class Main03_random extends JPanel {
 	private JTextField score_2;
 	private JTextField score_3;
 	private JTextField score_4;
-
+	Start_frame main;
+	
 	/**
 	 * Create the application.
 	 */
-	public Main03_random(CardLayout cardLayout, JPanel main_pg) {
+	public Main03_random(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
 
@@ -341,7 +347,19 @@ public class Main03_random extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best1_korea");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "한식";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		// 이미지를 누르면 main02_best4_japan 로 이동
@@ -349,8 +367,19 @@ public class Main03_random extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best4_japan");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "일식";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		// 이미지를 누르면 main02_best3_china 로 이동
@@ -358,8 +387,19 @@ public class Main03_random extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best3_china");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "중식";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		// 이미지를 누르면 main02_best2_american 로 이동
@@ -367,8 +407,19 @@ public class Main03_random extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best2_american");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "양식";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 

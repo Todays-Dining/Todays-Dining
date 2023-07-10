@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,28 +20,31 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
 
 public class Main02_store6_etc extends JPanel {
 
-	String header[] = { "가게 이름", "대표 메뉴", "평점" };
-	String contents[][] = { { "음식점1", "햄버거", "3.5" }, { "음식점2", "삼겹살", "3.5" }, { "음식점3", "커피", "3.5" },
-			{ "음식점4", "치킨", "3.5" }, { "음식점5", "김밥", "3.5" }, { "음식점6", "떡볶이", "3.5" }, { "음식점7", "피자", "3.5" },
-			{ "음식점8", "곱창", "3.5" }, { "음식점9", "회", "3.5" }, { "음식점11", "카레", "3.5" }, { "음식점12", "초밥", "3.5" },
-			{ "음식점13", "덮밥", "3.5" }, { "음식점14", "짜장면", "3.5" }, { "음식점15", "마라탕", "3.5" }, };
+	String header[] = { "가게 이름", "대표 메뉴"};
+	String contents[][] = new String[40][];
 	String selection[] = { "가게 이름" };
-	JTable table;
 	JTable table_1;
 	JTextField textField;
 	CardLayout cardLayout;
 	JPanel main_pg;
 	String store;
-	/**
-	 * Create the panel.
-	 */
-	public Main02_store6_etc(CardLayout cardLayout, JPanel main_pg) {
+	public JTable table;
+	public DefaultTableModel dtm;
+	Start_frame main;
+
+	public Main02_store6_etc(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
+		this.main = main;
 
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
@@ -115,21 +119,40 @@ public class Main02_store6_etc extends JPanel {
 		mypage.setBackground(new Color(65, 105, 225));
 		movemenu.add(mypage);
 
-		table = new JTable(contents, header) {
-			public boolean isCellEditable(int i, int c){
+		// 재훈 테이블 클릭시 이벤트및 초기화
+		dtm = new DefaultTableModel(contents, header);
+		table = new JTable(dtm) {
+			public boolean isCellEditable(int i, int c) {
 				return false;
 			}
 		};
 		table.addMouseListener(new MouseAdapter() {
-		@Override
-		public void mouseClicked(MouseEvent e) {
-			if (e.getClickCount() == 2) { 
-			int row = table.getSelectedRow();
-			TableModel data = table.getModel();
-			 store = (String)data.getValueAt(row,0);
-			 // System.out.println(store);
-			 cardLayout.show(main_pg, "main04_store1_main");
-			 }
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) {
+					int row = table.getSelectedRow();
+					TableModel data = table.getModel();
+					store = (String) data.getValueAt(row, 0);
+					// 가게 이름 다른 페이지 보내기 재훈
+					if (store.length() != 0) {
+
+						Protocol p = new Protocol();
+						db_VO vo = new db_VO();
+						vo.setDiner_name(store);
+						p.setStore_name(store);
+						p.setVo(vo);
+						p.setCmd(22);
+						try {
+							main.out.writeObject(p);
+							main.out.flush();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+
+						clear();
+					}
+				}
 			}
 		});
 		table.getTableHeader().setReorderingAllowed(false);
@@ -157,9 +180,10 @@ public class Main02_store6_etc extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main00_Home");
+				clear();
 			}
 		});
-		
+
 		// main01_best1 로 이동
 		movemenu_1.addActionListener(new ActionListener() {
 
@@ -167,6 +191,7 @@ public class Main02_store6_etc extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main01_best1");
+				clear();
 			}
 		});
 
@@ -177,6 +202,7 @@ public class Main02_store6_etc extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main02_category_select");
+				clear();
 			}
 		});
 
@@ -187,6 +213,7 @@ public class Main02_store6_etc extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "main03_random");
+				clear();
 			}
 		});
 
@@ -197,7 +224,17 @@ public class Main02_store6_etc extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(main_pg, "mypage01_main");
+				clear();
 			}
 		});
+	}
+
+	// 테이블 클리어
+	public void clear() {
+		for (int i = 0; i < 40; i++) {
+			table.setValueAt("", i, 0);
+			table.setValueAt("", i, 1);
+
+		}
 	}
 }

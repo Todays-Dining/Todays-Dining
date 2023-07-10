@@ -12,25 +12,32 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.TextField;
 import java.awt.Button;
 import java.awt.CardLayout;
 
 import javax.swing.SwingConstants;
+
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
+
 import java.awt.Label;
 
 public class Main02_category_select extends JPanel {
 	CardLayout cardLayout;
 	JPanel main_pg;
-
+	Start_frame main;
 	/**
 	 * Create the panel.
 	 */
-	public Main02_category_select(CardLayout cardLayout, JPanel main_pg) {
+	public Main02_category_select(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
-
+		this.main = main;
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -170,7 +177,20 @@ public class Main02_category_select extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best1_korea");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "한식";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+//				cardLayout.show(main_pg, "main02_best1_korea");
 			}
 		});
 		menu1_am.addActionListener(new ActionListener() {
@@ -178,7 +198,19 @@ public class Main02_category_select extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best2_american");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "양식";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		menu1_ch.addActionListener(new ActionListener() {
@@ -186,7 +218,19 @@ public class Main02_category_select extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best3_china");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "중식";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		menu1_ja.addActionListener(new ActionListener() {
@@ -194,23 +238,57 @@ public class Main02_category_select extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best4_japan");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "일식";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		menu1_ca.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best5_cafe");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "카페";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		menu1_etc.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg, "main02_best6_etc");
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 String str = "기타";
+				 vo.setFood_category(str);
+				 p.setVo(vo);
+				 p.setCmd(23);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 

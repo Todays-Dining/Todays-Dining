@@ -19,13 +19,12 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 
 public class Main04_store2_map extends JPanel {
-	private JTextField store_addr_tf;
+	public JTextField store_addr_tf;
 	CardLayout cardLayout;
 	JPanel main_pg;
+	public JLabel store_img_lb;
+	public JLabel storeaddr_img_lb;
 
-	/**
-	 * Create the panel.
-	 */
 	public Main04_store2_map(CardLayout cardLayout, JPanel main_pg) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
@@ -91,19 +90,19 @@ public class Main04_store2_map extends JPanel {
 		homeButton.setBounds(329, 37, 77, 69);
 		add(homeButton);
 		
-		JLabel store_img_lb = new JLabel("가게 이미지");
+		store_img_lb = new JLabel();
+		store_img_lb.setBackground(new Color(255, 240, 245));
 		store_img_lb.setOpaque(true);
 		store_img_lb.setForeground(new Color(255, 255, 255));
-		store_img_lb.setBackground(new Color(255, 128, 64));
 		store_img_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 50));
 		store_img_lb.setHorizontalAlignment(SwingConstants.CENTER);
 		store_img_lb.setBounds(49, 122, 414, 350);
 		add(store_img_lb);
 		
-		JLabel storeaddr_img_lb = new JLabel("가게 위치");
+		storeaddr_img_lb = new JLabel();
+		storeaddr_img_lb.setBackground(new Color(255, 240, 245));
 		storeaddr_img_lb.setOpaque(true);
 		storeaddr_img_lb.setForeground(new Color(255, 255, 255));
-		storeaddr_img_lb.setBackground(new Color(255, 128, 64));
 		storeaddr_img_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 50));
 		storeaddr_img_lb.setHorizontalAlignment(SwingConstants.CENTER);
 		storeaddr_img_lb.setBounds(49, 548, 414, 350);

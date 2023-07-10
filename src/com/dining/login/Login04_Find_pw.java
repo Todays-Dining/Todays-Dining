@@ -13,21 +13,25 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
 import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
 
 public class Login04_Find_pw extends JPanel {
-	JTextField id_textField;
-	JTextField email_textField;
+	public JTextField id_textField;
+	public JTextField email_textField;
+	public JTextField add_textField;
 	CardLayout cardLayout;
 	JPanel main_pg;
 	JComboBox comboBox;
-	JTextField add_textField;
+	Start_frame main;
 
-	public Login04_Find_pw(CardLayout cardLayout, JPanel main_pg) {
+	public Login04_Find_pw(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
-
+		this.main = main;
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -65,31 +69,43 @@ public class Login04_Find_pw extends JPanel {
 		find_pw.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String id = id_textField.getText().trim();
+				String cb = comboBox.getSelectedItem().toString().trim();
+				String res = add_textField.getText().trim();
+				if(id.length()>0 && cb.length()>0 && res.length()>0) {
+				try {
+					db_VO vo = new db_VO();
+					Protocol p = new Protocol();
+					vo.setId(id);
+					vo.setPassword_search_q(cb);
+					vo.setPassword_search_a(res);
+					p.setCmd(27);
+					p.setVo(vo);
+					main.out.writeObject(p);
+					main.out.flush();
+					comboBox.setSelectedIndex(0);
+
+				} catch (Exception e2) {
+					System.out.println(e2);
+				}
+				} else {
+					JOptionPane.showMessageDialog(getParent(), "모든 정보를 입력 해주세요.", null,
+							JOptionPane.INFORMATION_MESSAGE,
+							new ImageIcon(Login04_Find_pw.class.getResource("/image/icon_mini.png")));
+				}
 				//if(!id_textField.getText().isBlank() && !email_textField.getText().isBlank()) {
 				//Map<String,String> param = new HashMap<>();
 				//param.put("name",id_textField.getText());
 				//param.put("email",email_textField.getText());
-				String id = id_textField.getText().trim();
-				String cb = comboBox.getSelectedItem().toString().trim();
-				String res = add_textField.getText().trim();
-				
-				db_VO vo = new db_VO();
-				vo.setId(id);
-				vo.setPassword_search_q(cb);
-				vo.setPassword_search_a(res);
-				//vo.setBirthday(birthday);
-				System.out.println(cb);
-				System.out.println(res);
-                vo = db_DAO.findpw(vo);
-                try {
-//                	JOptionPane.showMessageDialog(null, "당신의 PASSWORD는 " +  vo.getPassword() + "입니다.", "Message", JOptionPane.ERROR_MESSAGE);
-                	JOptionPane.showMessageDialog(getParent(), id + " 님의 PASSWORD는 " +  vo.getPassword() + "입니다.", null, JOptionPane.INFORMATION_MESSAGE,
-           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
-				} catch (Exception e2) {
-//					JOptionPane.showMessageDialog(null, "입력된 정보가 일치하지 않습니다.", "Message", JOptionPane.ERROR_MESSAGE);
-					JOptionPane.showMessageDialog(getParent(), "입력된 정보가 일치하지 않습니다.", null, JOptionPane.INFORMATION_MESSAGE,
-	           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
-				}
+//                try {
+////                	JOptionPane.showMessageDialog(null, "당신의 PASSWORD는 " +  vo.getPassword() + "입니다.", "Message", JOptionPane.ERROR_MESSAGE);
+//                	JOptionPane.showMessageDialog(getParent(), id + " 님의 PASSWORD는 " +  vo.getPassword() + "입니다.", null, JOptionPane.INFORMATION_MESSAGE,
+//           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+//				} catch (Exception e2) {
+////					JOptionPane.showMessageDialog(null, "입력된 정보가 일치하지 않습니다.", "Message", JOptionPane.ERROR_MESSAGE);
+//					JOptionPane.showMessageDialog(getParent(), "입력된 정보가 일치하지 않습니다.", null, JOptionPane.INFORMATION_MESSAGE,
+//	           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+//				}
 				
 			}
 		});

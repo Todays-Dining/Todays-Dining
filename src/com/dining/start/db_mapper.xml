@@ -2,39 +2,18 @@
 <!DOCTYPE mapper
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
-	<!-- 
-	   태그 : <태그  속성> 텍스트 </태그>
-	    id 속성 : 외부(DAO)에서 해당 태그를 지칭하는 (호출하는) 이름, 중복안됨  
-	    resultType 속성 : 결과에 대한 속성(select문은 95% VO속성이다)
-	       select문에서 집계합수를 사용하면 resultType int 이다.    
-	    parameterType 속성 : 대부분 VO속성이다(VO 아니면 전달하는 변수의 자료형이다.)
-		<select id="" resultType=""></select>
-	    <select id="" resultType="" parameterType=""></select>
-	    
-	    resultType은 없다. 이유는 무조건 int (숫자)
-	    <update id="" parameterType=""></update>
-	    <insert id="" parameterType=""></insert>
-	    <delete id="" parameterType=""></delete>
-	 -->
+<mapper namespace="org.mybatis.example.BlogMapper">	 
+	<!--  좌현 ID찾기 -> 아이디 찾기에서 이름, 생년월일, 이메일이 일치하면 그에 맞는 아이디를 db에서 호출   -->	
+	<select id="findid2" resultType="com.dining.start.db_VO"> select ID from SIGNUP_TABLE where name = #{name} and email = #{email} and birthday = #{birthday} </select>	
+	<!--  좌현 PW 찾기  -->
+	<select id="findpw" resultType="com.dining.start.db_VO"> 
+		select PASSWORD from SIGNUP_TABLE where id = #{id} and PASSWORD_SEARCH_Q = #{password_search_q} and PASSWORD_SEARCH_A = #{password_search_a} 
+		</select>
 	
 	<!-- <select id="findyourid" parameterType="String" resultType="com.dining.start.db_VO">
 	SELECT ID FROM SIGNUP_TABLE WHERE NAME = #{name} AND EMAIL = #{email} AND BIRTHDAY = #{birthday};
 	select ID from SIGNUP_TABLE where NAME = #{name} and EMAIL = #{email} and BIRTHDAY = #{birthday}
     </select> -->
-    
-    
-   	<!-- 좌현 ID찾기 -> 아이디 찾기에서 이름, 생년월일, 이메일이 일치하면 그에 맞는 아이디를 db에서 호출  -->
-	<select id="findid" resultType="com.dining.start.db_VO"> select ID from SIGNUP_TABLE where name = #{name} and email = #{email} and to_char(birthday,'yymmdd') = #{birthday} </select>
-	<select id="findpw" resultType="com.dining.start.db_VO"> select PASSWORD from SIGNUP_TABLE where id = #{id} and PASSWORD_SEARCH_Q = #{password_search_q} and PASSWORD_SEARCH_A = #{password_search_a} </select>
-	<!--  <select id="selectId" parameterType="java.util.HashMap" resultType="String">
-		select
-			id
-		from signup_page
-		where name = #{name}
-		and email = #{email}
-		and birthday = cast(#{birthday} as date)
-	</select>  -->
     
     <select id="login" resultType="com.dining.start.db_VO">
 	    select * from SIGNUP_TABLE where id = #{id} and password = #{password} 
@@ -71,26 +50,79 @@
         select * from SIGNUP_TABLE where ID = #{id}
     </select>
     
-    <!-- 재훈 Serach 확인 -->
+    <!-- 재훈 21 Serach 확인 -->
      <select id="Search_Ck" parameterType="String" resultType="com.dining.start.db_VO">
        select DINER_NAME from (select * from DINER_TABLE where DINER_NAME like '%'||#{search}||'%'
         or MENU like '%'||#{search}||'%' OR food_category like '%'||#{search}||'%') where rownum=1
     </select>
-    <!-- 재훈 Serach -->
+    
+    <!-- 재훈 21 Serach -->
      <select id="Search"  resultType="com.dining.start.db_VO">
       select DINER_NAME, MENU from (select * from DINER_TABLE where DINER_NAME like '%'||#{search}||'%'
         or MENU like '%'||#{search}||'%' OR food_category like '%'||#{search}||'%')
     </select>
     
-    <!-- 상우 best 식당명, 카테고리 받아오기 -->
-    <select id="bestOfAll" resultType="com.dining.start.db_VO">
-   		select * from REVIEW_AVG_VIEW where rownum=1
+    <!-- 재훈 22  가게이름으로 정보 가져오기-->
+     <select id="storeInfo"  resultType="com.dining.start.db_VO">
+         select * from DINER_TABLE where DINER_NAME = #{diner_name} 
+<!--    SELECT *
+FROM (
+    SELECT d.*, TRUNC(AVG(r.star) OVER (PARTITION BY r.diner_no), 1) AS avg_star,
+           ROW_NUMBER() OVER (PARTITION BY r.diner_no ORDER BY r.review_time DESC) AS row_num
+    FROM diner_table d
+    JOIN review_table r ON d.diner_no = r.diner_no
+    WHERE d.diner_name = #{diner_name}
+) sub
+WHERE row_num = 1 -->
     </select>
     
-    <!-- 상우 mypage 비밀번호 변경 -->
-     <update id="changePw" parameterType="com.dining.start.db_VO">
-        update SIGNUP_TABLE set PASSWORD = #{new_pw} where ID=#{update_id};
+    <!-- 재훈 23 카테고리 검색해서 정보가져오기 -->
+    <select id="category" resultType="com.dining.start.db_VO">
+   		select * from REVIEW_AVG_VIEW where food_category=#{food_category} and rownum=1
+    </select> 
+    <!-- 재훈 24 카테고리로 검색해서 리스트 가져오기 -->
+    <select id="table_cate" resultType="com.dining.start.db_VO">
+    	select * from DINER_TABLE where food_category = #{food_category}
+    </select> 
+    
+      <!-- 상우 best 식당명, 카테고리 받아오기 -->	
+    <select id="bestOfAll" resultType="com.dining.start.db_VO">	
+   		select * from REVIEW_AVG_VIEW where rownum=1	
+    </select>	
+    	
+<!--      <update id="infoUpdate" parameterType="com.dining.start.db_VO">	
+        update SIGNUP_TABLE set ID=#{id}, NAME=#{name}, EMAIL=#{email} , BIRTHDAY=#{birthday}	
+        , PASSWORD_SEARCH_Q =#{password_search_q} , PASSWORD_SEARCH_A =#{password_search_a}	
+        where ID = #{id}	
+    </update> -->	
+    	
+    <!-- <select id="s_namereview" parameterType="String" resultType="com.dining.start.db_VO">	
+		select password from SIGNUP_TABLE where ID=#{id}	
+    </select> -->	
+    	
+    
+    
+      <!-- 상우 37 비밀번호 확인용 받아오기 -->
+    <select id="getPw" resultType="String" parameterType="com.dining.start.db_VO">
+        select PASSWORD from SIGNUP_TABLE where ID = #{id_for_pwchk}
+    </select>
+    
+    <!-- mapper에 세미콜론; 절대 찍지 말자!!! -->
+    <!-- 38 상우 mypage 비밀번호 변경 -->
+    <update id="changePw" parameterType="com.dining.start.db_VO">
+        update SIGNUP_TABLE set PASSWORD = #{new_pw} where ID=#{id}
     </update>
+    
+    <!-- 상우 39번 식당이름에 해당하는 넘버 받아오기 -->
+    <select id="findDiner" resultType="String" parameterType="String">
+    	select DINER_NO from DINER_TABLE where DINER_NAME = #{diner_name}
+    </select>
+    
+    <!-- 상우 39번 식당 리뷰 넣기 -->
+    <insert id="insReview" parameterType="com.dining.start.db_VO">
+	    insert into REVIEW_TABLE
+		values(review_seq.nextval, #{id}, #{diner_no}, #{review_content2}, SYSDATE, #{review_score})
+	</insert>
     
     <!-- 성훈 매퍼 41~ -->
     <!-- 41 관리자 리뷰페이지 전체가져오기 기능 -->
@@ -124,5 +156,29 @@
         select * from SIGNUP_TABLE where id = #{id} 
     </select>
 
+	<!-- 51 가게이름으로 리뷰 작성자 아이디, 리뷰 내용 있는지 검색 -->
+    <select id="infoReview_Ck" parameterType="String" resultType="com.dining.start.db_VO">
+		select d.diner_name
+		from diner_table d, review_table r
+		where d.diner_no = r.diner_no and d.diner_name=#{diner_name} and rownum=1
+		order by r.review_time desc 
+	</select>
+	<!-- 51 가게이름으로 리뷰 작성자 아이디, 리뷰 내용 검색 -->
+    <select id="infoReview" resultType="com.dining.start.db_VO">
+		select d.diner_name, r.id, r.review_content, r.review_time
+		from diner_table d, review_table r
+		where d.diner_no = r.diner_no and d.diner_name=#{search}
+		order by r.review_time desc
+	</select>
+    
+    <!-- 52 가게 리뷰 작성하기(입력) 작성중... -->
+   <!--  <insert id="starNreview" parameterType="com.dining.start.db_VO">
+    	insert into review_table(id,diner_no,review_content,review_time,star)
+    	values(id,diner_no,review_content,review_time,star)
+    </insert> -->
+     <!-- 77 상화 -->
+     <select id="bestOfAll2" resultType="com.dining.start.db_VO">
+   		select * from REVIEW_AVG_VIEW where rownum &lt;&#61; 5
+    </select>
     
 </mapper>

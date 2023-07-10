@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
 import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
 
@@ -21,13 +23,16 @@ public class Login03_Find_id extends JPanel {
 	JTextField email_textField;
 	CardLayout cardLayout;
 	JPanel main_pg;
+	Start_frame main;
 
 	/**
 	 * Create the panel.
 	 */
-	public Login03_Find_id(CardLayout cardLayout, JPanel main_pg) {
+	public Login03_Find_id(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
+		this.main = main;
+		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
@@ -68,22 +73,41 @@ public class Login03_Find_id extends JPanel {
 				String name = id_textField.getText().trim();
 				String email = email_textField.getText().trim();
 				String birthday = birth_textField.getText().trim();
-				db_VO vo = new db_VO();
-				vo.setName(name);
-				vo.setEmail(email);
-				vo.setBirthday(birthday);
-//				db_VO find_id = db_DAO.findYourId(vo);
-                vo = db_DAO.findYourId(vo);
-//				if(name.equals(vo.getName())&& email.equals(vo.getEmail())&&birthday.equals(vo.getBirthday())) {
-                try {
-//                	JOptionPane.showMessageDialog(null, "당신의 ID는 " +  vo.getId() + "입니다.", "Message", JOptionPane.ERROR_MESSAGE);
-            		JOptionPane.showMessageDialog(getParent(), name + " 님의 ID는 "  + vo.getId() + "입니다.", null, JOptionPane.INFORMATION_MESSAGE,
-    				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+				if(name.length()>0 && email.length()>0 && birthday.length()>0) {
+					try {
+					db_VO vo = new db_VO();
+					Protocol p = new Protocol();
+					vo.setName(name);
+					vo.setEmail(email);
+					vo.setBirthday(birthday);
+					p.setCmd(26);
+					p.setVo(vo);
+					main.out.writeObject(p);
+					main.out.flush();
+					id_textField.setText("");
+					email_textField.setText("");
+					birth_textField.setText("");
 				} catch (Exception e2) {
-//					JOptionPane.showMessageDialog(null, "입력된 정보가 일치하지 않습니다.", "Message", JOptionPane.ERROR_MESSAGE);
-            		JOptionPane.showMessageDialog(getParent(), "입력된 정보가 일치하지 않습니다.", null, JOptionPane.INFORMATION_MESSAGE,
-    				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+					// TODO: handle exception
 				}
+				}else {
+					JOptionPane.showMessageDialog(getParent(), "모든 정보를 입력 해주세요.", null,
+							JOptionPane.INFORMATION_MESSAGE,
+							new ImageIcon(Login03_Find_id.class.getResource("/image/icon_mini.png")));
+				}
+//				db_VO vo = new db_VO();
+////				db_VO find_id = db_DAO.findYourId(vo);
+//                vo = db_DAO.findYourId(vo);
+////				if(name.equals(vo.getName())&& email.equals(vo.getEmail())&&birthday.equals(vo.getBirthday())) {
+//                try {
+////                	JOptionPane.showMessageDialog(null, "당신의 ID는 " +  vo.getId() + "입니다.", "Message", JOptionPane.ERROR_MESSAGE);
+//            		JOptionPane.showMessageDialog(getParent(), name + " 님의 ID는 "  + vo.getId() + "입니다.", null, JOptionPane.INFORMATION_MESSAGE,
+//    				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+//				} catch (Exception e2) {
+////					JOptionPane.showMessageDialog(null, "입력된 정보가 일치하지 않습니다.", "Message", JOptionPane.ERROR_MESSAGE);
+//            		JOptionPane.showMessageDialog(getParent(), "입력된 정보가 일치하지 않습니다.", null, JOptionPane.INFORMATION_MESSAGE,
+//    				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+//				}
 //                if (vo.getId() == null) {
 //					
 //                }else if (vo.getId() != null) {

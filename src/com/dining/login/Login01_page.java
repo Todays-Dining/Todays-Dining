@@ -167,6 +167,8 @@ public class Login01_page extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
+					if (id_textField.getText().length() != 0 && passwordField.getText().length() != 0 ) {
+						
 					db_VO vo = new db_VO();
 					Protocol p = new Protocol();
 					vo.setId(id_textField.getText());
@@ -176,6 +178,7 @@ public class Login01_page extends JPanel {
 					main.out.writeObject(p);
 //					System.out.println("작동");
 					main.out.flush();
+					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}

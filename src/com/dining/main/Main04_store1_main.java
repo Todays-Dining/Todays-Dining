@@ -12,29 +12,38 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.dining.start.Protocol;
+import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
+
 import java.awt.Button;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 
 public class Main04_store1_main extends JPanel {
-	 JTextField store_area_tf;
-	 JTextField store_addr_tf;
-	 JTextField store_bestfd_tf;
-	 JTextField store_phone_tf;
-	 JTextField store_open_tf;
-	 JTextField paking_tf;
+	 public JLabel store_area_t;
+	 public	JLabel store_addr_t;
+	 public JLabel store_bestfd_t;
+	 public JLabel store_phone_t;
+	 public JLabel store_open_t;
+	 public JLabel paking_t;
+	 public JLabel store_bestfood_img ;
+	 
+	 
+	 public JLabel avg_score_lb ;
 	 CardLayout cardLayout;
 	 JPanel main_pg ;
-
-
+	 public RoundedButton_ysh_1 store_name ;
+	 
 	/**
 	 * Create the panel.
 	 */
-	public Main04_store1_main(CardLayout cardLayout, JPanel main_pg) {
+	public Main04_store1_main(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
 		
@@ -43,8 +52,9 @@ public class Main04_store1_main extends JPanel {
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
 		
-		JLabel avg_score_lb = new JLabel("4.5");
-		avg_score_lb.setBounds(300, 160, 22, 22);
+		JLabel avg_score_lb = new JLabel();
+		avg_score_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 14));
+		avg_score_lb.setBounds(296, 158, 29, 22);
 		add(avg_score_lb);
 		
 		JLabel sidetool = new JLabel("");
@@ -97,10 +107,9 @@ public class Main04_store1_main extends JPanel {
 
 
 		
-		JLabel store_bestfood_img = new JLabel("가게 대표메뉴 이미지");
+		store_bestfood_img = new JLabel();
 		store_bestfood_img.setOpaque(true);
 		store_bestfood_img.setForeground(new Color(255, 255, 255));
-		store_bestfood_img.setBackground(new Color(255, 0, 0));
 		store_bestfood_img.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.PLAIN, 50));
 		store_bestfood_img.setHorizontalAlignment(SwingConstants.CENTER);
 		store_bestfood_img.setBounds(53, 210, 414, 270);
@@ -115,8 +124,8 @@ public class Main04_store1_main extends JPanel {
 		homeButton.setBounds(329, 37, 77, 69);
 		add(homeButton);
 		
-		String storename = "끼로끼로하영이"; 
-		RoundedButton_ysh_1 store_name = new RoundedButton_ysh_1(storename);
+		
+		store_name = new RoundedButton_ysh_1();
 		store_name.setEnabled(false);
 		store_name.setForeground(new Color(255, 255, 255));
 		store_name.setBorderPainted(false);
@@ -125,46 +134,53 @@ public class Main04_store1_main extends JPanel {
 		store_name.setBounds(53, 139, 204, 61);
 		add(store_name);
 		
-		store_area_tf = new JTextField();
-		store_area_tf.setBounds(228, 513, 218, 31);
-		add(store_area_tf);
-		store_area_tf.setColumns(10);
-		
 		JLabel packing_lb = new JLabel("주차 여부 : ");
 		packing_lb.setHorizontalAlignment(SwingConstants.CENTER);
 		packing_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		packing_lb.setBounds(86, 763, 132, 33);
+		packing_lb.setBounds(86, 768, 132, 33);
 		add(packing_lb);
 		
-		store_addr_tf = new JTextField();
-		store_addr_tf.setColumns(10);
-		store_addr_tf.setBounds(228, 568, 218, 31);
-		add(store_addr_tf);
+		 store_area_t = new JLabel();
+		 store_area_t.setBorder(null);
+		 store_area_t.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		 store_area_t.setBounds(228, 513, 218, 33);
+		add(store_area_t);
 		
-		store_bestfd_tf = new JTextField();
-		store_bestfd_tf.setColumns(10);
-		store_bestfd_tf.setBounds(228, 621, 218, 31);
-		add(store_bestfd_tf);
 		
-		store_phone_tf = new JTextField();
-		store_phone_tf.setColumns(10);
-		store_phone_tf.setBounds(228, 671, 218, 31);
-		add(store_phone_tf);
+		store_addr_t = new JLabel();
+		store_addr_t.setBorder(null);
+		store_addr_t.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		store_addr_t.setBounds(228, 568, 218, 33);
+		add(store_addr_t);
 		
-		store_open_tf = new JTextField();
-		store_open_tf.setColumns(10);
-		store_open_tf.setBounds(228, 719, 218, 31);
-		add(store_open_tf);
+		 store_bestfd_t = new JLabel();
+		 store_bestfd_t.setBorder(null);
+		 store_bestfd_t.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		store_bestfd_t.setBounds(228, 620, 218, 33);
+		add(store_bestfd_t);
 		
-		paking_tf = new JTextField();
-		paking_tf.setColumns(10);
-		paking_tf.setBounds(228, 765, 218, 31);
-		add(paking_tf);
+		store_phone_t = new JLabel();
+		store_phone_t.setBorder(null);
+		store_phone_t.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		store_phone_t.setBounds(228, 671, 218, 33);
+		add(store_phone_t);
+		
+		store_open_t = new JLabel();
+		store_open_t.setBorder(null);
+		store_open_t.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		store_open_t.setBounds(228, 720, 218, 33);
+		add(store_open_t);
+		
+		paking_t = new JLabel();
+		paking_t.setBorder(null);
+		paking_t.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
+		paking_t.setBounds(228, 768, 218, 33);
+		add(paking_t);
 		
 		JLabel lb1 = new JLabel("가게 지역 : ");
 		lb1.setHorizontalAlignment(SwingConstants.CENTER);
 		lb1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lb1.setBounds(86, 511, 132, 33);
+		lb1.setBounds(86, 513, 132, 33);
 		add(lb1);
 		
 		JLabel lb2 = new JLabel("가게 주소 : ");
@@ -173,16 +189,16 @@ public class Main04_store1_main extends JPanel {
 		lb2.setBounds(86, 568, 132, 33);
 		add(lb2);
 		
-		JLabel lb3 = new JLabel("가게대표메뉴 : ");
+		JLabel lb3 = new JLabel("가게 메뉴 : ");
 		lb3.setHorizontalAlignment(SwingConstants.CENTER);
 		lb3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lb3.setBounds(63, 626, 151, 33);
+		lb3.setBounds(77, 620, 151, 33);
 		add(lb3);
 		
 		JLabel lb4 = new JLabel("전화 번호 : ");
 		lb4.setHorizontalAlignment(SwingConstants.CENTER);
 		lb4.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
-		lb4.setBounds(86, 676, 132, 33);
+		lb4.setBounds(86, 671, 132, 33);
 		add(lb4);
 		
 		JLabel lb5 = new JLabel("영업 시간 : ");
@@ -223,13 +239,44 @@ public class Main04_store1_main extends JPanel {
 		love_jrbt.setBounds(359, 139, 70, 61);
 		add(love_jrbt);
 		
+		love_jrbt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (love_jrbt.isSelected()) {
+					
+					love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/heart.png")));	
+				}else {
+					love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));
+				}
+			}
+		});
+		
 		// main04_store2_map 상세지도 보기 페이지로 이동
 		open_map_bt.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				cardLayout.show(main_pg,"main04_store2_map");
+				try {
+					//  가게이름 보내기
+					Protocol p = new Protocol();
+					db_VO vo = new db_VO();
+					vo.setDiner_name(store_name.getText());
+					vo.setAddress(store_addr_t.getText());
+					System.out.println("가게 이름은" + store_name.getText());
+					p.setCmd(28);
+					p.setVo(vo);
+					try {
+						main.out.writeObject(p);
+						main.out.flush();							
+					} catch (Exception e2) {
+						System.out.println("리뷰로 넘어가는 버튼 오류");
+						System.out.println(e2);
+					}					
+				} catch (Exception e3) {
+
+				}
 			}
 		});
 		
@@ -239,7 +286,21 @@ public class Main04_store1_main extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				cardLayout.show(main_pg,"main04_store3_review");
+				try {
+					//  가게이름 보내기
+					Protocol p = new Protocol();
+					db_VO vo = new db_VO();
+					vo.setDiner_name(store_name.getText());
+					p.setSearch(store_name.getText());
+					p.setCmd(51);
+					p.setVo(vo);
+					main.out.writeObject(p);
+					main.out.flush();	
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+
+//				cardLayout.show(main_pg,"main04_store3_review");
 			}
 		});
 

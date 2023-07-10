@@ -12,6 +12,7 @@ import java.util.Vector;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.dining.admin.Admin00_Login;
 import com.dining.admin.Admin01_main;
 import com.dining.admin.Admin02_AdMember_add;
 import com.dining.admin.Admin02_Member;
@@ -28,17 +29,18 @@ public class Admin_frame extends JFrame implements Runnable{
 	public ObjectInputStream in;
 	
 	//관리자화면
+	Admin00_Login admin00_Login;
 	Admin01_main admin01_main ; 
 	Admin02_AdMember_add admin02_AdMember_add ;
 	Admin02_Member member ;
 	Admin03_rest admin03_rest ;
 	Admin04_review review ; 
-	
 	public Admin_frame() {
 		connected();
 		admin_pg = new JPanel(); 
 		cardLayout = new CardLayout();
 		admin_pg.setLayout(cardLayout);
+		admin00_Login = new Admin00_Login(cardLayout, admin_pg);
 		admin01_main = new Admin01_main(cardLayout,admin_pg , this);
 		admin02_AdMember_add = new Admin02_AdMember_add(cardLayout,admin_pg , this);
 		member = new Admin02_Member(cardLayout,admin_pg , this);
@@ -51,6 +53,7 @@ public class Admin_frame extends JFrame implements Runnable{
 //		Admin03_rest admin03_rest = new Admin03_rest(cardLayout,admin_pg);
 //		Admin04_review admin04_review = new Admin04_review(cardLayout,admin_pg); 
 		// 관리자화면
+		admin_pg.add("admin00_Login",admin00_Login);
 		admin_pg.add("admin01_main",admin01_main);
 		admin_pg.add("admin02_AdMember_add",admin02_AdMember_add);
 		admin_pg.add("admin02_Member",member);

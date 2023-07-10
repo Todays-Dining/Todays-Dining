@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,7 +23,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import com.dining.start.Protocol;
 import com.dining.start.Start_frame;
+import com.dining.start.db_VO;
 
 public class Main00_store_search extends JPanel {
 	
@@ -37,9 +40,7 @@ public class Main00_store_search extends JPanel {
 	JPanel main_pg;
 	String store;
 	Start_frame main;
-	/**
-	 * Create the panel.
-	 */
+
 	public Main00_store_search(CardLayout cardLayout, JPanel main_pg,Start_frame main) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
@@ -49,8 +50,6 @@ public class Main00_store_search extends JPanel {
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
-		
-		
 		
 		JLabel search_lb = new JLabel("뭐먹지?");
 		search_lb.setOpaque(true);
@@ -135,9 +134,25 @@ public class Main00_store_search extends JPanel {
 				int row = table.getSelectedRow();
 				TableModel data = table.getModel();
 				 store = (String)data.getValueAt(row,0);
-				 // System.out.println(store);
-				 cardLayout.show(main_pg, "main04_store1_main");
+				// 가게 이름 다른 페이지 보내기	재훈 
+				 if (store.length() != 0) {
+					
+				 Protocol p = new Protocol();
+				 db_VO vo = new db_VO();
+				 vo.setDiner_name(store);
+				 p.setStore_name(store);
+				 p.setVo(vo);
+				 p.setCmd(22);
+				 try {
+					main.out.writeObject(p);
+					main.out.flush();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				 
 				 clear();
+				 }
 			 } 
 			}
 		});

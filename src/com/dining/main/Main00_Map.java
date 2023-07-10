@@ -183,47 +183,38 @@ public class Main00_Map extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Protocol p = new Protocol();
-				p.setCmd(31);
+				p.setCmd(77);
 				try {
 					main.out.writeObject(p);
 					main.out.flush();	
-//					System.out.println("flush 완료");
-					cardLayout.show(main_pg,"main00_Home");
 				} catch (Exception e2) {
-					System.out.println("flush 안됨");
 					System.out.println(e2);
 				}
-				System.out.println("cmd 31번으로 변경 완");
 			}
 		});
 		place2_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
 		place3_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
 		place4_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
 		place5_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
 		place6_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.show(main_pg,"main00_Home");
 			}
 		});
 	
