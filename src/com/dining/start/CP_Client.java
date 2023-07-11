@@ -96,12 +96,41 @@ public class CP_Client extends Thread {
 						out.flush();
 						break;
 					case 22:// 재훈 가게 이름 다른 페이지 보내고 db정보 받아오기
-                        db_VO vo22 =  new db_VO();
-                        vo22 = db_DAO.getStoreInfo(p.getVo());
-                        p.setVo(vo22);
-                        
-                        out.writeObject(p);
-                        out.flush();
+						String avg_star = "";
+						try {
+							db_VO vo88 = new db_VO();
+							// p.getVO 부분 때문에 문제? 
+							vo88 = p.getVo();
+							vo88 = db_DAO.getStoreStar(vo88);
+							try {
+								avg_star = vo88.getAvg_star();
+							} catch (Exception e) {
+								// TODO: handle exception
+							}
+							
+							db_VO vo22 =  new db_VO();
+							System.out.println("9번");
+							vo22 = db_DAO.getStoreInfo(p.getVo());
+							System.out.println("10번");
+							try {
+								vo22.setAvg_star(avg_star);
+								
+							} catch (Exception e) {
+								// TODO: handle exception
+							}
+							System.out.println("11번");
+							
+							p.setVo(vo22);
+							System.out.println("12번");
+							System.out.println("cpc 22번에서 별점" + p.getVo().getAvg_star());
+							// vo를 바꿔치기
+							out.writeObject(p);
+							out.flush();
+							System.out.println("끝남");
+						} catch (Exception e) {
+							System.out.println("cpc 22번에서 오류");
+							System.out.println(e);
+						}
                         break;	
 					case 23: // 재훈 카테고리 정보 가져오기 
 						db_VO vo23 =  new db_VO();
@@ -122,6 +151,18 @@ public class CP_Client extends Thread {
 						out.writeObject(p);
 	                     out.flush();
 						 break;
+						 
+					case 25:
+						// cpc 25번으로는 들어와짐!
+						try {
+							System.out.println("cpc 25번");
+							
+						} catch (Exception e) {
+							System.out.println("cpc 25번 오류");
+							System.out.println(e);
+						}
+						break;
+						
 					case 26 : // 좌현 아이디찾기	
 						db_VO vo26 = new db_VO();	
 						vo26 = p.getVo();	
@@ -222,6 +263,7 @@ public class CP_Client extends Thread {
 	                    out.flush();
 	                    System.out.println("cpc 39번 완료");
 				    	break;
+			
 				    	
 				    	// 성훈 41~
 				    case 41: // Admin04_review 관리자 리뷰관리페이지 리뷰 모두 불러오기 기능
@@ -283,6 +325,18 @@ public class CP_Client extends Thread {
                     	out.writeObject(p);	
                     	out.flush();	
                     	break;
+                    	
+//            	    case 88: // 상우 식당 별점 받아오기
+//				    	db_VO vo88 = new db_VO();
+//				    	vo88 = p.getVo();
+//				    	System.out.println("cpc에서 가게 이름" + vo88.getDiner_name());
+//				    	vo88 = db_DAO.getStoreStar(vo88);
+//				    	p.setVo(vo88);
+//				    	System.out.println("cpc에서 별점은: " + p.getVo().getAvg_star());
+//				    	out.writeObject(p);
+//	                    out.flush();
+////				    	vo40 = db_DAO.getStoreStar(vo2);
+//				    	break;
 					}
 				}
 			} 

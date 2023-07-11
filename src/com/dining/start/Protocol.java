@@ -15,6 +15,9 @@ public class Protocol implements Serializable{
 	// 재훈 가게이름 담기
 	private String store_name ;
 	
+	// 상우 별점용 추가 
+	private String avg_star;
+	
 	// 재훈 검색기능으로 인한 서치 추가 (검색여부 확인후 다시 정보를 불러서 가야하기 때문에 무조건 있어야함)
 	private String search ;
 	

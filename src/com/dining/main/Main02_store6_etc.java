@@ -25,6 +25,7 @@ import javax.swing.table.TableModel;
 
 import com.dining.start.Protocol;
 import com.dining.start.Start_frame;
+import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
 
 public class Main02_store6_etc extends JPanel {
@@ -135,6 +136,10 @@ public class Main02_store6_etc extends JPanel {
 					store = (String) data.getValueAt(row, 0);
 					// 가게 이름 다른 페이지 보내기 재훈
 					if (store.length() != 0) {
+//						db_VO vo2 = new db_VO();
+//						vo2.setDiner_name(store);
+//						db_VO review_star = db_DAO.getStoreStar(vo2);
+//						System.out.println("별점은" + review_star.getStar());
 
 						Protocol p = new Protocol();
 						db_VO vo = new db_VO();

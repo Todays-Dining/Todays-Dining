@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 
 import com.dining.start.Protocol;
 import com.dining.start.Start_frame;
+import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
 
 import java.awt.event.ActionListener;
@@ -27,12 +28,12 @@ public class Main01_best2 extends JPanel {
 	JPanel main_pg;
 	Start_frame main;
 	
+	public String review_star;
+	
 	public JLabel store_food_image2;
 	public String store_name2;
 	public RoundedButton_kjh_5 store_bt ;
-	/**
-	 * Create the application.
-	 */
+
 	public Main01_best2(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout;
 		this.main_pg = main_pg;
@@ -168,9 +169,17 @@ public class Main01_best2 extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// 별점 표시용 추가한 부분
+				db_VO vo2 = new db_VO();
+				vo2.setDiner_name(store_bt.getText());
+//				review_star = db_DAO.getStoreStar(vo2);
+				System.out.println("별점은" + review_star);
+				
 				Protocol p = new Protocol();
 				db_VO vo = new db_VO();
 				vo.setDiner_name(store_bt.getText()); 
+				vo.setStar(review_star);
+				System.out.println("vo에 들어간 스타" + vo.getStar());
 				p.setStore_name(store_bt.getText()); 
 				p.setVo(vo);
 				 p.setCmd(22);
@@ -178,8 +187,7 @@ public class Main01_best2 extends JPanel {
 					main.out.writeObject(p);
 					main.out.flush();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					System.out.println(e1);
 				}
 			}
 		});

@@ -64,6 +64,7 @@ public class Start_frame extends JFrame implements Runnable {
 	public URL path3;
 	public URL path4 ;
 	public URL path5 ;
+	public URL path40 ;
 	public db_VO vo;
 	public Socket s;
 	public ObjectOutputStream out;
@@ -112,7 +113,7 @@ public class Start_frame extends JFrame implements Runnable {
 	File imageFile;
 	int initialize_flag = 0;
 	int imgIns_flag = 0;
-	String id_for_pwchk;
+	String id_for_pwchk = "";
 
 	public Start_frame() {
 		UIManager ui = new UIManager(); // 전체적인 UI시스템 이미지, 색상, 폰트 변경
@@ -122,13 +123,17 @@ public class Start_frame extends JFrame implements Runnable {
 	    ui.put("Label.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // o
 	    ui.put("OptionPane.background",new Color(255, 240, 245)); // 다이얼로그의 배경색 변경
 	    ui.put("Panel.background",new Color(255, 240, 245)); // 다이얼로그의 패널부분 배경색 변경
+	    setResizable(false);
 	    
 		// 연결하기
 		connected();
-		main_pg = new JPanel(); 
+		main_pg = new JPanel();
+//		main_pg.setResizable(false);
 		cardLayout = new CardLayout();
 		main_pg.setLayout(cardLayout);
 		vo = new db_VO();
+//		cardLayout.set
+		
 		// 각종패널들 가져오기 (★ 패널들은 지역변수로 딱 한번만 선언해야 함)
 		// 마이페이지 
 		mypage01_main = new Mypage01_main(cardLayout,main_pg,this);
@@ -340,35 +345,114 @@ public class Start_frame extends JFrame implements Runnable {
 						break;
 					
 					case 22: // 재훈  메인페이지에 가게 이름으로 정보 보내기
-						 path = Main04_store1_main.class.getResource("/diner_image/" + p.getVo().getDiner_name() + "_1.png");
-						 
-						 
-						 if (path != null) {
-							 main04_store1_main.store_bestfood_img.setIcon
-							 (new ImageIcon(path));
-						}else {
-							main04_store1_main.store_bestfood_img.setIcon
-							(new ImageIcon(Main04_store1_main.class.getResource("/diner_image/이미지준비중.png")));
+						try {
+							path = Main04_store1_main.class.getResource("/diner_image/" + p.getVo().getDiner_name() + "_1.png");
+							if (path != null) {
+								main04_store1_main.store_bestfood_img.setIcon(new ImageIcon(path));
+							}else {
+								main04_store1_main.store_bestfood_img.setIcon
+								(new ImageIcon(Main04_store1_main.class.getResource("/diner_image/이미지준비중.png")));
+							}
+							// 여기 재훈이 코드인데 오류나서 바꿨음! (근데 다시 원위치 시킴)
+							main04_store1_main.store_name.setText( p.getStore_name());
+//						 main04_store1_main.store_name.setText( p.getVo().getDiner_name());							 
 							
-						}
-						 
-	                     main04_store1_main.store_name.setText( p.getStore_name());
-	                     main04_store1_main.store_area_t.setText(p.getVo().getRegion());
-	                     main04_store1_main.store_addr_t.setText(p.getVo().getAddress());
-	                     main04_store1_main.store_bestfd_t.setText(p.getVo().getMenu());
-	                     main04_store1_main.store_phone_t.setText(p.getVo().getPhone_number());
-	                     main04_store1_main.store_open_t.setText(p.getVo().getOpening_hours());
-	                     System.out.println(p.getVo().getOpening_hours());
+							
+							
+							main04_store1_main.store_area_t.setText(p.getVo().getRegion());
+							main04_store1_main.store_addr_t.setText(p.getVo().getAddress());
+							main04_store1_main.store_bestfd_t.setText(p.getVo().getMenu());
+							main04_store1_main.store_phone_t.setText(p.getVo().getPhone_number());
+							main04_store1_main.store_open_t.setText(p.getVo().getOpening_hours());
+							// 비밀의 넘버에 추가 (재훈)
+							main04_store1_main.store_no.setText(p.getVo().getDiner_no());
+							main04_store1_main.avg_score_lb.setText(p.getVo().getStar());
+							System.out.println("sf에서의 별점은" + p.getVo().getStar());
+							System.out.println(p.getVo().getOpening_hours());
 //	                     main04_store1_main.avg_score_lb.setText(p.getVo().getStar());
-	                  if(p.getVo().getParking_or_not().equals("1")) {
-	                	  	// 주차가능
-	                	  main04_store1_main.paking_t.setText("주차 가능");
-	                  }else {
-	                	  main04_store1_main.paking_t.setText("주차 불가능");
-	                	  
-	                  }
+							if(p.getVo().getParking_or_not().equals("1")) {
+								// 주차가능
+								main04_store1_main.paking_t.setText("주차 가능");
+							}else {
+								main04_store1_main.paking_t.setText("주차 불가능");
+								
+							}
+							String storeNo =  p.getVo().getDiner_no();	
+			                  // 좋아요 정보를 가져와서 좋아요 채킹해주기 	
+			                  System.out.println(mypage01_main.id_tf.getText());	
+			                  db_VO vo22_ck =  new db_VO();	
+		                      	
+		                      vo22_ck = db_DAO.getIdFavorite_ck(mypage01_main.id_tf.getText());	
+		                      if(vo22_ck != null) {	
+		                      	List<db_VO> like_list = db_DAO.getIdFavorite(mypage01_main.id_tf.getText());	
+		                      	p.setList(like_list);	
+		                      	p.setResult(1);	
+		                      }else {	
+		                      	p.setResult(0);
+		                      }
+		                      String diner_no22[] = new String[p.list.size()];	
+								String favorite_ck22[] = new String[p.list.size()];	
+									
+								for (int i = 0; i < p.list.size(); i++) {	
+								    k = p.list.get(i);	
+								    diner_no22[i] = k.getDiner_no();	
+								    favorite_ck22[i] = k.getFavorite_ck();	
+								    System.out.println(k.getDiner_no());	
+								    System.out.println(k.getFavorite_ck());	
+								}	
+				              if(p.getResult() == 0) {	
+				            	  main04_store1_main.love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));	
+				                  main04_store1_main.love_jrbt.setSelected(false);	
+				                  System.out.println("조건문 off1");	
+				              }else {	
+				            	  for (int i = 0; i < p.list.size(); i++) {	
+				            	      if (storeNo.equals(diner_no22[i]) && favorite_ck22[i].equals("on")) {	
+				            	    	   System.out.println("조건문 on");	
+				            	    	  main04_store1_main.love_jrbt.setSelected(true);	
+				            	    	  main04_store1_main.love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/heart.png")));	
+				            	    	  	
+		//			            	          System.out.println("Store name: " + storeName);	
+		//			            	          System.out.println("Diner name: " + diner_name22[i]);	
+		//			            	          System.out.println("Favorite check: " + favorite_ck22[i]);	
+				            	      }else if(storeNo.equals(diner_no22[i]) && favorite_ck22[i].equals("off")){	
+				            	    	  System.out.println("조건문 off2");	
+				            	    	  main04_store1_main.love_jrbt.setSelected(false);	
+				            	    	  main04_store1_main.love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));	
+				            	      }	
+				            	  }	
+				              } 
+			                      
+							
+							try {
+								System.out.println("메인에서 스타 " + p.getVo().getAvg_star());								
+								Double final_star = 0.0;
+								final_star = Double.parseDouble(p.getVo().getAvg_star());
+								System.out.println(final_star);
+								main04_store1_main.avg_score_lb.setText(final_star.toString());
+							} catch (Exception e) {
+//								main04_store1_main.avg_score_lb.setText("X");
+							}
+							//					if(p.getVo().getAvg_star())
+							cardLayout.show(main_pg,"main04_store1_main");	
+							System.out.println("6번까지 된다");
+							
+						} catch (Exception e) {
+							System.out.println("main 22에서 오류");
+						}
+						
 	                     
-	                     cardLayout.show(main_pg, "main04_store1_main");
+//	                     	// 상우 별점표시 추가한 부분
+//	                        while (main01_best1.review_star.length() == 0) {
+//	                        	
+//	                        }
+//	                        System.out.println("sf에서 받은 별점!!" + main01_best1.review_star);
+//	                        main04_store1_main.avg_score_lb.setText(main01_best1.review_star); 
+////	                        System.out.println((p.getVo().getStar()));
+//	                         
+//	                        main04_store1_main.avg_score_lb.setText(p.getVo().getStar()); 
+////	                        System.out.println("sf에서 받은 별점!!" + main01_best2.review_star);
+////	                        main04_store1_main.avg_score_lb.setText(main01_best2.review_star); 
+
 	                        break;
 					case 23:  // 재훈 카테고리별 이미지와 가게이름 넣기   
 						
@@ -533,12 +617,33 @@ public class Start_frame extends JFrame implements Runnable {
 							}	
 							cardLayout.show(main_pg, "main02_store6_etc");
 						}
-						
-						
-						
+
 						}
-						
 						break;
+					
+					case 25:	// 좋아요 업데이트
+						try {
+							System.out.println("25번 메인 시작");	
+							Thread.sleep(1000);
+							
+//						db_VO vo25 =  new db_VO();	
+//						vo25.setFavorite_ck(p.getVo().getFavorite_ck()); 	
+//						vo25.setDiner_no(p.getVo().getDiner_no()) ;	
+//						vo25.setId(mypage01_main.id_tf.getText());	
+//						System.out.println("DAO시작");	
+////						db_DAO.changeFavorite(vo25);	
+//						p.setResult(db_DAO.changeFavorite(vo25));	
+//						if(p.getResult() == 1) {	
+//							System.out.println("좋아요 성공");	
+//						}else {	
+//							System.out.println("좋아요 실패");	
+//						}	
+							
+						} catch (Exception e) {
+							System.out.println("메인 25번 오류");
+						}
+						break;
+						
 					case 26: // 아이디찾기	
 						if (p.getResult() == 1) {	
 							String[] options = { "확인" };	
@@ -621,7 +726,8 @@ public class Start_frame extends JFrame implements Runnable {
 						System.out.println("sf 39번 작동중");
 						String diner_name2 = main04_store1_main.store_name.getText();
 				    	String diner_no = db_DAO.findDiner(diner_name2);
-						main04_store3_review.id_forchk = id_for_pwchk;
+//						main04_store3_review.id_forchk = id_for_pwchk;
+				    	id_for_pwchk = mypage01_main.id_tf.getText();
 						System.out.println("sf의 아이디" + id_for_pwchk);
 						main04_store3_review.tf_forid.setText(id_for_pwchk);
 						main04_store3_review.tf_fordiner.setText(diner_name2);
@@ -654,6 +760,40 @@ public class Start_frame extends JFrame implements Runnable {
 //						public JTextField now_review_ta;
 						break;
 						
+					case 40: // 상우 즐겨찾기에서 가게 이름으로 정보 보내기
+						 path40 = Main04_store1_main.class.getResource("/diner_image/" + p.getVo().getDiner_name() + "_1.png");
+						 
+						 
+						 if (path40 != null) {
+							 main04_store1_main.store_bestfood_img.setIcon
+							 (new ImageIcon(path40));
+						}else {
+							main04_store1_main.store_bestfood_img.setIcon
+							(new ImageIcon(Main04_store1_main.class.getResource("/diner_image/이미지준비중.png")));
+							
+						}
+						 
+	                     main04_store1_main.store_name.setText( p.getStore_name());
+	                     main04_store1_main.store_area_t.setText(p.getVo().getRegion());
+	                     main04_store1_main.store_addr_t.setText(p.getVo().getAddress());
+	                     main04_store1_main.store_bestfd_t.setText(p.getVo().getMenu());
+	                     main04_store1_main.store_phone_t.setText(p.getVo().getPhone_number());
+	                     main04_store1_main.store_open_t.setText(p.getVo().getOpening_hours());
+	                     System.out.println(p.getVo().getOpening_hours());
+//	                     main04_store1_main.avg_score_lb.setText(p.getVo().getStar());
+	                  if(p.getVo().getParking_or_not().equals("1")) {
+	                	  	// 주차가능
+	                	  main04_store1_main.paking_t.setText("주차 가능");
+	                  }else {
+	                	  main04_store1_main.paking_t.setText("주차 불가능");
+	                	  
+	                  }
+	                     
+	                     cardLayout.show(main_pg, "main04_store1_main");
+	                        break;
+					case 41: // 상우 리뷰 날짜 받아와서 넣기
+						break;
+						
 					
 					case 51: //하영이 완성 재훈수정완료
 						// 보내줘야하는게 없음?!
@@ -669,24 +809,32 @@ public class Start_frame extends JFrame implements Runnable {
 						int length_arr = list51.size();
 						String id[] = new String[length_arr];
 						String review_content[] = new String[length_arr];
+						String review_time[] = new String[length_arr];
 							
 						for (int i = 0; i < length_arr; i++) {
 							db_VO k = p.list.get(i);
 							id[i] = k.getId();
 							review_content[i] = k.getReview_content();
+							review_time[i] = k.getReview_time();
 							System.out.println("id : " + k.getId()+"나왔다");
 							System.out.println("리뷰 : " +k.getReview_content()+"나왔다");
+							System.out.println("리뷰 시간 : " + k.getReview_time()+"나왔다");
 						}
 						
 						if (length_arr >= 1) {
 							main04_store3_review.review1_id.setText(id[0]);
 							main04_store3_review.review1_ta.setText(review_content[0]);
+							main04_store3_review.review1_ta.setText(review_content[0]);
+							main04_store3_review.date_1.setText(review_time[0]);
 							if (length_arr >= 2) {
 								main04_store3_review.review2_id.setText(id[1]);
 								main04_store3_review.review2_ta.setText(review_content[1]);
+								main04_store3_review.date_2.setText(review_time[1]);
 								if (length_arr >= 3) {
 									main04_store3_review.review3_id.setText(id[2]);
 									main04_store3_review.review3_ta.setText(review_content[2]);	
+									main04_store3_review.date_3.setText(review_time[2]);
+
 								} 
 							}
 						}
@@ -770,7 +918,18 @@ public class Start_frame extends JFrame implements Runnable {
 							
 							
 						break;
+					case 88:
+//						System.out.println("메인에서 스타 " + p.getVo().getAvg_star());
+////						if(p.getVo().getAvg_star())
+//						Double final_star = 0.0;
+//						final_star = Double.parseDouble(p.getVo().getAvg_star());
+//						main04_store1_main.avg_score_lb.setText(final_star.toString());
+//						cardLayout.show(main_pg,"main04_store1_main");	
 						
+//						p.setCmd(22);
+//						out.writeObject(p);	
+//                    	out.flush();	
+						break;
 						
 					}
 				}

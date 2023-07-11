@@ -31,6 +31,8 @@ public class RoundedButton_ysh_1 extends JButton {
        else { graphics.setColor(c); } 
        graphics.fillRoundRect(0, 0, width, height, 50, 50); 
        FontMetrics fontMetrics = graphics.getFontMetrics(); 
+       // 에러 발생지점 (텍스트가 null이라서 발생)
+       // Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException: Cannot invoke "String.toCharArray()" because "str" is null
        Rectangle stringBounds = fontMetrics.getStringBounds(this.getText(), graphics).getBounds(); 
        int textX = (width - stringBounds.width) / 2; 
        int textY = (height - stringBounds.height) / 2 + fontMetrics.getAscent(); 

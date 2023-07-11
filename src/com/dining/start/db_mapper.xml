@@ -75,6 +75,15 @@ FROM (
 ) sub
 WHERE row_num = 1 -->
     </select>
+     <!-- 재훈 22  로그인 아이디로 좋아요 정보 가져올 정보 있는지 확인-->	
+     <select id="IdFavorite_ck" parameterType="String" resultType="com.dining.start.db_VO">	
+     select * from FAVORITES_TABLE where ID = #{search} and rownum=1	
+    </select>	
+    <!-- 재훈 22  로그인 아이디로 좋아요 정보 가져오기-->	
+     <select id="IdFavorite"  resultType="com.dining.start.db_VO">	
+     select * from FAVORITES_TABLE where ID = #{search}	
+    </select>
+  
     
     <!-- 재훈 23 카테고리 검색해서 정보가져오기 -->
     <select id="category" resultType="com.dining.start.db_VO">
@@ -84,6 +93,18 @@ WHERE row_num = 1 -->
     <select id="table_cate" resultType="com.dining.start.db_VO">
     	select * from DINER_TABLE where food_category = #{food_category}
     </select> 
+    
+     <!-- 재훈 25 좋아요 업데이트or삽입 -->	
+    <insert id="insertOrUpdateFavorite" parameterType="com.dining.start.db_VO">	
+	  MERGE INTO FAVORITES_TABLE ft	
+	  USING DUAL	
+	  ON (ft.ID = #{id} AND ft.DINER_NO = #{diner_no})	
+	  WHEN MATCHED THEN	
+	    UPDATE SET ft.FAVORITE_CK = #{favorite_ck}	
+	  WHEN NOT MATCHED THEN	
+	    INSERT (ID, DINER_NO, FAVORITE_CK)	
+	    VALUES (#{id}, #{diner_no}, #{favorite_ck})	
+	</insert>
     
       <!-- 상우 best 식당명, 카테고리 받아오기 -->	
     <select id="bestOfAll" resultType="com.dining.start.db_VO">	
@@ -163,6 +184,7 @@ WHERE row_num = 1 -->
 		where d.diner_no = r.diner_no and d.diner_name=#{diner_name} and rownum=1
 		order by r.review_time desc 
 	</select>
+	
 	<!-- 51 가게이름으로 리뷰 작성자 아이디, 리뷰 내용 검색 -->
     <select id="infoReview" resultType="com.dining.start.db_VO">
 		select d.diner_name, r.id, r.review_content, r.review_time
@@ -179,6 +201,11 @@ WHERE row_num = 1 -->
      <!-- 77 상화 -->
      <select id="bestOfAll2" resultType="com.dining.start.db_VO">
    		select * from REVIEW_AVG_VIEW where rownum &lt;&#61; 5
+    </select>
+    
+   	<!-- 상우 88번 리뷰 뷰에서 식당이름으로 평점 받아오기 -->
+    <select id="storeStar" resultType="com.dining.start.db_VO" parameterType="com.dining.start.db_VO">
+    	select avg_star from review_avg_view where diner_name = #{diner_name}
     </select>
     
 </mapper>

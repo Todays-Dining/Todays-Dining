@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,6 +21,7 @@ import javax.swing.SwingConstants;
 import com.dining.login.Login01_page;
 import com.dining.main.Main00_Home;
 import com.dining.main.Main01_best1;
+import com.dining.start.Protocol;
 import com.dining.start.Start_frame;
 import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
@@ -301,12 +301,20 @@ public class Mypage01_main extends JPanel {
 				cardLayout.show(main_pg, "mypage01_main");
 			}
 		});
-		// 나만의 즐겨찾기로 이동
+		// 40번 상우 나만의 즐겨찾기로 이동 
 		like_bt.addActionListener(new ActionListener() {
-			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				Protocol p = new Protocol();
+				p.setCmd(40);
+				try {
+					main.out.writeObject(p);
+					main.out.flush();
+					System.out.println("즐겨찾기 flush 완료");
+				} catch (Exception e2) {
+					System.out.println("즐겨찾기 flush 오류");
+					System.out.println(e2);
+				}
 				cardLayout.show(main_pg, "mypage02_mypick");
 			}
 		});
@@ -323,22 +331,6 @@ public class Mypage01_main extends JPanel {
 			}
 		});
 		
-//		fix_bt.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				db_VO vo = new db_VO();
-//				vo = db_DAO.getid();
-//				id_tf.setText(vo.getId());
-////				List<db_VO> list = db_DAO.getidAll();
-//				
-////				for (db_VO k : list) {
-////					System.out.print(k.getId()+"\t");
-////					System.out.print(k.getPassword()+"\t");
-////					System.out.println(k.getName());
-////				}
-//			}
-//		});
-
 		fix_bt.addActionListener(new ActionListener() {// 회원정보수정버튼            
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -357,20 +349,28 @@ public class Mypage01_main extends JPanel {
                 int res = db_DAO.getUpdate(vo);    
                 
                 if(res>0) {
-                    JOptionPane.showMessageDialog(getParent(), "수정 성공");
-                }
-                
+					JOptionPane.showMessageDialog(getParent(), "수정 성공", null, JOptionPane.INFORMATION_MESSAGE,
+	           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));                
+				}
             }
         });
         
         mem_del_bt.addActionListener(new ActionListener() {// 회원정보 삭제버튼
             public void actionPerformed(ActionEvent e) {
-                db_VO vo = new db_VO();                
-                int res = db_DAO.getDelete(id_tf.getText().trim());
-                if(res>0) {
-                    JOptionPane.showMessageDialog(getParent(), "그동안의 이용 감사합니다.");
-                    //다이얼 로그 메시지 보내고 로그인 페이지로 이동하게하기
-                    cardLayout.show(main_pg,"login01_page");
+            	int answer = JOptionPane.showConfirmDialog(getParent(), "정말로 회원탈퇴 하시겠습니까?", "회원 탈퇴", 
+            			JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
+            	if(answer==JOptionPane.YES_OPTION){  //사용자가 yes를 눌렀을 경우
+            		db_VO vo = new db_VO();                
+            		int res = db_DAO.getDelete(id_tf.getText().trim());
+            		if(res>0) {
+            			JOptionPane.showMessageDialog(getParent(), "그동안의 이용 감사합니다.", null, JOptionPane.INFORMATION_MESSAGE,
+   	           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));   
+            			//다이얼 로그 메시지 보내고 로그인 페이지로 이동하게하기
+            			cardLayout.show(main_pg,"login01_page");        			
+        		} else{ 
+        			
+        		}
+
                 }
             }
         });

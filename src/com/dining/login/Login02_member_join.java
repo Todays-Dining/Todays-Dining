@@ -7,9 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
@@ -336,10 +334,13 @@ public class Login02_member_join extends JPanel {
 					Boolean name_test = Pattern.matches("^[a-zA-Zㄱ-ㅎ가-힣]*$", name);
 					// 생년월에 숫자가 아닌 다른 문자가 포함된 경우 다이얼로그
 					String birth = birth_textField.getText();
-					Boolean birth_test = Pattern.matches("^[0-9]*$", birth);
+					String birthRegex = "^(([0-9]{2}((0[13578]|1[02])(0[1-9]|[12][0-9]|3[01])|(0[13456789]|1[012])(0[1-9]|[12][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8])))|([02468][048]|[13579][26])0229)$";
+				    Pattern birthPattern = Pattern.compile(birthRegex);
+					Matcher birthRes = birthPattern.matcher(birth);
+					boolean birth_test = birthRes.matches();
 					// 생년월일 길이 체크
-					if (birth.length() != 6) {
-						JOptionPane.showMessageDialog(getParent(), "생년월일은 숫자 6자리로 입력해 주세요!", null, JOptionPane.INFORMATION_MESSAGE,
+					if (birth_test != true) {
+						JOptionPane.showMessageDialog(getParent(), "생년월일 형식이 맞지 않거나 없는 날짜입니다!", null, JOptionPane.INFORMATION_MESSAGE,
 		           				 new ImageIcon(Login01_page.class.getResource("/image/icon_mini.png")));
 					}
 					// 이메일에 특수문자, @이 들어가고, 영문, 숫자로만 이루어져있는지 확인

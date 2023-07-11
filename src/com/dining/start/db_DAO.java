@@ -114,6 +114,20 @@ public class db_DAO {
 			 vo = getSession().selectOne("storeInfo", vo);
 			 return vo; 
 	}
+	 
+	 //	
+	 // 22 가게버튼을 눌렀을때 접속아이디에 대한 좋아요 정보 있는지 체크	
+	 public static db_VO getIdFavorite_ck(String search){	
+		 db_VO vo = getSession().selectOne("IdFavorite_ck", search);	
+		 return vo; 	
+	 }	
+	 	
+	 // 22 가게버튼을 눌렀을때 접속아이디에 대한 좋아요 정보	
+	 public static List<db_VO> getIdFavorite(String search){	
+		 List<db_VO> list = getSession().selectList("IdFavorite", search);	
+		 return list;	
+	 }
+	 
 	 // 23 카테고리별 best 가게이름 가져오기
 	 public static db_VO getCategory(db_VO vo){
 		 vo = getSession().selectOne("category", vo);
@@ -124,6 +138,13 @@ public class db_DAO {
 		 List<db_VO> list = getSession().selectList("table_cate", vo);
 		 return list; 
 	 }
+	 
+	 // 재훈 25 좋아요 업데이트or삽입	
+	 public static int changeFavorite(db_VO vo) {	
+	    	int result = getSession().update("insertOrUpdateFavorite",vo);	
+	    	ss.commit();	
+	    	return result;	
+	    }		
 	 
 	 // 좌현 26번 id찾기
 	 public static db_VO findid2(db_VO vo) {
@@ -228,6 +249,12 @@ public class db_DAO {
         	List<db_VO> list = getSession().selectList("bestOfAll2"); 
         	return list;
         }
+        
+        // 88 상우 가게 별점 받아오기
+    	 public static db_VO getStoreStar(db_VO vo) {
+    		 db_VO result = getSession().selectOne("storeStar", vo);
+    		 return result;
+    	 }
 //	public static db_VO getid2(String name, String email, String birth){
 //		List<db_VO> = db_VO 
 //		

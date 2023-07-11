@@ -5,13 +5,34 @@ import java.io.Serializable;
 public class db_VO implements Serializable {
 	private String status, id, password, name, email, birthday, password_search_q, password_search_a,
 			favorite_list, reported_count, deleted_time, review_number, old_pw, new_pw, update_id, id_for_pwchk,
-			pw_for_pwchk, review_score, review_content2;
+			pw_for_pwchk, review_score, review_content2, review_time, avg_star, favorite_ck;
 	private String diner_no, diner_name, favorited_number, opening_hours, menu, phone_number, 
 			parking_or_not, food_category, region, address;
 	private String review_content, star;
 	// 재훈 검색기능으로 인한 서치 추가
 	private String search;
 	
+	
+	// 재훈 
+	public String getFavorite_ck() {
+		return favorite_ck;
+	}
+	public void setFavorite_ck(String favorite_ck) {
+		this.favorite_ck = favorite_ck;
+	}
+	// 평균별점 받아오기
+	public String getAvg_star() {
+		return avg_star;
+	}
+	public void setAvg_star(String avg_star) {
+		this.avg_star = avg_star;
+	}
+	public String getReview_time() {
+		return review_time;
+	}
+	public void setReview_time(String review_time) {
+		this.review_time = review_time;
+	}
 	public String getSearch() {
 		return search;
 	}

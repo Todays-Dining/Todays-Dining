@@ -121,6 +121,7 @@ public class Main04_store2_map extends JPanel {
 		add(back_bt);
 		
 		store_addr_tf = new JTextField();
+		store_addr_tf.setEditable(false);
 		store_addr_tf.setBounds(49, 514, 414, 24);
 		add(store_addr_tf);
 		store_addr_tf.setColumns(10);

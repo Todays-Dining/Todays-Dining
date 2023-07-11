@@ -24,6 +24,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import java.awt.Cursor;
+
+// 확인 
+import java.awt.event.ItemEvent;	
+import java.awt.event.ItemListener;
 
 public class Main04_store1_main extends JPanel {
 	 public JLabel store_area_t;
@@ -33,28 +38,34 @@ public class Main04_store1_main extends JPanel {
 	 public JLabel store_open_t;
 	 public JLabel paking_t;
 	 public JLabel store_bestfood_img ;
+	 // 정보 가지고 가서 on off  추가할 때 필요 (재훈)
+	 public JLabel store_no;	
+	 public JRadioButton love_jrbt;	
+	 Start_frame main;
+	 int flag;
 	 
-	 
+	 // 상우 별점표시 추가한 부분
 	 public JLabel avg_score_lb ;
 	 CardLayout cardLayout;
 	 JPanel main_pg ;
 	 public RoundedButton_ysh_1 store_name ;
 	 
-	/**
-	 * Create the panel.
-	 */
 	public Main04_store1_main(CardLayout cardLayout, JPanel main_pg, Start_frame main) {
 		this.cardLayout = cardLayout ;
 		this.main_pg = main_pg ;
+		this.main = main;	
 		
 		setForeground(new Color(0, 0, 0));
 		setBackground(new Color(255, 240, 245));
 		setBounds(100, 100, 540, 960);
 		setLayout(null);
 		
-		JLabel avg_score_lb = new JLabel();
+		avg_score_lb = new JLabel();
+		avg_score_lb.setCursor(Cursor.getPredefinedCursor(Cursor.CROSSHAIR_CURSOR));
+		avg_score_lb.setToolTipText("");
+		avg_score_lb.setText("4.5");
 		avg_score_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 14));
-		avg_score_lb.setBounds(296, 158, 29, 22);
+		avg_score_lb.setBounds(297, 158, 29, 22);
 		add(avg_score_lb);
 		
 		JLabel sidetool = new JLabel("");
@@ -177,6 +188,11 @@ public class Main04_store1_main extends JPanel {
 		paking_t.setBounds(228, 768, 218, 33);
 		add(paking_t);
 		
+		// 비밀의 번호	
+		store_no = new JLabel();	
+		store_no.setBounds(-100, -100, -10, -10);	
+		add(store_no);
+		
 		JLabel lb1 = new JLabel("가게 지역 : ");
 		lb1.setHorizontalAlignment(SwingConstants.CENTER);
 		lb1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 24));
@@ -232,7 +248,7 @@ public class Main04_store1_main extends JPanel {
 		star_lb.setBounds(274, 139, 77, 61);
 		add(star_lb);
 		
-		JRadioButton love_jrbt = new JRadioButton("");
+		love_jrbt = new JRadioButton("");
 		love_jrbt.setBackground(new Color(255, 240, 245));
 		love_jrbt.setIconTextGap(0);
 		love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));
@@ -252,6 +268,92 @@ public class Main04_store1_main extends JPanel {
 				}
 			}
 		});
+		
+		// 이쪽 메인 페이지에 올때 DB값을 확인하여 보내준다(메인에 추가해야 할 부분)	
+				love_jrbt.setBounds(359, 139, 70, 61);	
+				add(love_jrbt);	
+					
+				love_jrbt.addItemListener(new ItemListener() {	
+					@Override	
+					public void itemStateChanged(ItemEvent e) {		
+						Protocol p = new Protocol();	
+						db_VO vo = new db_VO();	
+						if (love_jrbt.isSelected()) {	
+							 System.out.println("on시작");	
+							 vo.setFavorite_ck("on");	
+							 vo.setDiner_no(store_no.getText()); 	
+							 p.setVo(vo);
+							 p.setCmd(25);
+							 System.out.println("on번호보내기");	
+							love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/heart.png")));		
+								
+						}else if (love_jrbt.isSelected() == false) {	
+							 System.out.println("off시작");	
+							 vo.setFavorite_ck("off");	
+							 vo.setDiner_no(store_no.getText()); 	
+							 p.setVo(vo);	
+							 p.setCmd(25);
+							 System.out.println("off번호보내기");	
+							 	
+							love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));	
+						}	
+						System.out.println(p.getCmd());	
+						try {	
+							System.out.println("보내기");	
+							main.out.writeObject(p);	
+							main.out.flush();	
+							System.out.println("보내기");	
+						} catch (IOException e1) {	
+							System.out.println("캐치");	
+							// TODO Auto-generated catch block	
+							e1.printStackTrace();	
+						}	
+					}	
+				});	
+					
+//				love_jrbt.addActionListener(new ActionListener() {	
+//						
+//					@Override	
+//					public void actionPerformed(ActionEvent e) {	
+//						// TODO Auto-generated method stub	
+//						Protocol p = new Protocol();	
+//						db_VO vo = new db_VO();	
+//						if (love_jrbt.isSelected()) {	
+//							 System.out.println("on시작");	
+//							 vo.setFavorite_ck("on");	
+//							 vo.setDiner_no(store_no.getText()); 	
+//							 p.setVo(vo);	
+//							 System.out.println("on번호보내기");	
+//							 	
+//								
+//							love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/heart.png")));		
+//								
+//						}else {	
+//							 System.out.println("off시작");	
+//							 vo.setFavorite_ck("off");	
+//							 vo.setDiner_no(store_no.getText()); 	
+//							 p.setVo(vo);	
+//							 	
+//							 System.out.println("off번호보내기");	
+//							 	
+//							love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));	
+//						}	
+//							
+//						p.setCmd(25);	
+//						System.out.println(p.getCmd());	
+//						try {	
+//							System.out.println("보내기");	
+//							main.out.writeObject(p);	
+//							System.out.println("보내기");	
+//							main.out.flush();	
+//						} catch (IOException e1) {	
+//							System.out.println("캐치");	
+//							// TODO Auto-generated catch block	
+//							e1.printStackTrace();	
+//						}	
+//					}	
+//				});
+		
 		
 		// main04_store2_map 상세지도 보기 페이지로 이동
 		open_map_bt.addActionListener(new ActionListener() {

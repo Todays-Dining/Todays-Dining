@@ -147,8 +147,8 @@ public class Main00_store_search extends JPanel {
 					main.out.writeObject(p);
 					main.out.flush();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					System.out.println("search에서 오류 남");
 				}
 				 
 				 clear();

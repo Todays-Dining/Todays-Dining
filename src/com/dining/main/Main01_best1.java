@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.dining.start.Start_frame;
+import com.dining.start.db_DAO;
 import com.dining.start.db_VO;
 import com.dining.start.Protocol;
 
@@ -28,7 +29,7 @@ public class Main01_best1 extends JPanel{
 	Start_frame main;
 	int error_chk_flag = 0;
 	
-	
+	public String review_star;
 	
 	public RoundedButton_kjh_5 store_bt ;
 	public JLabel store_food_image;
@@ -162,17 +163,25 @@ public class Main01_best1 extends JPanel{
 		store_bt.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// 별점 표시용 추가한 부분
+//				db_VO vo2 = new db_VO();
+//				vo2.setDiner_name(store_bt.getText());
+//				review_star = db_DAO.getStoreStar(vo2);
+//				System.out.println("별점은" + review_star);
 				Protocol p = new Protocol();
 				db_VO vo = new db_VO();
-				vo.setDiner_name(store_bt.getText()); 
+				vo.setDiner_name(store_bt.getText());
 				p.setStore_name(store_bt.getText()); 
 				p.setVo(vo);
-				 p.setCmd(22);
+				p.setCmd(22);
+				System.out.println("버튼에서 vo에 들어간 가게 이름" + vo.getDiner_name());
+				System.out.println("버튼에서 가게 이름 2" + p.getVo().getDiner_name());
+//				vo.setStar(review_star);
+//				System.out.println("vo에 들어간 스타" + vo.getStar());
 				 try {
 					main.out.writeObject(p);
 					main.out.flush();
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

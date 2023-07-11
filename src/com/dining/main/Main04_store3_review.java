@@ -43,6 +43,10 @@ public class Main04_store3_review extends JPanel {
 	public JTextField review2_id;
 	public JTextField review3_id;
 	
+	public JLabel date_1;
+	public JLabel date_2;
+	public JLabel date_3;
+	
 	public String id_forchk = "";
 	public String store_name = "";
 	public JTextField tf_forid;
@@ -115,7 +119,7 @@ public class Main04_store3_review extends JPanel {
 		JLabel lb1 = new JLabel("리뷰");
 		lb1.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 47));
 		lb1.setHorizontalAlignment(SwingConstants.CENTER);
-		lb1.setBounds(202, 260, 127, 54);
+		lb1.setBounds(202, 250, 127, 54);
 		add(lb1);
 
 		JLabel img_lb = new JLabel("");
@@ -126,50 +130,54 @@ public class Main04_store3_review extends JPanel {
 		JLabel custname1_lb = new JLabel("작성자:");
 		custname1_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
 		custname1_lb.setHorizontalAlignment(SwingConstants.CENTER);
-		custname1_lb.setBounds(67, 350, 67, 29);
+		custname1_lb.setBounds(130, 315, 67, 29);
 		add(custname1_lb);
 
-		review1_ta = new JTextArea();
-		review1_ta.setBounds(169, 350, 317, 61);
-		add(review1_ta);
-
-		JLabel date_1 = new JLabel("최근날짜순");
+		String date_1_time = "";
+		date_1 = new JLabel(date_1_time);
 		date_1.setHorizontalAlignment(SwingConstants.CENTER);
 		date_1.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		date_1.setBounds(48, 382, 96, 29);
+		date_1.setBounds(10, 345, 182, 30);
 		add(date_1);
+		review1_ta = new JTextArea();
+		review1_ta.setEditable(false);
+		review1_ta.setBounds(200, 350, 317, 61);
+		add(review1_ta);
 
+		String date_2_time = "";
+		date_2 = new JLabel(date_2_time);
+		date_2.setHorizontalAlignment(SwingConstants.CENTER);
+		date_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		date_2.setBounds(10, 447, 182, 30);
+		add(date_2);
 		review2_ta = new JTextArea();
-		review2_ta.setBounds(169, 452, 317, 61);
+		review2_ta.setEditable(false);
+		review2_ta.setBounds(200, 452, 317, 61);
 		add(review2_ta);
 
 		JLabel custname2_lb = new JLabel("작성자:");
 		custname2_lb.setHorizontalAlignment(SwingConstants.CENTER);
 		custname2_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		custname2_lb.setBounds(67, 457, 67, 29);
+		custname2_lb.setBounds(130, 417, 67, 29);
 		add(custname2_lb);
 
-		JLabel date_2 = new JLabel("2023/06/20");
-		date_2.setHorizontalAlignment(SwingConstants.CENTER);
-		date_2.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		date_2.setBounds(48, 484, 96, 29);
-		add(date_2);
-
+		
+		String date_3_time = "";
+		date_3 = new JLabel(date_3_time);
+		date_3.setHorizontalAlignment(SwingConstants.CENTER);
+		date_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
+		date_3.setBounds(10, 548, 182, 30);
+		add(date_3);
 		review3_ta = new JTextArea();
-		review3_ta.setBounds(169, 553, 317, 61);
+		review3_ta.setEditable(false);
+		review3_ta.setBounds(200, 553, 317, 61);
 		add(review3_ta);
 
 		JLabel custname3_lb = new JLabel("작성자:");
 		custname3_lb.setHorizontalAlignment(SwingConstants.CENTER);
 		custname3_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		custname3_lb.setBounds(67, 553, 67, 29);
+		custname3_lb.setBounds(130, 518, 67, 29);
 		add(custname3_lb);
-
-		JLabel date_3 = new JLabel("2023/06/20");
-		date_3.setHorizontalAlignment(SwingConstants.CENTER);
-		date_3.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
-		date_3.setBounds(48, 585, 96, 29);
-		add(date_3);
 
 		JLabel store_score_lb = new JLabel("별점 주기");
 		store_score_lb.setHorizontalAlignment(SwingConstants.CENTER);
@@ -202,17 +210,20 @@ public class Main04_store3_review extends JPanel {
 		
 		// 작성자 ID 입력 받아오기(하영)
 		review1_id = new JTextField();
-		review1_id.setBounds(169, 319, 116, 21);
+		review1_id.setEditable(false);
+		review1_id.setBounds(200, 319, 116, 21);
 		add(review1_id);
 		review1_id.setColumns(10);
 				
 		review2_id = new JTextField();
-		review2_id.setBounds(169, 421, 116, 21);
+		review2_id.setEditable(false);
+		review2_id.setBounds(200, 421, 116, 21);
 		add(review2_id);
 		review2_id.setColumns(10);
 				
 		review3_id = new JTextField();
-		review3_id.setBounds(169, 522, 116, 21);
+		review3_id.setEditable(false);
+		review3_id.setBounds(200, 522, 116, 21);
 		add(review3_id);
 		review3_id.setColumns(10);
 
@@ -240,6 +251,8 @@ public class Main04_store3_review extends JPanel {
 		tf_fordiner.setColumns(10);
 		tf_fordiner.setBounds(1, 0, 0, 0);
 		add(tf_fordiner);
+		
+	
 
 		// 다시 가게보기 첫화면으로 돌아간다 main04_store1_main
 		back_bt.addActionListener(new ActionListener() {
@@ -365,6 +378,10 @@ public class Main04_store3_review extends JPanel {
 					
 					String id = tf_forid.getText();
 					String diner_name = tf_fordiner.getText();
+					
+					now_review_ta.setText("");
+					store_score_tf.setText("");
+					
 					// ★ 프로토콜 2번 쓸 수 있음!!
 //					Protocol p2 = new Protocol();
 //					db_VO vo = new db_VO();
