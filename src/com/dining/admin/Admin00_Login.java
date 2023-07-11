@@ -51,7 +51,7 @@ public class Admin00_Login extends JPanel {
 
 	// 생성자에 클라이언트위치인 Start_frame 객체를 집어넣어서 전역변수로 만들고  socket , 아웃스트림 , 인풋스트림
 		// 만들어서 요청을 보낼때 사용? 확인해봐야할거같음
-	public Admin00_Login(CardLayout cardLayout, JPanel admin_pg ) {
+	public Admin00_Login(CardLayout cardLayout, JPanel admin_pg , Admin_frame admin ) {
 		this.cardLayout = cardLayout;
 		this.admin_pg = admin_pg;
 
@@ -161,7 +161,9 @@ public class Admin00_Login extends JPanel {
 		login_Button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				cardLayout.show(admin_pg, "admin01_main");
+				   
 			}
 		});
 
@@ -169,6 +171,7 @@ public class Admin00_Login extends JPanel {
 		find_id.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		
@@ -176,6 +179,7 @@ public class Admin00_Login extends JPanel {
 		find_pw.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 	}

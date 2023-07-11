@@ -28,21 +28,9 @@ public class Admin04_review extends JPanel {
 	JTextField textField_9;
 
 	String header[] = { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" };
-	String contents[][] = { { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" }, { "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" },
-			{ "리뷰 번호", "가게 이름", "회원ID", "리뷰", "평점" } };
+	String contents[][] = new String[0][0];
 	String selection[] = { "가게 이름", "회원아이디" };
 	public JTable table;
-    public JTable table_1;
     public DefaultTableModel dtm;
 	JTextField select_tf;
 	JPanel admin_pg;
@@ -114,7 +102,6 @@ public class Admin04_review extends JPanel {
 		
 		tabbedPane.addTab("리뷰 및 평점", null, panel, null);
 		JScrollPane scrollPane = new JScrollPane();
-		JScrollPane scrollPane_1 = new JScrollPane();
 
 		// 테이블 있는곳 색은 65, 105, 225, 명도만 220 
 
@@ -124,7 +111,8 @@ public class Admin04_review extends JPanel {
                 return false;
             }
         };
-		table.setPreferredSize(new Dimension(750, 500));
+        
+//		table.setPreferredSize(new Dimension(750, 500));
 		table.setPreferredScrollableViewportSize(new Dimension(1030, 450));
 		table.setRowMargin(2);
 		table.setGridColor(SystemColor.scrollbar);
@@ -200,6 +188,8 @@ public class Admin04_review extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				cardLayout.show(admin_pg, "admin01_main");
+				dtm.setNumRows(0);
+				select_tf.setText("");
 			}
 		});
 	}

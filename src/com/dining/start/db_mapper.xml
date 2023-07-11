@@ -145,37 +145,82 @@ WHERE row_num = 1 -->
 		values(review_seq.nextval, #{id}, #{diner_no}, #{review_content2}, SYSDATE, #{review_score})
 	</insert>
     
-    <!-- 성훈 매퍼 41~ -->
-    <!-- 41 관리자 리뷰페이지 전체가져오기 기능 -->
-    <select id="reviewAll" resultType="com.dining.start.db_VO">
-        select r.id , r.review_content , r.review_number , r.star , d.diner_name
-        from REVIEW_TABLE r , DINER_TABLE d
-        where r.diner_no = d.diner_no 
+     <!-- 성훈 매퍼 41~ -->	
+    <!-- 41 관리자 리뷰페이지 전체가져오기 기능 -->	
+    <select id="reviewAll" resultType="com.dining.start.db_VO">	
+        select r.id , r.review_content , r.review_number , r.star , d.diner_name	
+        from REVIEW_TABLE r , DINER_TABLE d	
+        where r.diner_no = d.diner_no order by r.star desc	
+    </select>	
+    	
+    <!-- 42 가게이름으로 리뷰 검색 -->	
+    <select id="s_namereview" parameterType="String" resultType="com.dining.start.db_VO">	
+        select r.id , r.review_content , r.review_number , r.star , d.diner_name	
+        from REVIEW_TABLE r , DINER_TABLE d	
+        where r.diner_no = d.diner_no and d.diner_name= #{d.diner_name} order by r.star desc	
+    </select>	
+    	
+    <!-- 43 회원이름으로 리뷰 검색 -->	
+    <select id="idreview" parameterType="String" resultType="com.dining.start.db_VO">	
+        select r.id , r.review_content , r.review_number , r.star , d.diner_name	
+        from REVIEW_TABLE r , DINER_TABLE d	
+        where r.diner_no = d.diner_no and r.id = #{r.id} order by r.star desc	
+    </select>	
+    	
+    <!-- 44 회원정보 전부 받아오기 -->	
+    <select id="memberAll" resultType="com.dining.start.db_VO">	
+        select * from SIGNUP_TABLE	
+    </select>	
+    	
+    <!-- 45회원아이디로 정보 검색 -->	
+    <select id="shmbid" parameterType="com.dining.start.db_VO" resultType="com.dining.start.db_VO">	
+        select * from SIGNUP_TABLE where id = #{id} 	
     </select>
     
-    <!-- 42 가게이름으로 리뷰 검색 -->
-    <select id="s_namereview" parameterType="String" resultType="com.dining.start.db_VO">
-        select r.id , r.review_content , r.review_number , r.star , d.diner_name
-        from REVIEW_TABLE r , DINER_TABLE d
-        where r.diner_no = d.diner_no and d.diner_name= #{d.diner_name}
+    <!-- 성훈 -->
+    <!-- 46회원아이디 삭제 -->	
+	<delete id="delmember" parameterType="com.dining.start.db_VO">	
+	delete from SIGNUP_TABLE where id = #{id}	
+	</delete>	
+    	
+    <!-- 48 가게 전부 받아오기 -->	
+    <select id="getStoreInfoAll" resultType="com.dining.start.db_VO">	
+        select * from diner_table order by diner_no	
+    </select>	
+    	
+    <!-- 49 Admin03_rest 페이지 음식점이름으로 불러오기-->	
+    <select id="CallFsName" parameterType="com.dining.start.db_VO" resultType="com.dining.start.db_VO">	
+        select * from diner_table where diner_name = #{diner_name} 	
+    </select>	
+    	
+    <!-- 50 Admin03_rest 페이지 음식분류로 불러오기-->	
+    <select id="CallFct" parameterType="com.dining.start.db_VO" resultType="com.dining.start.db_VO">	
+        select * from diner_table where food_category = #{food_category} 	
     </select>
     
-    <!-- 43 회원이름으로 리뷰 검색 -->
-    <select id="idreview" parameterType="String" resultType="com.dining.start.db_VO">
-        select r.id , r.review_content , r.review_number , r.star , d.diner_name
-        from REVIEW_TABLE r , DINER_TABLE d
-        where r.diner_no = d.diner_no and r.id = #{r.id}
-    </select>
+  	<!-- 성훈의 51 Admin03_rest 페이지 음식점 신규등록 -->	
+    <insert id="insStore" parameterType="com.dining.start.db_VO">	
+    insert into diner_table(diner_no , diner_name , favorited_number , opening_hours 	
+    , menu , phone_number , parking_or_not , food_category , region, address)	
+    values(DINER_NO_SEQ.NEXTVAL , #{diner_name} , #{favorited_number} , #{opening_hours} ,	
+     #{menu} , #{phone_number} , #{parking_or_not} , #{food_category} , #{region} , #{address}) 	
+    </insert>
     
-    <!-- 44 회원정보 전부 받아오기 -->
-    <select id="memberAll" resultType="com.dining.start.db_VO">
-        select * from SIGNUP_TABLE
-    </select>
+     <delete id="delStore" parameterType="com.dining.start.db_VO">	
+    delete from diner_table where diner_name = #{diner_name}	
+    </delete>
     
-    <!-- 45회원아이디로 정보 검색 -->
-    <select id="shmbid" parameterType="com.dining.start.db_VO" resultType="com.dining.start.db_VO">
-        select * from SIGNUP_TABLE where id = #{id} 
-    </select>
+    <!-- 55 Admin03_rest 페이지 음식점 정보 불러오기 버튼 -->	
+    <select id="callStore" parameterType="com.dining.start.db_VO" resultType="com.dining.start.db_VO"> 	
+    select * from diner_table where diner_name = #{diner_name}	
+    </select>	
+    	
+      <!-- 56 Admin03_rest 페이지 음식점 정보 업데이트 버튼 -->	
+      <update id="storeUpdate" parameterType="com.dining.start.db_VO">	
+      update diner_table set address = #{address} , menu = #{menu} , 	
+      phone_number = #{phone_number} , opening_hours = #{opening_hours} , food_category = #{food_category} , 	
+      parking_or_not = #{parking_or_not} where diner_name = #{diner_name}	
+      </update>
 
 	<!-- 51 가게이름으로 리뷰 작성자 아이디, 리뷰 내용 있는지 검색 -->
     <select id="infoReview_Ck" parameterType="String" resultType="com.dining.start.db_VO">
@@ -193,11 +238,15 @@ WHERE row_num = 1 -->
 		order by r.review_time desc
 	</select>
     
+    
+    
     <!-- 52 가게 리뷰 작성하기(입력) 작성중... -->
    <!--  <insert id="starNreview" parameterType="com.dining.start.db_VO">
     	insert into review_table(id,diner_no,review_content,review_time,star)
     	values(id,diner_no,review_content,review_time,star)
     </insert> -->
+    
+    
      <!-- 77 상화 -->
      <select id="bestOfAll2" resultType="com.dining.start.db_VO">
    		select * from REVIEW_AVG_VIEW where rownum &lt;&#61; 5

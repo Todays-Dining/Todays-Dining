@@ -25,49 +25,20 @@ import com.dining.start.Protocol;
 import com.dining.start.db_VO;
 
 public class Admin02_Member extends JPanel {
-	JTextField select_tf;
+	public JTextField select_tf;
 	public JTable table;
     public DefaultTableModel dtm;
     public JScrollPane scroll_table;
 	JRadioButton rb;
 	
 	 String header[]={"회원번호", "회원아이디", "비밀번호", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"};
-     String contents[][]={
-    		 {"0", "김재훈", "스윙마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"},
-    		 {"1", "김좌현", "일어마스터", "생년월일", "이메일", "비밀번호 확인 질문", "비밀번호 확인 질문 답변", "고객분류", "신고 당한 횟수"}
-    		 
-     };
+     String contents[][]= new String[0][0];
      String selection[]= {"회원번호", "회원아이디"}; 
      private JButton allselect_bt;
      Admin_frame admin;
      JPanel admin_pg ;
  	CardLayout cardLayout;
+ 	public JButton del_bt;
     
 	/**
 	 * Create the panel.
@@ -141,21 +112,21 @@ public class Admin02_Member extends JPanel {
 		allselect_bt.setBounds(739, 150, 102, 43);
 		add(allselect_bt);
 		
-		JButton del_bt = new JButton("삭제");
+		del_bt = new JButton("삭제");
 		del_bt.setFont(new Font("Sandoll 삼립호빵체 TTF Basic", Font.PLAIN, 18));
 		del_bt.setBorderPainted(false);
 		del_bt.setBackground(Color.WHITE);
 		del_bt.setBounds(842, 150, 102, 43);
 		add(del_bt);
-		del_bt.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// ★ table에서 클릭한 (선택된) 회원아이디가 있는 row의 아이디만 선택해서 해당 id의 정보를 DB에서 삭제하는 쿼리 
-				int sel_row = table.getSelectedRow();
-				int sel_col = table.getSelectedColumn();
-				Object id_value = table.getValueAt(sel_row, sel_col);
-			}
-		});
+//		del_bt.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				// ★ table에서 클릭한 (선택된) 회원아이디가 있는 row의 아이디만 선택해서 해당 id의 정보를 DB에서 삭제하는 쿼리 
+//				int sel_row = table.getSelectedRow();
+//				int sel_col = table.getSelectedColumn();
+//				Object id_value = table.getValueAt(sel_row, sel_col);
+//			}
+//		}); 안쓰는 기능
 		
 		
 		dtm = new DefaultTableModel(contents, header);
@@ -184,14 +155,14 @@ public class Admin02_Member extends JPanel {
 		adminadd_bt.setBounds(989, 150, 133, 43);
 		add(adminadd_bt);
 		
-	
+		del_bt.setEnabled(false);
 		
 		// admin02_AdMember_add 관리자 추가페이지로 이동
 		adminadd_bt.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				dtm.setNumRows(0);
 				cardLayout.show(admin_pg, "admin02_AdMember_add");
 			}
 		});
@@ -201,8 +172,12 @@ public class Admin02_Member extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				dtm.setNumRows(0);
 				cardLayout.show(admin_pg, "admin01_main");
+				select_tf.setText("");
+				dtm.setNumRows(0);
+				del_bt.setEnabled(false);
+				
 			}
 		});
 		
@@ -238,9 +213,27 @@ public class Admin02_Member extends JPanel {
                 admin.out.flush();
             } catch (Exception e2) {
             }
-                
             }
         });
+        
+        // 삭제버튼
+        del_bt.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Protocol p = new Protocol();
+				try {
+					db_VO vo = new db_VO();
+					p.setCmd(46);
+					vo.setId(select_tf.getText());
+					p.setVo(vo);
+					admin.out.writeObject(p);
+					admin.out.flush();
+				} catch (Exception e2) {
+				}
+				del_bt.setEnabled(false);
+			}
+		});
 		
 	}
 	

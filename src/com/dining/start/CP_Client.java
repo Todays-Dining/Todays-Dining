@@ -1,5 +1,7 @@
 package com.dining.start;
 
+import javax.swing.UIManager;	
+import javax.swing.plaf.FontUIResource;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -10,6 +12,9 @@ import javax.swing.JOptionPane;
 import java.awt.Component;
 import java.awt.*;
 
+import com.dining.admin.Admin02_Member;	
+import com.dining.admin.Admin03_rest;	
+import com.dining.admin.Admin04_review;
 import com.dining.login.Login01_page;
 
 // implements Runnble 하면, DB_Server에서 .start()가 작동 안됨!
@@ -19,8 +24,18 @@ public class CP_Client extends Thread {
 	ObjectInputStream in;
 	ObjectOutputStream out;
 	List<db_VO> list = null;
+	Admin02_Member member;	
+	Admin04_review review;	
+	int result = 0;
 
 	public CP_Client(Socket s, DB_Server server) {
+		UIManager ui = new UIManager(); // 전체적인 UI시스템 이미지, 색상, 폰트 변경	
+	    ui.put("Button.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // 버튼의 폰트 변경	
+	    ui.put("Button.background", new Color(65, 105, 225)); // 버튼의 색상변경	
+	    ui.put("Button.focus", new Color(65, 105, 225)); // 버튼의 글자 테두리의 색상 변경	
+	    ui.put("Label.font", new FontUIResource(new Font ("Sandoll 삼립호빵체 TTF Basic", Font.BOLD, 16))); // o	
+	    ui.put("OptionPane.background",new Color(255, 240, 245)); // 다이얼로그의 배경색 변경	
+	    ui.put("Panel.background",new Color(255, 240, 245)); // 다이얼로그의 패널부분 배경색 변경
 		this.s = s;
 		this.server = server;
 		try {
@@ -265,61 +280,194 @@ public class CP_Client extends Thread {
 				    	break;
 			
 				    	
-				    	// 성훈 41~
-				    case 41: // Admin04_review 관리자 리뷰관리페이지 리뷰 모두 불러오기 기능
-                        List<db_VO> list41 = db_DAO.getreviewAll();                        
-                        p.setList(list41);
-                        out.writeObject(p);
-                        out.flush();
+				    	// 성훈 41~	
+				    case 41: // Admin04_review 관리자 리뷰관리페이지 리뷰 모두 불러오기 기능	
+                        List<db_VO> list41 = db_DAO.getreviewAll();                        	
+                        p.setList(list41);	
+                        out.writeObject(p);	
+                        out.flush();	
+                        break;	
+                    case 42: // 리뷰페이지 가게이름 검색 불러오기	
+                        db_VO vo42 = new db_VO();	
+                        vo42 = p.getVo();	
+                        List<db_VO> list42 = db_DAO.s_namereview(vo42.getDiner_name());	
+                       	p.setList(list42);	
+                       	out.writeObject(p);	
+                       	out.flush();                        	
+                        break;	
+                    case 43: // 리뷰페이지 회원 아이디 검색 불러오기	
+                        db_VO vo43 = new db_VO();	
+                        vo43 = p.getVo();	
+                        List<db_VO> list43 = db_DAO.getidreview(vo43.getId());	
+                       	p.setList(list43);	
+                       	out.writeObject(p);	
+                       	out.flush();	
+                        break;	
+                    case 44: // Admin02_Member페이지 전체검색	
+                        List<db_VO> list44 = db_DAO.getmeminfoAll();	
+                        p.setList(list44);	
+                        out.writeObject(p);	
+                        out.flush();	
+                        break;	
+                    case 45: // Admin02_Member 회원아이디로 검색	
+                        db_VO vo45 = p.getVo();	
+                        p.setVo(db_DAO.IdinfoSh(vo45));	
+                        if(p.getVo() == null) {		
+                        		p.setCmd(40); // 아이디 검색시 정보가 없을경우	
+                        out.writeObject(p);	
+                        out.flush();	
+                        }else {	
+                       	out.writeObject(p);	
+                       	out.flush();                      		
+                        }	
                         break;
-                    case 42: // 리뷰페이지 가게이름 검색 불러오기
-                        db_VO vo42 = new db_VO();
-                        vo42 = p.getVo();
-                        List<db_VO> list42 = db_DAO.s_namereview(vo42.getDiner_name());
-                        p.setList(list42);
-                        out.writeObject(p);
-                        out.flush();                        
-                        break;
-                    case 43: // 리뷰페이지 회원 아이디 검색 불러오기
-                        db_VO vo43 = new db_VO();
-                        vo43 = p.getVo();
-                        List<db_VO> list43 = db_DAO.getidreview(vo43.getId());
-                        p.setList(list43);
-                        out.writeObject(p);
-                        out.flush();
-                        break;
-                    case 44: // Admin02_Member페이지 전체검색
-                        List<db_VO> list44 = db_DAO.getmeminfoAll();
-                        p.setList(list44);
-                        out.writeObject(p);
-                        out.flush();
-                        break;
-                    case 45: // Admin02_Member 회원아이디로 검색
-                        db_VO vo45 = p.getVo();
-                        p.setVo(db_DAO.IdinfoSh(vo45));
-                        out.writeObject(p);
-                        out.flush();
-                        break;
-				    	
-                    case 51 : // 식당 리뷰
-                    	
-				    	db_VO vo51_ck = new db_VO();
-				    	vo51_ck = p.getVo();
-						vo51_ck = db_DAO.getinfoReview_ck(vo51_ck);
-						if(vo51_ck != null) {
-							
-						List<db_VO> list51 ;
-						list51 = db_DAO.getinfoReview(p.getSearch());
-						
-							p.setList(list51);
-							p.setResult(1);
-						}else {
-							p.setResult(0);
-						}
-						out.writeObject(p);
-						out.flush();
-						System.out.println("성공");
-						break;  
+                        
+                    case 46: // Admin02_Member 회원아이디로 삭제	
+                    	db_VO vo46 = p.getVo();	
+                    	int result46 = JOptionPane.showConfirmDialog(member, "정말 삭제하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);	
+//                    	new ImageIcon(Admin03_rest.class.getResource("/image/icon_mini.png"))	
+                    	if(result46==0) {	
+                    		db_DAO.delmember(vo46);                    			
+                    		out.writeObject(p);	
+                    		out.flush();                    			
+                    	}else {	
+                    		p.setCmd(47);	
+                    		out.writeObject(p);	
+                    		out.flush();       	
+                    	}break;	
+                    	// 47번은 회원 아이디 삭제실패	
+                   case 48: // Admin03_rest페이지 가게정보 전부 불러오기	
+                    	List<db_VO> list48 = db_DAO.getStoreInfoAll();	
+                        p.setList(list48);	
+                        out.writeObject(p);	
+                        out.flush();	
+                    	break;	
+                   case 49: //Admin03_rest 페이지 음식점이름으로 불러오기	
+                	   db_VO vo49 = p.getVo();	
+                       p.setVo(db_DAO.callFsName(vo49));	
+                       if(p.getVo() == null) {	
+                    	   p.setCmd(58);	
+                    	   out.writeObject(p);	
+   		                out.flush();	
+                       }else {	
+                    	   out.writeObject(p);	
+                    	   out.flush();                   	   	
+                       }	
+   						break;	
+   				   case 50: //Admin03_rest 페이지 음식분류로 불러오기	
+   					db_VO vo50 = p.getVo(); 	
+   					List<db_VO> list50 = db_DAO.callFoodCtg(vo50);	
+   					p.setList(list50);	
+   					if(p.getList() == null) {	
+						   p.setCmd(58);	
+						out.writeObject(p);	
+		                out.flush();	
+					   }else {	
+					out.writeObject(p);	
+					out.flush();						   	
+					   }	
+   					break;
+   					
+   					
+   					
+   					
+   				 case 51: // Admin03_rest 음식점 신규등록 성공	
+ 					   int result51 = 0;	
+ 					   try {	
+ 						   db_VO vo51 = p.getVo();	
+ 						   result51 = db_DAO.insStore(vo51);   						  	
+ 						   if(result51>0) {	
+ 							   out.writeObject(p);	
+ 							   out.flush();	
+ 						   }else {	
+ 							   p.setCmd(52);	
+ 							   out.writeObject(p);	
+ 							   out.flush();	
+ 						   }	
+ 						   break;	
+					} catch (Exception e) {	
+						// TODO: handle exception	
+						System.out.println(e);	
+					}	
+ 					   // 52번은 음식점 신규등록 실패	
+ 					   	
+ 				   case 53: // Admin03_rest 음식점 삭제	
+ 					int result53 = JOptionPane.showConfirmDialog(member, "정말 삭제하시겠습니까?", "confirm", JOptionPane.YES_NO_OPTION);	
+ 					   db_VO vo53 = p.getVo();	
+ 					   if(result53 == 0) {	
+ 						db_DAO.delStore(vo53);	
+ 						out.writeObject(p);	
+						out.flush();	
+					   }else {	
+						p.setCmd(54);	
+ 						out.writeObject(p);	
+						out.flush();	
+ 					   }	
+// 					if(result46==0) {	
+//              		db_DAO.delmember(vo46);                    			
+//              		out.writeObject(p);	
+//              		out.flush();                    			
+//              	}else {	
+//              		p.setCmd(47);	
+//              		out.writeObject(p);	
+//              		out.flush();       	
+//              	}	
+ 					   break;	
+ 					   	
+ 				   case 55: // Admin03_rest 음식점 정보 불러오기	
+ 					   db_VO vo55 = p.getVo();	
+ 					   p.setVo(db_DAO.callStore(vo55));	
+ 					if(p.getVo() == null) {	
+						   p.setCmd(58);	
+						out.writeObject(p);	
+		                out.flush();	
+					   }else {	
+						   out.writeObject(p);	
+						   out.flush();						   	
+					   }	
+ 					   break;	
+ 				case 56: // Admin03_rest 음식점 수정 성공	
+ 					db_VO vo56 = p.getVo();	
+ 					try {	
+ 						int result56 = db_DAO.storeUpdate(vo56);	
+ 						if(result56>0) {	
+ 							out.writeObject(p);	
+ 							out.flush();	
+ 						}else {	
+ 							p.setCmd(57);	
+ 							out.writeObject(p);	
+ 							out.flush();	
+ 						}	
+					} catch (Exception e) {	
+						System.out.println("오류" + e);	
+					}	
+					break;						
+				case 57: // Admin03_rest 음식점 수정 실패	
+					break;
+   					
+   					
+   					
+   					
+				// 뒤로 밀기    	
+//            case 51 : // 식당 리뷰
+//            	
+//		    	db_VO vo51_ck = new db_VO();
+//		    	vo51_ck = p.getVo();
+//				vo51_ck = db_DAO.getinfoReview_ck(vo51_ck);
+//				if(vo51_ck != null) {
+//					
+//				List<db_VO> list51 ;
+//				list51 = db_DAO.getinfoReview(p.getSearch());
+//				
+//					p.setList(list51);
+//					p.setResult(1);
+//				}else {
+//					p.setResult(0);
+//				}
+//				out.writeObject(p);
+//				out.flush();
+//				System.out.println("성공");
+//				break;  
                     case 77 : // 주간베스트	
                     	p.setList(db_DAO.getbestAll2());	
                     	out.writeObject(p);	

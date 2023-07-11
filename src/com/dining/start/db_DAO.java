@@ -233,6 +233,59 @@ public class db_DAO {
             vo = getSession().selectOne("shmbid",vo); 
             return vo;
     }
+        
+      //46	
+        public static int delmember(db_VO vo) {	
+          int result = getSession().delete("delmember",vo);	
+          ss.commit();	
+          return result;	
+       }	
+        	
+      //48	
+       public static List<db_VO> getStoreInfoAll(){// 가게정보 전부 받아오기	
+            List<db_VO> list = null;	
+            list = getSession().selectList("getStoreInfoAll");	
+            return list;	
+        }	
+       //49 Admin03_rest 페이지 음식점이름으로 불러오기	
+       public static db_VO callFsName(db_VO vo){// 회원아이디로 특정 회원정보 검색	
+           vo = getSession().selectOne("CallFsName",vo); 	
+           return vo;	
+       }	
+       //50 Admin03_rest 페이지 음식분류로 불러오기	
+       public static List<db_VO> callFoodCtg(db_VO vo){// 회원아이디로 특정 회원정보 검색\	
+      	 List<db_VO> list = null; 	
+           list = getSession().selectList("CallFct",vo);	
+           return list;	
+       }	
+       	
+       //51 Admin03_rest 페이지 신규 가게 등록	
+       public static int insStore(db_VO vo) {	
+      	 int result = getSession().insert("insStore",vo);	
+      	 ss.commit();	
+      	 return result;	
+       }	
+       	
+       // 53 Admin03_rest 페이지 음식점 삭제 버튼	
+       public static int delStore(db_VO vo) {	
+      	 int result = getSession().delete("delStore",vo);	
+      	 ss.commit();	
+      	 return result;	
+       }	
+       	
+       // 55 Admin03_rest 페이지 가게 불러오기 버튼	
+       public static db_VO callStore(db_VO vo) {	
+      	 vo = getSession().selectOne("callStore",vo);	
+      	 return vo;	
+       }	
+       // 56 Admin03_rest 페이지 가게 수정 버튼	
+       public static int storeUpdate(db_VO vo) {	
+           int result = getSession().update("storeUpdate",vo);	
+           ss.commit();	
+           return result; 	
+       }
+        
+        
         //51 검색할게 있는지 확인
         public static db_VO getinfoReview_ck(db_VO vo){
    		 vo = getSession().selectOne("infoReview_Ck", vo);
