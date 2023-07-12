@@ -65,7 +65,7 @@ public class Main04_store1_main extends JPanel {
 		avg_score_lb.setToolTipText("");
 		avg_score_lb.setText("4.5");
 		avg_score_lb.setFont(new Font("Sandoll 삼립호빵체 TTF Outline", Font.BOLD, 14));
-		avg_score_lb.setBounds(297, 158, 29, 22);
+		avg_score_lb.setBounds(296, 161, 29, 22);
 		add(avg_score_lb);
 		
 		JLabel sidetool = new JLabel("");
@@ -244,7 +244,7 @@ public class Main04_store1_main extends JPanel {
 		add(review_bt);
 		
 		JLabel star_lb = new JLabel("");
-		star_lb.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/star3.png")));
+		star_lb.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/starpoint.png")));
 		star_lb.setBounds(274, 139, 77, 61);
 		add(star_lb);
 		
@@ -279,30 +279,27 @@ public class Main04_store1_main extends JPanel {
 						Protocol p = new Protocol();	
 						db_VO vo = new db_VO();	
 						if (love_jrbt.isSelected()) {	
-							 System.out.println("on시작");	
 							 vo.setFavorite_ck("on");	
 							 vo.setDiner_no(store_no.getText()); 	
 							 p.setVo(vo);
 							 p.setCmd(25);
-							 System.out.println("on번호보내기");	
+							 System.out.println("on번호보내기 완");	
 							love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/heart.png")));		
 								
 						}else if (love_jrbt.isSelected() == false) {	
-							 System.out.println("off시작");	
 							 vo.setFavorite_ck("off");	
 							 vo.setDiner_no(store_no.getText()); 	
 							 p.setVo(vo);	
 							 p.setCmd(25);
-							 System.out.println("off번호보내기");	
+							 System.out.println("off번호보내기 완");	
 							 	
 							love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));	
 						}	
 						System.out.println(p.getCmd());	
 						try {	
-							System.out.println("보내기");	
-							main.out.writeObject(p);	
-							main.out.flush();	
-							System.out.println("보내기");	
+							main.out.writeObject(p);
+							main.out.flush();
+							System.out.println("버튼에서 보내기 완");	
 						} catch (IOException e1) {	
 							System.out.println("캐치");	
 							// TODO Auto-generated catch block	

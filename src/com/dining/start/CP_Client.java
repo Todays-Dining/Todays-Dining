@@ -124,24 +124,17 @@ public class CP_Client extends Thread {
 							}
 							
 							db_VO vo22 =  new db_VO();
-							System.out.println("9번");
 							vo22 = db_DAO.getStoreInfo(p.getVo());
-							System.out.println("10번");
 							try {
 								vo22.setAvg_star(avg_star);
 								
 							} catch (Exception e) {
-								// TODO: handle exception
 							}
-							System.out.println("11번");
 							
 							p.setVo(vo22);
-							System.out.println("12번");
-							System.out.println("cpc 22번에서 별점" + p.getVo().getAvg_star());
 							// vo를 바꿔치기
 							out.writeObject(p);
 							out.flush();
-							System.out.println("끝남");
 						} catch (Exception e) {
 							System.out.println("cpc 22번에서 오류");
 							System.out.println(e);
@@ -170,12 +163,13 @@ public class CP_Client extends Thread {
 					case 25:
 						// cpc 25번으로는 들어와짐!
 						try {
-							System.out.println("cpc 25번");
-							
+							System.out.println("cpc 25번 작동");
 						} catch (Exception e) {
 							System.out.println("cpc 25번 오류");
 							System.out.println(e);
 						}
+						out.writeObject(p);
+	                    out.flush();
 						break;
 						
 					case 26 : // 좌현 아이디찾기	
@@ -193,6 +187,7 @@ public class CP_Client extends Thread {
 						out.writeObject(p);	
 						out.flush();	
 						break;	
+						
 					case 27 : // 좌현 비번찾기	
 						
 						db_VO vo27 = new db_VO();	

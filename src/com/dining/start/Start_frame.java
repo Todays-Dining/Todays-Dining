@@ -358,6 +358,18 @@ public class Start_frame extends JFrame implements Runnable {
 //						 main04_store1_main.store_name.setText( p.getVo().getDiner_name());							 
 							
 							
+							try {
+								System.out.println("메인에서 스타 " + p.getVo().getAvg_star());								
+								Double final_star = 0.0;
+								final_star = Double.parseDouble(p.getVo().getAvg_star());
+								System.out.println(final_star);
+								main04_store1_main.avg_score_lb.setText(final_star.toString());
+//								System.out.println("sf에서의 별점은" + p.getVo().getStar());
+							} catch (Exception e) {
+//								System.out.println("메인에서 스타 오류");
+//								System.out.println(e);
+							}
+							//					if(p.getVo().getAvg_star())
 							
 							main04_store1_main.store_area_t.setText(p.getVo().getRegion());
 							main04_store1_main.store_addr_t.setText(p.getVo().getAddress());
@@ -366,8 +378,7 @@ public class Start_frame extends JFrame implements Runnable {
 							main04_store1_main.store_open_t.setText(p.getVo().getOpening_hours());
 							// 비밀의 넘버에 추가 (재훈)
 							main04_store1_main.store_no.setText(p.getVo().getDiner_no());
-							main04_store1_main.avg_score_lb.setText(p.getVo().getStar());
-							System.out.println("sf에서의 별점은" + p.getVo().getStar());
+//							main04_store1_main.avg_score_lb.setText(p.getVo().getStar());
 							System.out.println(p.getVo().getOpening_hours());
 //	                     main04_store1_main.avg_score_lb.setText(p.getVo().getStar());
 							if(p.getVo().getParking_or_not().equals("1")) {
@@ -382,29 +393,39 @@ public class Start_frame extends JFrame implements Runnable {
 			                  System.out.println(mypage01_main.id_tf.getText());	
 			                  db_VO vo22_ck =  new db_VO();	
 		                      	
+			                  // ID가 없을 경우 결과 반환하도록 mapper 수정 필요함
 		                      vo22_ck = db_DAO.getIdFavorite_ck(mypage01_main.id_tf.getText());	
 		                      if(vo22_ck != null) {	
 		                      	List<db_VO> like_list = db_DAO.getIdFavorite(mypage01_main.id_tf.getText());	
 		                      	p.setList(like_list);	
 		                      	p.setResult(1);	
+		                      	System.out.println("널이 아이다.");
+		                      	System.out.println("1 0번임");
 		                      }else {	
 		                      	p.setResult(0);
+		                      	System.out.println("널이다.");
+		                      	System.out.println("p 0번임");
 		                      }
-		                      String diner_no22[] = new String[p.list.size()];	
-								String favorite_ck22[] = new String[p.list.size()];	
-									
-								for (int i = 0; i < p.list.size(); i++) {	
-								    k = p.list.get(i);	
-								    diner_no22[i] = k.getDiner_no();	
-								    favorite_ck22[i] = k.getFavorite_ck();	
-								    System.out.println(k.getDiner_no());	
-								    System.out.println(k.getFavorite_ck());	
-								}	
+		                      // p.list 사이즈가 오류
+		                      
 				              if(p.getResult() == 0) {	
+			                      	System.out.println("p 0번임 (조건2)");
+
 				            	  main04_store1_main.love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));	
 				                  main04_store1_main.love_jrbt.setSelected(false);	
 				                  System.out.println("조건문 off1");	
 				              }else {	
+				            	  String diner_no22[] = new String[p.list.size()];	
+									String favorite_ck22[] = new String[p.list.size()];	
+									System.out.println("테스트 ");	
+									for (int i = 0; i < p.list.size(); i++) {	
+									    k = p.list.get(i);	
+									    diner_no22[i] = k.getDiner_no();	
+									    favorite_ck22[i] = k.getFavorite_ck();	
+									    System.out.println(k.getDiner_no());	
+									    System.out.println(k.getFavorite_ck());	
+									}	
+				            	  // 널이 아니다
 				            	  for (int i = 0; i < p.list.size(); i++) {	
 				            	      if (storeNo.equals(diner_no22[i]) && favorite_ck22[i].equals("on")) {	
 				            	    	   System.out.println("조건문 on");	
@@ -418,26 +439,23 @@ public class Start_frame extends JFrame implements Runnable {
 				            	    	  System.out.println("조건문 off2");	
 				            	    	  main04_store1_main.love_jrbt.setSelected(false);	
 				            	    	  main04_store1_main.love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));	
-				            	      }	
+				            	      }else if(! storeNo.equals(diner_no22[i])){
+				            	    	  System.out.println("조건문 off3");	
+				            	    	  System.out.println("성공이다");
+				            	    	  main04_store1_main.love_jrbt.setSelected(false);	
+				            	    	  main04_store1_main.love_jrbt.setIcon(new ImageIcon(Main04_store1_main.class.getResource("/image/whiteheart.png")));
+				            	      }
 				            	  }	
 				              } 
 			                      
 							
-							try {
-								System.out.println("메인에서 스타 " + p.getVo().getAvg_star());								
-								Double final_star = 0.0;
-								final_star = Double.parseDouble(p.getVo().getAvg_star());
-								System.out.println(final_star);
-								main04_store1_main.avg_score_lb.setText(final_star.toString());
-							} catch (Exception e) {
-//								main04_store1_main.avg_score_lb.setText("X");
-							}
-							//					if(p.getVo().getAvg_star())
+				
 							cardLayout.show(main_pg,"main04_store1_main");	
 							System.out.println("6번까지 된다");
 							
 						} catch (Exception e) {
 							System.out.println("main 22에서 오류");
+							System.out.println(e);
 						}
 						
 	                     
@@ -621,27 +639,27 @@ public class Start_frame extends JFrame implements Runnable {
 						}
 						break;
 					
+						// 기존에 좋아요를 눌러놨었는지 검사하는 코드?
 					case 25:	// 좋아요 업데이트
+						System.out.println("메인 25번 도전!");
 						try {
-							System.out.println("25번 메인 시작");	
-							Thread.sleep(1000);
+							System.out.println("메인 25번 시작");
+							db_VO vo25 =  new db_VO();	
+							vo25.setFavorite_ck(p.getVo().getFavorite_ck()); 	
+							vo25.setDiner_no(p.getVo().getDiner_no()) ;	
+							vo25.setId(mypage01_main.id_tf.getText());	
+							System.out.println("DAO시작");	
+							db_DAO.changeFavorite(vo25);	
+							p.setResult(db_DAO.changeFavorite(vo25));	
+							if(p.getResult() == 1) {	
+								System.out.println("좋아요 성공");	
+							}else {	
+								System.out.println("좋아요 실패");	
+							}	
 							
-//						db_VO vo25 =  new db_VO();	
-//						vo25.setFavorite_ck(p.getVo().getFavorite_ck()); 	
-//						vo25.setDiner_no(p.getVo().getDiner_no()) ;	
-//						vo25.setId(mypage01_main.id_tf.getText());	
-//						System.out.println("DAO시작");	
-////						db_DAO.changeFavorite(vo25);	
-//						p.setResult(db_DAO.changeFavorite(vo25));	
-//						if(p.getResult() == 1) {	
-//							System.out.println("좋아요 성공");	
-//						}else {	
-//							System.out.println("좋아요 실패");	
-//						}	
-							
-						} catch (Exception e) {
-							System.out.println("메인 25번 오류");
-						}
+							} catch (Exception e) {
+								System.out.println("메인 25번 오류");
+							}
 						break;
 						
 					case 26: // 아이디찾기	
@@ -791,9 +809,7 @@ public class Start_frame extends JFrame implements Runnable {
 	                     
 	                     cardLayout.show(main_pg, "main04_store1_main");
 	                        break;
-					case 41: // 상우 리뷰 날짜 받아와서 넣기
-						break;
-						
+					// 안쓰는 케이스 지워야?
 					
 					case 51: //하영이 완성 재훈수정완료
 						// 보내줘야하는게 없음?!
@@ -918,18 +934,7 @@ public class Start_frame extends JFrame implements Runnable {
 							
 							
 						break;
-					case 88:
-//						System.out.println("메인에서 스타 " + p.getVo().getAvg_star());
-////						if(p.getVo().getAvg_star())
-//						Double final_star = 0.0;
-//						final_star = Double.parseDouble(p.getVo().getAvg_star());
-//						main04_store1_main.avg_score_lb.setText(final_star.toString());
-//						cardLayout.show(main_pg,"main04_store1_main");	
-						
-//						p.setCmd(22);
-//						out.writeObject(p);	
-//                    	out.flush();	
-						break;
+						// 안쓰는 케이스 지워야?
 						
 					}
 				}
